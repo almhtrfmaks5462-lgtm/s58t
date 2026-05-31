@@ -36,47 +36,27 @@ const cl = classNameFactory("vc-S7Cord-tab-");
 
 const DEV_TEAM = [
     {
-        id: "ahki",
-        name: "ahki__",
+        id: "s58t",
+        name: "Saif",
         role: "Owner",
-        pfp: "https://i.imgur.com/gHucHbN.jpeg",
+        pfp: "[https://i.imgur.com/3CwhBaL.jpeg",
         description: "Founder and owner of S7Cord."
     },
     {
-        id: "kza",
-        name: "Kza",
+        id: "l_6f",
+        name: "Turki",
         role: "Co-Owner",
-        pfp: "https://i.imgur.com/wqKfGyK.jpeg",
+        pfp: "https://i.imgur.com/OoI2lEK.jpeg",
         description: "Co-owner of S7Cord."
     },
     {
-        id: "attachante",
-        name: "attachante",
+        id: "Sebrany",
+        name: "Sebrany",
         role: "Developer",
-        pfp: "https://i.imgur.com/R8s7Jz9.png",
+        pfp: "[https://i.imgur.com/59kRh9U.png",
         description: "Developer within the S7Cord team."
     },
-    {
-        id: "Fancy",
-        name: "Fancy",
-        role: "Developer",
-        pfp: "https://i.imgur.com/RVJ2bUG.png",
-        description: "Developer within the S7Cord team."
-    },
-    {
-        id: "Xeen",
-        name: "Xeen",
-        role: "BOT Developer",
-        pfp: "https://i.imgur.com/mXKUR8I.png",
-        description: "Bot developer for S7Cord."
-    },
-    {
-        id: "biemal",
-        name: "Biemal",
-        role: "WebApp Developer",
-        pfp: "https://i.imgur.com/8PISMQu.png",
-        description: "WebApp developer within the S7Cord team."
-    }
+
 ];
 
 function DevTeamSection() {
