@@ -1,254 +1,339 @@
 <script>
-    import "focus-visible";
-    import {onMount} from "svelte";
+    import { Router, Route, navigate } from "svelte-routing";
+    import ActionSelector from "./pages/ActionSelector.svelte";
+    import Install from "./pages/Install.svelte";
+    import Repair from "./pages/Repair.svelte";
+    import Uninstall from "./pages/Uninstall.svelte";
+    import Complete from "./pages/Complete.svelte";
 
-    // import Page from "./containers/Page.svelte";
-    import Titlebar from "./common/Titlebar.svelte";
-    import Footer from "./common/Footer.svelte";
-    import Router from "svelte-spa-router";
-    import routes from "./routes";
+    // Stores
+    import { canGoBack, canGoForward, currentPage, nextPage } from "./stores/navigation";
+    import { action } from "./stores/installation";
+    import { radioSelectedIndex } from "./stores/controls";
 
-    let canvas;
-
-    onMount(() => {
-        const ctx = canvas.getContext("2d");
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        const stars = [];
-        const MAX = 12;
-
-        function randomStar() {
-            const angle = Math.random() * Math.PI * 0.25 + Math.PI * 0.1; // gentle diagonal
-            const speed = Math.random() * 1.8 + 0.8;
-            return {
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height * 0.6,
-                len: Math.random() * 60 + 40,
-                speed,
-                dx: Math.cos(angle) * speed,
-                dy: Math.sin(angle) * speed,
-                opacity: Math.random() * 0.5 + 0.5,
-                life: 0,
-                maxLife: Math.floor(Math.random() * 90 + 60)
-            };
+    // تحديث الصفحة الحالية
+    const unsub = nextPage.subscribe((page) => {
+        if (page) {
+            navigate(page);
         }
-
-        function spawnStar() {
-            if (stars.length < MAX && Math.random() < 0.03) {
-                stars.push(randomStar());
-            }
-        }
-
-        let raf;
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            spawnStar();
-
-            for (let i = stars.length - 1; i >= 0; i--) {
-                const s = stars[i];
-                const t = s.life / s.maxLife;
-                const alpha = s.opacity * Math.sin(t * Math.PI); // fade in/out
-
-                const x2 = s.x - s.dx * (s.len / s.speed);
-                const y2 = s.y - s.dy * (s.len / s.speed);
-
-                const grad = ctx.createLinearGradient(x2, y2, s.x, s.y);
-                grad.addColorStop(0, `rgba(180, 130, 255, 0)`);
-                grad.addColorStop(1, `rgba(220, 180, 255, ${alpha})`);
-
-                ctx.beginPath();
-                ctx.moveTo(x2, y2);
-                ctx.lineTo(s.x, s.y);
-                ctx.strokeStyle = grad;
-                ctx.lineWidth = 1.5;
-                ctx.stroke();
-
-                s.x += s.dx;
-                s.y += s.dy;
-                s.life++;
-
-                if (s.life >= s.maxLife) stars.splice(i, 1);
-            }
-
-            raf = requestAnimationFrame(draw);
-        }
-
-        draw();
-        return () => cancelAnimationFrame(raf);
     });
 </script>
 
-<div class="main-window platform-{process.platform || "win32"}">
-    <Titlebar macButtons={process.platform === "darwin"} />
-    <main class="installer-body">
-        <canvas bind:this={canvas} class="star-canvas" aria-hidden="true"></canvas>
-        <div class="sections">
-            <Router {routes} />
-        </div>
-        <Footer />
-    </main>
-</div>
-
-<style>
-    @import url("https://rsms.me/inter/inter.css");
-
-    :global([data-focus-visible-added]) {
-        box-shadow: 0 0 0 4px var(--accent-faded) !important;
-    }
+<style global>
+    /* ========================================
+       S7Cord Theme - Red & White
+       ======================================== */
 
     :root {
-
-        /* Primary backgrounds */
-        --bg1: #040405;
-        --bg2: #0c0d10;
-        --bg2-alt: #101116;
-        --bg3: #14151b;
-        --bg3-alt: #191a21;
-        --bg4: #20212b;
-
-        /* Text Colors */
-        --text-light: #f1f1f1;
-        --text-normal: #bfc4c9;
-        --text-muted: #95989d;
-        --text-link: #a78bfa;
-
-        /* Accent colors */
-        --accent: #7c3aed;
-        --accent-hover: #6d28d9;
-        --accent-faded: rgba(124, 58, 237, 0.4);
-
-        /* Danger colors */
-        --danger: #c13a3a;
-        --danger-hover: #992e2e;
-        --danger-faded: rgb(193, 58, 58, 0.4);
+        --s7-red: #FF0000;
+        --s7-dark-red: #CC0000;
+        --s7-darker-red: #990000;
+        --s7-white: #FFFFFF;
+        --s7-off-white: #F5F5F5;
+        --s7-bg-dark: #0a0a0a;
+        --s7-bg-card: #141414;
+        --s7-bg-hover: #1f1f1f;
+        --s7-border: #2a2a2a;
     }
 
-    :global(html),
-    :global(body),
-    :global(#app) {
-        overflow: hidden;
+    /* إعادة تعيين أساسية */
+    * {
         margin: 0;
-        height: 100%;
-        width: 100%;
-    }
-
-    :global(*),
-    :global(*::after),
-    :global(*::before) {
+        padding: 0;
         box-sizing: border-box;
-        -webkit-user-drag: none;
-        font-family: "Inter", sans-serif;
-        user-select: none;
-        outline: none;
     }
 
-    :global(a) {
-        color: var(--accent);
+    body {
+        background-color: var(--s7-bg-dark);
+        color: var(--s7-white);
+        font-family: 'Segoe UI', 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        overflow: hidden;
+    }
+
+    /* الروابط العامة */
+    a {
+        color: var(--s7-red);
         text-decoration: none;
+        transition: color 0.2s ease;
     }
 
-    :global(::selection) {
-        background-color: var(--accent-faded);
-        color: var(--text-normal);
+    a:hover {
+        color: var(--s7-white);
     }
 
-    :global(::-webkit-scrollbar) {
-        width: 4px;
-        height: 4px;
+    /* ===== الهيدر (PageHeader) ===== */
+    .page-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 20px 24px;
+        border-bottom: 3px solid var(--s7-red);
+        margin-bottom: 24px;
+        background: linear-gradient(180deg, rgba(255,0,0,0.05), transparent);
     }
 
-    :global(::-webkit-scrollbar-thumb) {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-radius: 4px;
+    .page-header svg {
+        width: 32px;
+        height: 32px;
+        fill: none;
+        stroke: var(--s7-red);
+        stroke-width: 1.5;
     }
 
-    :global(::-webkit-scrollbar-thumb:hover) {
-        background-color: rgba(255, 255, 255, 0.075);
+    .page-header h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--s7-red), var(--s7-white));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
     }
 
-    :global(::-webkit-scrollbar-thumb:active) {
-        background-color: rgba(255, 255, 255, 0.1);
+    .page-header h2 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--s7-off-white);
+        opacity: 0.8;
     }
 
-    :global(::-webkit-scrollbar-corner) {
-        display: none;
-    }
-
-    .main-window {
+    /* ===== مجموعة الراديو (RadioGroup) ===== */
+    .radio-group {
         display: flex;
         flex-direction: column;
-        /* border-radius: 3px; */
-        overflow: hidden;
-        contain: strict;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-        /* margin: 11.5px 7.5px; */
-        width: 100%;
-        height: 100%;
-        word-break: break-word;
+        gap: 16px;
+        padding: 0 24px;
     }
 
-    .main-window.platform-darwin {
-        border-radius: 0;
+    .radio {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 20px;
+        background-color: var(--s7-bg-card);
+        border: 1px solid var(--s7-border);
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .radio:hover {
+        border-color: var(--s7-red);
+        background-color: var(--s7-bg-hover);
+        transform: translateX(6px);
+    }
+
+    .radio.selected {
+        background: linear-gradient(135deg, var(--s7-red), var(--s7-dark-red));
+        border-color: var(--s7-white);
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .radio.selected:hover {
+        transform: translateX(6px) scale(1.01);
+    }
+
+    /* أيقونات الراديو */
+    .radio svg {
+        width: 28px;
+        height: 28px;
+        stroke: var(--s7-red);
+        stroke-width: 1.8;
+        fill: none;
+        transition: all 0.2s ease;
+    }
+
+    .radio.selected svg {
+        stroke: var(--s7-white);
+        filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
+    }
+
+    /* نص الراديو */
+    .radio span {
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: var(--s7-off-white);
+    }
+
+    .radio.selected span {
+        color: var(--s7-white);
+    }
+
+    /* ===== الأزرار ===== */
+    button {
+        background: linear-gradient(135deg, var(--s7-red), var(--s7-dark-red));
+        color: var(--s7-white);
+        border: none;
+        padding: 12px 28px;
+        border-radius: 40px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+    }
+
+    button:hover {
+        background: linear-gradient(135deg, var(--s7-dark-red), var(--s7-darker-red));
+        transform: scale(1.02);
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+    }
+
+    button:active {
+        transform: scale(0.98);
+    }
+
+    button.secondary {
+        background: transparent;
+        border: 2px solid var(--s7-red);
+        color: var(--s7-red);
         box-shadow: none;
-        width: 100%;
-        height: 100%;
-        margin: 0;
     }
 
-    .installer-body {
+    button.secondary:hover {
+        background: rgba(255, 0, 0, 0.1);
+        color: var(--s7-white);
+        border-color: var(--s7-white);
+    }
+
+    /* ===== شريط التقدم (Progress Bar) ===== */
+    .progress-container {
+        width: 100%;
+        background-color: var(--s7-bg-card);
+        border-radius: 12px;
         overflow: hidden;
-        position: relative;
+        margin: 20px 0;
+        border: 1px solid var(--s7-border);
+    }
+
+    .progress-bar {
+        height: 8px;
+        background: linear-gradient(90deg, var(--s7-red), var(--s7-white));
+        width: 0%;
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 12px;
+        box-shadow: 0 0 6px rgba(255, 0, 0, 0.5);
+    }
+
+    /* ===== نصوص الحالة ===== */
+    .status-text {
+        color: var(--s7-red);
+        font-size: 0.85rem;
+        margin-top: 8px;
+        font-family: 'JetBrains Mono', monospace;
+        letter-spacing: 0.3px;
+    }
+
+    /* ===== سجل التثبيت (Log Area) ===== */
+    .log-area {
+        background-color: var(--s7-bg-card);
+        border-left: 3px solid var(--s7-red);
+        padding: 12px 16px;
+        margin-top: 20px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        max-height: 200px;
+        overflow-y: auto;
+        border-radius: 8px;
+    }
+
+    .log-area::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .log-area::-webkit-scrollbar-track {
+        background: var(--s7-bg-dark);
+        border-radius: 3px;
+    }
+
+    .log-area::-webkit-scrollbar-thumb {
+        background: var(--s7-red);
+        border-radius: 3px;
+    }
+
+    /* ===== الصفحات ===== */
+    .page {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 24px 32px;
+        height: 100vh;
+        overflow-y: auto;
+        animation: fadeIn 0.4s ease;
+    }
+
+    .page::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .page::-webkit-scrollbar-track {
+        background: var(--s7-bg-dark);
+    }
+
+    .page::-webkit-scrollbar-thumb {
+        background: var(--s7-red);
+        border-radius: 3px;
+    }
+
+    /* أنيميشن */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ===== كاردات ومكونات إضافية ===== */
+    .card {
+        background-color: var(--s7-bg-card);
+        border-radius: 20px;
+        padding: 24px;
+        border: 1px solid var(--s7-border);
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        color: var(--s7-red);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        border-left: 3px solid var(--s7-red);
+        padding-left: 12px;
+    }
+
+    /* شعار S7Cord */
+    .s7cord-logo {
         display: flex;
-        flex-direction: column;
-        z-index: 1;
-        padding: 20px;
-        background: radial-gradient(var(--bg2) 50%, var(--bg2-alt));
-        flex: 1;
+        align-items: center;
+        gap: 10px;
     }
 
-    .installer-body::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: var(--background);
-        background-size: 60px;
-        background-repeat: repeat;
-        background-position: center;
-        z-index: -1;
-        opacity: 0.35;
-        pointer-events: none;
-        mask: radial-gradient(transparent, #000);
-        -webkit-mask: radial-gradient(transparent, #000);
+    .s7cord-logo svg {
+        width: 36px;
+        height: 36px;
+        stroke: var(--s7-red);
+        fill: none;
     }
 
-    .star-canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    :global(.page) {
-        flex: 1 1 auto;
-        overflow: visible;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-
-    .sections {
-        flex: 1 1 auto;
-        overflow: visible;
-        position: relative;
-        z-index: 1;
+    .s7cord-logo span {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--s7-red), var(--s7-white));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
     }
 </style>
+
+<Router>
+    <div class="page">
+        <Route path="/" component={ActionSelector} />
+        <Route path="/setup/install" component={Install} />
+        <Route path="/setup/repair" component={Repair} />
+        <Route path="/setup/uninstall" component={Uninstall} />
+        <Route path="/complete" component={Complete} />
+    </div>
+</Router>
