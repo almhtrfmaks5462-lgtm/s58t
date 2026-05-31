@@ -1,42 +1,22 @@
 <script>
-    import { Router, Route, navigate } from "svelte-routing";
-    import ActionSelector from "./pages/ActionSelector.svelte";
-    import Install from "./pages/Install.svelte";
-    import Repair from "./pages/Repair.svelte";
-    import Uninstall from "./pages/Uninstall.svelte";
-    import Complete from "./pages/Complete.svelte";
+    import { onMount } from "svelte";
 
-    // Stores
-    import { canGoBack, canGoForward, currentPage, nextPage } from "./stores/navigation";
-    import { action } from "./stores/installation";
-    import { radioSelectedIndex } from "./stores/controls";
+    let selectedAction = "install";
+    let canGoForward = false;
 
-    // تحديث الصفحة الحالية
-    const unsub = nextPage.subscribe((page) => {
-        if (page) {
-            navigate(page);
-        }
+    function update(action) {
+        selectedAction = action;
+        canGoForward = true;
+    }
+
+    onMount(() => {
+        // Apply red theme to body
+        document.body.style.backgroundColor = "#0a0a0a";
     });
 </script>
 
-<style global>
-    /* ========================================
-       S7Cord Theme - Red & White
-       ======================================== */
-
-    :root {
-        --s7-red: #FF0000;
-        --s7-dark-red: #CC0000;
-        --s7-darker-red: #990000;
-        --s7-white: #FFFFFF;
-        --s7-off-white: #F5F5F5;
-        --s7-bg-dark: #0a0a0a;
-        --s7-bg-card: #141414;
-        --s7-bg-hover: #1f1f1f;
-        --s7-border: #2a2a2a;
-    }
-
-    /* إعادة تعيين أساسية */
+<style>
+    /* S7Cord Theme - Red & White */
     * {
         margin: 0;
         padding: 0;
@@ -44,296 +24,158 @@
     }
 
     body {
-        background-color: var(--s7-bg-dark);
-        color: var(--s7-white);
-        font-family: 'Segoe UI', 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        overflow: hidden;
+        background-color: #0a0a0a;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* الروابط العامة */
-    a {
-        color: var(--s7-red);
-        text-decoration: none;
-        transition: color 0.2s ease;
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2rem;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    a:hover {
-        color: var(--s7-white);
-    }
-
-    /* ===== الهيدر (PageHeader) ===== */
-    .page-header {
+    /* Header */
+    .header {
         display: flex;
         align-items: center;
         gap: 12px;
         padding: 20px 24px;
-        border-bottom: 3px solid var(--s7-red);
-        margin-bottom: 24px;
-        background: linear-gradient(180deg, rgba(255,0,0,0.05), transparent);
+        border-bottom: 3px solid #FF0000;
+        margin-bottom: 32px;
     }
 
-    .page-header svg {
-        width: 32px;
-        height: 32px;
-        fill: none;
-        stroke: var(--s7-red);
-        stroke-width: 1.5;
+    .header svg {
+        stroke: #FF0000;
     }
 
-    .page-header h1 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, var(--s7-red), var(--s7-white));
+    .header h1 {
+        font-size: 1.8rem;
+        background: linear-gradient(135deg, #FF0000, #FFFFFF);
         background-clip: text;
         -webkit-background-clip: text;
         color: transparent;
     }
 
-    .page-header h2 {
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: var(--s7-off-white);
-        opacity: 0.8;
-    }
-
-    /* ===== مجموعة الراديو (RadioGroup) ===== */
-    .radio-group {
+    /* Radio options */
+    .options {
         display: flex;
         flex-direction: column;
         gap: 16px;
-        padding: 0 24px;
+        margin-bottom: 32px;
     }
 
-    .radio {
+    .option {
         display: flex;
         align-items: center;
         gap: 16px;
         padding: 16px 20px;
-        background-color: var(--s7-bg-card);
-        border: 1px solid var(--s7-border);
+        background-color: #141414;
+        border: 1px solid #2a2a2a;
         border-radius: 16px;
         cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s ease;
     }
 
-    .radio:hover {
-        border-color: var(--s7-red);
-        background-color: var(--s7-bg-hover);
-        transform: translateX(6px);
+    .option:hover {
+        border-color: #FF0000;
+        transform: translateX(5px);
     }
 
-    .radio.selected {
-        background: linear-gradient(135deg, var(--s7-red), var(--s7-dark-red));
-        border-color: var(--s7-white);
-        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    .option.selected {
+        background: linear-gradient(135deg, #FF0000, #CC0000);
+        border-color: #FFFFFF;
     }
 
-    .radio.selected:hover {
-        transform: translateX(6px) scale(1.01);
-    }
-
-    /* أيقونات الراديو */
-    .radio svg {
+    .option svg {
         width: 28px;
         height: 28px;
-        stroke: var(--s7-red);
+        stroke: #FF0000;
         stroke-width: 1.8;
-        fill: none;
-        transition: all 0.2s ease;
     }
 
-    .radio.selected svg {
-        stroke: var(--s7-white);
-        filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
+    .option.selected svg {
+        stroke: #FFFFFF;
     }
 
-    /* نص الراديو */
-    .radio span {
+    .option span {
         font-size: 1.1rem;
         font-weight: 600;
-        letter-spacing: 0.3px;
-        color: var(--s7-off-white);
+        color: #FFFFFF;
+        opacity: 0.9;
     }
 
-    .radio.selected span {
-        color: var(--s7-white);
+    .option.selected span {
+        opacity: 1;
     }
 
-    /* ===== الأزرار ===== */
-    button {
-        background: linear-gradient(135deg, var(--s7-red), var(--s7-dark-red));
-        color: var(--s7-white);
+    /* Button */
+    .next-btn {
+        background: linear-gradient(135deg, #FF0000, #CC0000);
+        color: white;
         border: none;
-        padding: 12px 28px;
+        padding: 14px 28px;
         border-radius: 40px;
         font-size: 1rem;
-        font-weight: 600;
+        font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
-    }
-
-    button:hover {
-        background: linear-gradient(135deg, var(--s7-dark-red), var(--s7-darker-red));
-        transform: scale(1.02);
-        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
-    }
-
-    button:active {
-        transform: scale(0.98);
-    }
-
-    button.secondary {
-        background: transparent;
-        border: 2px solid var(--s7-red);
-        color: var(--s7-red);
-        box-shadow: none;
-    }
-
-    button.secondary:hover {
-        background: rgba(255, 0, 0, 0.1);
-        color: var(--s7-white);
-        border-color: var(--s7-white);
-    }
-
-    /* ===== شريط التقدم (Progress Bar) ===== */
-    .progress-container {
-        width: 100%;
-        background-color: var(--s7-bg-card);
-        border-radius: 12px;
-        overflow: hidden;
-        margin: 20px 0;
-        border: 1px solid var(--s7-border);
-    }
-
-    .progress-bar {
-        height: 8px;
-        background: linear-gradient(90deg, var(--s7-red), var(--s7-white));
-        width: 0%;
-        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 12px;
-        box-shadow: 0 0 6px rgba(255, 0, 0, 0.5);
-    }
-
-    /* ===== نصوص الحالة ===== */
-    .status-text {
-        color: var(--s7-red);
-        font-size: 0.85rem;
-        margin-top: 8px;
-        font-family: 'JetBrains Mono', monospace;
-        letter-spacing: 0.3px;
-    }
-
-    /* ===== سجل التثبيت (Log Area) ===== */
-    .log-area {
-        background-color: var(--s7-bg-card);
-        border-left: 3px solid var(--s7-red);
-        padding: 12px 16px;
         margin-top: 20px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.75rem;
-        max-height: 200px;
-        overflow-y: auto;
-        border-radius: 8px;
+        width: 100%;
     }
 
-    .log-area::-webkit-scrollbar {
-        width: 6px;
+    .next-btn:hover {
+        background: linear-gradient(135deg, #CC0000, #990000);
+        transform: scale(1.01);
     }
 
-    .log-area::-webkit-scrollbar-track {
-        background: var(--s7-bg-dark);
-        border-radius: 3px;
-    }
-
-    .log-area::-webkit-scrollbar-thumb {
-        background: var(--s7-red);
-        border-radius: 3px;
-    }
-
-    /* ===== الصفحات ===== */
-    .page {
-        max-width: 680px;
-        margin: 0 auto;
-        padding: 24px 32px;
-        height: 100vh;
-        overflow-y: auto;
-        animation: fadeIn 0.4s ease;
-    }
-
-    .page::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .page::-webkit-scrollbar-track {
-        background: var(--s7-bg-dark);
-    }
-
-    .page::-webkit-scrollbar-thumb {
-        background: var(--s7-red);
-        border-radius: 3px;
-    }
-
-    /* أنيميشن */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* ===== كاردات ومكونات إضافية ===== */
-    .card {
-        background-color: var(--s7-bg-card);
-        border-radius: 20px;
-        padding: 24px;
-        border: 1px solid var(--s7-border);
-        margin-bottom: 20px;
-    }
-
-    .card-title {
-        color: var(--s7-red);
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 12px;
-        border-left: 3px solid var(--s7-red);
-        padding-left: 12px;
-    }
-
-    /* شعار S7Cord */
-    .s7cord-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .s7cord-logo svg {
-        width: 36px;
-        height: 36px;
-        stroke: var(--s7-red);
-        fill: none;
-    }
-
-    .s7cord-logo span {
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, var(--s7-red), var(--s7-white));
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
+    .next-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 </style>
 
-<Router>
-    <div class="page">
-        <Route path="/" component={ActionSelector} />
-        <Route path="/setup/install" component={Install} />
-        <Route path="/setup/repair" component={Repair} />
-        <Route path="/setup/uninstall" component={Uninstall} />
-        <Route path="/complete" component={Complete} />
+<div class="container">
+    <div class="header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8.75 13.5C10.2869 13.5 11.5747 14.5668 11.9131 16.0003L21.25 16C21.6642 16 22 16.3358 22 16.75C22 17.1297 21.7178 17.4435 21.3518 17.4932L21.25 17.5L11.9129 17.5007C11.5741 18.9337 10.2866 20 8.75 20C7.21345 20 5.92594 18.9337 5.58712 17.5007L2.75 17.5C2.33579 17.5 2 17.1642 2 16.75C2 16.3703 2.28215 16.0565 2.64823 16.0068L2.75 16L5.58688 16.0003C5.92534 14.5668 7.21309 13.5 8.75 13.5Z"/>
+            <path d="M15.25 4C16.7869 4 18.0747 5.06682 18.4131 6.50034L21.25 6.5C21.6642 6.5 22 6.83579 22 7.25C22 7.6297 21.7178 7.94349 21.3518 7.99315L21.25 8L18.4129 8.00066C18.0741 9.43368 16.7866 10.5 15.25 10.5C13.7134 10.5 12.4259 9.43368 12.0871 8.00066L2.75 8C2.33579 8 2 7.66421 2 7.25C2 6.8703 2.28215 6.55651 2.64823 6.50685L2.75 6.5L12.0869 6.50034C12.4253 5.06682 13.7131 4 15.25 4Z"/>
+        </svg>
+        <h1>S7Cord Installer</h1>
     </div>
-</Router>
+
+    <div class="options">
+        <div class="option {selectedAction === 'install' ? 'selected' : ''}" on:click={() => update('install')}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Install S7Cord</span>
+        </div>
+
+        <div class="option {selectedAction === 'repair' ? 'selected' : ''}" on:click={() => update('repair')}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+            <span>Repair S7Cord</span>
+        </div>
+
+        <div class="option {selectedAction === 'uninstall' ? 'selected' : ''}" on:click={() => update('uninstall')}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                <line x1="10" y1="11" x2="10" y2="17"></line>
+                <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+            <span>Uninstall S7Cord</span>
+        </div>
+    </div>
+
+    <button class="next-btn" disabled={!canGoForward} on:click={() => window.location.href = `/setup/${selectedAction}`}>
+        Next →
+    </button>
+</div>
