@@ -1,5 +1,5 @@
 /*
- * Equicord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -468,7 +468,7 @@ function PrevNamesModal({ modalProps, userId, username, avatarHash }: {
                     <div className="vc-pn-stats">
                         <div className="vc-pn-stat vc-pn-stat--blue">
                             <div className="vc-pn-stat-icon vc-pn-stat-icon--blue">
-                                <UserIcon size={13} color="#5865F2" />
+                                <UserIcon size={13} color="#FF0000" />
                             </div>
                             <div className="vc-pn-stat-content">
                                 <span className="vc-pn-stat-label">Usernames</span>
@@ -854,7 +854,7 @@ export default definePlugin({
             .vc-pn-sort-btn:hover {
                 background: rgba(88,101,242,0.12);
                 border-color: rgba(88,101,242,0.3);
-                color: #5865F2;
+                color: #FF0000;
                 box-shadow: 0 2px 10px rgba(88,101,242,0.12);
             }
 
@@ -900,7 +900,7 @@ export default definePlugin({
                 animation-delay: inherit;
             }
             .vc-pn-timeline-dot--latest {
-                background: #5865F2;
+                background: #FF0000;
                 border-color: rgba(88,101,242,0.7);
                 box-shadow: 0 0 0 3px rgba(88,101,242,0.2);
             }
@@ -1053,12 +1053,12 @@ export default definePlugin({
             .vc-pn-alert-desc { font-size: 13px; color: #ffffff; line-height: 1.4; }
             .vc-pn-retry-btn {
                 padding: 6px 16px; border-radius: 7px;
-                background: #5865F2; border: none;
+                background: #FF0000; border: none;
                 color: #fff; font-size: 13px; font-weight: 700;
                 cursor: pointer; flex-shrink: 0; align-self: center;
                 transition: all 0.2s ease;
             }
-            .vc-pn-retry-btn:hover { background: #4752c4; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(88,101,242,0.3); }
+            .vc-pn-retry-btn:hover { background: #CC0000; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(88,101,242,0.3); }
             .vc-pn-retry-btn:active { transform: translateY(0); }
 
             /* ── Empty ── */

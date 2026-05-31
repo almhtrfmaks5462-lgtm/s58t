@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import { DataStore } from "@api/index";
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType, PluginNative } from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { ApplicationAssetUtils, FluxDispatcher, UserStore } from "@webpack/common";
 
 export async function getApplicationAsset(key: string): Promise<string> {
@@ -126,7 +126,7 @@ interface IMessageCreate {
     message: Message;
 }
 
-const Native = VencordNative.pluginHelpers.RPCStats as PluginNative<typeof import("./native")>;
+const Native = S7CordNative.pluginHelpers.RPCStats as PluginNative<typeof import("./native")>;
 
 async function updateData() {
     switch (settings.store.statDisplay) {

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import { playAudio } from "@api/AudioPlayer";
 import { showNotification } from "@api/Notifications";
 import { sleep } from "@utils/misc";
 import type { PluginNative } from "@utils/types";
-import type { Quest } from "@vencord/discord-types";
+import type { Quest } from "@S7Cord/discord-types";
 import { findByCodeLazy, findStoreLazy } from "@webpack";
 import { QuestStore, RestAPI } from "@webpack/common";
 import { NavigationRouter } from "@webpack/common/utils";
@@ -20,7 +20,7 @@ import { QL } from "./logging";
 import { QUEST_PAGE } from "./ui";
 
 export const AuthorizedAppsStore = findStoreLazy("AuthorizedAppsStore");
-const QuestifyNative = VencordNative?.pluginHelpers?.Questify as PluginNative<typeof import("../native")> | undefined;
+const QuestifyNative = S7CordNative?.pluginHelpers?.Questify as PluginNative<typeof import("../native")> | undefined;
 
 export function snakeToCamel(obj: any): any {
     if (Array.isArray(obj)) {

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,7 +9,7 @@ import "./styles.css";
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { OpenExternalIcon } from "@components/Icons";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin from "@utils/types";
 import { findByPropsLazy } from "@webpack";
@@ -251,7 +251,7 @@ export default definePlugin({
     name: "FileUpload",
     description: "Upload images and videos to file hosting services like Zipline and Nest",
     tags: ["Media"],
-    authors: [EquicordDevs.creations, EquicordDevs.keircn, Devs.ScattrdBlade],
+    authors: [S7CordDevs.creations, S7CordDevs.keircn, Devs.ScattrdBlade],
     settings,
     patches: [
         {

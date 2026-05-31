@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,12 +7,12 @@
 import "./style.css";
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { getGuildAcronym, insertTextIntoChatInputBox } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
-import type { Channel } from "@vencord/discord-types";
-import { ChannelType } from "@vencord/discord-types/enums";
+import type { Channel } from "@S7Cord/discord-types";
+import { ChannelType } from "@S7Cord/discord-types/enums";
 import { ChannelStore, GuildStore, IconUtils, RelationshipStore, SelectedChannelStore, showToast, Toasts, UserStore } from "@webpack/common";
 
 import { beginDrag as beginSessionDrag, clearDragState, getLastDropAt, hasActiveDrag, isGuildDragActive, isInputDragSource, isUserDragActive, markDrop, markInputDragSource, scheduleGuildCleanup, shouldIgnoreDrop, startDragWatchdog, stopDragState, touchDrag } from "./dragState";
@@ -150,7 +150,7 @@ export default definePlugin({
     name: "Dragify",
     description: "Drop users, channels, or servers into chat to insert mentions or invites.",
     tags: ["Chat", "Servers", "Utility", "Voice"],
-    authors: [EquicordDevs.justjxke],
+    authors: [S7CordDevs.justjxke],
     settings,
 
     patches: [

@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
-import { Channel } from "@vencord/discord-types";
+import { Channel } from "@S7Cord/discord-types";
 import { ChannelStore } from "@webpack/common";
 
 const SMALL_CAPS: Record<string, string> = {

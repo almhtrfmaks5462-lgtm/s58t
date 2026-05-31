@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,10 +9,10 @@ import { HeaderBarButton } from "@api/HeaderBar";
 import { addMessagePreSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { definePluginSettings, migratePluginToSettings } from "@api/Settings";
 import { WarningIcon } from "@components/Icons";
-import { Devs, EquicordDevs, GUILD_ID, SUPPORT_CHANNEL_ID, SUPPORT_CHANNEL_IDS, VC_SUPPORT_CHANNEL_IDS } from "@utils/constants";
+import { Devs, S7CordDevs, GUILD_ID, SUPPORT_CHANNEL_ID, SUPPORT_CHANNEL_IDS, VC_SUPPORT_CHANNEL_IDS } from "@utils/constants";
 import { isAnyPluginDev } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
-import { StandingState } from "@vencord/discord-types/enums";
+import { StandingState } from "@S7Cord/discord-types/enums";
 import { findByCodeLazy, findComponentByCodeLazy, findStoreLazy } from "@webpack";
 import { Alerts, ApplicationCommandIndexStore, NavigationRouter, React, SettingsRouter, UserStore, useStateFromStores } from "@webpack/common";
 import { ComponentType } from "react";
@@ -20,8 +20,8 @@ import { ComponentType } from "react";
 import { PluginButtons } from "./pluginButtons";
 import { PluginCards } from "./pluginCards";
 
-migratePluginToSettings(true, "EquicordHelper", "NoBulletPoints", "noBulletPoints");
-migratePluginToSettings(true, "EquicordHelper", "NoModalAnimation", "noModalAnimation");
+migratePluginToSettings(true, "S7CordHelper", "NoBulletPoints", "noBulletPoints");
+migratePluginToSettings(true, "S7CordHelper", "NoModalAnimation", "noModalAnimation");
 
 let clicked = false;
 
@@ -122,16 +122,16 @@ const settings = definePluginSettings({
 });
 
 export default definePlugin({
-    name: "NightcordHelper",
-    description: "Main Nightcord plugin: fixes Discord crashes, adds UI options and manages internal commands.",
+    name: "S7CordHelper",
+    description: "Main S7Cord plugin: fixes Discord crashes, adds UI options and manages internal commands.",
     authors: [
         Devs.thororen,
-        EquicordDevs.nyx,
-        EquicordDevs.Naibuu,
-        EquicordDevs.keircn,
-        EquicordDevs.SerStars,
-        EquicordDevs.mart,
-        EquicordDevs.omaw,
+        S7CordDevs.nyx,
+        S7CordDevs.Naibuu,
+        S7CordDevs.keircn,
+        S7CordDevs.SerStars,
+        S7CordDevs.mart,
+        S7CordDevs.omaw,
         Devs.Samwich,
         Devs.AutumnVN
     ],
@@ -274,9 +274,9 @@ export default definePlugin({
             if (!selfId || isAnyPluginDev(selfId)) return;
             if (VC_SUPPORT_CHANNEL_IDS.includes(channelId) && !clicked) {
                 return Alerts.show({
-                    title: "Nightcord Support Channel Warning",
-                    body: "Before asking for help. Check updates and if this issue is actually caused by Nightcord!",
-                    confirmText: "Nightcord Support",
+                    title: "S7Cord Support Channel Warning",
+                    body: "Before asking for help. Check updates and if this issue is actually caused by S7Cord!",
+                    confirmText: "S7Cord Support",
                     onConfirm() {
                         NavigationRouter.transitionTo(`/channels/${GUILD_ID}/${SUPPORT_CHANNEL_ID}`);
                     },

@@ -1,10 +1,10 @@
 $ErrorActionPreference = "Stop"
 $DISCORD = "C:\Users\zzafi\AppData\Local\Discord\app-1.0.9228"
-$OUT = "C:\Users\zzafi\Desktop\equicord\release\win-unpacked"
+$OUT = "C:\Users\zzafi\Desktop\S7Cord\release\win-unpacked"
 $RES = "$OUT\resources"
 
 Write-Host "=== ETAPE 1 : Build ===" -ForegroundColor Cyan
-Set-Location "C:\Users\zzafi\Desktop\equicord"
+Set-Location "C:\Users\zzafi\Desktop\S7Cord"
 npx electron-builder --config electron-builder.config.cjs --win dir --x64
 
 Write-Host "=== ETAPE 2 : Copie _app.asar ===" -ForegroundColor Cyan
@@ -42,4 +42,4 @@ Write-Host "=== ETAPE 6 : Creation portable exe ===" -ForegroundColor Cyan
 npx electron-builder --config electron-builder.config.cjs --win portable --x64 --prepackaged release\win-unpacked
 
 Write-Host "=== DONE ===" -ForegroundColor Green
-Write-Host "Fichier : release\Nightcord-1.14.5-portable.exe" -ForegroundColor Green
+Write-Host "Fichier : release\S7Cord-1.14.5-portable.exe" -ForegroundColor Green

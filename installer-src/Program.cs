@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Reflection;
 
-namespace NightcordInstaller
+namespace S7CordInstaller
 {
     static class Program
     {
@@ -30,16 +30,16 @@ namespace NightcordInstaller
     public class LauncherForm : Form
     {
         private WebView2 _webView;
-        private NightcordBackend _backend;
+        private S7CordBackend _backend;
 
         public LauncherForm()
         {
-            this.Text = "Nightcord Installer";
+            this.Text = "S7Cord Installer";
             this.Size = new Size(740, 620); // Enlarged to prevent text clipping
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.BackColor = Color.FromArgb(11, 11, 24); // matching HTML root
-            var iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("NightcordInstaller.icon.ico");
+            var iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("S7CordInstaller.icon.ico");
             if (iconStream != null) this.Icon = new Icon(iconStream);
 
             _webView = new WebView2
@@ -69,7 +69,7 @@ namespace NightcordInstaller
 
         private async void InitializeWebView()
         {
-            var userDataFolder = Path.Combine(Path.GetTempPath(), "NightcordInstaller_WebView2");
+            var userDataFolder = Path.Combine(Path.GetTempPath(), "S7CordInstaller_WebView2");
             CoreWebView2Environment env;
             try
             {
@@ -87,9 +87,9 @@ namespace NightcordInstaller
                 if (isWebView2Missing)
                 {
                     MessageBox.Show(
-                        "Microsoft Edge WebView2 Runtime is required to run the Nightcord Installer but was not found on your system.\n\n" +
+                        "Microsoft Edge WebView2 Runtime is required to run the S7Cord Installer but was not found on your system.\n\n" +
                         "Please download and install it from:\nhttps://aka.ms/webview2\n\n" +
-                        "After installing, restart the Nightcord Installer.",
+                        "After installing, restart the S7Cord Installer.",
                         "WebView2 Runtime Required",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
@@ -110,12 +110,12 @@ namespace NightcordInstaller
                 return;
             }
 
-            _backend = new NightcordBackend(this, _webView);
+            _backend = new S7CordBackend(this, _webView);
             _webView.CoreWebView2.AddHostObjectToScript("backend", _backend);
 
             // Wrap COM proxy into exactly what index.html expects, and add drag support
             await _webView.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(@"
-                window.nightcord = {
+                window.S7Cord = {
                     detectDiscord: async () => JSON.parse(await chrome.webview.hostObjects.backend.DetectDiscord()),
                     isInjected: async (path) => await chrome.webview.hostObjects.backend.IsInjected(path),
                     hasThirdPartyMod: async (path) => await chrome.webview.hostObjects.backend.HasThirdPartyMod(path),
@@ -145,14 +145,14 @@ namespace NightcordInstaller
             _webView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
 
             // Load HTML from embedded resource and inject Icon
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("NightcordInstaller.index.html"))
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("S7CordInstaller.index.html"))
             using (var reader = new StreamReader(stream))
             {
                 var html = reader.ReadToEnd();
 
                 // Convert Icon to Base64 PNG for HTML
                 try {
-                    using (var iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("NightcordInstaller.icon.ico"))
+                    using (var iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("S7CordInstaller.icon.ico"))
                     {
                         var icon = new Icon(iconStream);
                         using (var bmp = icon.ToBitmap())
@@ -171,7 +171,7 @@ namespace NightcordInstaller
     }
 
     [ComVisible(true)]
-    public class NightcordBackend
+    public class S7CordBackend
     {
         private LauncherForm _form;
         private WebView2 _webView;
@@ -179,18 +179,18 @@ namespace NightcordInstaller
         private string _distDir;
         private string _exeDir;
 
-        const string GITEA_REPO = "nightcord/nightcord";
-        const string GITEA_URL  = "https://git.nightcord.su";
-        const string DIST_ZIP   = "nightcord-dist.zip";
+        const string GITEA_REPO = "S7Cord/S7Cord";
+        const string GITEA_URL  = "https://git.S7Cord.su";
+        const string DIST_ZIP   = "S7Cord-dist.zip";
 
-        public NightcordBackend(LauncherForm form, WebView2 webView)
+        public S7CordBackend(LauncherForm form, WebView2 webView)
         {
             _form = form;
             _webView = webView;
             _http = new HttpClient();
             _http.Timeout = TimeSpan.FromSeconds(30);
             _exeDir = Path.GetDirectoryName(Application.ExecutablePath);
-            _distDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Nightcord", "dist");
+            _distDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "S7Cord", "dist");
         }
 
         public void MinimizeApp() { _form.Invoke(new Action(() => _form.WindowState = FormWindowState.Minimized)); }
@@ -239,13 +239,13 @@ namespace NightcordInstaller
             return await Task.Run(() => {
                 var appDir = System.IO.Path.Combine(path, "app");
                 var pkgPath = System.IO.Path.Combine(appDir, "package.json");
-                return Directory.Exists(appDir) && File.Exists(pkgPath) && File.ReadAllText(pkgPath).Contains("\"nightcord\"");
+                return Directory.Exists(appDir) && File.Exists(pkgPath) && File.ReadAllText(pkgPath).Contains("\"S7Cord\"");
             });
         }
 
         /// <summary>
-        /// Returns true if a third-party mod (Vencord, Equicord, OpenAsar) is detected
-        /// but Nightcord is NOT yet injected.
+        /// Returns true if a third-party mod (S7Cord, S7Cord, OpenAsar) is detected
+        /// but S7Cord is NOT yet injected.
         /// </summary>
         public async Task<bool> HasThirdPartyMod(string path)
         {
@@ -254,10 +254,10 @@ namespace NightcordInstaller
                 var pkgPath = System.IO.Path.Combine(appDir, "package.json");
                 if (!Directory.Exists(appDir) || !File.Exists(pkgPath)) return false;
                 var content = File.ReadAllText(pkgPath);
-                // Already Nightcord → not a third-party mod
-                if (content.Contains("\"nightcord\"")) return false;
-                return content.Contains("vencord", StringComparison.OrdinalIgnoreCase)
-                    || content.Contains("equicord", StringComparison.OrdinalIgnoreCase)
+                // Already S7Cord → not a third-party mod
+                if (content.Contains("\"S7Cord\"")) return false;
+                return content.Contains("S7Cord", StringComparison.OrdinalIgnoreCase)
+                    || content.Contains("S7Cord", StringComparison.OrdinalIgnoreCase)
                     || content.Contains("openasar", StringComparison.OrdinalIgnoreCase);
             });
         }
@@ -369,7 +369,7 @@ namespace NightcordInstaller
 
             var apiUrl = $"{GITEA_URL}/api/v1/repos/{GITEA_REPO}/releases/latest";
             _http.DefaultRequestHeaders.Clear();
-            _http.DefaultRequestHeaders.Add("User-Agent", "Nightcord-Installer/2.0");
+            _http.DefaultRequestHeaders.Add("User-Agent", "S7Cord-Installer/2.0");
             _http.DefaultRequestHeaders.Add("Accept", "application/json");
 
             string json;
@@ -383,7 +383,7 @@ namespace NightcordInstaller
             }
             catch (HttpRequestException ex)
             {
-                throw new Exception($"Could not reach git.nightcord.su: {ex.Message}. Check your internet connection.");
+                throw new Exception($"Could not reach git.S7Cord.su: {ex.Message}. Check your internet connection.");
             }
 
             var zipUrl = ExtractJsonValue(json, "browser_download_url", DIST_ZIP);
@@ -392,7 +392,7 @@ namespace NightcordInstaller
                 throw new Exception($"'{DIST_ZIP}' not found in the Gitea release. The release may not be published yet.");
 
             SetProgress(5, "Starting download...");
-            var tmpZip = Path.Combine(Path.GetTempPath(), "nightcord-dist.zip");
+            var tmpZip = Path.Combine(Path.GetTempPath(), "S7Cord-dist.zip");
 
             using (var response = await _http.GetAsync(zipUrl, HttpCompletionOption.ResponseHeadersRead))
             {
@@ -419,7 +419,7 @@ namespace NightcordInstaller
                             double overallPercent = 5.0 + (percent * 0.70);
                             double totalMB = (double)totalBytes / (1024.0 * 1024.0);
                             double readMB  = (double)totalRead  / (1024.0 * 1024.0);
-                            SetProgress(overallPercent, "Downloading Nightcord...", readMB, totalMB);
+                            SetProgress(overallPercent, "Downloading S7Cord...", readMB, totalMB);
                         }
                     }
                 }
@@ -488,7 +488,7 @@ namespace NightcordInstaller
             SetProgress(90, "Closing Discord...");
             KillDiscord(resPath);
 
-            SetProgress(91, "Removing previous mod injection (Vencord / Equicord / OpenAsar)...");
+            SetProgress(91, "Removing previous mod injection (S7Cord / S7Cord / OpenAsar)...");
             if (Directory.Exists(appDir))
             {
                 try { Directory.Delete(appDir, true); } catch { }
@@ -516,7 +516,7 @@ namespace NightcordInstaller
 
             CleanModulePatches(resPath);
 
-            SetProgress(92, "Configuring Nightcord loader...");
+            SetProgress(92, "Configuring S7Cord loader...");
 
             if (!File.Exists(appAsar) && !File.Exists(backup))
             {
@@ -571,11 +571,11 @@ namespace NightcordInstaller
                             if (!File.Exists(pf)) continue;
                             var content = File.ReadAllText(pf);
 
-                            bool isPatched = content.Contains("vencord", StringComparison.OrdinalIgnoreCase)
-                                         || content.Contains("equicord", StringComparison.OrdinalIgnoreCase)
-                                         || content.Contains("require(\"vencord")
-                                         || content.Contains("require('vencord")
-                                         || content.Contains("VencordNative")
+                            bool isPatched = content.Contains("S7Cord", StringComparison.OrdinalIgnoreCase)
+                                         || content.Contains("S7Cord", StringComparison.OrdinalIgnoreCase)
+                                         || content.Contains("require(\"S7Cord")
+                                         || content.Contains("require('S7Cord")
+                                         || content.Contains("S7CordNative")
                                          || content.Contains("equilotl");
 
                             if (!isPatched) continue;
@@ -607,8 +607,8 @@ namespace NightcordInstaller
                             if (File.Exists(innerPkg))
                             {
                                 var pkgContent = File.ReadAllText(innerPkg);
-                                bool isModInjection = pkgContent.Contains("vencord", StringComparison.OrdinalIgnoreCase)
-                                                   || pkgContent.Contains("equicord", StringComparison.OrdinalIgnoreCase)
+                                bool isModInjection = pkgContent.Contains("S7Cord", StringComparison.OrdinalIgnoreCase)
+                                                   || pkgContent.Contains("S7Cord", StringComparison.OrdinalIgnoreCase)
                                                    || pkgContent.Contains("openasar", StringComparison.OrdinalIgnoreCase);
                                 if (isModInjection)
                                 {
@@ -621,7 +621,7 @@ namespace NightcordInstaller
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[Nightcord] CleanModulePatches warning: {ex.Message}");
+                Console.WriteLine($"[S7Cord] CleanModulePatches warning: {ex.Message}");
             }
         }
 
@@ -638,7 +638,7 @@ namespace NightcordInstaller
             if (Directory.Exists(appDir))
             {
                 var pkg = Path.Combine(appDir, "package.json");
-                if (File.Exists(pkg) && File.ReadAllText(pkg).Contains("\"nightcord\""))
+                if (File.Exists(pkg) && File.ReadAllText(pkg).Contains("\"S7Cord\""))
                 {
                     Directory.Delete(appDir, true);
                 }
@@ -692,9 +692,9 @@ namespace NightcordInstaller
         private void WriteLoader(string appDir)
         {
             var patcher = Path.Combine(_distDir, "patcher.js").Replace("\\", "/");
-            File.WriteAllText(Path.Combine(appDir, "package.json"), "{\"name\":\"nightcord\",\"main\":\"index.js\"}");
+            File.WriteAllText(Path.Combine(appDir, "package.json"), "{\"name\":\"S7Cord\",\"main\":\"index.js\"}");
             File.WriteAllText(Path.Combine(appDir, "index.js"),
-                $"// Nightcord Injector\n" +
+                $"// S7Cord Injector\n" +
                 $"\"use strict\";\n" +
                 $"const fs = require('fs');\n" +
                 $"const path = require('path');\n" +
@@ -703,7 +703,7 @@ namespace NightcordInstaller
                 $"const fallback = path.join(exeDir, 'resources', 'dist', 'patcher.js');\n" +
                 $"const fallback2 = path.join(exeDir, 'dist', 'patcher.js');\n" +
                 $"const patcherPath = fs.existsSync(primary) ? primary : fs.existsSync(fallback) ? fallback : fallback2;\n" +
-                $"if (!fs.existsSync(patcherPath)) throw new Error('[Nightcord] patcher.js not found. Expected at: ' + primary);\n" +
+                $"if (!fs.existsSync(patcherPath)) throw new Error('[S7Cord] patcher.js not found. Expected at: ' + primary);\n" +
                 $"require(patcherPath);\n"
             );
         }

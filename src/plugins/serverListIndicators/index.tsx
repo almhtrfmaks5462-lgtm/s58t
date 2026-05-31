@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Sofia Lima
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@ import { addServerListElement, removeServerListElement, ServerListRenderPosition
 import { definePluginSettings } from "@api/Settings";
 import { BaseText } from "@components/BaseText";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
 import { findStoreLazy } from "@webpack";
@@ -142,7 +142,7 @@ export default definePlugin({
     name: "ServerListIndicators",
     description: "Add online friend count or server count in the server list",
     tags: ["Servers", "Appearance"],
-    authors: [Devs.dzshn, EquicordDevs.Panniku],
+    authors: [Devs.dzshn, S7CordDevs.Panniku],
     dependencies: ["ServerListAPI"],
     settings,
 

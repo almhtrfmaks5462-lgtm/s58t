@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -12,14 +12,14 @@ import { Button } from "@components/Button";
 import { Divider } from "@components/Divider";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { HeadingSecondary } from "@components/Heading";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { Margins } from "@utils/margins";
 import { useForceUpdater } from "@utils/react";
 import { wordsToTitle } from "@utils/text";
 import definePlugin, { OptionType } from "@utils/types";
-import { RenderModalProps, type User } from "@vencord/discord-types";
-import { ChannelType } from "@vencord/discord-types/enums";
+import { RenderModalProps, type User } from "@S7Cord/discord-types";
+import { ChannelType } from "@S7Cord/discord-types/enums";
 import {
     ChannelStore,
     Forms,
@@ -1047,7 +1047,7 @@ export default definePlugin({
     name: "VcNarratorCustom",
     description: "Announces when users join, leave, or move voice channels via narrator using TikTok TTS. Revamped and back from the dead.",
     tags: ["Accessibility", "Voice"],
-    authors: [Devs.Ven, Devs.Nyako, EquicordDevs.Loukios, EquicordDevs.examplegit, EquicordDevs.qdnx],
+    authors: [Devs.Ven, Devs.Nyako, S7CordDevs.Loukios, S7CordDevs.examplegit, S7CordDevs.qdnx],
     settings,
     contextMenus: {
         "user-context": UserContextMenuPatch,
@@ -1217,7 +1217,7 @@ export default definePlugin({
             return () => { onQueueChange = null; };
         }, []);
 
-        const authorUser = UserStore.getUser(String(EquicordDevs.examplegit.id));
+        const authorUser = UserStore.getUser(String(S7CordDevs.examplegit.id));
         const authorAvatar = authorUser ? IconUtils.getUserAvatarURL(authorUser, false, 64) : null;
 
         return (

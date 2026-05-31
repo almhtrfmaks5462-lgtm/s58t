@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -103,19 +103,19 @@ export function _getBadges(args: BadgeUserArgs) {
     }
 
     const donorBadges = BadgeAPIPlugin.getDonorBadges(args.userId);
-    const equicordDonorBadges = BadgeAPIPlugin.getEquicordDonorBadges(args.userId);
-    const nightcordBadges = (BadgeAPIPlugin as any).getNightcordBadges?.(args.userId);
+    const S7CordDonorBadges = BadgeAPIPlugin.getS7CordDonorBadges(args.userId);
+    const S7CordBadges = (BadgeAPIPlugin as any).getS7CordBadges?.(args.userId);
 
     if (donorBadges) {
         badges.unshift(...donorBadges.map(shieldBadge));
     }
 
-    if (equicordDonorBadges) {
-        badges.unshift(...equicordDonorBadges.map(shieldBadge));
+    if (S7CordDonorBadges) {
+        badges.unshift(...S7CordDonorBadges.map(shieldBadge));
     }
 
-    if (nightcordBadges) {
-        badges.unshift(...nightcordBadges.map(shieldBadge));
+    if (S7CordBadges) {
+        badges.unshift(...S7CordBadges.map(shieldBadge));
     }
 
     return badges;

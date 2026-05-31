@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,12 +13,12 @@ import {
     PluginsTab,
     ThemesTab,
     UpdaterTab,
-    VencordTab,
+    S7CordTab,
 } from "@components/settings";
-import { CreateThemeTab } from "@nightcordplugins/createTheme/components/CreateThemeTab";
-import { PencilSparkleIcon } from "@nightcordplugins/createTheme/components/PencilSparkleIcon";
-import IconsTab from "@nightcordplugins/iconViewer/components/IconsTab";
-import { gitHashShort } from "@shared/vencordUserAgent";
+import { CreateThemeTab } from "@S7Cordplugins/createTheme/components/CreateThemeTab";
+import { PencilSparkleIcon } from "@S7Cordplugins/createTheme/components/PencilSparkleIcon";
+import IconsTab from "@S7Cordplugins/iconViewer/components/IconsTab";
+import { gitHashShort } from "@shared/S7CordUserAgent";
 import { Devs } from "@utils/constants";
 import { isTruthy } from "@utils/guards";
 import definePlugin, { IconProps, OptionType } from "@utils/types";
@@ -100,7 +100,7 @@ interface SettingsLayoutBuilder {
 const settings = definePluginSettings({
     settingsLocation: {
         type: OptionType.SELECT,
-        description: "Where to put the Nightcord settings section",
+        description: "Where to put the S7Cord settings section",
         options: [
             { label: "At the very top", value: "top" },
             { label: "Above the Nitro section", value: "aboveNitro", default: true },
@@ -113,16 +113,16 @@ const settings = definePluginSettings({
 });
 
 const settingsSectionMap: [string, string][] = [
-    ["EquicordSettings", "equicord_main_panel"],
-    ["EquicordPlugins", "equicord_plugins_panel"],
-    ["EquicordThemes", "equicord_themes_panel"],
-    ["EquicordCreateTheme", "equicord_create_theme_panel"],
-    ["EquicordUpdater", "equicord_updater_panel"],
-    ["EquicordChangelog", "equicord_changelog_panel"],
-    ["EquicordCloud", "equicord_cloud_panel"],
-    ["EquicordBackupAndRestore", "equicord_backup_restore_panel"],
-    ["EquicordPatchHelper", "equicord_patch_helper_panel"],
-    ["EquibopSettings", "equicord_equibop_settings_panel"],
+    ["S7CordSettings", "S7Cord_main_panel"],
+    ["S7CordPlugins", "S7Cord_plugins_panel"],
+    ["S7CordThemes", "S7Cord_themes_panel"],
+    ["S7CordCreateTheme", "S7Cord_create_theme_panel"],
+    ["S7CordUpdater", "S7Cord_updater_panel"],
+    ["S7CordChangelog", "S7Cord_changelog_panel"],
+    ["S7CordCloud", "S7Cord_cloud_panel"],
+    ["S7CordBackupAndRestore", "S7Cord_backup_restore_panel"],
+    ["S7CordPatchHelper", "S7Cord_patch_helper_panel"],
+    ["EquibopSettings", "S7Cord_equibop_settings_panel"],
 ];
 
 export default definePlugin({
@@ -214,15 +214,15 @@ export default definePlugin({
         const layout = originalLayoutBuilder.buildLayout();
         if (originalLayoutBuilder.key !== "$Root") return layout;
         if (!Array.isArray(layout)) return layout;
-        if (layout.some(s => s?.key === "equicord_section")) return layout;
+        if (layout.some(s => s?.key === "S7Cord_section")) return layout;
 
         const { buildEntry } = this;
 
         const mainEntry = buildEntry({
-            key: "equicord_main",
-            title: "Nightcord",
-            panelTitle: "Nightcord Settings",
-            Component: VencordTab,
+            key: "S7Cord_main",
+            title: "S7Cord",
+            panelTitle: "S7Cord Settings",
+            Component: S7CordTab,
             Icon: MainSettingsIcon
         });
 
@@ -230,51 +230,51 @@ export default definePlugin({
             mainEntry,
 
             buildEntry({
-                key: "equicord_plugins",
+                key: "S7Cord_plugins",
                 title: "Plugins",
                 Component: PluginsTab,
                 Icon: PluginsIcon
             }),
             buildEntry({
-                key: "equicord_themes",
+                key: "S7Cord_themes",
                 title: "Themes",
                 Component: ThemesTab,
                 Icon: PaintbrushIcon
             }),
             buildEntry({
-                key: "equicord_create_theme",
+                key: "S7Cord_create_theme",
                 title: "Create Theme",
                 panelTitle: "Theme Creator",
                 Component: CreateThemeTab,
                 Icon: PencilSparkleIcon
             }),
             !IS_UPDATER_DISABLED && UpdaterTab && buildEntry({
-                key: "equicord_updater",
+                key: "S7Cord_updater",
                 title: "Updater",
-                panelTitle: "Nightcord Updater",
+                panelTitle: "S7Cord Updater",
                 Component: UpdaterTab,
                 Icon: UpdaterIcon
             }),
             buildEntry({
-                key: "equicord_changelog",
+                key: "S7Cord_changelog",
                 title: "Changelog",
                 Component: ChangelogTab,
                 Icon: LogIcon,
             }),
             buildEntry({
-                key: "equicord_backup_restore",
+                key: "S7Cord_backup_restore",
                 title: "Backup & Restore",
                 Component: BackupAndRestoreTab,
                 Icon: BackupRestoreIcon
             }),
             IS_DEV && PatchHelperTab && buildEntry({
-                key: "equicord_patch_helper",
+                key: "S7Cord_patch_helper",
                 title: "Patch Helper",
                 Component: PatchHelperTab,
                 Icon: PatchHelperIcon
             }),
             buildEntry({
-                key: "nightcord_icon_finder",
+                key: "S7Cord_icon_finder",
                 title: "Icon Finder",
                 Component: IconsTab,
                 Icon: MagnifyingGlassIcon
@@ -282,15 +282,15 @@ export default definePlugin({
             ...this.customEntries.map(buildEntry)
         ].filter(isTruthy);
 
-        const equicordSection: SettingsLayoutNode = {
-            key: "equicord_section",
+        const S7CordSection: SettingsLayoutNode = {
+            key: "S7Cord_section",
             type: LayoutTypes.SECTION,
             useTitle: () => {
-                try { if (localStorage.getItem("Nightcord_stealthMode") === "1") return ""; } catch { }
-                return "Nightcord Settings";
+                try { if (localStorage.getItem("S7Cord_stealthMode") === "1") return ""; } catch { }
+                return "S7Cord Settings";
             },
             buildLayout: () => {
-                try { if (localStorage.getItem("Nightcord_stealthMode") === "1") return [mainEntry]; } catch { }
+                try { if (localStorage.getItem("S7Cord_stealthMode") === "1") return [mainEntry]; } catch { }
                 return fullEntries;
             }
         };
@@ -315,7 +315,7 @@ export default definePlugin({
             idx += 1;
         }
 
-        layout.splice(idx, 0, equicordSection);
+        layout.splice(idx, 0, S7CordSection);
 
         return layout;
     },
@@ -324,13 +324,13 @@ export default definePlugin({
     customEntries: [] as EntryOptions[],
 
     get electronVersion() {
-        return VencordNative.native.getVersions().electron ?? window.legcord?.electron ?? null;
+        return S7CordNative.native.getVersions().electron ?? window.legcord?.electron ?? null;
     },
 
     get chromiumVersion() {
         try {
             return (
-                VencordNative.native.getVersions().chrome ??
+                S7CordNative.native.getVersions().chrome ??
                 // @ts-expect-error userAgentData types
                 navigator.userAgentData?.brands?.find(
                     (b: { brand: string; }) => b.brand === "Chromium" || b.brand === "Google Chrome",
@@ -357,7 +357,7 @@ export default definePlugin({
     getInfoRows() {
         const { electronVersion, chromiumVersion, getVersionInfo } = this;
 
-        const rows = [`Nightcord ${gitHashShort}${getVersionInfo()}`];
+        const rows = [`S7Cord ${gitHashShort}${getVersionInfo()}`];
 
         if (electronVersion) rows.push(`Electron ${electronVersion}`);
         if (chromiumVersion) rows.push(`Chromium ${chromiumVersion}`);

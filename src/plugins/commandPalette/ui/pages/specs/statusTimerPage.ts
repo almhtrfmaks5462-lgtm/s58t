@@ -1,10 +1,10 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { TimerIcon } from "@nightcordplugins/callTimer/TimerIcon";
+import { TimerIcon } from "@S7Cordplugins/callTimer/TimerIcon";
 
 import { cancelScheduledStatusReset, setStatusDndForDuration } from "../../../registry";
 import type { PalettePageSpec, PaletteSuggestion } from "../types";

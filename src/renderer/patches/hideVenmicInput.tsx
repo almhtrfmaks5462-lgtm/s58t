@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -19,6 +19,6 @@ addPatch({
 
     async filteredDevices() {
         const original = await navigator.mediaDevices.enumerateDevices();
-        return original.filter(x => x.label !== "vencord-screen-share");
+        return original.filter(x => x.label !== "S7Cord-screen-share");
     }
 });

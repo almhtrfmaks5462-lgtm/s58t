@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import "./style.css";
 import { definePluginSettings } from "@api/Settings";
 import { getUserSettingLazy } from "@api/UserSettings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { proxyLazy } from "@utils/lazy";
 import { useForceUpdater } from "@utils/react";
 import definePlugin, { OptionType, StartAt } from "@utils/types";
@@ -123,7 +123,7 @@ export default definePlugin({
     name: "StatusPresets",
     description: "Allows you to remember your statuses and set them later",
     tags: ["Activity", "Utility"],
-    authors: [EquicordDevs.iamme],
+    authors: [S7CordDevs.iamme],
     settings,
     dependencies: ["UserSettingsAPI"],
     patches: [

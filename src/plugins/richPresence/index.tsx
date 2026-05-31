@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin, { ReporterTestable } from "@utils/types";
 
@@ -75,15 +75,15 @@ export default definePlugin({
     description: "Unified rich presence hub for AudioBookShelf, osu!, stats.fm, Jellyfin, ListenBrainz, and Gensokyo Radio.",
     tags: ["Activity"],
     authors: [
-        EquicordDevs.vmohammad,
+        S7CordDevs.vmohammad,
         Devs.AutumnVN,
-        EquicordDevs.Crxa,
+        S7CordDevs.Crxa,
         Devs.SerStars,
-        EquicordDevs.ZcraftElite,
-        EquicordDevs.qouesm,
+        S7CordDevs.ZcraftElite,
+        S7CordDevs.qouesm,
         Devs.RyanCaoDev,
-        EquicordDevs.Prince527,
-        EquicordDevs.creations,
+        S7CordDevs.Prince527,
+        S7CordDevs.creations,
     ],
     reporterTestable: ReporterTestable.None,
 

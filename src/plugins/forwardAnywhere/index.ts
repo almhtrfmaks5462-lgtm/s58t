@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import { sendMessage } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
-import { Channel, Message } from "@vencord/discord-types";
+import { Channel, Message } from "@S7Cord/discord-types";
 
 // Taken From Signature :)
 const settings = definePluginSettings({

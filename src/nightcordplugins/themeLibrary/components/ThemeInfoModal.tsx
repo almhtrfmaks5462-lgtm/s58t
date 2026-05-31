@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,8 +8,8 @@ import { CodeBlock } from "@components/CodeBlock";
 import { Heading, HeadingTertiary } from "@components/Heading";
 import { Heart } from "@components/Heart";
 import { Paragraph } from "@components/Paragraph";
-import { Theme, ThemeInfoModalProps } from "@nightcordplugins/themeLibrary/types";
-import { ClockIcon, DownloadIcon, WarningIcon } from "@nightcordplugins/themeLibrary/utils/Icons";
+import { Theme, ThemeInfoModalProps } from "@S7Cordplugins/themeLibrary/types";
+import { ClockIcon, DownloadIcon, WarningIcon } from "@S7Cordplugins/themeLibrary/utils/Icons";
 import { copyToClipboard } from "@utils/clipboard";
 import { openInviteModal } from "@utils/discord";
 import { Margins } from "@utils/margins";
@@ -21,7 +21,7 @@ import { Button, Parser, React, showToast, Toasts } from "@webpack/common";
 
 import { logger } from "./ThemeTab";
 
-const Native = VencordNative.pluginHelpers.ThemeLibrary as PluginNative<typeof import("../native")>;
+const Native = S7CordNative.pluginHelpers.ThemeLibrary as PluginNative<typeof import("../native")>;
 const UserSummaryItem = findComponentByCodeLazy("defaultRenderUser", "showDefaultAvatarsForNullUsers");
 
 async function downloadTheme(themesDir: string, theme: Theme) {
@@ -91,7 +91,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                                     You can support the author by donating below!
                                 </Paragraph>
                                 <Paragraph style={{ marginTop: "10px" }}>
-                                    <Button onClick={() => VencordNative.native.openExternal(donate)}>
+                                    <Button onClick={() => S7CordNative.native.openExternal(donate)}>
                                         <Heart />
                                         Donate
                                     </Button>
@@ -197,7 +197,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                     className={classes("vce-button", Margins.right8)}
                     disabled={!theme.content || theme.id === "preview"}
                     onClick={async () => {
-                        const themesDir = await VencordNative.themes.getThemesDir();
+                        const themesDir = await S7CordNative.themes.getThemesDir();
                         const exists = await Native.themeExists(themesDir, theme);
                         // using another function so we get the proper file path instead of just guessing
                         // which slash to use (im looking at you windows)

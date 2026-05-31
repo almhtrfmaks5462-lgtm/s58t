@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -110,7 +110,7 @@ function PatchHelper() {
         <SettingsTab>
             <Heading className={Margins.top16}>Patch Helper</Heading>
             <Paragraph className={Margins.bottom16}>
-                A developer tool to help you create patches for Equicord plugins.
+                A developer tool to help you create patches for S7Cord plugins.
             </Paragraph>
 
             <Heading className="">Full Patch</Heading>

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ import { Devs } from "@utils/constants";
 import { classes } from "@utils/misc";
 import { useAwaiter } from "@utils/react";
 import definePlugin from "@utils/types";
-import { Guild, User } from "@vencord/discord-types";
+import { Guild, User } from "@S7Cord/discord-types";
 import { findCssClassesLazy } from "@webpack";
 import { Clickable, ConfirmModal,IconUtils, Menu, openModal, Parser } from "@webpack/common";
 
@@ -113,7 +113,7 @@ export default definePlugin({
                     cancelText: "Appeal",
                     confirmText: "Ok",
                     onCancel: async () =>
-                        VencordNative.native.openExternal(
+                        S7CordNative.native.openExternal(
                             "https://reviewdb.mantikafasi.dev/api/redirect?"
                             + new URLSearchParams({
                                 token: Auth.token!,

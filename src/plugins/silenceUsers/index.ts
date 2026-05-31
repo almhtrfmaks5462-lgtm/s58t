@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { FluxDispatcher } from "@webpack/common";
 
@@ -56,7 +56,7 @@ function interceptor(event: any) {
 export default definePlugin({
     name: "SilenceUsers",
     description: "Silences @mention pings and server badge counts from specific users. Regular messages and DMs are untouched.",
-    authors: [EquicordDevs.dka],
+    authors: [S7CordDevs.dka],
     settings,
     start() {
         FluxDispatcher.addInterceptor(interceptor);

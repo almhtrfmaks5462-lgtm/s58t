@@ -16,7 +16,7 @@ import { Margins } from "@utils/margins";
 import { useAwaiter } from "@utils/react";
 import definePlugin, { OptionType } from "@utils/types";
 import { chooseFile } from "@utils/web";
-import { CloudUploadPlatform } from "@vencord/discord-types/enums";
+import { CloudUploadPlatform } from "@S7Cord/discord-types/enums";
 import { Button, CloudUploader, Constants, FluxDispatcher, Forms, lodash, Menu, MessageActions, Modal, openModal, PendingReplyStore, PermissionsBits, PermissionStore, RestAPI, SelectedChannelStore, showToast, SnowflakeUtils, Toasts, useEffect, useState, useRef } from "@webpack/common";
 import { ComponentType } from "react";
 

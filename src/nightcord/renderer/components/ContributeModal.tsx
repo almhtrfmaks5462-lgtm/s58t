@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -67,13 +67,13 @@ export function ContributeModal(props: ModalProps) {
             <ModalHeader separator={false} style={{ paddingTop: "24px", paddingBottom: "8px" }}>
                 <Flex direction={Flex.Direction.VERTICAL} align={Flex.Align.CENTER} style={{ width: "100%" }}>
                     <Heading level={2} variant="heading-xl/bold" style={{ color: "#fff", textShadow: "0 0 10px rgba(88, 101, 242, 0.5)" }}>
-                        Support Nightcord ❤️
+                        Support S7Cord ❤️
                     </Heading>
                 </Flex>
             </ModalHeader>
             <ModalContent style={{ padding: "0 24px" }}>
                 <Paragraph className={Margins.bottom24} style={{ textAlign: "center", fontStyle: "italic", opacity: 0.9, lineHeight: "1.4" }}>
-                    Nightcord is a solo project — built from scratch over many days. If it saves you time or brings you joy, any contribution helps me keep updating it.
+                    S7Cord is a solo project — built from scratch over many days. If it saves you time or brings you joy, any contribution helps me keep updating it.
                 </Paragraph>
 
                 <CryptoAddress

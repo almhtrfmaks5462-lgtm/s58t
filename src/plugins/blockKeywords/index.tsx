@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,11 +11,11 @@ import { Card } from "@components/Card";
 import { HeadingTertiary } from "@components/Heading";
 import { ErrorBoundary } from "@components/index";
 import { Margins } from "@components/margins";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { classes } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { React, TextInput } from "@webpack/common";
 
 let blockedKeywords: Array<RegExp>;
@@ -132,7 +132,7 @@ export default definePlugin({
     name: "BlockKeywords",
     description: "Blocks messages containing specific user-defined keywords, as if the user sending them was blocked.",
     tags: ["Appearance", "Customisation", "Privacy"],
-    authors: [EquicordDevs.catcraft, EquicordDevs.secp192k1],
+    authors: [S7CordDevs.catcraft, S7CordDevs.secp192k1],
     patches: [
         {
             find: "_channelMessages={}",

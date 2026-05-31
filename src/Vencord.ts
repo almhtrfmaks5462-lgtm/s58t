@@ -1,5 +1,5 @@
 /*!
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 // DO NOT REMOVE UNLESS YOU WISH TO FACE THE WRATH OF THE CIRCULAR DEPENDENCY DEMON!!!!!!!
 import "~plugins";
-console.log("%c[Nightcord]", "color: #5865f2; font-weight: bold;", "Injection successful! Starting services...");
+console.log("%c[S7Cord]", "color: #FF0000; font-weight: bold;", "Injection successful! Starting services...");
 
 export * as Api from "./api";
 export * as Plugins from "./api/PluginManager";
@@ -55,11 +55,11 @@ if (IS_REPORTER) {
 
 async function syncSettings() {
     // Check if cloud auth exists for current user before attempting sync
-    if (localStorage.Vencord_cloudSyncDirection === undefined) {
+    if (localStorage.S7Cord_cloudSyncDirection === undefined) {
         // by default, sync bi-directionally
-        localStorage.Vencord_cloudSyncDirection = "both";
+        localStorage.S7Cord_cloudSyncDirection = "both";
     }
-    const hasCloudAuth = await dsGet("Vencord_cloudSecret");
+    const hasCloudAuth = await dsGet("S7Cord_cloudSecret");
     if (!hasCloudAuth) {
         if (Settings.cloud.authenticated) {
             // User switched to an account that isn't connected to cloud
@@ -67,7 +67,7 @@ async function syncSettings() {
                 title: "Cloud Settings",
                 body: "Cloud sync was disabled because this account isn't connected to the cloud App. You can enable it again by connecting this account in Cloud Settings. (note: it will store your preferences separately)",
                 color: "var(--yellow-360)",
-                onClick: () => SettingsRouter.openUserSettings("equicord_cloud_panel")
+                onClick: () => SettingsRouter.openUserSettings("S7Cord_cloud_panel")
             });
             // Disable cloud sync globally
             Settings.cloud.authenticated = false;
@@ -86,7 +86,7 @@ async function syncSettings() {
             body: "We've noticed you have cloud integrations enabled in another client! Due to limitations, you will " +
                 "need to re-authenticate to continue using them. Click here to go to the settings page to do so!",
             color: "var(--yellow-360)",
-            onClick: () => SettingsRouter.openUserSettings("equicord_cloud_panel")
+            onClick: () => SettingsRouter.openUserSettings("S7Cord_cloud_panel")
         });
         return;
     }
@@ -94,9 +94,9 @@ async function syncSettings() {
     if (
         Settings.cloud.settingsSync && // if it's enabled
         Settings.cloud.authenticated && // if cloud integrations are enabled
-        localStorage.Vencord_cloudSyncDirection !== "manual" // if we're not in manual mode
+        localStorage.S7Cord_cloudSyncDirection !== "manual" // if we're not in manual mode
     ) {
-        if (localStorage.Vencord_settingsDirty && shouldCloudSync("push")) {
+        if (localStorage.S7Cord_settingsDirty && shouldCloudSync("push")) {
             await putCloudSettings();
         } else if (shouldCloudSync("pull") && await getCloudSettings(false)) { // if we synchronized something (false means no sync)
             // we show a notification here instead of allowing getCloudSettings() to show one to declutter the amount of
@@ -119,7 +119,7 @@ async function syncSettings() {
     }, 60_000);
 
     SettingsStore.addGlobalChangeListener(() => {
-        localStorage.Vencord_settingsDirty = true;
+        localStorage.S7Cord_settingsDirty = true;
         saveSettingsOnFrequentAction();
     });
 }
@@ -127,10 +127,10 @@ async function syncSettings() {
 let notifiedForUpdatesThisSession = false;
 
 function showGreenUpdateBanner() {
-    if (document.getElementById("nightcord-core-updater-root")) return;
+    if (document.getElementById("S7Cord-core-updater-root")) return;
 
     const banner = document.createElement("div");
-    banner.id = "nightcord-core-updater-root";
+    banner.id = "S7Cord-core-updater-root";
     Object.assign(banner.style, {
         position: "fixed",
         top: "0", left: "0", right: "0",
@@ -159,7 +159,7 @@ function showGreenUpdateBanner() {
     const titleSpan = document.createElement("span");
     titleSpan.style.fontWeight = "700";
     titleSpan.style.flexShrink = "0";
-    titleSpan.textContent = "🔔 Nightcord Update Available!";
+    titleSpan.textContent = "🔔 S7Cord Update Available!";
 
     const statusSpan = document.createElement("span");
     statusSpan.style.opacity = "0.85";
@@ -270,7 +270,7 @@ async function runUpdateCheck() {
 
     try {
         const isOutdated = await checkForUpdates();
-        if (IS_DISCORD_DESKTOP) VencordNative.tray.setUpdateState(isOutdated);
+        if (IS_DISCORD_DESKTOP) S7CordNative.tray.setUpdateState(isOutdated);
         if (!isOutdated) return;
 
         if (notifiedForUpdatesThisSession) return;
@@ -286,13 +286,13 @@ async function runUpdateCheck() {
 function initTrayIpc() {
     if (IS_WEB || IS_UPDATER_DISABLED) return;
 
-    VencordNative.tray.onCheckUpdates(async () => {
+    S7CordNative.tray.onCheckUpdates(async () => {
         try {
             const isOutdated = await checkForUpdates();
-            VencordNative.tray.setUpdateState(isOutdated);
+            S7CordNative.tray.setUpdateState(isOutdated);
 
             if (isOutdated) {
-                showNotice("A Nightcord update is available!", "View Update", () => openSettingsTabModal(UpdaterTab!));
+                showNotice("A S7Cord update is available!", "View Update", () => openSettingsTabModal(UpdaterTab!));
             } else {
                 showNotice("No updates available, you're on the latest version!", "OK", popNotice);
             }
@@ -302,16 +302,16 @@ function initTrayIpc() {
         }
     });
 
-    VencordNative.tray.onRepair(async () => {
+    S7CordNative.tray.onRepair(async () => {
         try {
             await update();
             relaunch();
         } catch (err) {
-            UpdateLogger.error("Failed to repair Nightcord", err);
+            UpdateLogger.error("Failed to repair S7Cord", err);
         }
     });
 
-    VencordNative.tray.setUpdateState(getIsOutdated);
+    S7CordNative.tray.setUpdateState(getIsOutdated);
 }
 
 async function init() {
@@ -334,7 +334,7 @@ async function init() {
                 "Webpack has finished initialising, but some patches haven't been applied yet.",
                 "This might be expected since some Modules are lazy loaded, but please verify",
                 "that all plugins are working as intended.",
-                "You are seeing this warning because this is a Development build of Nightcord.",
+                "You are seeing this warning because this is a Development build of S7Cord.",
                 "\nThe following patches have not been applied:",
                 "\n\n" + pendingPatches.map(p => `${p.plugin}: ${p.find}`).join("\n")
             );
@@ -351,6 +351,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // FIXME
     if (IS_DISCORD_DESKTOP && Settings.winNativeTitleBar && IS_WINDOWS) {
-        createAndAppendStyle("vencord-native-titlebar-style", coreStyleRootNode).textContent = "[class*=titleBar]{display: none!important}";
+        createAndAppendStyle("S7Cord-native-titlebar-style", coreStyleRootNode).textContent = "[class*=titleBar]{display: none!important}";
     }
 }, { once: true });

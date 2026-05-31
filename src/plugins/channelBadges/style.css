@@ -22,7 +22,7 @@
 }
 
 .channel-badge-text {
-    background-color: #5865F2;
+    background-color: #FF0000;
 }
 
 .channel-badge-voice {
@@ -53,7 +53,7 @@
 .channel-badge-stage,
 .channel-badge-media,
 .channel-badge-forum {
-    background-color: #5865F2;
+    background-color: #FF0000;
 }
 
 .channel-badge-nsfw {

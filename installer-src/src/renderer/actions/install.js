@@ -16,10 +16,10 @@ const EXTRACTION_PROGRESS = 90;
 const INJECT_SHIM_PROGRESS = 98;
 const RESTART_DISCORD_PROGRESS = 100;
 
-
-const RELEASE_API = "https://git.nightcord.su/api/v1/repos/nightcord/nightcord/releases/latest";
-const DIST_ZIP = "nightcord-dist.zip";
-const distDir = path.join(process.env.LOCALAPPDATA, "Nightcord", "dist");
+// ✅ changed: رابط API حق GitHub (مو Gitea)
+const RELEASE_API = "https://api.github.com/repos/almhtrfmaks5462-lgtm/s58t/releases/latest";
+const DIST_ZIP = "S7Cord-dist.zip";
+const distDir = path.join(process.env.LOCALAPPDATA, "S7Cord", "dist");
 
 const safeExists = async (p) => {
     try { await fs.access(p); return true; } catch { return false; }
@@ -73,11 +73,11 @@ async function cleanModulePatches(resourcesPath) {
                 for (const pf of patchedFiles) {
                     if (!(await safeExists(pf))) continue;
                     const content = await fs.readFile(pf, "utf-8");
-                    const isPatched = content.toLowerCase().includes("vencord") ||
-                                      content.toLowerCase().includes("equicord") ||
-                                      content.includes('require("vencord') ||
-                                      content.includes("require('vencord") ||
-                                      content.includes("VencordNative") ||
+                    const isPatched = content.toLowerCase().includes("s7cord") ||
+                                      content.toLowerCase().includes("s7cord") ||
+                                      content.includes('require("s7cord') ||
+                                      content.includes("require('s7cord") ||
+                                      content.includes("s7cordNative") ||
                                       content.includes("equilotl");
 
                     if (!isPatched) continue;
@@ -103,8 +103,8 @@ async function cleanModulePatches(resourcesPath) {
                     const innerPkg = path.join(innerAppDir, "package.json");
                     if (await safeExists(innerPkg)) {
                         const pkgContent = await fs.readFile(innerPkg, "utf-8");
-                        const isMod = pkgContent.toLowerCase().includes("vencord") ||
-                                      pkgContent.toLowerCase().includes("equicord") ||
+                        const isMod = pkgContent.toLowerCase().includes("s7cord") ||
+                                      pkgContent.toLowerCase().includes("s7cord") ||
                                       pkgContent.toLowerCase().includes("openasar");
                         if (isMod) {
                             try { await fs.rm(innerAppDir, { recursive: true, force: true }); } catch {}
@@ -114,14 +114,21 @@ async function cleanModulePatches(resourcesPath) {
             }
         }
     } catch (err) {
-        log(`[Nightcord] CleanModulePatches warning: ${err.message}`);
+        log(`[S7Cord] CleanModulePatches warning: ${err.message}`);
     }
 }
 
 function downloadFileAsync(url, destPath, onProgress) {
     return new Promise((resolve, reject) => {
         const file = createWriteStream(destPath);
-        https.get(url, { headers: { "User-Agent": "Nightcord-Installer/3.0" }, rejectUnauthorized: false }, (response) => {
+        const client = url.startsWith('https') ? https : require('http');
+        
+        const options = {
+            headers: { "User-Agent": "S7Cord-Installer/3.0" },
+            rejectUnauthorized: false
+        };
+        
+        client.get(url, options, (response) => {
             if (response.statusCode === 302 || response.statusCode === 301) {
                 file.close();
                 downloadFileAsync(response.headers.location, destPath, onProgress).then(resolve).catch(reject);
@@ -162,19 +169,20 @@ const getJSON = phin.defaults({
     parse: "json",
     followRedirects: true,
     core: { rejectUnauthorized: false },
-    headers: { "User-Agent": "Nightcord-Installer/3.0", "Accept": "application/json" }
+    headers: { "User-Agent": "S7Cord-Installer/3.0", "Accept": "application/json" }
 });
 
 async function downloadDist() {
-    log("Fetching latest release information from Gitea...");
+    log("Fetching latest release information from GitHub...");
     let assetUrl;
-    let nightcordVersion;
+    let s7cordVersion;
     try {
         const response = await getJSON(RELEASE_API);
         const release = response.body;
+        // ✅ GitHub API: assets مباشرة في release
         const asset = release && release.assets && release.assets.find(a => a.name.toLowerCase() === DIST_ZIP);
         assetUrl = asset && asset.browser_download_url;
-        nightcordVersion = release && release.tag_name;
+        s7cordVersion = release && release.tag_name;
         if (!assetUrl) {
             throw new Error(`Asset '${DIST_ZIP}' not found in the latest release`);
         }
@@ -186,15 +194,15 @@ async function downloadDist() {
         throw error;
     }
 
-    const tmpZip = path.join(remote.app.getPath("temp"), "nightcord-dist.zip");
-    log(`Downloading Nightcord ${nightcordVersion} package...`);
+    const tmpZip = path.join(remote.app.getPath("temp"), "S7Cord-dist.zip");
+    log(`Downloading S7Cord ${s7cordVersion} package...`);
     try {
         await downloadFileAsync(assetUrl, tmpZip, (percent, downloaded, total) => {
             const dlMB = (downloaded / (1024 * 1024)).toFixed(1);
             const totalMB = (total / (1024 * 1024)).toFixed(1);
             const overall = FETCH_RELEASE_PROGRESS + (percent * (DOWNLOAD_PACKAGE_PROGRESS - FETCH_RELEASE_PROGRESS) / 100);
             progress.set(overall);
-            status.set(`Downloading Nightcord... (${dlMB}/${totalMB} MB)`);
+            status.set(`Downloading S7Cord... (${dlMB}/${totalMB} MB)`);
         });
         log("✅ Package downloaded successfully");
         progress.set(DOWNLOAD_PACKAGE_PROGRESS);
@@ -225,8 +233,8 @@ async function downloadDist() {
 
 async function writeLoader(appDir) {
     const patcher = path.join(distDir, "patcher.js").replace(/\\/g, "/");
-    await fs.writeFile(path.join(appDir, "package.json"), JSON.stringify({ name: "nightcord", main: "index.js" }));
-    const loaderCode = `// Nightcord Injector
+    await fs.writeFile(path.join(appDir, "package.json"), JSON.stringify({ name: "S7Cord", main: "index.js" }));
+    const loaderCode = `// S7Cord Injector
 "use strict";
 const fs = require('fs');
 const path = require('path');
@@ -235,7 +243,7 @@ const exeDir = path.dirname(process.execPath);
 const fallback = path.join(exeDir, 'resources', 'dist', 'patcher.js');
 const fallback2 = path.join(exeDir, 'dist', 'patcher.js');
 const patcherPath = fs.existsSync(primary) ? primary : fs.existsSync(fallback) ? fallback : fallback2;
-if (!fs.existsSync(patcherPath)) throw new Error('[Nightcord] patcher.js not found. Expected at: ' + primary);
+if (!fs.existsSync(patcherPath)) throw new Error('[S7Cord] patcher.js not found. Expected at: ' + primary);
 require(patcherPath);
 `;
     await fs.writeFile(path.join(appDir, "index.js"), loaderCode);
@@ -284,7 +292,7 @@ async function copyAssetsToDiscord(resPath) {
 async function injectShims(paths) {
     process.noAsar = true;
     const progressPerLoop = (INJECT_SHIM_PROGRESS - progress.value) / paths.length;
-    for (const resPath of paths) { // Now receives resources path from paths.js
+    for (const resPath of paths) {
         log(`Injecting into Discord at: ${resPath}`);
         try {
             const appDir = path.join(resPath, "app");
@@ -294,7 +302,7 @@ async function injectShims(paths) {
             log("Closing Discord...");
             killDiscord(resPath, log);
 
-            log("1. Removing previous mod injection (Vencord / Equicord / OpenAsar)...");
+            log("1. Removing previous mod injection (S7Cord / Equicord / OpenAsar)...");
             if (await safeExists(appDir)) {
                 try { await fs.rm(appDir, { recursive: true, force: true }); } catch {}
             }
@@ -320,14 +328,14 @@ async function injectShims(paths) {
 
             await cleanModulePatches(resPath);
 
-            log("2. Configuring Nightcord loader...");
+            log("2. Configuring S7Cord loader...");
             if (!(await safeExists(appAsar)) && !(await safeExists(backup))) {
                 throw new Error("Critical error: no valid app.asar found. Please reinstall Discord from discord.com/download and try again.");
             }
 
             if (await safeExists(appAsar)) {
                 if (await safeExists(backup)) await safeDelete(backup);
-                await fs.rename(appAsar, backup); // Rename is atomic!
+                await fs.rename(appAsar, backup);
             }
 
             log("3. Creating app directory...");
@@ -351,14 +359,14 @@ async function injectShims(paths) {
 
 export default async function(paths) {
     try {
-        log("Starting Install...");
+        log("Starting S7Cord Installer...");
         lognewline("Creating required directories...");
         const localAppData = process.env.LOCALAPPDATA;
         if (!localAppData) throw new Error("LOCALAPPDATA environment variable is missing.");
-        await fs.mkdir(path.join(localAppData, "Nightcord"), { recursive: true });
+        await fs.mkdir(path.join(localAppData, "S7Cord"), { recursive: true });
         log("✅ Local AppData directory prepared");
         progress.set(MAKE_DIR_PROGRESS);
-        lognewline("Downloading Nightcord package...");
+        lognewline("Downloading S7Cord package...");
         const distLocal = path.join(__dirname, "dist", "patcher.js");
         const hasLocalDist = await safeExists(distLocal);
         if (hasLocalDist) {
@@ -367,7 +375,7 @@ export default async function(paths) {
             await downloadDist();
         }
 
-        lognewline("Injecting Nightcord shims...");
+        lognewline("Injecting S7Cord shims...");
         const err = await injectShims(Object.values(paths));
         if (err) return false;
 

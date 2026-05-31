@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { Quest, QuestTaskWatchVideo, QuestTaskWatchVideoOnMobile } from "@vencord/discord-types";
-import { QuestTaskType } from "@vencord/discord-types/enums";
+import type { Quest, QuestTaskWatchVideo, QuestTaskWatchVideoOnMobile } from "@S7Cord/discord-types";
+import { QuestTaskType } from "@S7Cord/discord-types/enums";
 
 import { getQuestifySettings, useQuestifySettings } from "../settings/access";
 import { defaultClaimedSubsort, defaultExpiredSubsort, defaultIgnoredSubsort, defaultQuestOrder, defaultUnclaimedSubsort, type QuestOrderStatus, type QuestSubsort, type QuestTileColorSetting, type QuestTileGradient } from "../settings/def";

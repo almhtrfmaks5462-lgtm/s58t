@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import type { PluginNative } from "@utils/types";
-import type { Quest } from "@vencord/discord-types";
-import { QuestTaskType } from "@vencord/discord-types/enums";
+import type { Quest } from "@S7Cord/discord-types";
+import { QuestTaskType } from "@S7Cord/discord-types/enums";
 import { findByCodeLazy, findLazy } from "@webpack";
 import { FluxDispatcher, QuestStore, RestAPI, showToast, Toasts } from "@webpack/common";
 
@@ -107,7 +107,7 @@ export function makeEnrollmentData(args: QuestButtonAnalyticsArgs): QuestEnrollm
     };
 }
 
-const QuestifyNative = VencordNative?.pluginHelpers?.Questify as PluginNative<typeof import("../native")> | undefined;
+const QuestifyNative = S7CordNative?.pluginHelpers?.Questify as PluginNative<typeof import("../native")> | undefined;
 
 const videoQuestLeeway = 24;
 const resumeExpiryMs = 60 * 60 * 1000;

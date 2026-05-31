@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -334,7 +334,7 @@ export default definePlugin({
     name: "FakeSwitcher",
     enabledByDefault: true,
     description: "Right-click → add a user to the switcher. Click in the switcher → your profile takes their appearance locally.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["HeaderBarAPI"],
 
     async start() {

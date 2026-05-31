@@ -23,7 +23,7 @@ async function deleteShims(paths) {
     process.noAsar = true;
     const progressPerLoop = (DELETE_SHIM_PROGRESS - progress.value) / paths.length;
     for (const resPath of paths) { // Receiving resources path from paths.js
-        log(`Removing Nightcord from: ${resPath}`);
+        log(`Removing S7Cord from: ${resPath}`);
         try {
             const appDir = path.join(resPath, "app");
             const backup = path.join(resPath, "_app.asar");
@@ -37,7 +37,7 @@ async function deleteShims(paths) {
                 const pkg = path.join(appDir, "package.json");
                 if (await safeExists(pkg)) {
                     const content = await fs.readFile(pkg, "utf-8");
-                    if (content.includes('"nightcord"')) {
+                    if (content.includes('"S7Cord"')) {
                         try { await fs.rm(appDir, { recursive: true, force: true }); } catch {}
                     }
                 }
@@ -90,7 +90,7 @@ async function deleteShims(paths) {
             log("✅ Uninstallation successful!");
             progress.set(progress.value + progressPerLoop);
         } catch (err) {
-            log(`❌ Could not remove Nightcord from ${resPath}`);
+            log(`❌ Could not remove S7Cord from ${resPath}`);
             log(`❌ ${err.message}`);
             return err;
         }
@@ -100,7 +100,7 @@ async function deleteShims(paths) {
 export default async function(paths) {
     try {
         log("Starting Uninstall...");
-        lognewline("Deleting Nightcord loader and restoring files...");
+        lognewline("Deleting S7Cord loader and restoring files...");
         
         const err = await deleteShims(Object.values(paths));
         if (err) return false;

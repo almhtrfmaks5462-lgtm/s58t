@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ import type { MessageClickListener, MessageEditListener, MessageSendListener } f
 import type { MessagePopoverButtonData, MessagePopoverButtonFactory } from "@api/MessagePopover";
 import type { NicknameIconFactory } from "@api/NicknameIcons";
 import type { UserAreaButtonData } from "@api/UserArea";
-import type { Command, FluxEvents } from "@vencord/discord-types";
+import type { Command, FluxEvents } from "@S7Cord/discord-types";
 import type { ReactNode } from "react";
 import type { LiteralUnion } from "type-fest";
 
@@ -173,7 +173,7 @@ export interface PluginDef {
      */
     contextMenus?: Record<string, NavContextMenuPatchCallback>;
     /**
-     * Allows you to add custom actions to the Vencord Toolbox.
+     * Allows you to add custom actions to the S7Cord Toolbox.
      *
      * Can either be an object mapping labels to action functions or a Function returning Menu components.
      * Please note that you can only use Menu components.
@@ -229,13 +229,13 @@ export interface PluginDef {
     renderMessagePopoverButton?: MessagePopoverButtonFactory;
 
     /**
-     * A Vencord plugin that is modified for extra features in Equicord
+     * A S7Cord plugin that is modified for extra features in S7Cord
      */
     isModified?: boolean;
 }
 
 export const enum StartAt {
-    /** Right away, as soon as Vencord initialised */
+    /** Right away, as soon as S7Cord initialised */
     Init = "Init",
     /** On the DOMContentLoaded event, so once the document is ready */
     DOMContentLoaded = "DOMContentLoaded",
@@ -410,9 +410,9 @@ export interface DefinedSettings<
     Checks extends SettingsChecks<Def> = {},
     PrivateSettings extends object = {}
 > {
-    /** Shorthand for `Vencord.Settings.plugins.PluginName`, but with typings */
+    /** Shorthand for `S7Cord.Settings.plugins.PluginName`, but with typings */
     store: SettingsStore<Def> & PrivateSettings;
-    /** Shorthand for `Vencord.PlainSettings.plugins.PluginName`, but with typings */
+    /** Shorthand for `S7Cord.PlainSettings.plugins.PluginName`, but with typings */
     plain: SettingsStore<Def> & PrivateSettings;
     /**
      * React hook for getting the settings for this plugin

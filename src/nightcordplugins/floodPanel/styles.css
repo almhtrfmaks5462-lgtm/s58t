@@ -55,7 +55,7 @@
     width: 14px;
     height: 14px;
     border: 2px solid var(--background-modifier-accent);
-    border-top-color: var(--brand-experiment);
+    border-top-color: var(--red);
     border-radius: 50%;
     animation: vc-flood-spin .65s linear infinite;
     flex-shrink: 0;

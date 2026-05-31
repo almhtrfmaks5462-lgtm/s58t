@@ -1,4 +1,4 @@
-# Equicord Development Guidelines
+# S7Cord Development Guidelines
 
 ## Critical Rules
 
@@ -6,7 +6,7 @@
 - Push back when the user idea is wrong or not correct.
 - **NEVER** git checkout files without explicit permission.
 - Always verify components/functions arent deprecated before using.
-- **NEVER** use `any` for Discord objects. Import proper types from `@vencord/discord-types`.
+- **NEVER** use `any` for Discord objects. Import proper types from `@S7Cord/discord-types`.
 - Fix with smallest possible change. No refactoring unless explicitly asked.
 - Solve the problem at hand only. No patterns for patterns sake.
 - **NEVER** overengineer. No premature abstractions, no helpers for one-time operations, no building for hypothetical futures. Three similar lines is better than a premature abstraction.
@@ -129,11 +129,11 @@ replace: "$self.renderTypingUsers({ children: $& })"
 
 - `isPluginEnabled(name)` from `@api/PluginManager` takes a string, checks required/isDependency/enabled.
 - Import the plugin directly from its path to access `.name` and functions.
-- Dont use `Vencord.Plugins.plugins` or `plugin.started`. Dont use `"as unknown as"` casting.
+- Dont use `S7Cord.Plugins.plugins` or `plugin.started`. Dont use `"as unknown as"` casting.
 
 ```ts
 import { isPluginEnabled } from "@api/PluginManager";
-import otherPlugin from "@equicordplugins/otherPlugin";
+import otherPlugin from "@S7Cordplugins/otherPlugin";
 if (!isPluginEnabled(otherPlugin.name)) return null;
 otherPlugin.someFunction();
 ```
@@ -142,7 +142,7 @@ otherPlugin.someFunction();
 
 ### Types
 
-`Channel`, `Guild`, `GuildMember`, `User`, `Role`, `Message` from `@vencord/discord-types`
+`Channel`, `Guild`, `GuildMember`, `User`, `Role`, `Message` from `@S7Cord/discord-types`
 
 ### Components
 

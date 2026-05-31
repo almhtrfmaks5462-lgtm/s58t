@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Devs } from "@utils/constants";
 import { getStegCloak } from "@utils/dependencies";
 import definePlugin, { OptionType, ReporterTestable } from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { ChannelStore, Constants, RestAPI, Tooltip } from "@webpack/common";
 
 import { buildDecModal } from "./components/DecryptionModal";

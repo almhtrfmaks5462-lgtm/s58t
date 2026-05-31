@@ -1,14 +1,14 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Guild } from "@vencord/discord-types";
+import { Guild } from "@S7Cord/discord-types";
 import { Menu } from "@webpack/common";
 
 import { openGuildInfoModal } from "./GuildInfoModal";
@@ -51,7 +51,7 @@ export default definePlugin({
     name: "ServerInfo",
     description: "Allows you to view info about a server",
     tags: ["Servers", "Utility"],
-    authors: [Devs.Ven, Devs.Nuckyz, EquicordDevs.Z1xus],
+    authors: [Devs.Ven, Devs.Nuckyz, S7CordDevs.Z1xus],
     dependencies: ["DynamicImageModalAPI"],
     searchTerms: ["guild", "info", "ServerProfile"],
     isModified: true,

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,9 +15,9 @@ import {
     removeServerListElement,
     ServerListRenderPosition,
 } from "@api/ServerList";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
-import { Guild } from "@vencord/discord-types";
+import { Guild } from "@S7Cord/discord-types";
 import { findStoreLazy } from "@webpack";
 import { Menu, React, useStateFromStores } from "@webpack/common";
 
@@ -77,7 +77,7 @@ export default definePlugin({
     name: "HideServers",
     description: "Allows you to hide servers from the guild list and quick switcher by right clicking them",
     tags: ["Servers", "Utility"],
-    authors: [EquicordDevs.bep],
+    authors: [S7CordDevs.bep],
     searchTerms: ["guild", "server", "hide", "folder"],
 
     dependencies: ["ServerListAPI"],

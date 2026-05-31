@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { Logger } from "@utils/Logger";
-import type { Channel } from "@vencord/discord-types";
-import { ChannelType } from "@vencord/discord-types/enums";
+import type { Channel } from "@S7Cord/discord-types";
+import { ChannelType } from "@S7Cord/discord-types/enums";
 import { ChannelStore, GuildChannelStore, GuildStore, PermissionsBits, PermissionStore, RestAPI, showToast, Toasts } from "@webpack/common";
 
 const logger = new Logger("Dragify");

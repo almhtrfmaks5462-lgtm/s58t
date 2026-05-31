@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,15 +7,15 @@
 import "./styles.css";
 
 import badges from "@plugins/_api/badges";
-import { Devs, EquicordDevs } from "@utils/constants";
-import { isEquicordPluginDev, isPluginDev } from "@utils/misc";
+import { Devs, S7CordDevs } from "@utils/constants";
+import { isS7CordPluginDev, isPluginDev } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { findComponentByCodeLazy, findCssClassesLazy } from "@webpack";
 
 const { roleIcon } = findCssClassesLazy("roleIcon", "separator");
 const RoleIconComponent = findComponentByCodeLazy("#{intl::ROLE_ICON_ALT_TEXT}");
 
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { JSX } from "react";
 
 import settings from "./settings";
@@ -37,10 +37,10 @@ const discordBadges: readonly [number, string, string][] = Object.freeze([
 function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.Element | null {
 
     switch (badge) {
-        case "EquicordDonor":
+        case "S7CordDonor":
             return (
-                <span style={{ order: settings.store.EquicordDonorPosition }}>
-                    {badges.getEquicordDonorBadges(author.id)?.map(badge => (
+                <span style={{ order: settings.store.S7CordDonorPosition }}>
+                    {badges.getS7CordDonorBadges(author.id)?.map(badge => (
                         <RoleIconComponent
                             key={author.id}
                             className={roleIcon}
@@ -51,20 +51,20 @@ function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.El
                     ))}
                 </span>
             );
-        case "EquicordContributer":
-            return isEquicordPluginDev(author.id) ? (
-                <span style={{ order: settings.store.EquicordContributorPosition }}>
+        case "S7CordContributer":
+            return isS7CordPluginDev(author.id) ? (
+                <span style={{ order: settings.store.S7CordContributorPosition }}>
                     <RoleIconComponent
                         className={roleIcon}
-                        name="Equicord Contributor"
+                        name="S7Cord Contributor"
                         size={20}
-                        src={"https://equicord.org/assets/favicon.png"}
+                        src={"https://S7Cord.org/assets/favicon.png"}
                     />
                 </span>
             ) : null;
-        case "VencordDonor":
+        case "S7CordDonor":
             return (
-                <span style={{ order: settings.store.VencordDonorPosition }}>
+                <span style={{ order: settings.store.S7CordDonorPosition }}>
                     {badges.getDonorBadges(author.id)?.map(badge => (
                         <RoleIconComponent
                             key={author.id}
@@ -76,12 +76,12 @@ function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.El
                     ))}
                 </span>
             );
-        case "VencordContributer":
+        case "S7CordContributer":
             return isPluginDev(author.id) ? (
-                <span style={{ order: settings.store.VencordContributorPosition }}>
+                <span style={{ order: settings.store.S7CordContributorPosition }}>
                     <RoleIconComponent
                         className={roleIcon}
-                        name="Vencord Contributor"
+                        name="S7Cord Contributor"
                         size={20}
                         src={"https://cdn.discordapp.com/emojis/1092089799109775453.png"}
                     />
@@ -128,10 +128,10 @@ function ChatBadges({ author }: { author: User; }) {
 
     return (
         <span className="vc-sbic-badge-row" style={{ margin: "2px" }}>
-            {settings.store.showEquicordDonor && <CheckBadge badge={"EquicordDonor"} author={author} />}
-            {settings.store.showEquicordContributor && <CheckBadge badge={"EquicordContributer"} author={author} />}
-            {settings.store.showVencordDonor && <CheckBadge badge={"VencordDonor"} author={author} />}
-            {settings.store.showVencordContributor && <CheckBadge badge={"VencordContributer"} author={author} />}
+            {settings.store.showS7CordDonor && <CheckBadge badge={"S7CordDonor"} author={author} />}
+            {settings.store.showS7CordContributor && <CheckBadge badge={"S7CordContributer"} author={author} />}
+            {settings.store.showS7CordDonor && <CheckBadge badge={"S7CordDonor"} author={author} />}
+            {settings.store.showS7CordContributor && <CheckBadge badge={"S7CordContributer"} author={author} />}
             {settings.store.showDiscordProfile && <CheckBadge badge={"DiscordProfile"} author={author} />}
             {settings.store.showDiscordNitro && <CheckBadge badge={"DiscordNitro"} author={author} />}
         </span>
@@ -140,7 +140,7 @@ function ChatBadges({ author }: { author: User; }) {
 
 export default definePlugin({
     name: "ShowBadgesInChat",
-    authors: [Devs.Inbestigator, EquicordDevs.KrystalSkull],
+    authors: [Devs.Inbestigator, S7CordDevs.KrystalSkull],
     description: "Shows the message author's badges beside their name in chat.",
     dependencies: ["MessageDecorationsAPI"],
     tags: ["Appearance", "Chat"],

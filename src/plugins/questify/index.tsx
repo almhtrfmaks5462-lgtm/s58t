@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,9 +10,9 @@ import { playAudio } from "@api/AudioPlayer";
 import { addServerListElement, removeServerListElement, ServerListRenderPosition } from "@api/ServerList";
 import { PlainSettings, Settings } from "@api/Settings";
 import { ErrorBoundary } from "@components/index";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { StartAt } from "@utils/types";
-import type { Quest, QuestUserStatus } from "@vencord/discord-types";
+import type { Quest, QuestUserStatus } from "@S7Cord/discord-types";
 import { findComponentByCodeLazy, onceReady } from "@webpack";
 import { QuestStore } from "@webpack/common";
 import type { JSX } from "react";
@@ -100,7 +100,7 @@ export default definePlugin({
     name: "Questify",
     description: "Enhance specific Quest features, disable annoyances, or completely remove Quests.",
     tags: ["Appearance", "Customisation", "Privacy", "Utility"],
-    authors: [EquicordDevs.Etorix],
+    authors: [S7CordDevs.Etorix],
     dependencies: ["AudioPlayerAPI", "ServerListAPI"],
     startAt: StartAt.Init, // Needed in order to beat Read All Messages to inserting above the server list.
     settings,

@@ -50,7 +50,7 @@
 
 .mdm-textarea-main:focus {
     outline: none;
-    border-color: var(--brand-experiment);
+    border-color: var(--red);
     background: rgba(0, 0, 0, 0.25);
 }
 
@@ -60,7 +60,7 @@
     left: 0;
     width: 100%;
     background: var(--background-secondary-alt);
-    border: 1px solid var(--brand-experiment);
+    border: 1px solid var(--red);
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     z-index: 100;
@@ -81,7 +81,7 @@
 }
 
 .mdm-mention-hint-item strong {
-    color: var(--brand-experiment);
+    color: var(--red);
 }
 
 @keyframes mdm-fade-in {
@@ -228,7 +228,7 @@
 
 .mdm-bar-fill {
     height: 100%;
-    background: var(--brand-experiment);
+    background: var(--red);
     border-radius: 99px;
     transition: width 0.4s ease;
 }
@@ -258,7 +258,7 @@
 
 .mdm-badge {
     margin-right: 12px;
-    background: var(--brand-experiment);
+    background: var(--red);
     color: #fff;
     font-size: 11px;
     font-weight: 700;
@@ -297,7 +297,7 @@
 .mdm-delay-input {
     width: 60px;
     background: var(--background-tertiary);
-    border: 1px solid var(--brand-experiment);
+    border: 1px solid var(--red);
     border-radius: 4px;
     color: var(--text-normal);
     padding: 2px 6px;

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2024 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 import "./styles.css";
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { classes } from "@utils/misc";
 import definePlugin from "@utils/types";
@@ -43,7 +43,7 @@ type EmojiDescriptor = {
 
 export default definePlugin({
     name: "DragFavoriteEmotes",
-    authors: [EquicordDevs.PWall],
+    authors: [S7CordDevs.PWall],
     description: "Adds the ability to change the order of your favourite emotes",
     tags: ["Customisation", "Chat", "Emotes"],
     patches: [

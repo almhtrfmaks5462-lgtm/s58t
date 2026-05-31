@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 nin0
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -52,7 +52,7 @@ export default function SongLinker({ url, onResolved }: SongLinkerProps) {
                             }} variant="secondary" onClick={() => {
                                 // FIXME: fix type error
                                 // @ts-expect-error ???
-                                VencordNative.native.openExternal(settings.store.servicesSettings[service].openInNative && Providers[service].native ? songData.links[service].nativeUri : songData.links[service].url);
+                                S7CordNative.native.openExternal(settings.store.servicesSettings[service].openInNative && Providers[service].native ? songData.links[service].nativeUri : songData.links[service].url);
                             }}>
                                 <img
                                     src={Providers[service].logo}

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,14 +21,14 @@ import electron, { app, BrowserWindowConstructorOptions, Menu, session } from "e
 import { existsSync as fsExistsSync, statSync as fsStatSync } from "original-fs";
 import { dirname, join } from "path";
 
-import { registerMediaPermissionsForSession } from "../nightcord/main/mediaPermissions";
-// Note: nightcordTray removed — Nightcord injects silently into Discord,
-// Discord manages its own tray icon (same behaviour as Equicord).
+import { registerMediaPermissionsForSession } from "../S7Cord/main/mediaPermissions";
+// Note: S7CordTray removed — S7Cord injects silently into Discord,
+// Discord manages its own tray icon (same behaviour as S7Cord).
 import { RendererSettings } from "./settings";
 import { patchTrayMenu } from "./trayMenu";
 import { IS_VANILLA } from "./utils/constants";
 
-console.log("[Nightcord] Starting up...");
+console.log("[S7Cord] Starting up...");
 
 // Our injector file at app/index.js
 const injectorPath = require.main!.filename;
@@ -213,10 +213,10 @@ if (!IS_VANILLA) {
                             applied = true;
                         }
                         if (!applied) {
-                            console.warn("[Nightcord] No background material API available on this system");
+                            console.warn("[S7Cord] No background material API available on this system");
                         }
                     } catch (e) {
-                        console.error("[Nightcord] setBackgroundMaterial failed:", e);
+                        console.error("[S7Cord] setBackgroundMaterial failed:", e);
                     }
                 }
 
@@ -246,7 +246,7 @@ if (!IS_VANILLA) {
         });
     }
 
-    process.env.DATA_DIR = join(app.getPath("userData"), "..", "Nightcord");
+    process.env.DATA_DIR = join(app.getPath("userData"), "..", "S7Cord");
 
     app.whenReady().then(() => {
         registerMediaPermissionsForSession(session.defaultSession);
@@ -280,7 +280,7 @@ if (!IS_VANILLA) {
                 return _originalHandle(channel, listener);
             } catch (e: any) {
                 if (e?.message?.includes?.("Attempted to register a second handler")) {
-                    console.warn(`[Nightcord] Ignored duplicate IPC handler for '${channel}'`);
+                    console.warn(`[S7Cord] Ignored duplicate IPC handler for '${channel}'`);
                     return;
                 }
                 throw e;
@@ -302,8 +302,8 @@ if (!IS_VANILLA) {
     app.commandLine.appendSwitch("disable-background-timer-throttling");
     app.commandLine.appendSwitch("disable-backgrounding-occluded-windows");
 } else {
-    console.log("[Nightcord] Running in vanilla mode. Not loading Nightcord");
+    console.log("[S7Cord] Running in vanilla mode. Not loading S7Cord");
 }
 
-console.log("[Nightcord] Loading original Discord app.asar");
+console.log("[S7Cord] Loading original Discord app.asar");
 require(require.main!.filename);

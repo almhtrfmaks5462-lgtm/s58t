@@ -1,4 +1,4 @@
-// Nightcord entry point
+// S7Cord entry point
 "use strict";
 const path = require("path");
 const Module = require("module");
@@ -7,21 +7,21 @@ const { app } = require("electron");
 
 
 
-// ── CRITIQUE : userData = dossier Nightcord pour les settings/plugins
+// ── CRITIQUE : userData = dossier S7Cord pour les settings/plugins
 // Mais on garde le cache Discord (images, données serveurs) du vrai Discord
 // pour éviter de devoir tout retélécharger à chaque installation.
-const nightcordData = path.join(app.getPath("appData"), "Nightcord");
-app.setPath("userData", nightcordData);
+const S7CordData = path.join(app.getPath("appData"), "S7Cord");
+app.setPath("userData", S7CordData);
 
 // FIX BUG SALONS INVISIBLES : NE PAS partager le cache HTTP de Discord stable.
 // Le cache de Discord stable contient des données de session/permissions calculées
-// pour le token Discord stable. Quand Nightcord charge ce cache, il lit des permissions
+// pour le token Discord stable. Quand S7Cord charge ce cache, il lit des permissions
 // appartenant à la session stable — résultat : seuls les salons publics (@everyone) sont
 // visibles, les salons privés/restreints disparaissent même pour l'owner.
-// Chaque client doit avoir son propre cache isolé (dans userData = Equicord).
+// Chaque client doit avoir son propre cache isolé (dans userData = S7Cord).
 // Le léger délai au premier chargement est acceptable vs le bug de permissions.
 
-// AppUserModelId unique — Windows reconnaît Nightcord comme app séparée de Discord
+// AppUserModelId unique — Windows reconnaît S7Cord comme app séparée de Discord
 app.setAppUserModelId("com.squirrel.Discord.Discord");
 
 // ── HOTFIX : Partage d'écran (Chargement infini & Crash) ──────────────────
@@ -47,7 +47,7 @@ app.once("ready", () => {
         // Liste des modules natifs qui causent des erreurs 403 inutiles
         // NB: discord_overlay est intentionnellement ABSENT de cette liste —
         //     il doit pouvoir s'initialiser localement pour que l'overlay en jeu fonctionne.
-        //     Seuls les modules vraiment inutiles pour Nightcord sont bloqués.
+        //     Seuls les modules vraiment inutiles pour S7Cord sont bloqués.
         const BLOCKED_MODULES = new Set([
             // "discord_overlay",  // RETIRE — nécessaire pour l'overlay in-game
             "discord_rpc",
@@ -70,20 +70,20 @@ app.once("ready", () => {
                         const isBlocked = Array.from(BLOCKED_MODULES).some(m => url.includes(m));
                         if (isBlocked) {
                             // Bloquer silencieusement — évite le 403 + les logs d'erreur
-                            console.log("[Nightcord] Module bloqué (inutile pour Nightcord):", url.split("/").slice(-2).join("/"));
+                            console.log("[S7Cord] Module bloqué (inutile pour S7Cord):", url.split("/").slice(-2).join("/"));
                             callback({ cancel: true });
                         } else {
                             callback({});
                         }
                     }
                 );
-                console.log("[Nightcord] Filtre modules 403 activé ✓");
+                console.log("[S7Cord] Filtre modules 403 activé ✓");
             } catch (e) {
-                console.warn("[Nightcord] Impossible d'activer le filtre modules:", e.message);
+                console.warn("[S7Cord] Impossible d'activer le filtre modules:", e.message);
             }
         });
     } catch (e) {
-        console.warn("[Nightcord] FIX modules 403 failed:", e.message);
+        console.warn("[S7Cord] FIX modules 403 failed:", e.message);
     }
 });
 
@@ -91,7 +91,7 @@ app.once("ready", () => {
 // Quand Discord crash pendant une écriture localStorage, le fichier LevelDB peut se
 // corrompre et géler le renderer au démarrage suivant.
 try {
-    const lsPath = path.join(nightcordData, "Local Storage", "leveldb");
+    const lsPath = path.join(S7CordData, "Local Storage", "leveldb");
     if (fs.existsSync(lsPath)) {
         // Détecter la corruption : fichier LOCK verrouillé ou fichier LOG manquant
         const lockFile = path.join(lsPath, "LOCK");
@@ -117,14 +117,14 @@ try {
             }
         }
         if (corrupted) {
-            console.warn("[Nightcord] LevelDB localStorage corrompu détecté — réparation...");
+            console.warn("[S7Cord] LevelDB localStorage corrompu détecté — réparation...");
             try { fs.rmSync(lsPath, { recursive: true, force: true }); } catch { }
-            console.warn("[Nightcord] LevelDB supprimé — les données localStorage seront récréées");
+            console.warn("[S7Cord] LevelDB supprimé — les données localStorage seront récréées");
         }
     }
-} catch (e) { console.warn("[Nightcord] LevelDB check failed:", e.message); }
+} catch (e) { console.warn("[S7Cord] LevelDB check failed:", e.message); }
 
-// Modules bundlés dans nightcord-dist/modules/
+// Modules bundlés dans S7Cord-dist/modules/
 const bundledModulesPath = path.join(path.dirname(process.execPath), "modules");
 const moduleDataPath = path.join(app.getPath("appData"), "discord", "module_data");
 
@@ -142,17 +142,17 @@ try {
         .sort((a, b) => b.name.localeCompare(a.name, undefined, { numeric: true }));
     if (entries.length > 0) {
         discordNativeModulesPath = entries[0].full;
-        console.log("[Nightcord] Modules natifs Discord détectés:", discordNativeModulesPath);
+        console.log("[S7Cord] Modules natifs Discord détectés:", discordNativeModulesPath);
     }
 } catch (e) {
-    console.warn("[Nightcord] Impossible de détecter les modules natifs Discord:", e.message);
+    console.warn("[S7Cord] Impossible de détecter les modules natifs Discord:", e.message);
 }
 
 function addGlobalPath(p) {
     try { if (fs.existsSync(p) && !Module.globalPaths.includes(p)) Module.globalPaths.push(p); } catch (_) { }
 }
 
-// Priorité aux modules bundlés (portables, dans nightcord-dist/modules/)
+// Priorité aux modules bundlés (portables, dans S7Cord-dist/modules/)
 addGlobalPath(bundledModulesPath);
 
 // Ajout des modules natifs Discord (discord_voice, discord_krisp, etc.)
@@ -169,7 +169,7 @@ if (discordNativeModulesPath) {
                 if (fs.existsSync(subDir) && fs.statSync(subDir).isDirectory()) addGlobalPath(subDir);
             }
         }
-    } catch (e) { console.warn("[Nightcord] Erreur lors du scan des modules natifs:", e.message); }
+    } catch (e) { console.warn("[S7Cord] Erreur lors du scan des modules natifs:", e.message); }
 }
 try {
     for (const mod of fs.readdirSync(bundledModulesPath)) {
@@ -227,7 +227,7 @@ global.mainAppDirname = fs.existsSync(coreModuleDir)
     : (coreModuleDirNative && fs.existsSync(coreModuleDirNative))
         ? coreModuleDirNative
         : path.join(moduleDataPath, "discord_desktop_core");
-console.log("[Nightcord] mainAppDirname:", global.mainAppDirname);
+console.log("[S7Cord] mainAppDirname:", global.mainAppDirname);
 
 // ── FIX AUDIO NATIF : patch build_info.json pour que Discord trouve les modules ──
 // paths.js (dans _app.asar) utilise buildInfo.localModulesRoot comme chemin prioritaire
@@ -243,10 +243,10 @@ try {
     if (fs.existsSync(nativeModulesDir) && !buildInfo.localModulesRoot) {
         buildInfo.localModulesRoot = nativeModulesDir;
         fs.writeFileSync(buildInfoPath, JSON.stringify(buildInfo, null, 2));
-        console.log("[Nightcord] build_info.json patché → localModulesRoot:", nativeModulesDir);
+        console.log("[S7Cord] build_info.json patché → localModulesRoot:", nativeModulesDir);
     }
 } catch (e) {
-    console.warn("[Nightcord] Impossible de patcher build_info.json:", e.message);
+    console.warn("[S7Cord] Impossible de patcher build_info.json:", e.message);
 }
 
 require(path.join(__dirname, "dist", "desktop", "patcher.js"));

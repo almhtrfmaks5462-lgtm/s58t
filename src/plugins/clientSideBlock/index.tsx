@@ -1,14 +1,14 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
 import { Paragraph } from "@components/Paragraph";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { GuildMember } from "@vencord/discord-types";
+import { GuildMember } from "@S7Cord/discord-types";
 import { ChannelStore, GuildMemberStore, GuildRoleStore, React, RelationshipStore, UserStore } from "@webpack/common";
 
 const settings = definePluginSettings({
@@ -144,7 +144,7 @@ export default definePlugin({
     description: "Allows you to locally hide almost all content from any user",
     tags: ["Utility"],
     searchTerms: ["blocked", "block", "hide", "hidden", "noblockedmessages"],
-    authors: [Devs.Samwich, EquicordDevs.KamiRu],
+    authors: [Devs.Samwich, S7CordDevs.KamiRu],
     settings,
     activeNowView,
     shouldHideUser,

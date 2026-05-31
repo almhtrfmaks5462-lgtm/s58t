@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { LinkData, Node, PatchBay as PatchBayType } from "@vencord/venmic";
+import type { LinkData, Node, PatchBay as PatchBayType } from "@S7Cord/venmic";
 import { app, ipcMain } from "electron";
 import { join } from "path";
 import { IpcEvents } from "shared/IpcEvents";
@@ -29,7 +29,7 @@ function importVenmic() {
     imported = true;
 
     try {
-        PatchBay = (require(join(STATIC_DIR, `dist/venmic-${process.arch}.node`)) as typeof import("@vencord/venmic"))
+        PatchBay = (require(join(STATIC_DIR, `dist/venmic-${process.arch}.node`)) as typeof import("@S7Cord/venmic"))
             .PatchBay;
 
         hasPipewirePulse = PatchBay.hasPipeWire();

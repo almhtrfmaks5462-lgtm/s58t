@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,14 +8,14 @@ import "./styles.css";
 
 import { HeaderBarButton } from "@api/HeaderBar";
 import { DataStore } from "@api/index";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { ModalRoot, ModalSize,openModal } from "@utils/modal";
 import definePlugin, { IconComponent, PluginNative } from "@utils/types";
 import { MediaEngineStore,React, Select, useEffect, useRef, useState } from "@webpack/common";
 
 // ─── Native (IPC → main process) ─────────────────────────────────────────────
 
-const Native = VencordNative.pluginHelpers.SoundCordPlayer as PluginNative<typeof import("./native")>;
+const Native = S7CordNative.pluginHelpers.SoundCordPlayer as PluginNative<typeof import("./native")>;
 
 // ─── SoundCord Icon ──────────────────────────────────────────────────────────
 
@@ -705,7 +705,7 @@ let thumbarListener: (() => void) | null = null;
 
 function initThumbar() {
     try {
-        const win = VencordNative?.window as any;
+        const win = S7CordNative?.window as any;
         if (!win?.setThumbarButtons || !win?.onThumbarClick) return;
 
         // Listen for taskbar clicks
@@ -738,7 +738,7 @@ function initThumbar() {
 
 function cleanupThumbar() {
     try {
-        const win = VencordNative?.window as any;
+        const win = S7CordNative?.window as any;
         if (win?.removeThumbarClickListener) win.removeThumbarClickListener();
         if (win?.setThumbarButtons) win.setThumbarButtons("stopped").catch(() => { });
         if (thumbarListener) {
@@ -771,7 +771,7 @@ export default definePlugin({
     name: "SoundCordPlayer",
     enabledByDefault: true,
     description: "Integrated SoundCord player. Client ID is automatically fetched via native Electron process — no account required.",
-    authors: [EquicordDevs.nobody],
+    authors: [S7CordDevs.nobody],
 
     toolboxActions: {
         "Open SoundCord"() {

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Sofia Lima
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,8 +25,8 @@ import { Paragraph } from "@components/Paragraph";
 import { Devs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
-import { Activity, ActivityAssets, ActivityButton } from "@vencord/discord-types";
-import { ActivityFlags, ActivityStatusDisplayType, ActivityType } from "@vencord/discord-types/enums";
+import { Activity, ActivityAssets, ActivityButton } from "@S7Cord/discord-types";
+import { ActivityFlags, ActivityStatusDisplayType, ActivityType } from "@S7Cord/discord-types/enums";
 import { ApplicationAssetUtils, AuthenticationStore, FluxDispatcher, PresenceStore } from "@webpack/common";
 
 interface TrackData {

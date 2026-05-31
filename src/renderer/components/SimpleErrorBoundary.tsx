@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Card, ErrorBoundary, HeadingTertiary, Paragraph, TextButton } from "@equicord/types/components";
-import { FluxDispatcher, InviteActions } from "@equicord/types/webpack/common";
+import { Card, ErrorBoundary, HeadingTertiary, Paragraph, TextButton } from "@S7Cord/types/components";
+import { FluxDispatcher, InviteActions } from "@S7Cord/types/webpack/common";
 import type { PropsWithChildren } from "react";
 
 async function openSupportChannel() {
@@ -29,7 +29,7 @@ function Fallback() {
         <Card variant="danger">
             <HeadingTertiary>Something went wrong.</HeadingTertiary>
             <Paragraph>
-                Please make sure Equicord and Equibop are fully up to date. You can get help in our{" "}
+                Please make sure S7Cord and Equibop are fully up to date. You can get help in our{" "}
                 <TextButton variant="link" onClick={openSupportChannel}>
                     Support Channel
                 </TextButton>

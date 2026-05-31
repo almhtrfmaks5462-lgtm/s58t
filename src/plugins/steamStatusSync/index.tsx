@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 enum SteamStatus {
@@ -86,7 +86,7 @@ export default definePlugin({
     name: "SteamStatusSync",
     description: "Sync your status to Steam! (Online, Away, Invisible, or Offline.)",
     tags: ["Activity", "Appearance", "Customisation"],
-    authors: [EquicordDevs.niko],
+    authors: [S7CordDevs.niko],
 
     settings,
 

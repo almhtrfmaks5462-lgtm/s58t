@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -12,10 +12,10 @@ import { Button } from "@components/Button";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Switch } from "@components/Switch";
 import { debounce } from "@shared/debounce";
-import { Devs, EquicordDevs, IS_MAC } from "@utils/constants";
+import { Devs, S7CordDevs, IS_MAC } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { makeRange, OptionType } from "@utils/types";
-import type { Channel, VoiceState } from "@vencord/discord-types";
+import type { Channel, VoiceState } from "@S7Cord/discord-types";
 import { findByCodeLazy, findByPropsLazy } from "@webpack";
 import { ChannelActions, ChannelRouter, ChannelStore, ContextMenuApi, FluxDispatcher, GuildStore, MediaEngineStore, Menu, PermissionsBits, PermissionStore, React, RelationshipStore, SelectedChannelStore, Toasts, useEffect, UserStore, useState, VoiceActions, VoiceStateStore } from "@webpack/common";
 
@@ -856,7 +856,7 @@ export default definePlugin({
     description: "Adds a button near mute to join a random voice channel.",
     dependencies: ["UserAreaAPI"],
     tags: ["Fun", "Voice"],
-    authors: [EquicordDevs.xijexo, EquicordDevs.omaw, Devs.thororen],
+    authors: [S7CordDevs.xijexo, S7CordDevs.omaw, Devs.thororen],
     settings,
 
     userAreaButton: {

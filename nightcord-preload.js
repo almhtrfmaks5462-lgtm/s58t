@@ -1,4 +1,4 @@
-// Nightcord preload — globalPaths fix + Equicord avec contextBridge
+// S7Cord preload — globalPaths fix + S7Cord avec contextBridge
 "use strict";
 (function () {
     const Module = require("module");
@@ -34,7 +34,7 @@
     };
 })();
 
-// ─── Equicord preload avec contextBridge ─────────────────────────────────────
+// ─── S7Cord preload avec contextBridge ─────────────────────────────────────
 "use strict";
 const { ipcRenderer, contextBridge, webFrame } = require("electron");
 
@@ -43,61 +43,61 @@ function T(e, ...o) { return ipcRenderer.sendSync(e, ...o); }
 
 var S = {};
 try {
-    const m = T("VencordGetPluginIpcMethodMap") || {};
+    const m = T("S7CordGetPluginIpcMethodMap") || {};
     for (const [e, o] of Object.entries(m)) {
         const t = S[e] = {};
         for (const [s, R] of Object.entries(o)) t[s] = (...C) => r(R, ...C);
     }
 } catch (e) { }
 
-const VencordNative = {
+const S7CordNative = {
     themes: {
         uploadTheme: async () => { throw new Error("uploadTheme is WEB only"); },
-        deleteTheme: e => r("VencordDeleteTheme", e),
-        getThemesDir: () => r("VencordGetThemesDir"),
-        getThemesList: () => r("VencordGetThemesList"),
-        getThemeData: e => r("VencordGetThemeData", e),
-        getSystemValues: () => r("VencordGetThemeSystemValues"),
-        openFolder: () => r("VencordOpenThemesFolder")
+        deleteTheme: e => r("S7CordDeleteTheme", e),
+        getThemesDir: () => r("S7CordGetThemesDir"),
+        getThemesList: () => r("S7CordGetThemesList"),
+        getThemeData: e => r("S7CordGetThemeData", e),
+        getSystemValues: () => r("S7CordGetThemeSystemValues"),
+        openFolder: () => r("S7CordOpenThemesFolder")
     },
     updater: {
-        getUpdates: () => r("VencordGetUpdates"),
-        update: () => r("VencordUpdate"),
-        rebuild: () => r("VencordBuild"),
-        getRepo: () => r("VencordGetRepo")
+        getUpdates: () => r("S7CordGetUpdates"),
+        update: () => r("S7CordUpdate"),
+        rebuild: () => r("S7CordBuild"),
+        getRepo: () => r("S7CordGetRepo")
     },
     settings: {
-        get: () => T("VencordGetSettings"),
-        set: (e, o) => r("VencordSetSettings", e, o),
-        getSettingsDir: () => r("VencordGetSettingsDir"),
-        openFolder: () => r("VencordOpenSettingsFolder")
+        get: () => T("S7CordGetSettings"),
+        set: (e, o) => r("S7CordSetSettings", e, o),
+        getSettingsDir: () => r("S7CordGetSettingsDir"),
+        openFolder: () => r("S7CordOpenSettingsFolder")
     },
     quickCss: {
-        get: () => r("VencordGetQuickCss"),
-        set: e => r("VencordSetQuickCss", e),
-        addChangeListener(e) { ipcRenderer.on("VencordQuickCssUpdate", (o, t) => e(t)); },
-        addThemeChangeListener(e) { ipcRenderer.on("VencordThemeUpdate", () => e()); },
-        openFile: () => r("VencordOpenQuickCss"),
-        openEditor: () => r("VencordOpenMonacoEditor"),
-        getEditorTheme: () => T("VencordGetMonacoTheme")
+        get: () => r("S7CordGetQuickCss"),
+        set: e => r("S7CordSetQuickCss", e),
+        addChangeListener(e) { ipcRenderer.on("S7CordQuickCssUpdate", (o, t) => e(t)); },
+        addThemeChangeListener(e) { ipcRenderer.on("S7CordThemeUpdate", () => e()); },
+        openFile: () => r("S7CordOpenQuickCss"),
+        openEditor: () => r("S7CordOpenMonacoEditor"),
+        getEditorTheme: () => T("S7CordGetMonacoTheme")
     },
     native: {
         getVersions: () => process.versions,
-        openExternal: e => r("VencordOpenExternal", e),
-        getRendererCss: () => r("VencordGetRendererCss"),
+        openExternal: e => r("S7CordOpenExternal", e),
+        getRendererCss: () => r("S7CordGetRendererCss"),
         onRendererCssUpdate: () => { }
     },
     csp: {
-        isDomainAllowed: (e, o) => r("VencordCspIsDomainAllowed", e, o),
-        removeOverride: e => r("VencordCspRemoveOverride", e),
-        requestAddOverride: (e, o, t) => r("VencordCspRequestAddOverride", e, o, t)
+        isDomainAllowed: (e, o) => r("S7CordCspIsDomainAllowed", e, o),
+        removeOverride: e => r("S7CordCspRemoveOverride", e),
+        requestAddOverride: (e, o, t) => r("S7CordCspRequestAddOverride", e, o, t)
     },
     tray: {
-        setUpdateState: e => ipcRenderer.send("VencordSetTrayUpdateState", e),
-        onCheckUpdates: e => { ipcRenderer.on("VencordTrayCheckUpdates", e); },
-        onRepair: e => { ipcRenderer.on("VencordTrayRepair", e); }
+        setUpdateState: e => ipcRenderer.send("S7CordSetTrayUpdateState", e),
+        onCheckUpdates: e => { ipcRenderer.on("S7CordTrayCheckUpdates", e); },
+        onRepair: e => { ipcRenderer.on("S7CordTrayRepair", e); }
     },
-    desktopCapture: { getSources: () => r("VencordGetDesktopSources") },
+    desktopCapture: { getSources: () => r("S7CordGetDesktopSources") },
     pluginHelpers: S,
     worldBomb: {
         sequence: (word, lps, humanChance, targetX = -1, targetY = -1) =>
@@ -105,7 +105,7 @@ const VencordNative = {
         getCursorPos: () => r("WorldBombGetCursorPos"),
     },
     window: {
-        setBackgroundMaterial: e => r("EquicordSetWindowBackgroundMaterial", e),
+        setBackgroundMaterial: e => r("S7CordSetWindowBackgroundMaterial", e),
         setThumbarButtons: e => r("SoundCordSetThumbarButtons", e),
         onThumbarClick: e => { ipcRenderer.on("SoundCordThumbarButtonClick", (o, t) => e(t)); },
         removeThumbarClickListener: () => { ipcRenderer.removeAllListeners("SoundCordThumbarButtonClick"); }
@@ -113,25 +113,25 @@ const VencordNative = {
 };
 
 try {
-    contextBridge.exposeInMainWorld("VencordNative", VencordNative);
+    contextBridge.exposeInMainWorld("S7CordNative", S7CordNative);
 } catch (e) {
-    if (typeof window !== "undefined") window.VencordNative = VencordNative;
+    if (typeof window !== "undefined") window.S7CordNative = S7CordNative;
 }
 
 if (location.protocol !== "data:") {
-    try { r("VencordInitFileWatchers"); } catch (e) { }
+    try { r("S7CordInitFileWatchers"); } catch (e) { }
 
     // Injection du renderer.js via webFrame.executeJavaScript
-    // Identique à l'original Equicord — c'est la méthode qui fonctionne
+    // Identique à l'original S7Cord — c'est la méthode qui fonctionne
     try {
-        const rendererJs = T("VencordPreloadGetRendererJs");
+        const rendererJs = T("S7CordPreloadGetRendererJs");
         if (rendererJs) {
             webFrame.executeJavaScript(rendererJs).catch(e => {
-                console.error("[Nightcord] renderer inject failed:", e?.message);
+                console.error("[S7Cord] renderer inject failed:", e?.message);
             });
         }
     } catch (e) {
-        console.error("[Nightcord] VencordPreloadGetRendererJs failed:", e);
+        console.error("[S7Cord] S7CordPreloadGetRendererJs failed:", e);
     }
 
     if (process.env.DISCORD_PRELOAD) {
@@ -139,9 +139,9 @@ if (location.protocol !== "data:") {
     }
 } else {
     if (typeof window !== "undefined") {
-        window["setCss"] = (() => { let t; return e => { clearTimeout(t); t = setTimeout(() => VencordNative.quickCss.set(e), 300); }; })();
-        window["getCurrentCss"] = VencordNative.quickCss.get;
-        window["getTheme"] = VencordNative.quickCss.getEditorTheme;
+        window["setCss"] = (() => { let t; return e => { clearTimeout(t); t = setTimeout(() => S7CordNative.quickCss.set(e), 300); }; })();
+        window["getCurrentCss"] = S7CordNative.quickCss.get;
+        window["getTheme"] = S7CordNative.quickCss.getEditorTheme;
     }
 }
-//# sourceURL=file:///VencordPreload
+//# sourceURL=file:///S7CordPreload

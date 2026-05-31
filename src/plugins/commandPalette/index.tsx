@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import { definePluginSettings } from "@api/Settings";
 import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
-import { EquicordDevs, IS_MAC } from "@utils/constants";
+import { S7CordDevs, IS_MAC } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
 import { useEffect, useState } from "@webpack/common";
@@ -198,7 +198,7 @@ export default definePlugin({
     name: "CommandPalette",
     description: "Quickly run actions through a searchable command palette",
     tags: ["Appearance", "Customisation", "Commands", "Shortcuts"],
-    authors: [EquicordDevs.justjxke],
+    authors: [S7CordDevs.justjxke],
     dependencies: ["ChatInputButtonAPI"],
     settings,
     start() {

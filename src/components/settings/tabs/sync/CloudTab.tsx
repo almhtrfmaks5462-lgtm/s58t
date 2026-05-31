@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -38,12 +38,12 @@ import { Alerts, SearchableSelect, Select, useState } from "@webpack/common";
 
 const ICON_STYLE: React.CSSProperties = { width: 20, height: 20, borderRadius: 4, verticalAlign: "middle" };
 
-function EquicordIcon() {
-    return <img src="https://equicord.org/assets/favicon.png" alt="Equicord" style={ICON_STYLE} />;
+function S7CordIcon() {
+    return <img src="https://S7Cord.org/assets/favicon.png" alt="S7Cord" style={ICON_STYLE} />;
 }
 
-function VencordIcon() {
-    return <img src="https://equicord.org/assets/icons/vencord/icon-light.png" alt="Vencord" style={ICON_STYLE} />;
+function S7CordIcon() {
+    return <img src="https://S7Cord.org/assets/icons/S7Cord/icon-light.png" alt="S7Cord" style={ICON_STYLE} />;
 }
 
 const RefreshIcon = findComponentByCodeLazy("M4 12a8 8 0 0 1 14.93-4H15");
@@ -60,8 +60,8 @@ function validateUrl(url: string) {
 }
 
 const cloudBackendOptions = [
-    { label: "Equicord Cloud", value: "https://cloud.equicord.org/" },
-    { label: "Vencord Cloud", value: "https://api.vencord.dev/" }
+    { label: "S7Cord Cloud", value: "https://cloud.S7Cord.org/" },
+    { label: "S7Cord Cloud", value: "https://api.S7Cord.dev/" }
 ];
 
 const syncDirectionOptions = [
@@ -94,12 +94,12 @@ function CloudTab() {
         <SettingsTab>
             <Heading className={Margins.top16}>Cloud Integration</Heading>
             <Paragraph className={Margins.bottom16}>
-                Equicord's cloud integration allows you to sync your settings across multiple devices and Discord installations. Your data is securely stored and can be easily restored at any time.
+                S7Cord's cloud integration allows you to sync your settings across multiple devices and Discord installations. Your data is securely stored and can be easily restored at any time.
             </Paragraph>
 
             <Notice.Info className={Margins.bottom16}>
-                We use our own <Link href="https://github.com/Equicord/Equicloud">Equicloud backend</Link> with enhanced features.
-                View our <Link href="https://equicord.org/cloud/policy">privacy policy</Link> to see what we store and how we use your data.
+                We use our own <Link href="https://github.com/S7Cord/Equicloud">Equicloud backend</Link> with enhanced features.
+                View our <Link href="https://S7Cord.org/cloud/policy">privacy policy</Link> to see what we store and how we use your data.
                 Equicloud is BSD 3.0 licensed, so you can self-host if preferred.
             </Notice.Info>
 
@@ -120,7 +120,7 @@ function CloudTab() {
 
             <Heading className={Margins.top20}>Cloud Backend</Heading>
             <Paragraph className={Margins.bottom16}>
-                Choose which cloud backend to use for storing your settings. You can switch between Equicord's and Vencord's cloud services, or use a self-hosted instance.
+                Choose which cloud backend to use for storing your settings. You can switch between S7Cord's and S7Cord's cloud services, or use a self-hosted instance.
             </Paragraph>
 
             <div className={Margins.bottom8}>
@@ -129,7 +129,7 @@ function CloudTab() {
                     value={cloudBackendOptions.find(o => o.value === cloud.url)?.value}
                     onChange={v => changeUrl(v)}
                     closeOnSelect={true}
-                    renderOptionPrefix={o => o?.value?.includes("equicord") ? <EquicordIcon /> : <VencordIcon />}
+                    renderOptionPrefix={o => o?.value?.includes("S7Cord") ? <S7CordIcon /> : <S7CordIcon />}
                 />
             </div>
 
@@ -165,7 +165,7 @@ function CloudTab() {
 
             <Heading className={Margins.top20}>Settings Sync</Heading>
             <Paragraph className={Margins.bottom16}>
-                Synchronize your Equicord settings to the cloud. This makes it easy to keep your configuration consistent across multiple devices without manual import/export.
+                Synchronize your S7Cord settings to the cloud. This makes it easy to keep your configuration consistent across multiple devices without manual import/export.
             </Paragraph>
 
             <FormSwitch
@@ -186,9 +186,9 @@ function CloudTab() {
 
             <Select
                 options={syncDirectionOptions}
-                isSelected={v => v === (localStorage.Vencord_cloudSyncDirection ?? "both")}
+                isSelected={v => v === (localStorage.S7Cord_cloudSyncDirection ?? "both")}
                 select={v => {
-                    localStorage.Vencord_cloudSyncDirection = v;
+                    localStorage.S7Cord_cloudSyncDirection = v;
                     forceUpdate();
                 }}
                 serialize={v => v}

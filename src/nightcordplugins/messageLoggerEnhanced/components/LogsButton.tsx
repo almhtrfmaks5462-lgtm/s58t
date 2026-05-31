@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 import { HeaderBarButton } from "@api/HeaderBar";
 import { LogIcon as LogsIcon } from "@components/Icons";
-import { cl } from "@nightcordplugins/messageLoggerEnhanced/index";
+import { cl } from "@S7Cordplugins/messageLoggerEnhanced/index";
 
 import { openLogModal } from "./LogsModal";
 

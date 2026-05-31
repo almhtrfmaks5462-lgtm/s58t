@@ -1,17 +1,17 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { AudioPlayerInternal, AudioPlayerOptions, audioProcessorFunctions, AudioType, identifyAudioType, playAudio } from "@api/AudioPlayer";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "AudioPlayerAPI",
     description: "API to play internal Discord audio files or external audio links.",
-    authors: [EquicordDevs.Etorix],
+    authors: [S7CordDevs.Etorix],
     AudioType,
     playAudio,
 

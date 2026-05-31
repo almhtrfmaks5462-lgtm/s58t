@@ -1,15 +1,15 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings, migratePluginSettings } from "@api/Settings";
 import { Button } from "@components/Button";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { getIntlMessage } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
-import { Activity } from "@vencord/discord-types";
+import { Activity } from "@S7Cord/discord-types";
 import { PresenceStore, SettingsRouter, UserStore } from "@webpack/common";
 
 const extraTimeslots = [3, 4, 5, 6, 7, 10, 15, 20, 25, 30];
@@ -49,7 +49,7 @@ export default definePlugin({
     name: "ClipsEnhancements",
     description: "Add more Clip FPS and duration options, custom clip length, RPC tagging and more",
     tags: ["Activity", "Media", "Utility"],
-    authors: [Devs.niko, Devs.Joona, EquicordDevs.keircn],
+    authors: [Devs.niko, Devs.Joona, S7CordDevs.keircn],
     settings,
     patches: [
         {

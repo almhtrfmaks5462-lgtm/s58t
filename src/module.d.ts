@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,7 +9,7 @@ declare module "__patches__" {
     export default never;
 }
 
-declare module "@vencord/venmic" {
+declare module "@S7Cord/venmic" {
     export interface Node {
         [key: string]: string;
     }

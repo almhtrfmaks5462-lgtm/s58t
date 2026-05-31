@@ -1,12 +1,12 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
 import { disableStyle, enableStyle } from "@api/Styles";
-import { buildPluginMenuEntries, buildThemeMenuEntries } from "@nightcordplugins/equicordToolbox/menu";
+import { buildPluginMenuEntries, buildThemeMenuEntries } from "@S7Cordplugins/S7CordToolbox/menu";
 import { Devs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { Logger } from "@utils/Logger";
@@ -96,7 +96,7 @@ export default definePlugin({
             replacement: [
                 {
                     match: /class (\i)(?= extends \i\.PureComponent.+?static contextType=.+?jsx\)\(\1,\{mode:)/,
-                    replace: "var $1=$self.Layer;class VencordPatchedOldFadeLayer",
+                    replace: "var $1=$self.Layer;class S7CordPatchedOldFadeLayer",
                     predicate: () => settings.store.disableFade
                 },
                 { // Lazy-load contents
@@ -146,7 +146,7 @@ export default definePlugin({
             find: "handleOpenSettingsContextMenu=",
             replacement: {
                 match: /(?=handleOpenSettingsContextMenu=.{0,100}?null!=\i&&.{0,100}?(await [^};]*?\)\)))/,
-                replace: "_vencordBetterSettingsEagerLoad=(async ()=>$1)();"
+                replace: "_S7CordBetterSettingsEagerLoad=(async ()=>$1)();"
             },
             predicate: () => settings.store.eagerLoad
         },
@@ -168,7 +168,7 @@ export default definePlugin({
     // Thus, we sanity check webpack modules
     Layer(props: LayerProps) {
         try {
-            [FocusLock.$$vencordGetWrappedComponent(), ComponentDispatch, Classes.layer].forEach(e => e.test);
+            [FocusLock.$$S7CordGetWrappedComponent(), ComponentDispatch, Classes.layer].forEach(e => e.test);
         } catch {
             new Logger("BetterSettings").error("Failed to find some components");
             return props.children;
@@ -184,8 +184,8 @@ export default definePlugin({
             const { key, props } = item;
             if (!props) continue;
 
-            if (key === "equicord_plugins" || key === "equicord_themes") {
-                const children = key === "equicord_plugins"
+            if (key === "S7Cord_plugins" || key === "S7Cord_themes") {
+                const children = key === "S7Cord_plugins"
                     ? buildPluginMenuEntries()
                     : buildThemeMenuEntries();
 

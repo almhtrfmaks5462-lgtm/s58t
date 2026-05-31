@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Activity } from "@vencord/discord-types";
-import { ActivityType } from "@vencord/discord-types/enums";
+import { Activity } from "@S7Cord/discord-types";
+import { ActivityType } from "@S7Cord/discord-types/enums";
 import { ApplicationAssetUtils, FluxDispatcher } from "@webpack/common";
 
 import { BanchoStatusEnum, GameState, Modes, TosuApi } from "../types/tosu";

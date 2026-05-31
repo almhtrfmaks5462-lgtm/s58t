@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Button, Card, HeadingTertiary, Paragraph } from "@Nightcord/types/components";
-import { useAwaiter } from "@Nightcord/types/utils";
+import { Button, Card, HeadingTertiary, Paragraph } from "@S7Cord/types/components";
+import { useAwaiter } from "@S7Cord/types/utils";
 
 import { cl } from "./Settings";
 
@@ -16,7 +16,7 @@ export function OutdatedVesktopWarning() {
 
     return (
         <Card variant="warning" className={cl("updater-card")}>
-            <HeadingTertiary>Your Nightcord is outdated!</HeadingTertiary>
+            <HeadingTertiary>Your S7Cord is outdated!</HeadingTertiary>
             <Paragraph>Staying up to date is important for security and stability.</Paragraph>
             <Button onClick={() => VesktopNative.app.openUpdater()} variant="secondary">
                 Open Updater

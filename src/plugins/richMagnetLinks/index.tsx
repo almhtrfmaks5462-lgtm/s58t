@@ -1,16 +1,16 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./styles.css";
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
-    authors: [EquicordDevs.cassie, EquicordDevs.mochienya, EquicordDevs.secp192k1],
+    authors: [S7CordDevs.cassie, S7CordDevs.mochienya, S7CordDevs.secp192k1],
     name: "RichMagnetLinks",
     description: "Renders magnet links like message links",
     tags: ["Appearance", "Chat"],

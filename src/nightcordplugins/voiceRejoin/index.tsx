@@ -1,15 +1,15 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import * as DataStore from "@api/DataStore";
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin, { makeRange, OptionType } from "@utils/types";
-import { VoiceState } from "@vencord/discord-types";
+import { VoiceState } from "@S7Cord/discord-types";
 import { ChannelStore, FluxDispatcher, UserStore, VoiceStateStore } from "@webpack/common";
 
 const DATASTORE_KEY = "VCLastVoiceChannel";
@@ -51,7 +51,7 @@ const settings = definePluginSettings({
 export default definePlugin({
     name: "VoiceRejoin",
     description: "Rejoins DM/Server call automatically when restarting Discord.",
-    authors: [EquicordDevs.omaw, EquicordDevs.keircn],
+    authors: [S7CordDevs.omaw, S7CordDevs.keircn],
     enabledByDefault: true,
     settings,
 

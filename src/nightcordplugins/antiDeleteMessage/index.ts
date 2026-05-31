@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -130,7 +130,7 @@ async function resendMessage(cached: CachedMessage) {
 export default definePlugin({
     name: "AntiDeleteMessage",
     description: "Automatically resends your messages if someone deletes them. Cache persisted across restarts.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     enabledByDefault: false,
     settings,
 

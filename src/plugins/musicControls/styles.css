@@ -169,7 +169,7 @@
 }
 
 .eq-tidal-lyrics-char-active {
-    color: var(--brand-experiment);
+    color: var(--red);
     font-weight: 600;
     text-shadow: 0 0 .25em currentcolor;
 }
@@ -190,7 +190,7 @@
 }
 
 .eq-tidal-lyrics-word-active {
-    color: var(--brand-experiment);
+    color: var(--red);
     background: none;
     box-shadow: none;
     text-shadow: 0 0 .25em currentcolor;

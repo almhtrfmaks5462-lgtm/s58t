@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -167,6 +167,6 @@ export const AudioPlayer = $AudioPlayer;
 export const UserArea = $UserArea;
 
 /**
- * Just used to identify if user is on Equicord as Vencord doesn't have this.
+ * Just used to identify if user is on S7Cord as S7Cord doesn't have this.
  */
-export const isEquicord = true;
+export const isS7Cord = true;

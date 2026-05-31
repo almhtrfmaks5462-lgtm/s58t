@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ import { bookmarkFolderColors, bookmarkPlaceholderName, closeOtherTabs, closeTab
 import { Bookmark, BookmarkFolder, Bookmarks, ChannelTabsProps, UseBookmarkMethods } from "@plugins/channelTabs/util/types";
 import { getIntlMessage } from "@utils/discord";
 import { Margins } from "@utils/margins";
-import { RenderModalProps } from "@vencord/discord-types";
+import { RenderModalProps } from "@S7Cord/discord-types";
 import { Button, ChannelStore, closeModal, ColorPicker, FluxDispatcher, Menu, Modal, openModal, ReadStateStore, ReadStateUtils, Select, TextInput, useMemo, useState } from "@webpack/common";
 
 const legacyFolderColors: Record<string, string> = {

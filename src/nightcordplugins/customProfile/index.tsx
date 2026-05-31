@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,7 +15,7 @@ import definePlugin from "@utils/types";
 import { AuthenticationStore, Button, FluxDispatcher, IconUtils, Menu, React, Select, SnowflakeUtils,UserStore } from "@webpack/common";
 import virtualMerge from "virtual-merge";
 
-import { t } from "../autoTranslateNightcord";
+import { t } from "../autoTranslateS7Cord";
 
 const DS_KEY = "customProfile_data";
 const DS_ENABLED = "customProfile_enabled";
@@ -134,12 +134,12 @@ interface CustomProfileData {
     copiedUserId?: string;
 }
 
-const LS_KEY_DATA = "NightcordCP_data";
-const LS_KEY_ENABLED = "NightcordCP_enabled";
+const LS_KEY_DATA = "S7CordCP_data";
+const LS_KEY_ENABLED = "S7CordCP_enabled";
 const DS_ALL_DATA = "customProfile_allData";
 const DS_ALL_ENABLED = "customProfile_allEnabled";
-const LS_ALL_DATA = "NightcordCP_allData";
-const LS_ALL_ENABLED = "NightcordCP_allEnabled";
+const LS_ALL_DATA = "S7CordCP_allData";
+const LS_ALL_ENABLED = "S7CordCP_allEnabled";
 
 let storedData: CustomProfileData = {};
 let isEnabled = false;
@@ -252,7 +252,7 @@ let _avatarPatchApplied = false;
 function applyAvatarPatchEarly() {
     if (_avatarPatchApplied || !isEnabled || !storedData.avatar) return;
     try {
-        const IU = (window as any).Vencord?.Webpack?.findByProps?.("getUserAvatarURL");
+        const IU = (window as any).S7Cord?.Webpack?.findByProps?.("getUserAvatarURL");
         if (!IU?.getUserAvatarURL) return;
         const orig = IU.getUserAvatarURL;
         IU.getUserAvatarURL = function (user: any, ...args: any[]) {
@@ -717,7 +717,7 @@ function BadgePicker({ selected, onChange, nitroType, onNitroType, boostLevel, o
 
 function forceAccountPanelRerender() {
     try {
-        const WP = (Vencord as any).Webpack;
+        const WP = (S7Cord as any).Webpack;
         const UserStore = WP?.findByStoreName("UserStore");
         if (UserStore && UserStore.emitChange) UserStore.emitChange();
 
@@ -753,14 +753,14 @@ function CustomProfileModal({ rootProps }: { rootProps: any; }) {
     const accounts = React.useMemo(() => {
         try {
             // Tentative 1: via MultiAccountStore global
-            const MAS = (window as any).Vencord?.Webpack?.findByProps?.("getUsers", "getValidUsers");
+            const MAS = (window as any).S7Cord?.Webpack?.findByProps?.("getUsers", "getValidUsers");
             if (MAS?.getUsers) {
                 const users = MAS.getUsers();
                 if (Array.isArray(users) && users.length > 0) return users;
             }
 
             // Tentative 2: via le store interne
-            const internalStore = (window as any).Vencord?.Webpack?.findStore?.("MultiAccountStore");
+            const internalStore = (window as any).S7Cord?.Webpack?.findStore?.("MultiAccountStore");
             if (internalStore?.getUsers) {
                 const users = internalStore.getUsers();
                 if (Array.isArray(users) && users.length > 0) return users;
@@ -898,8 +898,8 @@ function CustomProfileModal({ rootProps }: { rootProps: any; }) {
                     <SectionLabel>{t("Profile color (Nitro — gradient possible)")}</SectionLabel>
                     <div className="cp-color-row" style={{ marginBottom: 6 }}>
                         <span style={{ fontSize: 11, color: "var(--text-muted)", marginRight: 6 }}>{t("Color 1")}</span>
-                        <input type="color" value={accentHex || "#5865f2"} onChange={e => { const n = parseInt(e.target.value.replace("#", ""), 16); if (!isNaN(n)) set("accentColor", n); }} className="cp-color-swatch" />
-                        <input value={accentHex} placeholder="#5865f2" onChange={e => { const h = e.target.value.replace("#", ""); const n = parseInt(h, 16); if (!isNaN(n) && h.length === 6) set("accentColor", n); else if (!e.target.value || e.target.value === "#") set("accentColor", undefined); }} className="cp-input cp-color-input" />
+                        <input type="color" value={accentHex || "#FF0000"} onChange={e => { const n = parseInt(e.target.value.replace("#", ""), 16); if (!isNaN(n)) set("accentColor", n); }} className="cp-color-swatch" />
+                        <input value={accentHex} placeholder="#FF0000" onChange={e => { const h = e.target.value.replace("#", ""); const n = parseInt(h, 16); if (!isNaN(n) && h.length === 6) set("accentColor", n); else if (!e.target.value || e.target.value === "#") set("accentColor", undefined); }} className="cp-input cp-color-input" />
                         {data.accentColor != null && <button className="cp-clear-btn" onClick={() => set("accentColor", undefined)}><CloseIcon /></button>}
                     </div>
                     <div className="cp-color-row">
@@ -976,7 +976,7 @@ export default definePlugin({
     name: "CustomProfile",
     enabledByDefault: true,
     description: t("Visually customize your Discord profile (username, PFP, banner, badges, bio...) — persistent, only visible to you."),
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["HeaderBarAPI", "ContextMenuAPI"],
 
     patches: [
@@ -1326,7 +1326,7 @@ export default definePlugin({
 
         // PERFECT AND SECURE NATIVE INTERCEPTION ON USER STORE.
         try {
-            const US = (Vencord as any).Webpack?.findByProps?.("getCurrentUser", "getUser");
+            const US = (S7Cord as any).Webpack?.findByProps?.("getCurrentUser", "getUser");
             if (US && !US._cp_perfect_hook) {
                 const origCurrent = US.getCurrentUser.bind(US);
 
@@ -1363,7 +1363,7 @@ export default definePlugin({
 
         // INTERCEPTION ON UserProfileStore (for native Nitro/Boost badges in popout/modal profile)
         try {
-            const UPS = (Vencord as any).Webpack?.findByProps?.("getUserProfile", "getGuildMemberProfile");
+            const UPS = (S7Cord as any).Webpack?.findByProps?.("getUserProfile", "getGuildMemberProfile");
             if (UPS && !UPS._cp_profile_hook) {
                 const origGetProfile = UPS.getUserProfile.bind(UPS);
                 UPS.getUserProfile = (userId: string) => {
@@ -1394,7 +1394,7 @@ export default definePlugin({
         // INTERCEPTION ON MULTI ACCOUNT STORE (For the "Switch Account" menu)
         // Applies custom usernames for ALL accounts in the switcher
         try {
-            const WP = (Vencord as any).Webpack;
+            const WP = (S7Cord as any).Webpack;
             const MAS = WP?.findByProps?.("getUsers", "getValidUsers", "getHasLoggedInAccounts");
             if (MAS && !MAS._cp_perfect_hook) {
                 function patchAccountUser(u: any) {
@@ -1458,7 +1458,7 @@ export default definePlugin({
 
         // Patch getAvatarDecorationURL pour injecter notre déco uniquement sur notre user
         try {
-            const decoMod = (Vencord as any).Webpack?.findByProps?.("getAvatarDecorationURL");
+            const decoMod = (S7Cord as any).Webpack?.findByProps?.("getAvatarDecorationURL");
             if (decoMod?.getAvatarDecorationURL) {
                 const origDeco = decoMod.getAvatarDecorationURL.bind(decoMod);
                 decoMod.getAvatarDecorationURL = (opts: any) => {

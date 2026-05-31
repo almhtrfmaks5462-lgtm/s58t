@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ import { Card } from "@components/Card";
 import { HeadingSecondary, HeadingTertiary } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
 import { debounce } from "@shared/debounce";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
@@ -200,7 +200,7 @@ export default definePlugin({
     name: "FontLoader",
     description: "Loads any font from Google Fonts",
     tags: ["Appearance", "Customisation"],
-    authors: [EquicordDevs.vmohammad],
+    authors: [S7CordDevs.vmohammad],
     settings,
 
     async start() {

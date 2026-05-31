@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,15 +9,15 @@ import "./styles.css";
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { get } from "@api/DataStore";
 import { definePluginSettings, Settings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Channel, User } from "@vencord/discord-types";
+import { Channel, User } from "@S7Cord/discord-types";
 import { extractAndLoadChunksLazy } from "@webpack";
 import { ChannelStore, Menu, openModal,SelectedChannelStore } from "@webpack/common";
 
 import { SetColorModal } from "./SetColorModal";
 
-export const DATASTORE_KEY = "equicord-customcolors";
+export const DATASTORE_KEY = "S7Cord-customcolors";
 export let colors: Record<string, string> = {};
 
 (async () => {
@@ -100,7 +100,7 @@ export default definePlugin({
     name: "CustomUserColors",
     description: "Lets you add a custom color to any user, anywhere! Highly recommend to use with typingTweaks and roleColorEverywhere",
     tags: ["Appearance", "Customisation", "Chat"],
-    authors: [EquicordDevs.mochienya],
+    authors: [S7CordDevs.mochienya],
     contextMenus: {
         "user-context": userContextMenuPatch,
         "gdm-context": channelContextMenuPatch,

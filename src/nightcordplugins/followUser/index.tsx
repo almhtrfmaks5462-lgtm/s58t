@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -220,7 +220,7 @@ export default definePlugin({
     name: "FollowUser",
     enabledByDefault: true,
     description: "Suit un user en vocal. Clic droit → Follow User. Coeur blanc = suivi actif (clic gauche = rejoindre, clic droit = unfollow). Auto-unfollow apres 30min d'inactivite.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
 
     headerBarButton: {
         icon: HeartIcon,

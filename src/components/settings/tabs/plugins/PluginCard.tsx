@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { Logger } from "@utils/Logger";
 import { ModalCloseButton, ModalContent, ModalHeader, ModalRoot, ModalSize,openModal } from "@utils/modal";
 import { OptionType, Plugin } from "@utils/types";
 import { React, showToast, Text, Toasts } from "@webpack/common";
-import { Settings } from "Vencord";
+import { Settings } from "S7Cord";
 
 import { TUTORIAL_CACHE } from "./components/Common";
 import { openPluginModal } from "./PluginModal";
@@ -43,7 +43,7 @@ function useTutorialExists(pluginName: string) {
 
         let cancelled = false;
         fetch(
-            `https://git.nightcord.su/nightcord/nightcord-tutorials/raw/branch/main/videos/${pluginName}.mp4`,
+            `https://git.S7Cord.su/S7Cord/S7Cord-tutorials/raw/branch/main/videos/${pluginName}.mp4`,
             { method: "HEAD" }
         )
             .then(res => {
@@ -52,7 +52,7 @@ function useTutorialExists(pluginName: string) {
                     TUTORIAL_CACHE.set(pluginName, found);
                     setExists(found);
                     // Force le rafraÃ®chissement global pour le filtre
-                    window.dispatchEvent(new CustomEvent("nightcord-tutorial-detected", { detail: { pluginName, found } }));
+                    window.dispatchEvent(new CustomEvent("S7Cord-tutorial-detected", { detail: { pluginName, found } }));
                 }
             })
             .catch(() => {
@@ -121,7 +121,7 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
 
     const openTutorialVideo = (e: React.MouseEvent) => {
         e.stopPropagation();
-        const videoUrl = `https://git.nightcord.su/nightcord/nightcord-tutorials/raw/branch/main/videos/${plugin.name}.mp4`;
+        const videoUrl = `https://git.S7Cord.su/S7Cord/S7Cord-tutorials/raw/branch/main/videos/${plugin.name}.mp4`;
         openModal(props => (
             <ModalRoot {...props} size={ModalSize.DYNAMIC} className="nc-tutorial-modal">
                 <ModalHeader separator={false}>

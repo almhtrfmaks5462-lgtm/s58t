@@ -1,12 +1,12 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { fetchBuffer, fetchJson } from "@main/utils/http";
 import { IpcEvents } from "@shared/IpcEvents";
-import { VENCORD_USER_AGENT } from "@shared/vencordUserAgent";
+import { S7Cord_USER_AGENT } from "@shared/S7CordUserAgent";
 import { exec } from "child_process";
 import { app,ipcMain } from "electron";
 import { rmSync,writeFileSync } from "original-fs";
@@ -14,12 +14,12 @@ import { join } from "path";
 
 import { serializeErrors } from "./common";
 
-const GITEA_BASE     = "https://git.nightcord.su";
-const API_BASE      = `${GITEA_BASE}/api/v1/repos/nightcord/nightcord`;
-const REPO_URL      = `${GITEA_BASE}/nightcord/nightcord`;
+const GITEA_BASE     = "https://git.S7Cord.su";
+const API_BASE      = `${GITEA_BASE}/api/v1/repos/S7Cord/S7Cord`;
+const REPO_URL      = `${GITEA_BASE}/S7Cord/S7Cord`;
 declare const VERSION: string;
 const CURRENT_VERSION = `v${VERSION}`;
-const ZIP_FILE = "nightcord-dist.zip";
+const ZIP_FILE = "S7Cord-dist.zip";
 
 let pendingDownloadUrl: string | null = null;
 let pendingVersion: string | null = null;
@@ -29,7 +29,7 @@ async function githubGet<T = any>(endpoint: string): Promise<T> {
     return fetchJson<T>(API_BASE + endpoint, {
         headers: {
             Accept: "application/json",
-            "User-Agent": VENCORD_USER_AGENT
+            "User-Agent": S7Cord_USER_AGENT
         }
     });
 }
@@ -65,7 +65,7 @@ async function getUpdates() {
     if (!outdated) return [];
     return [{
         hash:    pendingVersion ?? "new",
-        author:  "Nightcord",
+        author:  "S7Cord",
         message: `Nouvelle version disponible : ${pendingVersion}`
     }];
 }
@@ -79,7 +79,7 @@ async function applyUpdates(): Promise<boolean> {
         const data = await fetchBuffer(pendingDownloadUrl);
 
         // Save zip to temp
-        const zipPath = join(app.getPath("temp"), `nightcord-update-${Date.now()}.zip`);
+        const zipPath = join(app.getPath("temp"), `S7Cord-update-${Date.now()}.zip`);
         writeFileSync(zipPath, data, { flush: true });
 
         // The zip was created from dist/desktop/ with includeBaseDirectory=false,
@@ -89,7 +89,7 @@ async function applyUpdates(): Promise<boolean> {
 
         // Extract using PowerShell Expand-Archive (reliable ZIP support on all Windows 10/11)
         // We extract to a temp folder first, then move files over to avoid half-extracted state
-        const tmpExtract = join(app.getPath("temp"), `nightcord-extract-${Date.now()}`);
+        const tmpExtract = join(app.getPath("temp"), `S7Cord-extract-${Date.now()}`);
 
         return await new Promise<boolean>((resolve, reject) => {
             // Step 1 â€” extract zip to temp folder

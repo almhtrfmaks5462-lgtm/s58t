@@ -1,15 +1,15 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { copyToClipboard } from "@utils/clipboard";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin from "@utils/types";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { Menu, SelectedGuildStore, Toasts, UserProfileStore } from "@webpack/common";
 
 const logger = new Logger("CopyProfileColors");
@@ -115,7 +115,7 @@ export default definePlugin({
     name: "CopyProfileColors",
     description: "A plugin to copy people's profile gradient colors to clipboard.",
     tags: ["Appearance", "Customisation"],
-    authors: [EquicordDevs.Crxa, EquicordDevs.Cortex, EquicordDevs.Gir0fa],
+    authors: [S7CordDevs.Crxa, S7CordDevs.Cortex, S7CordDevs.Gir0fa],
     contextMenus: {
         "user-context": userContextMenuPatch,
         "user-profile-actions": userContextMenuPatch

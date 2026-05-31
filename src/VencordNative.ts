@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -47,7 +47,7 @@ export default {
         update: () => invoke<IpcRes<boolean>>(IpcEvents.UPDATE),
         rebuild: () => invoke<IpcRes<boolean>>(IpcEvents.BUILD),
         getRepo: () => invoke<IpcRes<string>>(IpcEvents.GET_REPO),
-        downloadAndRun: (url: string) => invoke<boolean>(IpcEvents.NIGHTCORD_DOWNLOAD_AND_RUN, url),
+        downloadAndRun: (url: string) => invoke<boolean>(IpcEvents.S7Cord_DOWNLOAD_AND_RUN, url),
     },
 
     settings: {
@@ -99,7 +99,7 @@ export default {
         getSources: () => invoke<Array<{ id: string; name: string; }>>(IpcEvents.GET_DESKTOP_SOURCES),
     },
 
-    nightcord: {
+    S7Cord: {
         checkVBCable: () => invoke<{ installed: boolean; }>(IpcEvents.CHECK_VB_CABLE),
         installVBCable: () => invoke<{ success: boolean; error?: string; }>(IpcEvents.INSTALL_VB_CABLE),
 

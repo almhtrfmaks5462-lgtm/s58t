@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Heading, Paragraph } from "@equicord/types/components";
-import { Margins } from "@equicord/types/utils";
-import { Select } from "@equicord/types/webpack/common";
+import { Heading, Paragraph } from "@S7Cord/types/components";
+import { Margins } from "@S7Cord/types/utils";
+import { Select } from "@S7Cord/types/webpack/common";
 
 import { SimpleErrorBoundary } from "../SimpleErrorBoundary";
 import { SettingsComponent } from "./Settings";

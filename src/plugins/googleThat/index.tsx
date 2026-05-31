@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { ApplicationCommandOptionType, findOption } from "@api/Commands";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 function getMessage(opts) {
@@ -77,7 +77,7 @@ export default definePlugin({
     description: "Adds a command to send a internet search link",
     dependencies: ["CommandsAPI"],
     tags: ["Commands", "Utility"],
-    authors: [Devs.Samwich, EquicordDevs.KrystalSkull],
+    authors: [Devs.Samwich, S7CordDevs.KrystalSkull],
     searchTerms: ["search", "google", "query", "duckduckgo", "command"],
     settings,
     commands: [

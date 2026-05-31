@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -58,7 +58,7 @@ export function createFirstLaunchTour() {
         if (data.autoStart) autoStart.enable();
 
         if (data.importSettings) {
-            const from = join(app.getPath("userData"), "..", "Vencord", "settings");
+            const from = join(app.getPath("userData"), "..", "S7Cord", "settings");
             const to = join(DATA_DIR, "settings");
             try {
                 const files = readdirSync(from);
@@ -69,9 +69,9 @@ export function createFirstLaunchTour() {
                 }
             } catch (e) {
                 if (e instanceof Error && "code" in e && e.code === "ENOENT") {
-                    console.log("No Vencord settings found to import.");
+                    console.log("No S7Cord settings found to import.");
                 } else {
-                    console.error("Failed to import Vencord settings:", e);
+                    console.error("Failed to import S7Cord settings:", e);
                 }
             }
         }

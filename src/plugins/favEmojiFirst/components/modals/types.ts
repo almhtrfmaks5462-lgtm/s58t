@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { RenderModalProps } from "@vencord/discord-types";
+import { RenderModalProps } from "@S7Cord/discord-types";
 
 export type SetAliasSaveResult = { ok: true; } | { ok: false; error: string; };
 

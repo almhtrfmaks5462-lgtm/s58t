@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -153,7 +153,7 @@ const DefaultSettings: Settings = {
 
     cloud: {
         authenticated: false,
-        url: "https://cloud.equicord.org/",
+        url: "https://cloud.S7Cord.org/",
         settingsSync: false,
         settingsSyncVersion: 0
     },
@@ -161,7 +161,7 @@ const DefaultSettings: Settings = {
     userCssVars: {},
 };
 
-const settings = !IS_REPORTER ? VencordNative.settings.get() : {} as Settings;
+const settings = !IS_REPORTER ? S7CordNative.settings.get() : {} as Settings;
 mergeDefaults(settings, DefaultSettings);
 
 // Force enabledByDefault plugins to be enabled, even if they were previously saved as disabled.
@@ -250,7 +250,7 @@ export const SettingsStore = new SettingsStoreClass(settings, {
 if (!IS_REPORTER) {
     SettingsStore.addGlobalChangeListener((_, path) => {
         SettingsStore.plain.cloud.settingsSyncVersion = Date.now();
-        VencordNative.settings.set(SettingsStore.plain, path);
+        S7CordNative.settings.set(SettingsStore.plain, path);
     });
 }
 

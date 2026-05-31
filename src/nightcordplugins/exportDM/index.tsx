@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { findStoreLazy } from "@webpack";
 import { React, useEffect,useState } from "@webpack/common";
 import { Forms } from "@webpack/common";
 
-import { t } from "../autoTranslateNightcord";
+import { t } from "../autoTranslateS7Cord";
 
 const ChannelStore = findStoreLazy("ChannelStore");
 const UserStore = findStoreLazy("UserStore");
@@ -51,7 +51,7 @@ interface RichMessage {
 
 function getToken(): string {
     try {
-        const mod = (window as any).Vencord?.Webpack?.findByProps?.("getToken");
+        const mod = (window as any).S7Cord?.Webpack?.findByProps?.("getToken");
         return mod?.getToken?.() ?? "";
     } catch { return ""; }
 }
@@ -314,7 +314,7 @@ function buildHtml(messages: RichMessage[], channelName: string): string {
     }).join("");
 
     return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${t("Export DMs")} — ${channelName}</title>
-<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#1e1f22;color:#dbdee1;font-ffriendly:system-ui,sans-serif;padding:20px;max-width:900px;margin:0 auto}h1{color:#5865f2;margin-bottom:4px}.meta{color:#949ba4;font-size:13px;margin-bottom:24px}.msg.deleted{background-color:rgba(240,71,71,0.1);border-left:2px solid #f04747}.msg{padding:10px 12px;border-radius:4px;margin-bottom:2px}.msg:hover{background:rgba(255,255,255,0.04)}.msg-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}.avatar{width:32px;height:32px;border-radius:50%}.author{font-weight:700;color:#f2f3f5;font-size:14px}.ts{font-size:11px;color:#949ba4;margin-left:4px}.edited,.pin{font-size:10px;color:#949ba4;margin-left:4px}.reply{font-size:12px;color:#949ba4;padding:4px 8px;border-left:3px solid #4f545c;margin-bottom:6px;background:rgba(255,255,255,0.03)}.content{font-size:14px;line-height:1.5;color:#dbdee1;white-space:pre-wrap;word-break:break-word;margin-bottom:4px}.media{margin:6px 0}.media img,.media video{max-width:400px;max-height:300px;border-radius:8px;display:block}.media-name{font-size:11px;color:#949ba4;margin-top:2px}.attachment{padding:6px 10px;background:rgba(0,0,0,0.2);border-radius:4px;margin:4px 0;display:inline-block}.attachment a{color:#00aff4;text-decoration:none}.embed{border-left:4px solid #5865f2;background:rgba(255,255,255,0.04);border-radius:0 4px 4px 0;padding:8px 12px;margin:6px 0}.embed-title{font-weight:700;color:#00aff4;margin-bottom:4px}.embed-desc{font-size:13px;color:#dbdee1}.embed-img{max-width:300px;border-radius:4px;margin-top:6px}.embed-url{font-size:12px;color:#00aff4;display:block;margin-top:4px;text-decoration:none}.sticker{font-size:12px;color:#b5bac1;background:rgba(255,255,255,0.06);border-radius:4px;padding:2px 6px;margin:2px}.reactions{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.reaction{background:rgba(255,255,255,0.08);border-radius:8px;padding:2px 8px;font-size:12px}audio{width:300px;margin-top:4px}</style>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#1e1f22;color:#dbdee1;font-ffriendly:system-ui,sans-serif;padding:20px;max-width:900px;margin:0 auto}h1{color:#FF0000;margin-bottom:4px}.meta{color:#949ba4;font-size:13px;margin-bottom:24px}.msg.deleted{background-color:rgba(240,71,71,0.1);border-left:2px solid #f04747}.msg{padding:10px 12px;border-radius:4px;margin-bottom:2px}.msg:hover{background:rgba(255,255,255,0.04)}.msg-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}.avatar{width:32px;height:32px;border-radius:50%}.author{font-weight:700;color:#f2f3f5;font-size:14px}.ts{font-size:11px;color:#949ba4;margin-left:4px}.edited,.pin{font-size:10px;color:#949ba4;margin-left:4px}.reply{font-size:12px;color:#949ba4;padding:4px 8px;border-left:3px solid #4f545c;margin-bottom:6px;background:rgba(255,255,255,0.03)}.content{font-size:14px;line-height:1.5;color:#dbdee1;white-space:pre-wrap;word-break:break-word;margin-bottom:4px}.media{margin:6px 0}.media img,.media video{max-width:400px;max-height:300px;border-radius:8px;display:block}.media-name{font-size:11px;color:#949ba4;margin-top:2px}.attachment{padding:6px 10px;background:rgba(0,0,0,0.2);border-radius:4px;margin:4px 0;display:inline-block}.attachment a{color:#00aff4;text-decoration:none}.embed{border-left:4px solid #FF0000;background:rgba(255,255,255,0.04);border-radius:0 4px 4px 0;padding:8px 12px;margin:6px 0}.embed-title{font-weight:700;color:#00aff4;margin-bottom:4px}.embed-desc{font-size:13px;color:#dbdee1}.embed-img{max-width:300px;border-radius:4px;margin-top:6px}.embed-url{font-size:12px;color:#00aff4;display:block;margin-top:4px;text-decoration:none}.sticker{font-size:12px;color:#b5bac1;background:rgba(255,255,255,0.06);border-radius:4px;padding:2px 6px;margin:2px}.reactions{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.reaction{background:rgba(255,255,255,0.08);border-radius:8px;padding:2px 8px;font-size:12px}audio{width:300px;margin-top:4px}</style>
 </head><body><h1>${channelName}</h1><p class="meta">${t("Exported on")} ${new Date().toLocaleString()} · ${messages.length} ${t("messages")}</p>${rows}</body></html>`;
 }
 
@@ -541,9 +541,9 @@ export default definePlugin({
     name: "ExportDM",
     enabledByDefault: true,
     description: "Exports your DMs with messages, images, videos, audio, links, embeds, stickers, reactions in TXT/JSON/CSV/MD/HTML.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["HeaderBarAPI"],
 
-    start() { addHeaderBarButton("nightcord-export-dm", () => <ExportButton />, 4); },
-    stop() { removeHeaderBarButton("nightcord-export-dm"); },
+    start() { addHeaderBarButton("S7Cord-export-dm", () => <ExportButton />, 4); },
+    stop() { removeHeaderBarButton("S7Cord-export-dm"); },
 });

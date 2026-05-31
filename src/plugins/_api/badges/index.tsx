@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,31 +23,31 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Devs } from "@utils/constants";
 import { copyWithToast } from "@utils/discord";
 import { Logger } from "@utils/Logger";
-import { shouldShowContributorBadge, shouldShowEquicordContributorBadge } from "@utils/misc";
+import { shouldShowContributorBadge, shouldShowS7CordContributorBadge } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { ContextMenuApi, Menu, Toasts, UserStore } from "@webpack/common";
 
 import Plugins, { PluginMeta } from "~plugins";
 
-import { EquicordDonorModal, EquicordTranslatorModal, VencordDonorModal } from "./modals";
+import { S7CordDonorModal, S7CordTranslatorModal, S7CordDonorModal } from "./modals";
 
 const CONTRIBUTOR_BADGE = "https://cdn.discordapp.com/emojis/1092089799109775453.png?size=64";
-const EQUICORD_CONTRIBUTOR_BADGE = "https://equicord.org/assets/favicon.png";
-const USERPLUGIN_CONTRIBUTOR_BADGE = "https://equicord.org/assets/icons/misc/userplugin.png";
+const S7Cord_CONTRIBUTOR_BADGE = "https://S7Cord.org/assets/favicon.png";
+const USERPLUGIN_CONTRIBUTOR_BADGE = "https://S7Cord.org/assets/icons/misc/userplugin.png";
 
 const ContributorBadge: ProfileBadge = {
-    description: "Vencord Contributor",
+    description: "S7Cord Contributor",
     iconSrc: CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => shouldShowContributorBadge(userId),
     onClick: (_, { userId }) => import("@components/settings/tabs/plugins/ContributorModal").then(m => m.openContributorModal(UserStore.getUser(userId)))
 };
 
-const EquicordContributorBadge: ProfileBadge = {
-    description: "Equicord Contributor",
-    iconSrc: EQUICORD_CONTRIBUTOR_BADGE,
+const S7CordContributorBadge: ProfileBadge = {
+    description: "S7Cord Contributor",
+    iconSrc: S7Cord_CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
-    shouldShow: ({ userId }) => shouldShowEquicordContributorBadge(userId),
+    shouldShow: ({ userId }) => shouldShowS7CordContributorBadge(userId),
     onClick: (_, { userId }) => import("@components/settings/tabs/plugins/ContributorModal").then(m => m.openContributorModal(UserStore.getUser(userId))),
     props: {
         style: {
@@ -79,8 +79,8 @@ const UserPluginContributorBadge: ProfileBadge = {
 };
 
 let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
-let EquicordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
-let NightcordBadges = {} as Record<string, Array<{ icon: string; placeholder: string; uuid: string; }>>;
+let S7CordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
+let S7CordBadges = {} as Record<string, Array<{ icon: string; placeholder: string; uuid: string; }>>;
 
 async function loadBadges(url: string, noCache = false) {
     const init = {} as RequestInit;
@@ -90,13 +90,13 @@ async function loadBadges(url: string, noCache = false) {
 }
 
 async function loadAllBadges(noCache = false) {
-    const vencordBadges = await loadBadges("https://badges.vencord.dev/badges.json", noCache).catch(() => ({}));
-    const equicordBadges = await loadBadges("https://badge.equicord.org/badges.json", noCache).catch(() => ({}));
-    const nightcordBadges = await loadBadges("https://api.nightcord.su/badges", noCache).catch(() => ({}));
+    const S7CordBadges = await loadBadges("https://badges.S7Cord.dev/badges.json", noCache).catch(() => ({}));
+    const S7CordBadges = await loadBadges("https://badge.S7Cord.org/badges.json", noCache).catch(() => ({}));
+    const S7CordBadges = await loadBadges("https://api.S7Cord.su/badges", noCache).catch(() => ({}));
 
-    DonorBadges = vencordBadges;
-    EquicordDonorBadges = equicordBadges;
-    NightcordBadges = nightcordBadges;
+    DonorBadges = S7CordBadges;
+    S7CordDonorBadges = S7CordBadges;
+    S7CordBadges = S7CordBadges;
 }
 
 let intervalId: any;
@@ -164,12 +164,12 @@ export default definePlugin({
         return DonorBadges;
     },
 
-    get EquicordDonorBadges() {
-        return EquicordDonorBadges;
+    get S7CordDonorBadges() {
+        return S7CordDonorBadges;
     },
 
-    get NightcordBadges() {
-        return NightcordBadges;
+    get S7CordBadges() {
+        return S7CordBadges;
     },
 
     toolboxActions: {
@@ -183,7 +183,7 @@ export default definePlugin({
         }
     },
 
-    userProfileBadges: [ContributorBadge, EquicordContributorBadge, UserPluginContributorBadge],
+    userProfileBadges: [ContributorBadge, S7CordContributorBadge, UserPluginContributorBadge],
 
     async start() {
         await loadAllBadges();
@@ -240,13 +240,13 @@ export default definePlugin({
                 ContextMenuApi.openContextMenu(event, () => <BadgeContextMenu badge={badge} />);
             },
             onClick() {
-                return VencordDonorModal();
+                return S7CordDonorModal();
             },
         } satisfies ProfileBadge));
     },
 
-    getEquicordDonorBadges(userId: string) {
-        return EquicordDonorBadges[userId]?.map(badge => ({
+    getS7CordDonorBadges(userId: string) {
+        return S7CordDonorBadges[userId]?.map(badge => ({
             iconSrc: badge.badge,
             description: badge.tooltip,
             position: BadgePosition.START,
@@ -260,21 +260,21 @@ export default definePlugin({
                 ContextMenuApi.openContextMenu(event, () => <BadgeContextMenu badge={badge} />);
             },
             onClick() {
-                return badge.tooltip === "Equicord Translator" ? EquicordTranslatorModal() : EquicordDonorModal();
+                return badge.tooltip === "S7Cord Translator" ? S7CordTranslatorModal() : S7CordDonorModal();
             },
         } satisfies ProfileBadge));
     },
 
-    getNightcordBadges(userId: string) {
+    getS7CordBadges(userId: string) {
         try {
-            const userBadges = NightcordBadges[userId];
+            const userBadges = S7CordBadges[userId];
             if (!userBadges || !Array.isArray(userBadges)) return [];
 
             return userBadges
                 .filter(badge => badge && badge.icon)
                 .map(badge => ({
                     iconSrc: badge.icon,
-                    description: badge.placeholder ?? "Nightcord Badge",
+                    description: badge.placeholder ?? "S7Cord Badge",
                     position: BadgePosition.START,
                     props: {
                         style: {
@@ -288,7 +288,7 @@ export default definePlugin({
                     }
                 } satisfies ProfileBadge));
         } catch (e) {
-            console.error("[BadgeAPI] Error processing nightcord badges for", userId, e);
+            console.error("[BadgeAPI] Error processing S7Cord badges for", userId, e);
             return [];
         }
     }

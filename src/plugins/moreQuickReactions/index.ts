@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -85,7 +85,7 @@ export default definePlugin({
                 // Override limit of emojis to display with offset hook.
                 {
                     match: /"MessageContextMenu"\},\{autoTrackExposure.{0,5}\}\),/,
-                    replace: "$&[moreQuickReactionsScrollValue,setMoreQuickReactionsScrollValue]=Vencord.Webpack.Common.React.useState(0),"
+                    replace: "$&[moreQuickReactionsScrollValue,setMoreQuickReactionsScrollValue]=S7Cord.Webpack.Common.React.useState(0),"
                 },
                 {
                     match: /\.length>4&&\(\i\.length=4\)/,

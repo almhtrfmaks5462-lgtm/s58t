@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ import {
     definePluginSettings,
     Settings,
 } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { makeRange, OptionType } from "@utils/types";
 
 const presendObject: MessageSendListener = (channelId, msg) => {
@@ -66,7 +66,7 @@ export default definePlugin({
     description: "Tweaks your messages to make them look nicer and have better grammar. See settings",
     dependencies: ["MessageEventsAPI"],
     tags: ["Chat"],
-    authors: [Devs.Samwich, EquicordDevs.WKoA],
+    authors: [Devs.Samwich, S7CordDevs.WKoA],
     onBeforeMessageSend: presendObject,
     settings,
 });

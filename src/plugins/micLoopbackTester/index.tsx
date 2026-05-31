@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { UserAreaButton, UserAreaButtonFactory, UserAreaRenderProps } from "@api/UserArea";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { MediaEngineStore, React, UserStore, VoiceActions, VoiceStateStore } from "@webpack/common";
 
@@ -116,7 +116,7 @@ export default definePlugin({
     name: "MicLoopbackTester",
     description: "Adds mic loopback test icon to the user panel",
     tags: ["Utility", "Voice"],
-    authors: [EquicordDevs.benjii],
+    authors: [S7CordDevs.benjii],
     dependencies: ["UserSettingsAPI", "UserAreaAPI"],
     userAreaButton: {
         icon: MicLoopbackIcon,

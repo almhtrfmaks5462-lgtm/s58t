@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
 import { ChannelStore, DraftType, SelectedChannelStore, UploadHandler } from "@webpack/common";
@@ -210,7 +210,7 @@ export default definePlugin({
     name: "AutoZipper",
     description: "Automatically zips specified file types and folders before uploading to Discord",
     tags: ["Chat", "Organisation"],
-    authors: [EquicordDevs.SSnowly],
+    authors: [S7CordDevs.SSnowly],
     settings,
 
     start() {

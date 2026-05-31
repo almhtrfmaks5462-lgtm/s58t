@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,8 +17,8 @@
 */
 
 import { Heading,HeadingTertiary } from "@components/Heading";
-import { SessionInfo } from "@nightcordplugins/betterSessions/types";
-import { getDefaultName, savedSessionsCache, saveSessionsToDataStore } from "@nightcordplugins/betterSessions/utils";
+import { SessionInfo } from "@S7Cordplugins/betterSessions/types";
+import { getDefaultName, savedSessionsCache, saveSessionsToDataStore } from "@S7Cordplugins/betterSessions/utils";
 import { ModalContent, ModalFooter, ModalHeader, ModalProps, ModalRoot } from "@utils/modal";
 import { Button, React, TextInput } from "@webpack/common";
 import { KeyboardEvent } from "react";

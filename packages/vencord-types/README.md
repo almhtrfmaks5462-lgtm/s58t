@@ -1,11 +1,11 @@
-# Equicord Types
+# S7Cord Types
 
-Typings for Equicord's api, published to npm
+Typings for S7Cord's api, published to npm
 
 ```sh
-npm i @equicord/types
+npm i @S7Cord/types
 
-yarn add @equicord/types
+yarn add @S7Cord/types
 
-pnpm add @equicord/types
+pnpm add @S7Cord/types
 ```

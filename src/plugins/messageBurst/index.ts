@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Channel, Message } from "@vencord/discord-types";
+import { Channel, Message } from "@S7Cord/discord-types";
 import { ChannelStore, MessageActions, MessageStore, UserStore } from "@webpack/common";
 
 function shouldEdit(channel: Channel, message: Message, timePeriod: number, shouldMergeWithAttachment: boolean) {
@@ -68,7 +68,7 @@ export default definePlugin({
     description: "Merges messages sent within a time period with your previous sent message if no one else sends a message before you.",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat"],
-    authors: [EquicordDevs.port22exposed],
+    authors: [S7CordDevs.port22exposed],
     settings,
     onBeforeMessageSend(channelId, message) {
         const messages = MessageStore.getMessages(channelId)._map;

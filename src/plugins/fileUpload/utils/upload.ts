@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -20,7 +20,7 @@ import { isS3Configured, uploadToS3 } from "./s3";
 import { parseShareXConfig, resolveShareXTemplate } from "./sharex";
 
 const Native = IS_DISCORD_DESKTOP
-    ? VencordNative.pluginHelpers.FileUpload as PluginNative<typeof import("../native")>
+    ? S7CordNative.pluginHelpers.FileUpload as PluginNative<typeof import("../native")>
     : null;
 
 const logger = new Logger("FileUpload", "#7cb7ff");

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { Message, MessageAttachment, MessageJSON } from "@vencord/discord-types";
+import { Message, MessageAttachment, MessageJSON } from "@S7Cord/discord-types";
 
 export interface LoggedAttachment extends MessageAttachment {
     fileExtension?: string | null;

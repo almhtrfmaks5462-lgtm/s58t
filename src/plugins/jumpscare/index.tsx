@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -19,12 +19,12 @@ const settings = definePluginSettings({
     imageSource: {
         type: OptionType.STRING,
         description: "Sets the image url of the jumpscare",
-        default: "https://github.com/Equicord/Equibored/blob/main/icons/jumpscare/troll.gif?raw=true"
+        default: "https://github.com/S7Cord/Equibored/blob/main/icons/jumpscare/troll.gif?raw=true"
     },
     audioSource: {
         type: OptionType.STRING,
         description: "Sets the audio url of the jumpscare",
-        default: "https://github.com/Equicord/Equibored/raw/main/sounds/jumpscare/trollolol.mp3?raw=true"
+        default: "https://github.com/S7Cord/Equibored/raw/main/sounds/jumpscare/trollolol.mp3?raw=true"
     },
     chance: {
         type: OptionType.NUMBER,

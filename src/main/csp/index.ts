@@ -52,7 +52,7 @@ export const CspPolicies: PolicyMap = {
     "api.github.com": ConnectSrc,
     "ws.audioscrobbler.com": ConnectSrc,
     "translate-pa.googleapis.com": ConnectSrc,
-    "*.vencord.dev": ImageSrc,
+    "*.S7Cord.dev": ImageSrc,
     "manti.vendicated.dev": ImageSrc,
     "decor.fieryflames.dev": ConnectSrc,
     "ugc.decor.fieryflames.dev": ImageSrc,
@@ -119,7 +119,7 @@ const patchCsp = (headers: PolicyMap) => {
         pushDirective("script-src", "'unsafe-inline'", "'unsafe-eval'");
 
         for (const directive of ["style-src", "connect-src", "img-src", "font-src", "media-src", "worker-src"]) {
-            pushDirective(directive, "blob:", "data:", "vencord:", "vesktop:", "equicord:", "equibop:", "https://*.githubusercontent.com", "https://*.amazonaws.com");
+            pushDirective(directive, "blob:", "data:", "S7Cord:", "vesktop:", "S7Cord:", "equibop:", "https://*.githubusercontent.com", "https://*.amazonaws.com");
         }
 
         for (const [host, directives] of Object.entries(NativeSettings.store.customCspRules)) {

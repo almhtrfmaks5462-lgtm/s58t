@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -142,7 +142,7 @@ export default definePlugin({
     name: "FollowMe",
     enabledByDefault: true,
     description: "Forces a user to follow you in voice channels (if you have permissions). Right-click a user -> Follow Me.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
 
     headerBarButton: {
         icon: () => <FollowMeIcon filled={true} />,

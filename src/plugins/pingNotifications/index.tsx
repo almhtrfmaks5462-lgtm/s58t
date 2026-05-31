@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { showNotification } from "@api/Notifications";
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findStoreLazy } from "@webpack";
 import {
@@ -93,7 +93,7 @@ export default definePlugin({
     name: "PingNotifications",
     description: "Customizable notifications with improved mention formatting",
     tags: ["Chat", "Friends", "Notifications", "Servers"],
-    authors: [EquicordDevs.smuki],
+    authors: [S7CordDevs.smuki],
     settings,
 
     flux: {

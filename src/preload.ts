@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,9 @@ import { debounce } from "@shared/debounce";
 import { IpcEvents } from "@shared/IpcEvents";
 import { contextBridge, webFrame } from "electron/renderer";
 
-import VencordNative, { invoke, sendSync } from "./VencordNative";
+import S7CordNative, { invoke, sendSync } from "./S7CordNative";
 
-contextBridge.exposeInMainWorld("VencordNative", VencordNative);
+contextBridge.exposeInMainWorld("S7CordNative", S7CordNative);
 
 // Discord
 if (location.protocol !== "data:") {
@@ -48,12 +48,12 @@ if (location.protocol !== "data:") {
         // Not supported in sandboxed preload scripts but Discord doesn't support it either so who cares
         require(process.env.DISCORD_PRELOAD!);
 
-        // Remplace "Discord" par "Nightcord" dans le titre de la fenêtre (document.title)
+        // Remplace "Discord" par "S7Cord" dans le titre de la fenêtre (document.title)
         // Discord change le titre dynamiquement depuis le renderer — on intercepte ça ici
         webFrame.executeJavaScript(`
             (function() {
                 function patchTitle(t) {
-                    return t ? t.replace(/Discord/g, 'Nightcord') : t;
+                    return t ? t.replace(/Discord/g, 'S7Cord') : t;
                 }
                 // Patch initial
                 if (document.title) document.title = patchTitle(document.title);
@@ -84,7 +84,7 @@ if (location.protocol !== "data:") {
     }
 } // Monaco popout
 else {
-    contextBridge.exposeInMainWorld("setCss", debounce(VencordNative.quickCss.set));
-    contextBridge.exposeInMainWorld("getCurrentCss", VencordNative.quickCss.get);
-    contextBridge.exposeInMainWorld("getTheme", VencordNative.quickCss.getEditorTheme);
+    contextBridge.exposeInMainWorld("setCss", debounce(S7CordNative.quickCss.set));
+    contextBridge.exposeInMainWorld("getCurrentCss", S7CordNative.quickCss.get);
+    contextBridge.exposeInMainWorld("getTheme", S7CordNative.quickCss.getEditorTheme);
 }

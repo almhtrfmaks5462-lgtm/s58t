@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -82,18 +82,18 @@ section[class*="panels_"] > div[class*="container_"]:not(:has([class*="avatar_"]
 
 export default definePlugin({
     name: "UserAreaTweaks",
-    description: "Creates an elegant floating dock for Nightcord plugins using pure CSS, preventing overlap and crashes.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    description: "Creates an elegant floating dock for S7Cord plugins using pure CSS, preventing overlap and crashes.",
+    authors: [{ name: "S7Cord", id: 0n }],
     enabledByDefault: true,
 
     start() {
         const style = document.createElement("style");
-        style.id = "nightcord-userarea-tweaks-style";
+        style.id = "S7Cord-userarea-tweaks-style";
         style.textContent = CSS;
         document.head.appendChild(style);
     },
 
     stop() {
-        document.getElementById("nightcord-userarea-tweaks-style")?.remove();
+        document.getElementById("S7Cord-userarea-tweaks-style")?.remove();
     }
 });

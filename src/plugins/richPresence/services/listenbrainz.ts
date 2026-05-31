@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { Logger } from "@utils/Logger";
-import { Activity, ActivityButton } from "@vencord/discord-types";
-import { ActivityFlags, ActivityType } from "@vencord/discord-types/enums";
+import { Activity, ActivityButton } from "@S7Cord/discord-types";
+import { ActivityFlags, ActivityType } from "@S7Cord/discord-types/enums";
 import { findByPropsLazy } from "@webpack";
 import { ApplicationAssetUtils, FluxDispatcher } from "@webpack/common";
 

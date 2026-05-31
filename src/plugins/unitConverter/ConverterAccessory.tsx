@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 */
 
 import { classNameFactory } from "@utils/css";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { useState } from "@webpack/common";
 
 export const conversions = new Map<string, (conv: string) => void>();

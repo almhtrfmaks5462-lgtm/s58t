@@ -68,7 +68,7 @@
 }
 
 .sc-search-input:focus {
-    border-color: var(--brand-experiment, #5865f2);
+    border-color: var(--red, #FF0000);
 }
 
 .sc-search-input::placeholder {
@@ -76,7 +76,7 @@
 }
 
 .sc-search-btn {
-    background: var(--brand-experiment);
+    background: var(--red);
     border: none;
     border-radius: 10px;
     color: #fff;

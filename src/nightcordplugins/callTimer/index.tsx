@@ -1,16 +1,16 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { useTimer } from "@utils/react";
 import { formatDurationMs } from "@utils/text";
 import definePlugin, { OptionType } from "@utils/types";
-import { PassiveUpdateState, VoiceState } from "@vencord/discord-types";
+import { PassiveUpdateState, VoiceState } from "@S7Cord/discord-types";
 import { FluxDispatcher, GuildStore, React, UserStore } from "@webpack/common";
 
 import alignedChatInputFix from "./alignedChatInputFix.css?managed";
@@ -110,7 +110,7 @@ export default definePlugin({
     name: "CallTimer",
     description: "Add call timers for all users in voice channels and in the connection status.",
     tags: ["Voice", "Utility"],
-    authors: [Devs.Ven, EquicordDevs.MaxHerbold, Devs.D3SOX],
+    authors: [Devs.Ven, S7CordDevs.MaxHerbold, Devs.D3SOX],
     managedStyle: alignedChatInputFix,
     settings,
 

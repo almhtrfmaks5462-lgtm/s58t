@@ -153,8 +153,8 @@
 }
 
 .vc-channeltabs-bookmark-star-checked {
-    fill: var(--brand-experiment, var(--brand-500));
-    stroke: var(--brand-experiment, var(--brand-500));
+    fill: var(--red, var(--brand-500));
+    stroke: var(--red, var(--brand-500));
 }
 
 .vc-channeltabs-bookmark {
@@ -1207,7 +1207,7 @@
 
 .channelTabs-keybind-button:hover:not(:disabled) {
     background-color: var(--background-mod-subtle);
-    border-color: var(--brand-experiment);
+    border-color: var(--red);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
 }
@@ -1223,11 +1223,11 @@
 }
 
 .channelTabs-keybind-button.listening {
-    background: linear-gradient(135deg, var(--brand-experiment) 0%, var(--brand-experiment-560) 100%);
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-560) 100%);
     color: var(--white);
-    border-color: var(--brand-experiment);
+    border-color: var(--red);
     animation: keybind-pulse 1.5s ease-in-out infinite;
-    box-shadow: 0 0 12px var(--brand-experiment);
+    box-shadow: 0 0 12px var(--red);
 }
 
 @keyframes keybind-pulse {

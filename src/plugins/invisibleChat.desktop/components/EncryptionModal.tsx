@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 import { FormSwitch } from "@components/FormSwitch";
 import { Heading } from "@components/Heading";
 import { insertTextIntoChatInputBox } from "@utils/discord";
-import { RenderModalProps } from "@vencord/discord-types";
+import { RenderModalProps } from "@S7Cord/discord-types";
 import { Modal, openModal, React, TextInput } from "@webpack/common";
 
 import { encrypt } from "../index";

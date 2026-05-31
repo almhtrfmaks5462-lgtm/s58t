@@ -98,7 +98,7 @@
 
 .vc-ct-slider-row input[type="range"] {
     width: 100%;
-    accent-color: var(--brand-experiment);
+    accent-color: var(--red);
     cursor: pointer;
 }
 
@@ -139,7 +139,7 @@
 .vc-ct-live-toggle input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: var(--brand-experiment);
+    accent-color: var(--red);
     cursor: pointer;
 }
 
@@ -149,7 +149,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .03em;
-    background: var(--brand-experiment);
+    background: var(--red);
     color: white;
     padding: 2px 6px;
     border-radius: 4px;

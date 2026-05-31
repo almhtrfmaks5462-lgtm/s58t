@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { FormSwitch } from "@equicord/types/components";
+import { FormSwitch } from "@S7Cord/types/components";
 import type { ComponentProps } from "react";
 
 import { cl } from "./Settings";

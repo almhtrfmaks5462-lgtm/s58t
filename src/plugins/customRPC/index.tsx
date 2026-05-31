@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,8 +30,8 @@ import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { useAwaiter } from "@utils/react";
 import definePlugin, { OptionType } from "@utils/types";
-import { Activity } from "@vencord/discord-types";
-import { ActivityType } from "@vencord/discord-types/enums";
+import { Activity } from "@S7Cord/discord-types";
+import { ActivityType } from "@S7Cord/discord-types/enums";
 import { findByCodeLazy, findComponentByCodeLazy } from "@webpack";
 import { ApplicationAssetUtils, Button, FluxDispatcher, React, UserStore } from "@webpack/common";
 

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,22 +20,22 @@ import { Button } from "@components/Button";
 import { Heart } from "@components/Heart";
 import { OpenExternalIcon } from "@components/Icons";
 import { openInviteModal } from "@utils/discord";
-import { ButtonProps } from "@vencord/discord-types";
+import { ButtonProps } from "@S7Cord/discord-types";
 import { showToast } from "@webpack/common";
 
 export function DonateButton({
-    equicord = false,
+    S7Cord = false,
     className,
     ...props
-}: Partial<ButtonProps> & { equicord?: boolean; }) {
-    const link = equicord ? "https://github.com/sponsors/thororen1234" : "https://github.com/sponsors/Vendicated";
+}: Partial<ButtonProps> & { S7Cord?: boolean; }) {
+    const link = S7Cord ? "https://github.com/sponsors/thororen1234" : "https://github.com/sponsors/Vendicated";
     return (
         <Button
             {...props}
             variant="none"
             size="medium"
             type="button"
-            onClick={() => VencordNative.native.openExternal(link)}
+            onClick={() => S7CordNative.native.openExternal(link)}
             className={className || "vc-donate-button"}
         >
             <Heart />
@@ -72,14 +72,14 @@ export function TranslateButton({
     className,
     ...props
 }: Partial<ButtonProps>) {
-    const link = "https://weblate.equicord.org/projects/equicord/";
+    const link = "https://weblate.S7Cord.org/projects/S7Cord/";
     return (
         <Button
             {...props}
             variant="none"
             size="medium"
             type="button"
-            onClick={() => VencordNative.native.openExternal(link)}
+            onClick={() => S7CordNative.native.openExternal(link)}
             className={className || "vc-translate-button"}
         >
             Translate Here

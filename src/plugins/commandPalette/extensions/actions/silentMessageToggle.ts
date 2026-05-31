@@ -1,12 +1,12 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { isPluginEnabled, plugins } from "@api/PluginManager";
 import { openPluginModal } from "@components/settings/tabs";
-import { toggleEnabled } from "@nightcordplugins/equicordHelper/utils";
+import { toggleEnabled } from "@S7Cordplugins/S7CordHelper/utils";
 import { Toasts } from "@webpack/common";
 
 import { DEFAULT_CATEGORY_ID } from "../../metadata/categories";

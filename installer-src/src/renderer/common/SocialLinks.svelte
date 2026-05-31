@@ -1,9 +1,9 @@
 <script>
     import {tooltip} from "./tooltip";
     
-    const discordUrl = "https://discord.gg/nightcord";
-    const giteaUrl = "https://git.nightcord.su/nightcord/nightcord";
-    const webUrl = "https://nightcord.su";
+    const discordUrl = "https://discord.gg/S7Cord";
+    const giteaUrl = "https://git.S7Cord.su/S7Cord/S7Cord";
+    const webUrl = "https://S7Cord.su";
 </script>
 
 <div class="social-links">

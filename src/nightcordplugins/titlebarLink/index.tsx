@@ -1,17 +1,17 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import definePlugin, { PluginNative } from "@utils/types";
 
-const Native = VencordNative.pluginHelpers.TitlebarLink as PluginNative<typeof import("./native")>;
+const Native = S7CordNative.pluginHelpers.TitlebarLink as PluginNative<typeof import("./native")>;
 
-const TARGET_URL = "https://nightcord.su";
+const TARGET_URL = "https://S7Cord.su";
 
 const CSS = `
-#nightcord-titlebar-btn {
+#S7Cord-titlebar-btn {
     position: fixed;
     top: 0;
     left: 50%;
@@ -34,15 +34,15 @@ const CSS = `
 `;
 
 function inject() {
-    if (document.getElementById("nightcord-titlebar-btn")) return;
+    if (document.getElementById("S7Cord-titlebar-btn")) return;
 
     const style = document.createElement("style");
-    style.id = "nightcord-titlebar-link-style";
+    style.id = "S7Cord-titlebar-link-style";
     style.textContent = CSS;
     document.head.appendChild(style);
 
     const btn = document.createElement("div");
-    btn.id = "nightcord-titlebar-btn";
+    btn.id = "S7Cord-titlebar-btn";
 
     btn.addEventListener("click", () => {
         Native.openUrl(TARGET_URL);
@@ -52,15 +52,15 @@ function inject() {
 }
 
 function remove() {
-    document.getElementById("nightcord-titlebar-btn")?.remove();
-    document.getElementById("nightcord-titlebar-link-style")?.remove();
+    document.getElementById("S7Cord-titlebar-btn")?.remove();
+    document.getElementById("S7Cord-titlebar-link-style")?.remove();
 }
 
 export default definePlugin({
     name: "TitlebarLink",
     enabledByDefault: true,
-    description: "Click on the central Discord title to open nightcord.su",
-    authors: [{ name: "Nightcord", id: 0n }],
+    description: "Click on the central Discord title to open S7Cord.su",
+    authors: [{ name: "S7Cord", id: 0n }],
     required: true,
     patches: [],
 

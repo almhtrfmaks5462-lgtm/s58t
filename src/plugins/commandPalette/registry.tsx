@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,12 +10,12 @@ import { Settings, SettingsStore } from "@api/Settings";
 import { getUserSettingLazy } from "@api/UserSettings";
 import { HeadphonesIcon } from "@components/Icons";
 import { openPluginModal } from "@components/settings/tabs";
-import { toggleEnabled } from "@nightcordplugins/equicordHelper/utils";
+import { toggleEnabled } from "@S7Cordplugins/S7CordHelper/utils";
 import { copyWithToast } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import type { Plugin } from "@utils/types";
 import { changes, checkForUpdates } from "@utils/updater";
-import { Guild } from "@vencord/discord-types";
+import { Guild } from "@S7Cord/discord-types";
 import { findByPropsLazy, findStoreLazy } from "@webpack";
 import { Alerts, ChannelActionCreators, ChannelRouter, ChannelStore, ComponentDispatch, FluxDispatcher, GuildStore, IconUtils, MediaEngineStore, MessageStore, NavigationRouter, React, ReadStateStore, ReadStateUtils, SelectedChannelStore, SelectedGuildStore, SettingsRouter, StreamerModeStore, Toasts, useEffect, UserStore, VoiceActions } from "@webpack/common";
 import type { FC, ReactElement, ReactNode } from "react";
@@ -1508,12 +1508,12 @@ async function prunePinned() {
 
 const BUILT_IN_COMMANDS: CommandEntry[] = [
     {
-        id: "open-equicord-settings",
-        label: "Open Equicord Settings",
-        keywords: ["settings", "equicord"],
+        id: "open-S7Cord-settings",
+        label: "Open S7Cord Settings",
+        keywords: ["settings", "S7Cord"],
         categoryId: DEFAULT_CATEGORY_ID,
         tags: [TAG_NAVIGATION, TAG_CORE],
-        handler: () => SettingsRouter.openUserSettings("equicord_main_panel")
+        handler: () => SettingsRouter.openUserSettings("S7Cord_main_panel")
     },
     {
         id: "reload-windows",
@@ -2333,7 +2333,7 @@ function registerUpdateCommands() {
     registerCommand({
         id: "check-for-updates",
         label: "Check for Updates",
-        description: "Checks for Equicord updates",
+        description: "Checks for S7Cord updates",
         keywords: ["updates", "check", "updater"],
         categoryId: "updates",
         tags: [TAG_DEVELOPER, TAG_UTILITY],
@@ -2355,11 +2355,11 @@ function registerUpdateCommands() {
     registerCommand({
         id: "open-changelog",
         label: "View Changelog",
-        description: "Opens the Equicord changelog",
+        description: "Opens the S7Cord changelog",
         keywords: ["updates", "changelog"],
         categoryId: "updates",
         tags: [TAG_DEVELOPER, TAG_NAVIGATION],
-        handler: () => SettingsRouter.openUserSettings("equicord_changelog_panel")
+        handler: () => SettingsRouter.openUserSettings("S7Cord_changelog_panel")
     });
 }
 
@@ -3647,8 +3647,8 @@ function registerPluginChangeCommands() {
     });
 
     registerCommand({
-        id: "restart-equicord",
-        label: "Restart Equicord",
+        id: "restart-S7Cord",
+        label: "Restart S7Cord",
         description: "Reloads the Discord client window",
         keywords: ["restart", "reload"],
         categoryId: "plugins-settings",
@@ -3760,7 +3760,7 @@ function registerCustomizationCommands() {
         categoryId: DEFAULT_CATEGORY_ID,
         tags: [TAG_CUSTOMIZATION, TAG_NAVIGATION],
         handler: () => {
-            const openEditor = (window as { VencordNative?: { quickCss?: { openEditor?: () => void; }; }; })?.VencordNative?.quickCss?.openEditor;
+            const openEditor = (window as { S7CordNative?: { quickCss?: { openEditor?: () => void; }; }; })?.S7CordNative?.quickCss?.openEditor;
             if (typeof openEditor !== "function") {
                 showToast("QuickCSS editor is unavailable.", Toasts.Type.FAILURE);
                 return;
@@ -3785,7 +3785,7 @@ function registerCustomizationCommands() {
         keywords: ["theme", "themes", "library"],
         categoryId: DEFAULT_CATEGORY_ID,
         tags: [TAG_CUSTOMIZATION, TAG_NAVIGATION],
-        handler: () => SettingsRouter.openUserSettings("equicord_themes_panel")
+        handler: () => SettingsRouter.openUserSettings("S7Cord_themes_panel")
     });
 }
 

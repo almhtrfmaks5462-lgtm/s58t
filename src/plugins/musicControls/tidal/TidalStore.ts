@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -182,7 +182,7 @@ export const TidalStore = proxyLazyWebpack(() => {
         });
 
         public openExternal(path: string) {
-            VencordNative.native.openExternal(path.replace("http://www.tidal.com", "tidal://"));
+            S7CordNative.native.openExternal(path.replace("http://www.tidal.com", "tidal://"));
 
         }
 

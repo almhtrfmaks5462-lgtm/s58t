@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./settings.css";
 
-import { classNameFactory } from "@equicord/types/api/Styles";
-import { BaseText, Divider, ErrorBoundary } from "@equicord/types/components";
+import { classNameFactory } from "@S7Cord/types/api/Styles";
+import { BaseText, Divider, ErrorBoundary } from "@S7Cord/types/components";
 import { ComponentType } from "react";
 import { Settings, useSettings } from "renderer/settings";
 import { isMac, isWindows } from "renderer/utils";
@@ -207,6 +207,6 @@ export default ErrorBoundary.wrap(
     },
     {
         message:
-            "Failed to render the Equibop Settings tab. If this issue persists, try to right click the Equibop tray icon, then click 'Repair Equicord'. And make sure your Equibop is up to date."
+            "Failed to render the Equibop Settings tab. If this issue persists, try to right click the Equibop tray icon, then click 'Repair S7Cord'. And make sure your Equibop is up to date."
     }
 );

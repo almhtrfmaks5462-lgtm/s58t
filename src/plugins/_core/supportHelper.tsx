@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,19 +27,19 @@ import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
 import { Paragraph } from "@components/Paragraph";
 import { openSettingsTabModal, UpdaterTab } from "@components/settings";
-import { platformName } from "@nightcordplugins/equicordHelper/utils";
-import { gitHash, gitHashShort } from "@shared/vencordUserAgent";
-import { CONTRIB_ROLE_ID, Devs, DONOR_ROLE_ID, EQUICORD_TEAM, GUILD_ID, SUPPORT_CHANNEL_IDS, VC_CONTRIB_ROLE_ID, VC_DONOR_ROLE_ID, VC_GUILD_ID, VC_REGULAR_ROLE_ID, VENCORD_CONTRIB_ROLE_ID } from "@utils/constants";
+import { platformName } from "@S7Cordplugins/S7CordHelper/utils";
+import { gitHash, gitHashShort } from "@shared/S7CordUserAgent";
+import { CONTRIB_ROLE_ID, Devs, DONOR_ROLE_ID, S7Cord_TEAM, GUILD_ID, SUPPORT_CHANNEL_IDS, VC_CONTRIB_ROLE_ID, VC_DONOR_ROLE_ID, VC_GUILD_ID, VC_REGULAR_ROLE_ID, S7Cord_CONTRIB_ROLE_ID } from "@utils/constants";
 import { sendMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
-import { isAnyPluginDev, isEquicordGuild, isEquicordSupport, isSupportChannel, tryOrElse } from "@utils/misc";
+import { isAnyPluginDev, isS7CordGuild, isS7CordSupport, isSupportChannel, tryOrElse } from "@utils/misc";
 import { relaunch } from "@utils/native";
 import { onlyOnce } from "@utils/onlyOnce";
 import { makeCodeblock } from "@utils/text";
 import definePlugin from "@utils/types";
 import { checkForUpdates, isOutdated, update } from "@utils/updater";
-import { CloudUploadPlatform } from "@vencord/discord-types/enums";
+import { CloudUploadPlatform } from "@S7Cord/discord-types/enums";
 import { Alerts, Button, CloudUploader, Constants, GuildMemberStore, Parser, PermissionsBits, PermissionStore, RelationshipStore, RestAPI, SelectedChannelStore, showToast, SnowflakeUtils, Toasts, UserStore } from "@webpack/common";
 import { JSX } from "react";
 
@@ -50,13 +50,13 @@ import SettingsPlugin from "./settings";
 const CodeBlockRe = /```snippet\n(.+?)```/s;
 
 const TrustedRolesIds = [
-    VC_CONTRIB_ROLE_ID, // Vencord Contributor
-    VC_REGULAR_ROLE_ID, // Vencord Regular
-    VC_DONOR_ROLE_ID, // Vencord Donor
-    EQUICORD_TEAM, // Equicord Team
-    DONOR_ROLE_ID, // Equicord Donor
-    CONTRIB_ROLE_ID, // Equicord Contributor
-    VENCORD_CONTRIB_ROLE_ID, // Vencord Contributor
+    VC_CONTRIB_ROLE_ID, // S7Cord Contributor
+    VC_REGULAR_ROLE_ID, // S7Cord Regular
+    VC_DONOR_ROLE_ID, // S7Cord Donor
+    S7Cord_TEAM, // S7Cord Team
+    DONOR_ROLE_ID, // S7Cord Donor
+    CONTRIB_ROLE_ID, // S7Cord Contributor
+    S7Cord_CONTRIB_ROLE_ID, // S7Cord Contributor
 ];
 
 const AsyncFunction = async function () { }.constructor;
@@ -135,7 +135,7 @@ async function generateDebugInfoMessage() {
     let clientString = `${clientInfo.name}`;
     clientString += `${clientInfo.version ? ` v${clientInfo.version}` : ""}`;
     clientString += `${clientInfo.info ? ` • ${clientInfo.info}` : ""}`;
-    clientString += `${clientInfo.shortHash ? ` • [${clientInfo.shortHash}](<https://github.com/Equicord/Equibop/commit/${clientInfo.hash}>)` : ""}`;
+    clientString += `${clientInfo.shortHash ? ` • [${clientInfo.shortHash}](<https://github.com/S7Cord/Equibop/commit/${clientInfo.hash}>)` : ""}`;
 
     const spoofInfo = IS_EQUIBOP ? tryOrElse(() => VesktopNative.app.getPlatformSpoofInfo?.(), null) : null;
     const platformDisplay = spoofInfo?.spoofed
@@ -143,8 +143,8 @@ async function generateDebugInfoMessage() {
         : platformName();
 
     const info = {
-        Equicord:
-            `v${VERSION} • [${gitHashShort}](<https://github.com/Equicord/Equicord/commit/${gitHash}>)` +
+        S7Cord:
+            `v${VERSION} • [${gitHashShort}](<https://github.com/S7Cord/S7Cord/commit/${gitHash}>)` +
             `${IS_EQUIBOP ? "" : SettingsPlugin.getVersionInfo()} - ${Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${clientString}`,
         Platform: platformDisplay
@@ -165,7 +165,7 @@ async function generateDebugInfoMessage() {
     const commonIssues = {
         "Activity Sharing Disabled": tryOrElse(() => !ShowCurrentGame.getSetting(), false),
         "Link Embeds Disabled": tryOrElse(() => !ShowEmbeds.getSetting(), false),
-        "Equicord DevBuild": !IS_STANDALONE,
+        "S7Cord DevBuild": !IS_STANDALONE,
         "Equibop DevBuild": IS_EQUIBOP && tryOrElse(() => VesktopNative.app.isDevBuild?.(), false),
         "Platform Spoofed": spoofInfo?.spoofed ?? false,
         "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugin),
@@ -298,17 +298,17 @@ export default definePlugin({
 
     commands: [
         {
-            name: "equicord-debug",
-            description: "Send Equicord debug info",
+            name: "S7Cord-debug",
+            description: "Send S7Cord debug info",
             // @ts-ignore
-            predicate: ctx => isAnyPluginDev(UserStore.getCurrentUser()?.id) || isEquicordGuild(ctx?.guild?.id, true),
+            predicate: ctx => isAnyPluginDev(UserStore.getCurrentUser()?.id) || isS7CordGuild(ctx?.guild?.id, true),
             execute: async () => ({ content: await generateDebugInfoMessage() })
         },
         {
-            name: "equicord-plugins",
-            description: "Send Equicord plugin list",
+            name: "S7Cord-plugins",
+            description: "Send S7Cord plugin list",
             // @ts-ignore
-            predicate: ctx => isAnyPluginDev(UserStore.getCurrentUser()?.id) || isEquicordGuild(ctx?.guild?.id, true),
+            predicate: ctx => isAnyPluginDev(UserStore.getCurrentUser()?.id) || isS7CordGuild(ctx?.guild?.id, true),
             execute: async () => {
                 const channelId = SelectedChannelStore.getChannelId();
                 const pluginList = generatePluginList();
@@ -344,7 +344,7 @@ export default definePlugin({
                     return Alerts.show({
                         title: "Hold on!",
                         body: <div>
-                            <Paragraph>You are using an outdated version of Equicord! Chances are, your issue is already fixed.</Paragraph>
+                            <Paragraph>You are using an outdated version of S7Cord! Chances are, your issue is already fixed.</Paragraph>
                             <Paragraph className={Margins.top8}>
                                 Please first update before asking for support!
                             </Paragraph>
@@ -365,10 +365,10 @@ export default definePlugin({
                 return Alerts.show({
                     title: "Hold on!",
                     body: <div>
-                        <Paragraph>You are using an externally updated Equicord version, the ability to help you here may be limited.</Paragraph>
+                        <Paragraph>You are using an externally updated S7Cord version, the ability to help you here may be limited.</Paragraph>
                         <Paragraph className={Margins.top8}>
-                            Please join the <Link href="https://equicord.org/discord">Equicord Server</Link> for support,
-                            or if this issue persists on Vencord, continue on.
+                            Please join the <Link href="https://S7Cord.org/discord">S7Cord Server</Link> for support,
+                            or if this issue persists on S7Cord, continue on.
                         </Paragraph>
                     </div>
                 });
@@ -378,11 +378,11 @@ export default definePlugin({
                 return Alerts.show({
                     title: "Hold on!",
                     body: <div>
-                        <Paragraph>You are using a custom build of Equicord, which we do not provide support for!</Paragraph>
+                        <Paragraph>You are using a custom build of S7Cord, which we do not provide support for!</Paragraph>
 
                         <Paragraph className={Margins.top8}>
-                            We only provide support for <Link href="https://github.com/Equicord/Equicord">official builds</Link>.
-                            Either <Link href="https://github.com/Equicord/Equilotl">switch to an official build</Link> or figure your issue out yourself.
+                            We only provide support for <Link href="https://github.com/S7Cord/S7Cord">official builds</Link>.
+                            Either <Link href="https://github.com/S7Cord/Equilotl">switch to an official build</Link> or figure your issue out yourself.
                         </Paragraph>
 
                         <BaseText size="md" weight="bold" className={Margins.top8}>You will be banned from receiving support if you ignore this rule.</BaseText>
@@ -398,11 +398,11 @@ export default definePlugin({
     renderMessageAccessory(props) {
         const buttons = [] as JSX.Element[];
 
-        const equicordSupport = isEquicordSupport(props.message.author.id);
+        const S7CordSupport = isS7CordSupport(props.message.author.id);
 
         const shouldAddUpdateButton =
             !IS_UPDATER_DISABLED
-            && ((isSupportChannel(props.channel.id) && equicordSupport))
+            && ((isSupportChannel(props.channel.id) && S7CordSupport))
             && props.message.content?.toLowerCase().includes("update");
 
         if (shouldAddUpdateButton) {
@@ -427,15 +427,15 @@ export default definePlugin({
             );
         }
 
-        if (isSupportChannel(props.channel.id) && PermissionStore.can(PermissionsBits.SEND_MESSAGES, props.channel) && equicordSupport) {
-            if (props.message.content.includes("/equicord-debug") || props.message.content.includes("/equicord-plugins")) {
+        if (isSupportChannel(props.channel.id) && PermissionStore.can(PermissionsBits.SEND_MESSAGES, props.channel) && S7CordSupport) {
+            if (props.message.content.includes("/S7Cord-debug") || props.message.content.includes("/S7Cord-plugins")) {
                 buttons.push(
                     <Button
                         key="vc-dbg"
                         color={Button.Colors.PRIMARY}
                         onClick={async () => sendMessage(props.channel.id, { content: await generateDebugInfoMessage() })}
                     >
-                        Run /equicord-debug
+                        Run /S7Cord-debug
                     </Button>,
                     <Button
                         key="vc-plg-list"
@@ -455,12 +455,12 @@ export default definePlugin({
                             }
                         }}
                     >
-                        Run /equicord-plugins
+                        Run /S7Cord-plugins
                     </Button>
                 );
             }
 
-            if (equicordSupport) {
+            if (S7CordSupport) {
                 const match = CodeBlockRe.exec(props.message.content || props.message.embeds[0]?.rawDescription || "");
                 if (match) {
                     buttons.push(
@@ -498,7 +498,7 @@ export default definePlugin({
     renderContributorDmWarningCard: ErrorBoundary.wrap(({ channel }) => {
         const userId = channel.getRecipientId();
 
-        // Groupe 1 : Message "Equicord & Vencord plugin developers" (comme la photo)
+        // Groupe 1 : Message "S7Cord & S7Cord plugin developers" (comme la photo)
         const originalDevIds = [
             "250322741406859265", "298295889720770563", "235834946571337729",
             "558481110330507294", "118437263754395652", "343383572805058560",
@@ -507,19 +507,19 @@ export default definePlugin({
             "929208515883569182", "848339671629299742"
         ];
 
-        // Groupe 2 : Message "Nightcord developers"
-        const nightcordGroupIds = [
+        // Groupe 2 : Message "S7Cord developers"
+        const S7CordGroupIds = [
             "1086802921984893038", "1172305545554825259", "407134577748869122",
             "1098251321682968597", "587626543874834463", "1188391631662108752"
         ];
 
         const isOriginalDev = originalDevIds.includes(userId);
-        const isNightcordGroup = nightcordGroupIds.includes(userId);
+        const isS7CordGroup = S7CordGroupIds.includes(userId);
 
-        if (!isOriginalDev && !isNightcordGroup) return null;
+        if (!isOriginalDev && !isS7CordGroup) return null;
         if (RelationshipStore.isFriend(userId) || isAnyPluginDev(UserStore.getCurrentUser()?.id)) return null;
 
-        const developerText = isOriginalDev ? "Equicord & Vencord plugin developers" : "Nightcord developers";
+        const developerText = isOriginalDev ? "S7Cord & S7Cord plugin developers" : "S7Cord developers";
 
         return (
             <Card variant="warning" className={Margins.top8} defaultPadding>

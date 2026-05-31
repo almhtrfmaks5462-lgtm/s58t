@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -14,11 +14,11 @@ import { Heart } from "@components/Heart";
 import { PencilIcon } from "@components/Icons";
 import { Margins } from "@components/margins";
 import { Notice } from "@components/Notice";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { openInviteModal } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { extractAndLoadChunksLazy } from "@webpack";
 import { IconUtils, Menu, openModal,UserStore } from "@webpack/common";
 
@@ -29,7 +29,7 @@ const DONO_URL = "https://ko-fi.com/coolesding";
 const INVITE_LINK = "userpfp-1129784704267210844";
 
 export const requireSettingsModal = extractAndLoadChunksLazy(['type:"USER_SETTINGS_MODAL_OPEN"']);
-export const KEY_DATASTORE = "vencord-custom-avatars";
+export const KEY_DATASTORE = "S7Cord-custom-avatars";
 export const data = { avatars: {} as Record<string, string> };
 
 const settings = definePluginSettings({
@@ -65,7 +65,7 @@ export default definePlugin({
     name: "UserPFP",
     description: "Allows you to use an animated avatar without Nitro",
     tags: ["Appearance", "Customisation", "Servers"],
-    authors: [EquicordDevs.nexpid, Devs.thororen, EquicordDevs.soapphia, EquicordDevs.sketchmyname],
+    authors: [S7CordDevs.nexpid, Devs.thororen, S7CordDevs.soapphia, S7CordDevs.sketchmyname],
     settings,
     data,
     settingsAboutComponent: () => (
@@ -84,7 +84,7 @@ export default definePlugin({
                 <Button
                     variant="secondary"
                     className={cl("settings-button")}
-                    onClick={() => VencordNative.native.openExternal(DONO_URL)}
+                    onClick={() => S7CordNative.native.openExternal(DONO_URL)}
                 >
                     Support UserPFP here <Heart className={cl("settings-heart")} />
                 </Button>

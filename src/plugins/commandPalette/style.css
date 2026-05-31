@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -16,7 +16,7 @@
     --cp-text-muted: #6b6b6b;
     --cp-border: rgb(255 255 255 / 12%);
     --cp-border-strong: rgb(255 255 255 / 24%);
-    --cp-accent: #5865f2;
+    --cp-accent: #FF0000;
     --cp-surface-dropdown: #0b0b0d;
     --cp-surface-dropdown-hover: #232327;
     --cp-dropdown-border: rgb(255 255 255 / 15%);
@@ -772,7 +772,7 @@
 
 .vc-command-palette-keybind-button:hover:not(:disabled) {
     background-color: var(--background-mod-subtle);
-    border-color: var(--brand-experiment);
+    border-color: var(--red);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
 }

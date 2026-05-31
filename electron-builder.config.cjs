@@ -3,10 +3,10 @@ const { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSyn
 const { createHash } = require("crypto");
 const { join } = require("path");
 
-// ─── Configuration de Build Nightcord ─────────────────────────────────────────
+// ─── Configuration de Build S7Cord ─────────────────────────────────────────
 
-function killNightcord() {
-    const releaseDir = join(__dirname, "release", "nightcord-dist");
+function killS7Cord() {
+    const releaseDir = join(__dirname, "release", "S7Cord-dist");
     const releaseExe = join(releaseDir, "Discord.exe");
 
     try {
@@ -39,20 +39,20 @@ function findDiscordApp() {
     return best;
 }
 
-function buildEquicord() {
-    console.log("[build] Compilation de Nightcord...");
+function buildS7Cord() {
+    console.log("[build] Compilation de S7Cord...");
     execSync("node --require=./scripts/suppressExperimentalWarnings.js scripts/build/build.mjs --standalone", { stdio: "inherit" });
 }
 
-function buildNightcordFromDiscord(discordApp) {
+function buildS7CordFromDiscord(discordApp) {
     const discordRes = join(discordApp, "resources");
-    const outDir = join(__dirname, "release", "nightcord-dist");
+    const outDir = join(__dirname, "release", "S7Cord-dist");
 
     if (existsSync(outDir)) {
         try { rmSync(outDir, { recursive: true, force: true }); } catch (e) { }
     }
 
-    console.log("[nightcord] Copie des binaires Discord...");
+    console.log("[S7Cord] Copie des binaires Discord...");
     mkdirSync(outDir, { recursive: true });
 
     for (const f of readdirSync(discordApp)) {
@@ -93,7 +93,7 @@ function buildNightcordFromDiscord(discordApp) {
         cpSync(bootstrapSrc, bootstrapDst, { recursive: true });
     }
 
-    console.log("[nightcord] Préparation de _app.asar...");
+    console.log("[S7Cord] Préparation de _app.asar...");
     let appAsarSrc = join(discordRes, "_app.asar");
     if (!existsSync(appAsarSrc)) appAsarSrc = join(discordRes, "app.asar");
     
@@ -110,7 +110,7 @@ const path = require("path");
 const fs = require("fs");
 const { app } = require("electron");
 
-app.setPath("userData", path.join(app.getPath("appData"), "Nightcord"));
+app.setPath("userData", path.join(app.getPath("appData"), "S7Cord"));
 app.setAppUserModelId("com.squirrel.Discord.Discord");
 
 const bundledModulesPath = path.join(path.dirname(process.execPath), "modules");
@@ -119,13 +119,13 @@ require(path.join(__dirname, "..", "app", "dist", "desktop", "patcher.js"));
 
     const outApp = join(outRes, "app");
     mkdirSync(outApp, { recursive: true });
-    writeFileSync(join(outApp, "package.json"), JSON.stringify({ name: "nightcord", main: "index.js", version: "1.18.0" }, null, 2));
+    writeFileSync(join(outApp, "package.json"), JSON.stringify({ name: "S7Cord", main: "index.js", version: "1.18.0" }, null, 2));
     writeFileSync(join(outApp, "index.js"), `
 "use strict";
 const path = require("path");
 const { app } = require("electron");
 
-app.setPath("userData", path.join(app.getPath("appData"), "Nightcord"));
+app.setPath("userData", path.join(app.getPath("appData"), "S7Cord"));
 app.setAppUserModelId("com.squirrel.Discord.Discord");
 
 require(path.join(__dirname, "dist", "desktop", "patcher.js"));
@@ -133,15 +133,15 @@ require(path.join(__dirname, "dist", "desktop", "patcher.js"));
 
     const outDist = join(outApp, "dist", "desktop");
     mkdirSync(outDist, { recursive: true });
-    const equicordDist = join(__dirname, "dist", "desktop");
+    const S7CordDist = join(__dirname, "dist", "desktop");
 
     for (const f of ["patcher.js", "renderer.js", "renderer.css", "renderer.js.LEGAL.txt"]) {
-        if (existsSync(join(equicordDist, f))) cpSync(join(equicordDist, f), join(outDist, f));
+        if (existsSync(join(S7CordDist, f))) cpSync(join(S7CordDist, f), join(outDist, f));
     }
 
-    const nightcordPreload = join(__dirname, "nightcord-preload.js");
-    if (existsSync(nightcordPreload)) {
-        cpSync(nightcordPreload, join(outDist, "preload.js"));
+    const S7CordPreload = join(__dirname, "S7Cord-preload.js");
+    if (existsSync(S7CordPreload)) {
+        cpSync(S7CordPreload, join(outDist, "preload.js"));
     }
 
     // FFmpeg et YT-DLP (cherche dans le dossier local ou PATH)
@@ -155,19 +155,19 @@ require(path.join(__dirname, "dist", "desktop", "patcher.js"));
     const injectScript = join(__dirname, "inject-discord.ps1");
     if (existsSync(injectScript)) cpSync(injectScript, join(outDir, "inject-discord.ps1"));
 
-    const iconSrc = join(__dirname, "nightcord.ico");
+    const iconSrc = join(__dirname, "S7Cord.ico");
     if (existsSync(iconSrc)) {
         cpSync(iconSrc, join(outDir, "app.ico"));
         // Rcedit pour le branding
         try {
             const rcedit = join(__dirname, "node_modules", ".bin", "rcedit.cmd");
             if (existsSync(rcedit)) {
-                execSync(`"${rcedit}" "${discordExe}" --set-icon "${iconSrc}" --set-version-string "ProductName" "Nightcord" --set-version-string "FileDescription" "Nightcord"`, { stdio: "ignore" });
+                execSync(`"${rcedit}" "${discordExe}" --set-icon "${iconSrc}" --set-version-string "ProductName" "S7Cord" --set-version-string "FileDescription" "S7Cord"`, { stdio: "ignore" });
             }
         } catch (e) { }
     }
 
-    console.log(`[nightcord] Build terminé -> ${outDir}`);
+    console.log(`[S7Cord] Build terminé -> ${outDir}`);
 }
 
 function obfuscateDesktop() {
@@ -183,23 +183,23 @@ function obfuscateDesktop() {
 
 // ─── Execution du build ───────────────────────────────────────────────────────
 
-killNightcord();
+killS7Cord();
 const discord = findDiscordApp();
-buildEquicord();
+buildS7Cord();
 // obfuscateDesktop(); // Optionnel pour l'open source
-buildNightcordFromDiscord(discord);
+buildS7CordFromDiscord(discord);
 
 module.exports = {
-    appId: "com.nightcord.app",
-    productName: "Nightcord",
-    copyright: "Copyright 2026 Nightcord",
+    appId: "com.S7Cord.app",
+    productName: "S7Cord",
+    copyright: "Copyright 2026 S7Cord",
     extraMetadata: { main: "index.js" },
     asar: false,
     files: ["index.js", "dist/desktop/**/*", "!**/*.map", "!**/*.ts"],
     directories: { output: "release", buildResources: "desktop/assets" },
     win: {
         target: [{ target: "dir", arch: ["x64"] }],
-        icon: "nightcord.ico",
+        icon: "S7Cord.ico",
         requestedExecutionLevel: "asInvoker"
     }
 };

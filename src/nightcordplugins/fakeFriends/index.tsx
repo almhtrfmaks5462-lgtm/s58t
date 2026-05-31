@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import { addContextMenuPatch, NavContextMenuPatchCallback, removeContextMenuPatch } from "@api/ContextMenu";
 import { Modals, openModal } from "@utils/modal";
 import definePlugin from "@utils/types";
-import { RelationshipType } from "@vencord/discord-types/enums";
+import { RelationshipType } from "@S7Cord/discord-types/enums";
 import { findByProps } from "@webpack";
 import { ChannelStore, FluxDispatcher, GuildMemberStore, Menu, React, RelationshipStore, Toasts, UserStore, UserUtils } from "@webpack/common";
 
@@ -486,7 +486,7 @@ function askCount(title: string, max: number): Promise<number | null> {
                             onClick={confirm}
                             disabled={!valid}
                             style={{
-                                background: valid ? "var(--brand-experiment)" : "var(--button-secondary-background)",
+                                background: valid ? "var(--red)" : "var(--button-secondary-background)",
                                 border: "none", borderRadius: 4,
                                 color: "var(--white-500)",
                                 cursor: valid ? "pointer" : "not-allowed",
@@ -877,7 +877,7 @@ export default definePlugin({
     name: "FakeFriends",
     enabledByDefault: true,
     description: "Locally simulates Discord friends and requests. Persistent between reloads.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["ContextMenuAPI"],
 
     async start() {

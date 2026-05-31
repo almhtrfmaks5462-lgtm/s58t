@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,7 +15,7 @@ import definePlugin from "@utils/types";
 import { findStoreLazy } from "@webpack";
 import { React, RestAPI, ScrollerThin, Select,useEffect, useRef, useState } from "@webpack/common";
 
-import { t } from "../autoTranslateNightcord";
+import { t } from "../autoTranslateS7Cord";
 
 const RelationshipStore = findStoreLazy("RelationshipStore");
 const UserStore = findStoreLazy("UserStore");
@@ -349,7 +349,7 @@ export default definePlugin({
     name: "MassDM",
     enabledByDefault: true,
     description: "Sends a message to all your friends with an anti-rate-limit delay.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     headerBarButton: { icon: MassDMIcon, render: MassDMButton },
     start() { },
     stop() { state.aborted = true; },

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ function patchLatest() {
 
         if (!existsSync(app) || statSync(app).isDirectory()) return;
 
-        console.info("[Nightcord] Detected Host Update. Repatching...");
+        console.info("[S7Cord] Detected Host Update. Repatching...");
 
         renameSync(app, _app);
         mkdirSync(app);
@@ -58,9 +58,9 @@ function patchLatest() {
             main: "index.js"
         }));
         // Relative path for portability (works on any machine)
-        writeFileSync(join(app, "index.js"), "// Nightcord repatch\n\"use strict\";\nconst path = require(\"path\");\nrequire(path.join(__dirname, \"..\", \"app\", \"dist\", \"desktop\", \"patcher.js\"));");
+        writeFileSync(join(app, "index.js"), "// S7Cord repatch\n\"use strict\";\nconst path = require(\"path\");\nrequire(path.join(__dirname, \"..\", \"app\", \"dist\", \"desktop\", \"patcher.js\"));");
     } catch (err) {
-        console.error("[Nightcord] Failed to repatch latest host update", err);
+        console.error("[S7Cord] Failed to repatch latest host update", err);
     }
 }
 

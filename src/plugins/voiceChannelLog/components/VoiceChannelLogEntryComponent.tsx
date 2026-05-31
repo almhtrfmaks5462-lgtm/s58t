@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import "./VoiceChannelLogEntryComponent.css";
 
 import { openUserProfile } from "@utils/discord";
-import { Channel } from "@vencord/discord-types";
+import { Channel } from "@S7Cord/discord-types";
 import { ApplicationStore, Clickable, closeAllModals,IconUtils, NavigationRouter, Timestamp, Tooltip, UserStore } from "@webpack/common";
 
 import { getCallStartTime } from "../logs";

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import unusedImports from "eslint-plugin-unused-imports";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-    { ignores: ["dist", "browser", "packages/vencord-types"] },
+    { ignores: ["dist", "browser", "packages/S7Cord-types"] },
     {
         files: ["src/**/*.{tsx,ts,mts,mjs,js,jsx}", "eslint.config.mjs"],
         settings: {
@@ -59,7 +59,7 @@ export default defineConfig(
         },
         rules: {
             /*
-             * Since it's only been a month and Vencord has already been stolen
+             * Since it's only been a month and S7Cord has already been stolen
              * by random skids who rebranded it to "AlphaCord" and erased all license
              * information
              */

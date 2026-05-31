@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,10 +9,10 @@ import "./style.css";
 import { addContextMenuPatch, NavContextMenuPatchCallback, removeContextMenuPatch } from "@api/ContextMenu";
 import { DataStore } from "@api/index";
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { chooseFile, saveFile } from "@utils/web";
-import { CustomEmoji, UnicodeEmoji } from "@vencord/discord-types";
+import { CustomEmoji, UnicodeEmoji } from "@S7Cord/discord-types";
 import { Alerts, Button, EmojiStore, GuildStore, IconUtils, Menu, Toasts, useEffect, useState } from "@webpack/common";
 import { JSX } from "react";
 
@@ -403,7 +403,7 @@ export default definePlugin({
     name: "WhitelistedEmojis",
     description: "Adds the ability to disable all message emojis except for a whitelisted set.",
     tags: ["Chat", "Emotes"],
-    authors: [EquicordDevs.creations],
+    authors: [S7CordDevs.creations],
     patches: [
         {
             find: "queryEmojiResults({query:",

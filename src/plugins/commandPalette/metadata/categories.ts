@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -127,12 +127,12 @@ export const BUILT_IN_CATEGORIES: CommandCategory[] = [
     {
         id: DEFAULT_CATEGORY_ID,
         label: "Quick Actions",
-        description: "Common Equicord shortcuts"
+        description: "Common S7Cord shortcuts"
     },
     {
         id: "plugins",
         label: "Plugins",
-        description: "Manage Equicord and Vencord plugins"
+        description: "Manage S7Cord and S7Cord plugins"
     },
     {
         id: CONTEXT_PROVIDER_ID,
@@ -157,7 +157,7 @@ export const BUILT_IN_CATEGORIES: CommandCategory[] = [
     {
         id: "updates",
         label: "Updates",
-        description: "Stay up to date with Equicord"
+        description: "Stay up to date with S7Cord"
     },
     {
         id: "discord-settings",

@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { disableStyle, enableStyle } from "@api/Styles";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { ChannelRTCStore, ChannelStore, UserStore, VoiceStateStore } from "@webpack/common";
 
@@ -15,7 +15,7 @@ export default definePlugin({
     name: "FullVCPFP",
     description: "Makes avatars take up the entire vc tile",
     tags: ["Appearance", "Voice"],
-    authors: [EquicordDevs.mochienya],
+    authors: [S7CordDevs.mochienya],
     patches: [
         {
             find: "\"data-selenium-video-tile\":",

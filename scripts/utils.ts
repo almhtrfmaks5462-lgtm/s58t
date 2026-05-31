@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ export interface PluginData {
 }
 
 export const devs = {} as Record<string, Dev>;
-export const equicordDevs = {} as Record<string, Dev>;
+export const S7CordDevs = {} as Record<string, Dev>;
 
 export function getName(node: NamedDeclaration) {
     return node.name && isIdentifier(node.name) ? node.name.text : undefined;
@@ -99,26 +99,26 @@ export function parseDevs() {
     throw new Error("Could not find Devs constant");
 }
 
-export function parseEquicordDevs() {
+export function parseS7CordDevs() {
     const file = createSourceFile("constants.ts", readFileSync("src/utils/constants.ts", "utf8"), ScriptTarget.Latest);
 
     for (const child of file.getChildAt(0).getChildren()) {
         if (!isVariableStatement(child)) continue;
 
-        const devsDeclaration = child.declarationList.declarations.find(d => hasName(d, "EquicordDevs"));
+        const devsDeclaration = child.declarationList.declarations.find(d => hasName(d, "S7CordDevs"));
         if (!devsDeclaration?.initializer || !isCallExpression(devsDeclaration.initializer)) continue;
 
         const value = devsDeclaration.initializer.arguments[0];
 
-        if (!isSatisfiesExpression(value) || !isObjectLiteralExpression(value.expression)) throw new Error("Failed to parse EquicordDevs: not an object literal");
+        if (!isSatisfiesExpression(value) || !isObjectLiteralExpression(value.expression)) throw new Error("Failed to parse S7CordDevs: not an object literal");
 
         for (const prop of value.expression.properties) {
             const name = (prop.name as Identifier).text;
             const value = isPropertyAssignment(prop) ? prop.initializer : prop;
 
-            if (!isObjectLiteralExpression(value)) throw new Error(`Failed to parse EquicordDevs: ${name} is not an object literal`);
+            if (!isObjectLiteralExpression(value)) throw new Error(`Failed to parse S7CordDevs: ${name} is not an object literal`);
 
-            equicordDevs[name] = {
+            S7CordDevs[name] = {
                 name: (getObjectProp(value, "name") as StringLiteral).text,
                 id: (getObjectProp(value, "id") as BigIntLiteral).text.slice(0, -1)
             };
@@ -127,7 +127,7 @@ export function parseEquicordDevs() {
         return;
     }
 
-    throw new Error("Could not find EquicordDevs constant");
+    throw new Error("Could not find S7CordDevs constant");
 }
 
 export async function parseFile(fileName: string) {
@@ -201,13 +201,13 @@ export async function parseFile(fileName: string) {
                 case "authors":
                     if (!isArrayLiteralExpression(value)) throw fail("authors is not an array literal");
                     data.authors = value.elements.map(e => {
-                        // Support Devs.X / EquicordDevs.X style
+                        // Support Devs.X / S7CordDevs.X style
                         if (isPropertyAccessExpression(e)) {
-                            const d = devs[getName(e)!] || equicordDevs[getName(e)!];
+                            const d = devs[getName(e)!] || S7CordDevs[getName(e)!];
                             if (!d) throw fail(`couldn't look up author ${getName(e)}`);
                             return d;
                         }
-                        // Support inline { name: "...", id: 0n } style used in Nightcord plugins
+                        // Support inline { name: "...", id: 0n } style used in S7Cord plugins
                         if (isObjectLiteralExpression(e)) {
                             const nameProp = getObjectProp(e, "name");
                             const idProp = getObjectProp(e, "id");
@@ -261,7 +261,7 @@ export async function parseFile(fileName: string) {
             .join(posixSep)
             .replace(/\/index\.([jt]sx?)$/, "")
             .replace(/^src\/plugins\//, "")
-            .replace(/^src\/nightcordplugins\//, "");
+            .replace(/^src\/S7Cordplugins\//, "");
 
         return [data] as const;
     }

@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Logger } from "@utils/Logger";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { useEffect, useState } from "@webpack/common";
 import type { ReactNode } from "react";
 

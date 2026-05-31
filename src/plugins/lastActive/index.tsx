@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { Menu, NavigationRouter, RestAPI, Toasts, UserStore } from "@webpack/common";
 
@@ -136,7 +136,7 @@ export default definePlugin({
     name: "LastActive",
     description: "A plugin to jump to last active message from yourself or another user in a channel/server.",
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.Crxa],
+    authors: [S7CordDevs.Crxa],
     contextMenus: {
         "channel-context": ChannelContextMenuPatch,
         "user-context": UserContextMenuPatch,

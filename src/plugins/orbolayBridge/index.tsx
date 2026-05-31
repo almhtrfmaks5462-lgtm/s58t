@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { ChannelStore, FluxDispatcher, GuildMemberStore, StreamerModeStore, Toasts, UserStore, VoiceStateStore } from "@webpack/common";
 
@@ -315,7 +315,7 @@ export default definePlugin({
     name: "OrbolayBridge",
     description: "Bridge plugin to connect Orbolay to Discord",
     tags: ["Utility", "Voice"],
-    authors: [EquicordDevs.SpikeHD],
+    authors: [S7CordDevs.SpikeHD],
     settings,
     flux: {
         SPEAKING: handleSpeaking,

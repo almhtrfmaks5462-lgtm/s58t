@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -76,7 +76,7 @@ async function muteAllServers() {
         id: Toasts.genId(),
     });
 
-    // Étape 1 : Marquer tout comme lu (système Equicord)
+    // Étape 1 : Marquer tout comme lu (système S7Cord)
     markAllAsRead();
 
     // Étape 2 : Muter les serveurs
@@ -140,7 +140,7 @@ export default definePlugin({
     name: "MuteAllServers",
     enabledByDefault: true,
     description: "Right-click a server → mute all servers and mark all as read in one click.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
 
     start() {
         addContextMenuPatch("guild-context", guildContextPatch);

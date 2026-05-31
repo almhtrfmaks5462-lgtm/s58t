@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -78,7 +78,7 @@ ipcMain.handle(IpcEvents.WORLD_BOMB_TYPE, async (event, text: string, delay: num
         "}",
     ];
     const psScript = psLines.join("\r\n");
-    const tempDir = mkdtempSync(join(tmpdir(), "nightcord-wb-"));
+    const tempDir = mkdtempSync(join(tmpdir(), "S7Cord-wb-"));
     const tempFile = join(tempDir, "sendkeys.ps1");
     try {
         writeFileSync(tempFile, "\uFEFF" + psScript, "utf8");
@@ -104,7 +104,7 @@ function runPowershellScript(psScript: string): Promise<void> {
     const { writeFileSync, unlinkSync, mkdtempSync, rmSync } = require("fs");
     const { join } = require("path");
     const { tmpdir } = require("os");
-    const tempDir = mkdtempSync(join(tmpdir(), "nightcord-ps-"));
+    const tempDir = mkdtempSync(join(tmpdir(), "S7Cord-ps-"));
     const tempFile = join(tempDir, "script.ps1");
     return new Promise<void>((resolve, reject) => {
         try {
@@ -221,7 +221,7 @@ ipcMain.handle(IpcEvents.WORLD_BOMB_SEQUENCE, async (
     lines.push("} catch { exit 1 }");
 
     const psScript = lines.join("\r\n");
-    const tempDir = mkdtempSync(join(tmpdir(), "nightcord-wbs-"));
+    const tempDir = mkdtempSync(join(tmpdir(), "S7Cord-wbs-"));
     const tempFile = join(tempDir, "sequence.ps1");
     try {
         writeFileSync(tempFile, "\uFEFF" + psScript, "utf8");
@@ -633,7 +633,7 @@ ipcMain.handle(IpcEvents.OPEN_MONACO_EDITOR, async () => {
     }
 
     monacoWin = new BrowserWindow({
-        title: "Nightcord QuickCSS Editor",
+        title: "S7Cord QuickCSS Editor",
         autoHideMenuBar: true,
         darkTheme: true,
         webPreferences: {
@@ -781,9 +781,9 @@ ipcMain.handle(IpcEvents.RELAUNCH_APP, async () => {
     app.exit(0);
 });
 
-const OFFICIAL_UPDATE_URL = "https://git.nightcord.su/nightcord/nightcord/releases/download/latest/Nightcord-Installer.exe";
+const OFFICIAL_UPDATE_URL = "https://git.S7Cord.su/S7Cord/S7Cord/releases/download/latest/S7Cord-Installer.exe";
 
-ipcMain.handle(IpcEvents.NIGHTCORD_DOWNLOAD_AND_RUN, async (_, url: string) => {
+ipcMain.handle(IpcEvents.S7Cord_DOWNLOAD_AND_RUN, async (_, url: string) => {
     if (url !== OFFICIAL_UPDATE_URL) {
         throw new Error("Unauthorized update URL");
     }
@@ -794,7 +794,7 @@ ipcMain.handle(IpcEvents.NIGHTCORD_DOWNLOAD_AND_RUN, async (_, url: string) => {
     const fs = require("original-fs");
     const crypto = require("crypto");
 
-    const tmpPath = path.join(os.tmpdir(), "NightcordUpdate-Setup.exe");
+    const tmpPath = path.join(os.tmpdir(), "S7CordUpdate-Setup.exe");
 
     await new Promise<void>((resolve, reject) => {
         https.get(url, (res: any) => {
@@ -818,8 +818,8 @@ ipcMain.handle(IpcEvents.NIGHTCORD_DOWNLOAD_AND_RUN, async (_, url: string) => {
         type: "info",
         buttons: ["Install update", "Cancel"],
         defaultId: 0,
-        title: "Nightcord Update",
-        message: "A Nightcord update is available.",
+        title: "S7Cord Update",
+        message: "A S7Cord update is available.",
         detail: "Do you want to install the update now?"
     });
     if (response === 1) return false;
@@ -852,7 +852,7 @@ ipcMain.handle(IpcEvents.INSTALL_VB_CABLE, async () => {
     const fs = require("fs");
 
     const zipUrl = "https://download.vb-audio.com/Download_Html/VBCABLE_Setup.zip";
-    const tmpDir = path.join(os.tmpdir(), "Nightcord-VBCable");
+    const tmpDir = path.join(os.tmpdir(), "S7Cord-VBCable");
     const tmpZip = path.join(os.tmpdir(), "VBCable_Setup.zip");
 
     try { if (fs.existsSync(tmpDir)) fs.rmSync(tmpDir, { recursive: true, force: true }); } catch { }
@@ -903,7 +903,7 @@ ipcMain.handle(IpcEvents.INSTALL_VB_CABLE, async () => {
 
         return { success: true };
     } catch (err: any) {
-        console.error("[Nightcord] VBCable install failed:", err);
+        console.error("[S7Cord] VBCable install failed:", err);
         return { success: false, error: "Installation failed: " + (err.message || err) };
     } finally {
         try { fs.unlinkSync(tmpZip); } catch {}

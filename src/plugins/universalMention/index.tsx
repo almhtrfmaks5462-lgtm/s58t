@@ -1,14 +1,14 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
 import { Notice } from "@components/Notice";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { ChannelStore, UserStore } from "@webpack/common";
 
 const settings = definePluginSettings({
@@ -37,7 +37,7 @@ function getCachedUsers(): User[] {
 
 export default definePlugin({
     name: "UniversalMention",
-    authors: [EquicordDevs.justjxke],
+    authors: [S7CordDevs.justjxke],
     description: "Mention any user, regardless of channel access.",
     tags: ["Chat", "Servers", "Utility"],
     settings,

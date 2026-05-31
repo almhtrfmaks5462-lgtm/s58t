@@ -1,11 +1,11 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { settings as PluginSettings } from "@plugins/toastNotifications/index";
-import { Channel, Message } from "@vencord/discord-types";
+import { Channel, Message } from "@S7Cord/discord-types";
 import { createRoot } from "@webpack/common";
 import type { JSX } from "react";
 import type { Root } from "react-dom/client";

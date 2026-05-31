@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -37,7 +37,7 @@ import {
     getNewSettingsSize,
     getUpdatedPlugins,
     initializeChangelog,
-    NIGHTCORD_REPO_URL,
+    S7Cord_REPO_URL,
     saveUpdateSession,
     UpdateSession,
 } from "./changelogManager";
@@ -224,7 +224,7 @@ function UpdateLogCard({
 }
 
 function ChangelogContent() {
-    const repo = NIGHTCORD_REPO_URL;
+    const repo = S7Cord_REPO_URL;
     const repoErr = null;
     const repoPending = false;
     const [changelog, setChangelog] = React.useState<ChangelogEntry[]>([]);
@@ -310,7 +310,7 @@ function ChangelogContent() {
         const checkRecentStatus = async () => {
             try {
                 const lastRepoCheck = await getLastRepositoryCheckHash();
-                const updates = await VencordNative.updater.getUpdates();
+                const updates = await S7CordNative.updater.getUpdates();
 
                 if (updates.ok) {
                     const currentRepoHash =
@@ -338,7 +338,7 @@ function ChangelogContent() {
 
         try {
             // check if the repository was recently refreshed and that nothing has changed
-            const updates = await VencordNative.updater.getUpdates();
+            const updates = await S7CordNative.updater.getUpdates();
             const lastRepoCheck = await getLastRepositoryCheckHash();
             const currentRepoHash =
                 updates.ok && updates.value.length > 0
@@ -552,7 +552,7 @@ function ChangelogContent() {
 
             <Heading className={Margins.top20}>Repository</Heading>
             <Paragraph className={Margins.bottom8}>
-                This is the GitHub repository where Nightcord fetches updates from.
+                This is the GitHub repository where S7Cord fetches updates from.
             </Paragraph>
             <Paragraph color="text-subtle">
                 {repoPending ? (

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,7 +10,7 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Logger } from "@utils/Logger";
 import { classes } from "@utils/misc";
 import { IconComponent } from "@utils/types";
-import { Channel } from "@vencord/discord-types";
+import { Channel } from "@S7Cord/discord-types";
 import { findCssClassesLazy } from "@webpack";
 import { Clickable, Tooltip, useEffect,useState } from "@webpack/common";
 import { HTMLProps, JSX, MouseEventHandler, ReactNode } from "react";
@@ -103,18 +103,18 @@ export const BackpackedButtons = new Set<string>();
 export const backpackListeners = new Set<() => void>();
 export function notifyBackpackChange() { backpackListeners.forEach(l => l()); }
 
-function VencordChatBarButtons(props: ChatBarProps) {
+function S7CordChatBarButtons(props: ChatBarProps) {
     const { chatBarButtons } = useSettings(["uiElements.chatBarButtons.*"]).uiElements;
     const [, forceUpdate] = useState(0);
 
     useEffect(() => {
         const listener = () => forceUpdate(n => n + 1);
         addStealthListener(listener);
-        window.addEventListener("nightcord-stealth-change", listener);
+        window.addEventListener("S7Cord-stealth-change", listener);
         backpackListeners.add(listener);
         return () => {
             removeStealthListener(listener);
-            window.removeEventListener("nightcord-stealth-change", listener);
+            window.removeEventListener("S7Cord-stealth-change", listener);
             backpackListeners.delete(listener);
         };
     }, []);
@@ -139,7 +139,7 @@ function VencordChatBarButtons(props: ChatBarProps) {
 export function _injectButtons(buttons: ReactNode[], props: ChatBarProps) {
     if (props.disabled || buttons.length === 0) return;
 
-    buttons.unshift(<VencordChatBarButtons key="vencord-chat-buttons" {...props} />);
+    buttons.unshift(<S7CordChatBarButtons key="S7Cord-chat-buttons" {...props} />);
 }
 
 /**
@@ -183,4 +183,4 @@ export const ChatBarButton = ErrorBoundary.wrap((props: ChatBarButtonProps) => {
     );
 }, { noop: true });
 
-/* Vencord Buttons context menu removed — managed by Backpack plugin */
+/* S7Cord Buttons context menu removed — managed by Backpack plugin */

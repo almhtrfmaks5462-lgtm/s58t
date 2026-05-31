@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -18,7 +18,7 @@ export function validateSender(frame: WebFrameMain | null, event: string) {
         throw new Error(`ipc[${event}]: Invalid URL ${frame.url}`);
     }
 
-    if (protocol === "file:" || protocol === "vesktop:" || protocol === "Nightcord:") return;
+    if (protocol === "file:" || protocol === "vesktop:" || protocol === "S7Cord:") return;
 
     if (!DISCORD_HOSTNAMES.includes(hostname)) {
         throw new Error(`ipc[${event}]: Disallowed hostname ${hostname}`);

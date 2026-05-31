@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 const Millis = {
@@ -55,7 +55,7 @@ export default definePlugin({
     name: "CustomStatusTimeouts",
     description: "Adds configurable timeout presets to the status (presence) menu.",
     tags: ["Activity", "Utility"],
-    authors: [EquicordDevs.Kiri, EquicordDevs.thororen],
+    authors: [S7CordDevs.Kiri, S7CordDevs.thororen],
     settings,
     patches: [
         {

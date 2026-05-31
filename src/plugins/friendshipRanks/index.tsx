@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -14,7 +14,7 @@ import { Paragraph } from "@components/Paragraph";
 import { Devs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin from "@utils/types";
-import { RenderModalProps } from "@vencord/discord-types";
+import { RenderModalProps } from "@S7Cord/discord-types";
 import { Forms, Modal,openModal, RelationshipStore } from "@webpack/common";
 
 interface rankInfo {
@@ -43,43 +43,43 @@ const ranks: rankInfo[] =
             title: "Sprout",
             description: "Your friendship is just starting",
             requirement: 0,
-            iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/sprout.png"
+            iconSrc: "https://S7Cord.org/assets/plugins/friendshipRanks/sprout.png"
         },
         {
             title: "Blooming",
             description: "Your friendship is getting there! (1 Month)",
             requirement: 30,
-            iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/blooming.png"
+            iconSrc: "https://S7Cord.org/assets/plugins/friendshipRanks/blooming.png"
         },
         {
             title: "Burning",
             description: "Your friendship has reached terminal velocity (3 Months)",
             requirement: 90,
-            iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/burning.png"
+            iconSrc: "https://S7Cord.org/assets/plugins/friendshipRanks/burning.png"
         },
         {
             title: "Fighter",
             description: "Your friendship is strong (6 Months)",
             requirement: 182.5,
-            iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/fighter.png"
+            iconSrc: "https://S7Cord.org/assets/plugins/friendshipRanks/fighter.png"
         },
         {
             title: "Star",
             description: "Your friendship has been going on for a WHILE (1 Year)",
             requirement: 365,
-            iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/star.png"
+            iconSrc: "https://S7Cord.org/assets/plugins/friendshipRanks/star.png"
         },
         {
             title: "Royal",
             description: "Your friendship has gone through thick and thin- a whole 2 years!",
             requirement: 730,
-            iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/royal.png"
+            iconSrc: "https://S7Cord.org/assets/plugins/friendshipRanks/royal.png"
         },
         {
             title: "Besties",
             description: "How do you even manage this??? (5 Years)",
             requirement: 1826.25,
-            iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/besties.png"
+            iconSrc: "https://S7Cord.org/assets/plugins/friendshipRanks/besties.png"
         }
     ];
 

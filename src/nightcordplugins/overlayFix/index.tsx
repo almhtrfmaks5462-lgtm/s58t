@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 export default definePlugin({
     name: "OverlayFix",
     description: "Attempts to fix the overlay by tricking Discord about the process name (masquerades as discord.exe).",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     cannotBeDisabled: false,
     enabledByDefault: false,
     requiresRestart: true,
@@ -32,7 +32,7 @@ export default definePlugin({
                                             return (...args: any[]) => {
                                                 const argv = pValue.apply(pTarget, args);
                                                 if (Array.isArray(argv) && argv[0]) {
-                                                    argv[0] = argv[0].replace(/nightcord\.exe/i, "discord.exe");
+                                                    argv[0] = argv[0].replace(/S7Cord\.exe/i, "discord.exe");
                                                 }
                                                 return argv;
                                             };

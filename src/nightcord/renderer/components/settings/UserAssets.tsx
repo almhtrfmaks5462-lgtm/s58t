@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./UserAssets.css";
 
-import { BaseText, Button, FormSwitch } from "@Nightcord/types/components";
+import { BaseText, Button, FormSwitch } from "@S7Cord/types/components";
 import {
     Margins,
     ModalCloseButton,
@@ -17,8 +17,8 @@ import {
     openModal,
     wordsFromCamel,
     wordsToTitle
-} from "@Nightcord/types/utils";
-import { showToast, useState } from "@Nightcord/types/webpack/common";
+} from "@S7Cord/types/utils";
+import { showToast, useState } from "@S7Cord/types/webpack/common";
 import { UserAssetType } from "main/userAssets";
 import { useSettings } from "renderer/settings";
 
@@ -87,7 +87,7 @@ function Asset({ asset }: { asset: UserAssetType }) {
             <div className="vcd-user-assets-asset">
                 <img
                     className="vcd-user-assets-image"
-                    src={`nightcord://assets/${asset}?v=${version}`}
+                    src={`S7Cord://assets/${asset}?v=${version}`}
                     alt=""
                     style={{ imageRendering }}
                 />

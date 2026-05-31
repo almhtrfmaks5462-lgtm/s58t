@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 rini
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,10 +15,10 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Heading } from "@components/Heading";
 import ircColors from "@plugins/ircColors";
 import mentionAvatars from "@plugins/mentionAvatars";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/index";
 import definePlugin, { OptionType } from "@utils/types";
-import { GuildMember, Message, RenderModalProps, User } from "@vencord/discord-types";
+import { GuildMember, Message, RenderModalProps, User } from "@S7Cord/discord-types";
 import { findByCodeLazy, findStoreLazy } from "@webpack";
 import { ChannelStore, GuildMemberStore, GuildStore, Menu, MessageStore, Modal, openModal, RelationshipStore, StreamerModeStore, TextInput, useEffect, useState } from "@webpack/common";
 import { JSX } from "react";
@@ -1070,7 +1070,7 @@ const settings = definePluginSettings({
 export default definePlugin({
     name: "ShowMeYourName",
     description: "Display any permutation of custom nicknames, friend nicknames, server nicknames, display names, and usernames in chat.",
-    authors: [EquicordDevs.Etorix, Devs.Rini, Devs.TheKodeToad, Devs.sadan, Devs.prism],
+    authors: [S7CordDevs.Etorix, Devs.Rini, Devs.TheKodeToad, Devs.sadan, Devs.prism],
     tags: ["Appearance", "Customisation"],
     searchTerms: ["SMYN", "Nicknames", "Custom Nicknames"],
     isModified: true,

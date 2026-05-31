@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -381,7 +381,7 @@ function ThemesTab() {
     const [themeNames, setThemeNames] = useState<Record<string, string>>(() => {
         return settings.themeNames ?? {};
     });
-    const [themeDir] = useAwaiter(VencordNative.themes.getThemesDir);
+    const [themeDir] = useAwaiter(S7CordNative.themes.getThemesDir);
     const [searchQuery, setSearchQuery] = useState("");
     const [filter, setFilter] = useState(ThemeFilter.All);
 
@@ -398,14 +398,14 @@ function ThemesTab() {
     async function changeThemeLibraryURLs() {
         settings.themeLinks = settings.themeLinks.map(link => {
             if (link.startsWith("https://discord-themes.com/api")) {
-                return link.replace("https://discord-themes.com/api", "https://themes.equicord.org/api");
+                return link.replace("https://discord-themes.com/api", "https://themes.S7Cord.org/api");
             }
             return link;
         });
     }
 
     async function refreshLocalThemes() {
-        const themes = await VencordNative.themes.getThemesList();
+        const themes = await S7CordNative.themes.getThemesList();
         const themeInfo: ThemeHeader[] = [];
 
         for (const { fileName, content } of themes) {
@@ -476,7 +476,7 @@ function ThemesTab() {
             return new Promise<void>((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onload = () => {
-                    VencordNative.themes.uploadTheme(name, reader.result as string)
+                    S7CordNative.themes.uploadTheme(name, reader.result as string)
                         .then(resolve)
                         .catch(reject);
                 };
@@ -686,7 +686,7 @@ function ThemesTab() {
                 ) : (
                     <QuickAction
                         text="Open Themes Folder"
-                        action={() => VencordNative.themes.openFolder()}
+                        action={() => S7CordNative.themes.openFolder()}
                         Icon={FolderIcon}
                     />
                 )}
@@ -697,7 +697,7 @@ function ThemesTab() {
                 />
                 <QuickAction
                     text="Edit QuickCSS"
-                    action={() => VencordNative.quickCss.openEditor()}
+                    action={() => S7CordNative.quickCss.openEditor()}
                     Icon={PaintbrushIcon}
                 />
                 {Settings.plugins.ClientTheme?.enabled && (
@@ -728,7 +728,7 @@ function ThemesTab() {
             />
 
             <Notice.Info className={Margins.bottom16} style={{ width: "100%" }}>
-                Looking for themes? Check out <Link href="https://nightcord.su/themes">NightCord Themes</Link> or search on <Link href="https://github.com/search?q=discord+theme">GitHub</Link>. When downloading from BetterDiscord, click "Download" and place the .theme.css file into your themes folder.
+                Looking for themes? Check out <Link href="https://S7Cord.su/themes">S7Cord Themes</Link> or search on <Link href="https://github.com/search?q=discord+theme">GitHub</Link>. When downloading from BetterDiscord, click "Download" and place the .theme.css file into your themes folder.
             </Notice.Info>
 
             <div className={cl("link-row")}>
@@ -829,7 +829,7 @@ function ThemesTab() {
                                     onChange={enabled => onLocalThemeChange(usercssTheme.fileName, enabled)}
                                     onDelete={async () => {
                                         onLocalThemeChange(usercssTheme.fileName, false);
-                                        await VencordNative.themes.deleteTheme(usercssTheme.fileName);
+                                        await S7CordNative.themes.deleteTheme(usercssTheme.fileName);
                                         refreshLocalThemes();
                                     }}
                                     onSettingsReset={refreshLocalThemes}
@@ -846,7 +846,7 @@ function ThemesTab() {
                                 onChange={enabled => onLocalThemeChange(localTheme.fileName, enabled)}
                                 onDelete={async () => {
                                     onLocalThemeChange(localTheme.fileName, false);
-                                    await VencordNative.themes.deleteTheme(localTheme.fileName);
+                                    await S7CordNative.themes.deleteTheme(localTheme.fileName);
                                     refreshLocalThemes();
                                 }}
                                 showDeleteButton
@@ -878,7 +878,7 @@ export function CspErrorCard() {
     const allowUrl = async (url: string) => {
         const { origin: baseUrl, host } = new URL(url);
 
-        const result = await VencordNative.csp.requestAddOverride(baseUrl, ["connect-src", "img-src", "style-src", "font-src"], "Equicord Themes");
+        const result = await S7CordNative.csp.requestAddOverride(baseUrl, ["connect-src", "img-src", "style-src", "font-src"], "S7Cord Themes");
         if (result !== "ok") return;
 
         CspBlockedUrls.forEach(url => {

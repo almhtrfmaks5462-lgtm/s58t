@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,10 +8,10 @@ import "./style.css";
 
 import { DecoratorProps } from "@api/MemberListDecorators";
 import { iconsModule } from "@plugins/_core/concatenatedModules";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { ChannelStore, moment, Tooltip, UserStore } from "@webpack/common";
 
 import { settings } from "./settings";
@@ -66,7 +66,7 @@ const StreakBadge = ({ userId }: { userId: string; }) => {
 export default definePlugin({
     name: "Streaks",
     description: "Shows a streak next to a user when you exchange DMs with them on consecutive days.",
-    authors: [EquicordDevs.Moowi, Devs.thororen],
+    authors: [S7CordDevs.Moowi, Devs.thororen],
     tags: ["Friends", "Fun"],
     dependencies: ["MessageDecorationsAPI", "MemberListDecoratorsAPI", "ConcatenatedModules"],
     settings,

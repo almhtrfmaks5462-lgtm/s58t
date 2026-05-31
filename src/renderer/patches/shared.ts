@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Patch } from "@equicord/types/utils/types";
+import { Patch } from "@S7Cord/types/utils/types";
 
 window.VesktopPatchGlobals = {};
 
@@ -17,7 +17,7 @@ export function addPatch<P extends PatchData>(p: P) {
     const { patches, ...globals } = p;
 
     for (const patch of patches) {
-        Vencord.Plugins.addPatch(patch, "Equibop", "VesktopPatchGlobals");
+        S7Cord.Plugins.addPatch(patch, "Equibop", "VesktopPatchGlobals");
     }
 
     Object.assign(VesktopPatchGlobals, globals);

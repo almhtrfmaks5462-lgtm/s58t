@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,8 +17,8 @@
 */
 
 import { classNameFactory } from "@utils/css";
-import { Guild, GuildMember, Role } from "@vencord/discord-types";
-import { PermissionOverwriteType } from "@vencord/discord-types/enums";
+import { Guild, GuildMember, Role } from "@S7Cord/discord-types";
+import { PermissionOverwriteType } from "@S7Cord/discord-types/enums";
 import { extractAndLoadChunksLazy, findByPropsLazy } from "@webpack";
 import { GuildRoleStore } from "@webpack/common";
 

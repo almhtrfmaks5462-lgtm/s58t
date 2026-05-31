@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/index";
+import { S7CordDevs } from "@utils/index";
 import definePlugin, { OptionType } from "@utils/types";
 
 const MIDDLE_CLICK = 1;
@@ -78,7 +78,7 @@ const settings = definePluginSettings({
 export default definePlugin({
     name: "MiddleClickTweaks",
     description: "Various middle click tweaks, such as with pasting and link opening.",
-    authors: [EquicordDevs.Etorix, EquicordDevs.korzi],
+    authors: [S7CordDevs.Etorix, S7CordDevs.korzi],
     settings,
 
     tags: ["Utility"],

@@ -1,17 +1,17 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "ShowResourceChannels",
     description: "shows the channels hidden behind the server resources in the channel list",
     tags: ["Servers"],
-    authors: [EquicordDevs.VillainsRule],
+    authors: [S7CordDevs.VillainsRule],
     patches: [
         {
             find: ".GUILD_DIRECTORY:null",

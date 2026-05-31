@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,35 +31,35 @@ export interface Style {
     dom: HTMLStyleElement | null;
 }
 
-export const styleMap = window.VencordStyles ??= new Map();
+export const styleMap = window.S7CordStyles ??= new Map();
 
-export const vencordRootNode = document.createElement("vencord-root");
+export const S7CordRootNode = document.createElement("S7Cord-root");
 /**
- * Houses all Vencord core styles. This includes all imported css files
+ * Houses all S7Cord core styles. This includes all imported css files
  */
-export const coreStyleRootNode = document.createElement("vencord-styles");
+export const coreStyleRootNode = document.createElement("S7Cord-styles");
 /**
  * Houses all plugin specific managed styles
  */
-export const managedStyleRootNode = document.createElement("vencord-managed-styles");
+export const managedStyleRootNode = document.createElement("S7Cord-managed-styles");
 /**
  * Houses the user's themes and quick css
  */
-export const userStyleRootNode = document.createElement("vencord-user-styles");
+export const userStyleRootNode = document.createElement("S7Cord-user-styles");
 
-vencordRootNode.style.display = "none";
-vencordRootNode.append(coreStyleRootNode, managedStyleRootNode, userStyleRootNode);
+S7CordRootNode.style.display = "none";
+S7CordRootNode.append(coreStyleRootNode, managedStyleRootNode, userStyleRootNode);
 
 export function initStyles() {
-    const osValuesNode = createAndAppendStyle("vencord-os-theme-values", coreStyleRootNode);
-    createAndAppendStyle("vencord-text", coreStyleRootNode).textContent = generateTextCss();
-    const rendererCssNode = createAndAppendStyle("vencord-css-core", coreStyleRootNode);
+    const osValuesNode = createAndAppendStyle("S7Cord-os-theme-values", coreStyleRootNode);
+    createAndAppendStyle("S7Cord-text", coreStyleRootNode).textContent = generateTextCss();
+    const rendererCssNode = createAndAppendStyle("S7Cord-css-core", coreStyleRootNode);
     const vesktopCssNode = (IS_VESKTOP || IS_EQUIBOP) ? createAndAppendStyle("vesktop-css-core", coreStyleRootNode) : null;
-    createAndAppendStyle("vencord-margins", coreStyleRootNode).textContent = generateMarginCss();
+    createAndAppendStyle("S7Cord-margins", coreStyleRootNode).textContent = generateMarginCss();
 
-    VencordNative.native.getRendererCss().then(css => rendererCssNode.textContent = css);
+    S7CordNative.native.getRendererCss().then(css => rendererCssNode.textContent = css);
     if (IS_DEV) {
-        VencordNative.native.onRendererCssUpdate(newCss => {
+        S7CordNative.native.onRendererCssUpdate(newCss => {
             rendererCssNode.textContent = newCss;
         });
     }
@@ -71,7 +71,7 @@ export function initStyles() {
         });
     }
 
-    VencordNative.themes.getSystemValues().then(values => {
+    S7CordNative.themes.getSystemValues().then(values => {
         const variables = Object.entries(values)
             .filter(([, v]) => !!v)
             .map(([k, v]) => `--${k}: ${v};`)
@@ -81,7 +81,7 @@ export function initStyles() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.documentElement.append(vencordRootNode);
+    document.documentElement.append(S7CordRootNode);
 }, { once: true });
 
 export function requireStyle(name: string) {
@@ -108,7 +108,7 @@ export function enableStyle(name: string) {
 
     if (!style.dom) {
         style.dom = document.createElement("style");
-        style.dom.dataset.vencordName = style.name;
+        style.dom.dataset.S7CordName = style.name;
     }
     compileStyle(style);
 

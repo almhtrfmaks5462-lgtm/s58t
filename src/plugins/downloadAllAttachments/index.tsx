@@ -1,15 +1,15 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { CloudDownloadIcon } from "@components/Icons";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import { pluralise } from "@utils/misc";
 import definePlugin from "@utils/types";
-import { Message, MessageAttachment } from "@vencord/discord-types";
+import { Message, MessageAttachment } from "@S7Cord/discord-types";
 import { ChannelStore, showToast, Toasts } from "@webpack/common";
 
 const logger = new Logger("DownloadAllAttachments");
@@ -83,7 +83,7 @@ export default definePlugin({
     name: "DownloadAllAttachments",
     description: "Adds a popover button to download all attachments in a message at once.",
     tags: ["Utility", "Chat"],
-    authors: [EquicordDevs.dhopcs],
+    authors: [S7CordDevs.dhopcs],
     dependencies: ["MessagePopoverAPI"],
     messagePopoverButton: {
         icon: CloudDownloadIcon,

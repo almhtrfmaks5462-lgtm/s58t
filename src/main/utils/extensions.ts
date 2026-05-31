@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ export async function installExt(id: string) {
 
         const buf = await fetchBuffer(url, {
             headers: {
-                "User-Agent": `Electron ${process.versions.electron} ~ Nightcord (https://git.nightcord.su/nightcord/nightcord)`
+                "User-Agent": `Electron ${process.versions.electron} ~ S7Cord (https://git.S7Cord.su/S7Cord/S7Cord)`
             }
         });
 

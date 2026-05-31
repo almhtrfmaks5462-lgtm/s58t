@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,10 +7,10 @@
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
-const STYLE_ID = "nightcord-hide-native-buttons";
+const STYLE_ID = "S7Cord-hide-native-buttons";
 
 const CSS = `
-/* ── Nightcord : suppression boutons natifs Discord non désirés ── */
+/* ── S7Cord : suppression boutons natifs Discord non désirés ── */
 [aria-label="Open Logs"],
 [aria-label="Help"],
 [aria-label="Aide"],

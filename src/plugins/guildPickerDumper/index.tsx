@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
-import type { Guild } from "@vencord/discord-types";
+import type { Guild } from "@S7Cord/discord-types";
 import { EmojiStore, Menu, StickersStore } from "@webpack/common";
 import { zipSync } from "fflate";
 
@@ -96,7 +96,7 @@ export default definePlugin({
     name: "GuildPickerDumper",
     description: "Context menu to dump and download a server's emojis and stickers.",
     tags: ["Emotes", "Servers", "Utility"],
-    authors: [EquicordDevs.Cortex, Devs.Samwich, EquicordDevs.Synth, Devs.thororen],
+    authors: [S7CordDevs.Cortex, Devs.Samwich, S7CordDevs.Synth, Devs.thororen],
     contextMenus: {
         "guild-context": Patch,
         "guild-header-popout": Patch

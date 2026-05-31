@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -30,7 +30,7 @@ function applyLimiter(data: StreamData) {
     if (data.stream.getAudioTracks().length === 0) return;
 
     // Ignore local user's microphone to prevent WebRTC crashes (which cause disconnect/reconnect loops on mute)
-    const UserStore = (window as any).Vencord?.Webpack?.findByStoreName?.("UserStore") || (window as any).Vencord?.Webpack?.common?.UserStore;
+    const UserStore = (window as any).S7Cord?.Webpack?.findByStoreName?.("UserStore") || (window as any).S7Cord?.Webpack?.common?.UserStore;
     const myId = UserStore?.getCurrentUser?.()?.id;
     if (myId && (data.id === myId || data.id === "default" || data.id === "local")) return;
 

@@ -47,7 +47,7 @@
 .vc-gif-collections-sort-input {
     margin-right: 10px;
     cursor: pointer;
-    accent-color: var(--brand-experiment);
+    accent-color: var(--red);
 }
 
 .vc-gif-collections-sort-label:hover {

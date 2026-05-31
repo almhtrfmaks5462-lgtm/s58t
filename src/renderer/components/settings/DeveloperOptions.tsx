@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { BaseText, Button, Heading, Paragraph, TextButton } from "@equicord/types/components";
+import { BaseText, Button, Heading, Paragraph, TextButton } from "@S7Cord/types/components";
 import {
     Margins,
     ModalCloseButton,
@@ -14,8 +14,8 @@ import {
     ModalSize,
     openModal,
     useForceUpdater
-} from "@equicord/types/utils";
-import { Toasts } from "@equicord/types/webpack/common";
+} from "@S7Cord/types/utils";
+import { Toasts } from "@S7Cord/types/webpack/common";
 import { Settings } from "shared/settings";
 
 import { cl, SettingsComponent } from "./Settings";
@@ -36,8 +36,8 @@ function openDeveloperOptionsModal(settings: Settings) {
 
             <ModalContent>
                 <div style={{ padding: "1em 0" }}>
-                    <Heading tag="h5">Equicord Location</Heading>
-                    <EquicordLocationPicker settings={settings} />
+                    <Heading tag="h5">S7Cord Location</Heading>
+                    <S7CordLocationPicker settings={settings} />
 
                     <Heading tag="h5" className={Margins.top16}>
                         Debugging
@@ -54,20 +54,20 @@ function openDeveloperOptionsModal(settings: Settings) {
     ));
 }
 
-const EquicordLocationPicker: SettingsComponent = ({ settings }) => {
+const S7CordLocationPicker: SettingsComponent = ({ settings }) => {
     const forceUpdate = useForceUpdater();
-    const usingCustomEquicordDir = VesktopNative.fileManager.isUsingCustomVencordDir();
+    const usingCustomS7CordDir = VesktopNative.fileManager.isUsingCustomS7CordDir();
 
     return (
         <>
             <Paragraph>
-                Equicord files are loaded from{" "}
-                {usingCustomEquicordDir ? (
+                S7Cord files are loaded from{" "}
+                {usingCustomS7CordDir ? (
                     <TextButton
                         variant="link"
                         onClick={e => {
                             e.preventDefault();
-                            VesktopNative.fileManager.showCustomVencordDir();
+                            VesktopNative.fileManager.showCustomS7CordDir();
                         }}
                     >
                         a custom location
@@ -80,13 +80,13 @@ const EquicordLocationPicker: SettingsComponent = ({ settings }) => {
                 <Button
                     size={"small"}
                     onClick={async () => {
-                        const choice = await VesktopNative.fileManager.selectEquicordDir();
+                        const choice = await VesktopNative.fileManager.selectS7CordDir();
                         switch (choice) {
                             case "cancelled":
                                 break;
                             case "ok":
                                 Toasts.show({
-                                    message: "Equicord install changed. Fully restart Equibop to apply.",
+                                    message: "S7Cord install changed. Fully restart Equibop to apply.",
                                     id: Toasts.genId(),
                                     type: Toasts.Type.SUCCESS
                                 });
@@ -94,7 +94,7 @@ const EquicordLocationPicker: SettingsComponent = ({ settings }) => {
                             case "invalid":
                                 Toasts.show({
                                     message:
-                                        "You did not choose a valid Equicord install. Make sure you're selecting the dist dir!",
+                                        "You did not choose a valid S7Cord install. Make sure you're selecting the dist dir!",
                                     id: Toasts.genId(),
                                     type: Toasts.Type.FAILURE
                                 });
@@ -109,7 +109,7 @@ const EquicordLocationPicker: SettingsComponent = ({ settings }) => {
                     size={"small"}
                     variant="dangerPrimary"
                     onClick={async () => {
-                        await VesktopNative.fileManager.selectEquicordDir(null);
+                        await VesktopNative.fileManager.selectS7CordDir(null);
                         forceUpdate();
                     }}
                 >

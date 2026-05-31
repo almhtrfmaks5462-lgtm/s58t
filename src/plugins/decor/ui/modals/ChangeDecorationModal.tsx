@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -23,7 +23,7 @@ import SectionedGridList from "@plugins/decor/ui/components/SectionedGridList";
 import { copyWithToast, openInviteModal } from "@utils/discord";
 import { Margins } from "@utils/margins";
 import { Queue } from "@utils/Queue";
-import { RenderModalProps, User } from "@vencord/discord-types";
+import { RenderModalProps, User } from "@S7Cord/discord-types";
 import { closeAllModals, ConfirmModal, FluxDispatcher, Forms, GuildStore, Modal, NavigationRouter, openModal, Parser, Tooltip, useEffect, UserStore, UserSummaryItem, UserUtils, useState } from "@webpack/common";
 
 import { openCreateDecorationModal } from "./CreateDecorationModal";

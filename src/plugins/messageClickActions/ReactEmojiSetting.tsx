@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,7 +9,7 @@ import "./styles.css";
 import { Heading } from "@components/Heading";
 import { classNameFactory } from "@utils/css";
 import type { PluginSettingComponentProps } from "@utils/types";
-import type { Channel } from "@vencord/discord-types";
+import type { Channel } from "@S7Cord/discord-types";
 import { findComponentByCodeLazy } from "@webpack";
 import { ChannelStore, IconUtils, Popout, SelectedChannelStore, TextInput, useRef, useState, useStateFromStores } from "@webpack/common";
 

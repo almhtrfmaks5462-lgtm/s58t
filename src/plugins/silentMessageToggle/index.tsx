@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 import { ChatBarButton, ChatBarButtonFactory } from "@api/ChatButtons";
 import { addMessagePreSendListener, MessageSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { IconComponent, OptionType } from "@utils/types";
 import { React, useEffect, useState } from "@webpack/common";
 
@@ -108,7 +108,7 @@ const SilentMessageToggle: ChatBarButtonFactory = ({ isMainChat }) => {
 
 export default definePlugin({
     name: "SilentMessageToggle",
-    authors: [Devs.Nuckyz, Devs.CatNoir, EquicordDevs.Z1xus],
+    authors: [Devs.Nuckyz, Devs.CatNoir, S7CordDevs.Z1xus],
     description: "Adds a button to the chat bar to toggle sending a silent message.",
     dependencies: ["ChatInputButtonAPI"],
     tags: ["Chat", "Utility"],

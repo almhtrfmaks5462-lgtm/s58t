@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,7 +10,7 @@ import { BadgePosition, ProfileBadge } from "@api/Badges";
 import { migratePluginSetting } from "@api/Settings";
 import { Button } from "@components/Button";
 import { BadgeContextMenu } from "@plugins/_api/badges";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { openInviteModal } from "@utils/discord";
 import definePlugin from "@utils/types";
 import { ContextMenuApi, React, Toasts, UserStore } from "@webpack/common";
@@ -26,7 +26,7 @@ export default definePlugin({
     name: "GlobalBadges",
     description: "Adds global badges from other client mods",
     tags: ["Appearance"],
-    authors: [Devs.HypedDomi, EquicordDevs.Wolfie, Devs.thororen],
+    authors: [Devs.HypedDomi, S7CordDevs.Wolfie, Devs.thororen],
     settings,
     settingsAboutComponent: () => (
         <>

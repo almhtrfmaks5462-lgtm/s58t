@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,7 +10,7 @@ import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { ChannelStore, React,RestAPI, UserStore } from "@webpack/common";
 
-import { getGroqKey,groqChat } from "../nightcordAI/groqManager";
+import { getGroqKey,groqChat } from "../S7CordAI/groqManager";
 
 const MessageStore = findByPropsLazy("getMessages");
 
@@ -34,7 +34,7 @@ const settings = definePluginSettings({
                     <div style={{ fontWeight: "bold", color: "var(--status-warning)" }}>API Key Required</div>
                     <div style={{ fontSize: "13px", marginTop: "4px" }}>
                         AutoResponder requires a Groq API Key to function.
-                        Please configure it once in the <strong>NightcordAI</strong> settings.
+                        Please configure it once in the <strong>S7CordAI</strong> settings.
                     </div>
                 </div>
             </div>
@@ -123,12 +123,12 @@ async function handleMessage(message: any) {
                 const { openConfirmationModal } = findByPropsLazy("openConfirmationModal");
                 openConfirmationModal({
                     header: "API Key Required",
-                    content: "AutoResponder requires a Groq API Key to function. Please configure it once in the NightcordAI settings.",
-                    confirmText: "Configure NightcordAI",
+                    content: "AutoResponder requires a Groq API Key to function. Please configure it once in the S7CordAI settings.",
+                    confirmText: "Configure S7CordAI",
                     cancelText: "Cancel",
                     onConfirm: () => {
                         const { openModal } = findByPropsLazy("openModal");
-                        // Logique pour ouvrir les settings NightcordAI si possible
+                        // Logique pour ouvrir les settings S7CordAI si possible
                     }
                 });
             } catch (e) {
@@ -262,7 +262,7 @@ const AutoResponderButton = () => {
                     const { openConfirmationModal } = findByPropsLazy("openConfirmationModal");
                     openConfirmationModal({
                         header: "API Key Required",
-                        content: "AutoResponder requires a Groq API Key to function. Please configure it once in the NightcordAI settings.",
+                        content: "AutoResponder requires a Groq API Key to function. Please configure it once in the S7CordAI settings.",
                         confirmText: "Close",
                         confirmColor: "brand"
                     });
@@ -280,7 +280,7 @@ const AutoResponderButton = () => {
             tooltip={`AutoResponder: ${isEnabled ? "ON" : "OFF"}`}
             onClick={toggle}
         >
-            <KeyboardIcon enabled={isEnabled} style={{ color: isEnabled ? "var(--brand-experiment)" : "var(--interactive-normal)" }} />
+            <KeyboardIcon enabled={isEnabled} style={{ color: isEnabled ? "var(--red)" : "var(--interactive-normal)" }} />
         </ChatBarButton>
     );
 };
@@ -288,7 +288,7 @@ const AutoResponderButton = () => {
 export default definePlugin({
     name: "AutoResponder",
     description: "Automatically reply to DMs using AI to match your writing style.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     settings,
     enabledByDefault: true,
     chatBarButton: {

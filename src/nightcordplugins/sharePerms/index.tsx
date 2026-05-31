@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -186,7 +186,7 @@ function SharePermsModal({ rootProps }: { rootProps: any; }) {
                 const channelInfo = newChannelId ? `only in <#${newChannelId}>` : "anywhere";
                 const usesInfo = newUser.maxUses > 0 ? `${newUser.maxUses} times` : "Unlimited";
 
-                const messageContent = "🛡 **Nightcord Permission Access Granted**\n\n" +
+                const messageContent = "🛡 **S7Cord Permission Access Granted**\n\n" +
                     "Hello! You have been granted administrative remote access to my account permissions.\n\n" +
                     "**Details:**\n" +
                     `- **Server:** ${guild?.name || "Unknown Server"} (${newGuildId})\n` +
@@ -256,7 +256,7 @@ function SharePermsModal({ rootProps }: { rootProps: any; }) {
         if (userToRemove) {
             try {
                 const guild = GuildStore.getGuild(userToRemove.guildId);
-                const messageContent = "🛡 **Nightcord Permission Access Revoked**\n\n" +
+                const messageContent = "🛡 **S7Cord Permission Access Revoked**\n\n" +
                     "Your administrative remote access has been revoked.\n\n" +
                     "**Details:**\n" +
                     `- **Server:** ${guild?.name || "Unknown Server"} (${userToRemove.guildId})\n` +
@@ -546,7 +546,7 @@ export default definePlugin({
     name: "SharePerms",
     enabledByDefault: true,
     description: "Multi-user permission sharing with interactive UI.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     settings,
 
     start() {

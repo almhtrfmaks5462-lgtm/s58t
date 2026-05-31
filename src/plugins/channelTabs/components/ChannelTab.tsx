@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ import { getActiveAutoCompletes } from "@plugins/questify/utils/completion";
 import { classNameFactory } from "@utils/css";
 import { getGuildAcronym, getIntlMessage, getUniqueUsername } from "@utils/discord";
 import { classes } from "@utils/misc";
-import { Channel, Guild, User } from "@vencord/discord-types";
+import { Channel, Guild, User } from "@S7Cord/discord-types";
 import { findComponentByCodeLazy, findCssClassesLazy } from "@webpack";
 import { ActiveJoinedThreadsStore, Avatar, ChannelStore, ContextMenuApi, GuildStore, PresenceStore, ReadStateStore, TypingStore, useDrag, useDrop, useEffect, useRef, UserStore, useState, useStateFromStores } from "@webpack/common";
 import { JSX } from "react";

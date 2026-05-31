@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { getIntlMessage } from "@utils/discord";
 import definePlugin from "@utils/types";
-import { Embed } from "@vencord/discord-types";
+import { Embed } from "@S7Cord/discord-types";
 import { proxyLazyWebpack } from "@webpack";
 import { React } from "@webpack/common";
 import { ComponentType, ReactNode } from "react";
@@ -26,7 +26,7 @@ export default definePlugin({
     name: "FavouriteAnything",
     description: "Favourite any image, video, or file attachment",
     tags: ["Chat", "Media"],
-    authors: [Devs.nin0dev, EquicordDevs.davri],
+    authors: [Devs.nin0dev, S7CordDevs.davri],
     searchTerms: ["favorite"],
     managedStyle,
     patches: [

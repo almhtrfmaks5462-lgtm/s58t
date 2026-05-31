@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
 import { Notice } from "@components/Notice";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { UserStore } from "@webpack/common";
 
@@ -53,7 +53,7 @@ export default definePlugin({
     name: "PlatformSpoofer",
     description: "Spoof what platform or device you're on",
     tags: ["Utility"],
-    authors: [EquicordDevs.Drag, EquicordDevs.neoarz],
+    authors: [S7CordDevs.Drag, S7CordDevs.neoarz],
     settingsAboutComponent: () => (
         <Notice.Warning>
             We can't guarantee this plugin won't get you warned or banned.

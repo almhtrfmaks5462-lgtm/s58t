@@ -1,16 +1,16 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { Notifications } from "@api/index";
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { getCurrentChannel } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
-import { MessageJSON } from "@vencord/discord-types";
-import { MessageType } from "@vencord/discord-types/enums";
+import { MessageJSON } from "@S7Cord/discord-types";
+import { MessageType } from "@S7Cord/discord-types/enums";
 import { ChannelStore, GuildStore, NavigationRouter, RelationshipStore } from "@webpack/common";
 
 interface MessageCreatePayload {
@@ -35,7 +35,7 @@ const settings = definePluginSettings({
 });
 
 export default definePlugin({
-    authors: [EquicordDevs.cassie, EquicordDevs.mochienya],
+    authors: [S7CordDevs.cassie, S7CordDevs.mochienya],
     name: "MessageNotifier",
     description: "Get toasts for when chosen users send a message",
     tags: ["Chat", "Notifications"],

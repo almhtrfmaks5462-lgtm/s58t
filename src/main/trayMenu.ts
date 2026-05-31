@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { IpcEvents } from "@shared/IpcEvents";
-import { gitHashShort } from "@shared/vencordUserAgent";
+import { gitHashShort } from "@shared/S7CordUserAgent";
 import { BrowserWindow, ipcMain, MenuItemConstructorOptions, shell } from "electron";
 import aboutHtml from "file://about.html?minify";
 
@@ -91,21 +91,21 @@ function openAboutWindow() {
     });
 }
 
-function createNightcordMenuItems(): MenuItemConstructorOptions[] {
+function createS7CordMenuItems(): MenuItemConstructorOptions[] {
     return [
         {
-            label: "Nightcord",
+            label: "S7Cord",
             submenu: [
                 {
-                    label: "About Nightcord",
+                    label: "About S7Cord",
                     click: () => openAboutWindow()
                 },
                 {
-                    label: cachedUpdateAvailable ? "Update Nightcord" : "Check for Updates",
+                    label: cachedUpdateAvailable ? "Update S7Cord" : "Check for Updates",
                     click: () => sendToRenderer(IpcEvents.TRAY_CHECK_UPDATES)
                 },
                 {
-                    label: "Repair Nightcord",
+                    label: "Repair S7Cord",
                     click: () => sendToRenderer(IpcEvents.TRAY_REPAIR)
                 },
                 { type: "separator" },
@@ -124,5 +124,5 @@ function createNightcordMenuItems(): MenuItemConstructorOptions[] {
 }
 
 export function patchTrayMenu(): void {
-    // No longer patching tray menu — Nightcord manages its own tray in patcher.ts
+    // No longer patching tray menu — S7Cord manages its own tray in patcher.ts
 }

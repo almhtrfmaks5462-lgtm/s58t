@@ -1,17 +1,17 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "CleanerChannelGroups",
     description: "Hides all channels in collapsed categories, even if they have unread messages.",
     tags: ["Appearance", "Customisation", "Chat", "Organisation", "Servers"],
-    authors: [EquicordDevs.justjxke],
+    authors: [S7CordDevs.justjxke],
     patches: [
         {
             find: '"placeholder-channel-id"',

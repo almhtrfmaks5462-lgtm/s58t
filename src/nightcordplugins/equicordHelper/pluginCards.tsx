@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -14,9 +14,9 @@ import { AddonCard } from "@components/settings";
 import { ExcludedReasons, PluginDependencyList } from "@components/settings/tabs/plugins";
 import { PluginCard } from "@components/settings/tabs/plugins/PluginCard";
 import { TooltipContainer } from "@components/TooltipContainer";
-import { EQUIBOT_USER_ID, NIGHTCORD_BOT_USER_ID } from "@utils/constants";
-import { isEquicordGuild, isEquicordSupport } from "@utils/misc";
-import { Message } from "@vencord/discord-types";
+import { EQUIBOT_USER_ID, S7Cord_BOT_USER_ID } from "@utils/constants";
+import { isS7CordGuild, isS7CordSupport } from "@utils/misc";
+import { Message } from "@S7Cord/discord-types";
 import { showToast, Tooltip, useMemo } from "@webpack/common";
 import { JSX } from "react";
 
@@ -43,7 +43,7 @@ export function ChatPluginCard({ url, description }: { url: string, description:
     if (excludedPlugin || !p) {
         const toolTipText = excludedPlugin
             ? `${pluginName} is only available on the ${ExcludedReasons[ExcludedPlugins[pluginName]]}`
-            : "This plugin is not on this version of Nightcord. Try updating!";
+            : "This plugin is not on this version of S7Cord. Try updating!";
 
         const card = (
             <AddonCard
@@ -82,7 +82,7 @@ export function ChatPluginCard({ url, description }: { url: string, description:
 
     if (required) {
         const tooltipText = p.required || !dependents.length
-            ? "This plugin is required for Equicord to function."
+            ? "This plugin is required for S7Cord to function."
             : <PluginDependencyList deps={dependents} />;
 
         return (
@@ -116,10 +116,10 @@ export const PluginCards = ErrorBoundary.wrap(function PluginCards({ message }: 
 
     // Process embeds
     message.embeds?.forEach(embed => {
-        if (!embed.url?.startsWith("https://equicord.org/plugins/") && !embed.url?.startsWith("https://vencord.dev/plugins/")) return;
+        if (!embed.url?.startsWith("https://S7Cord.org/plugins/") && !embed.url?.startsWith("https://S7Cord.dev/plugins/")) return;
 
-        const isEquicord = isEquicordGuild(message.channel_id) && isEquicordSupport(message.author.id);
-        if (!isEquicord) return;
+        const isS7Cord = isS7CordGuild(message.channel_id) && isS7CordSupport(message.author.id);
+        if (!isS7Cord) return;
 
         const pluginNameFromUrl = new URL(embed.url).pathname.split("/")[2];
         const actualPluginName = Object.keys(plugins).find(name =>
@@ -141,12 +141,12 @@ export const PluginCards = ErrorBoundary.wrap(function PluginCards({ message }: 
         );
     });
 
-    // Process components â€” Equibot (equicord.org / vencord.dev)
+    // Process components â€” Equibot (S7Cord.org / S7Cord.dev)
     const components = (message.components?.[0] as any)?.components;
     if (message.author.id === EQUIBOT_USER_ID && components?.length >= 4) {
         const description = components[1]?.content;
         const pluginUrl = components.find((c: any) => c?.components)?.components[0]?.url;
-        if (pluginUrl?.startsWith("https://equicord.org/plugins/") || pluginUrl?.startsWith("https://vencord.dev/plugins/")) {
+        if (pluginUrl?.startsWith("https://S7Cord.org/plugins/") || pluginUrl?.startsWith("https://S7Cord.dev/plugins/")) {
             const pluginNameFromUrl = new URL(pluginUrl).pathname.split("/")[2];
             const actualPluginName = Object.keys(plugins).find(name =>
                 name.toLowerCase() === pluginNameFromUrl?.toLowerCase()
@@ -166,14 +166,14 @@ export const PluginCards = ErrorBoundary.wrap(function PluginCards({ message }: 
         }
     }
 
-    // Process components â€” NightCord Bot (nightcord.su, Component v2 Container format)
-    if (message.author.id === NIGHTCORD_BOT_USER_ID) {
+    // Process components â€” S7Cord Bot (S7Cord.su, Component v2 Container format)
+    if (message.author.id === S7Cord_BOT_USER_ID) {
         const containerComponents = (message.components?.[0] as any)?.components;
         if (containerComponents?.length >= 3) {
             // Find ActionRow by presence of nested components (same pattern as Equibot check above)
             const actionRow = containerComponents.find((c: any) => c?.components);
             const pluginUrl = actionRow?.components?.[0]?.url;
-            if (pluginUrl?.startsWith("https://nightcord.su/plugins/")) {
+            if (pluginUrl?.startsWith("https://S7Cord.su/plugins/")) {
                 const pluginNameFromUrl = decodeURIComponent(new URL(pluginUrl).pathname.split("/")[2]);
                 const pluginNameNoSpaces = pluginNameFromUrl?.toLowerCase().replace(/\s+/g, "");
                 const actualPluginName =

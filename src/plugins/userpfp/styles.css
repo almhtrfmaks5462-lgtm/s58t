@@ -43,8 +43,8 @@
 }
 
 .vc-userpfp-avatar-active {
-    border: 3px solid var(--brand-experiment);
-    box-shadow: 0 0 12px var(--brand-experiment-30a);
+    border: 3px solid var(--red);
+    box-shadow: 0 0 12px var(--red-30a);
 }
 
 .vc-userpfp-arrow {
@@ -67,6 +67,6 @@
 }
 
 .vc-userpfp-dropzone-active {
-    border-color: var(--brand-experiment);
-    background: var(--brand-experiment-10a);
+    border-color: var(--red);
+    background: var(--red-10a);
 }

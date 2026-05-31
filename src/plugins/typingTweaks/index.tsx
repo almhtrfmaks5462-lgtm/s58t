@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,12 +19,12 @@
 import { definePluginSettings, migratePluginToSettings, Settings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { getCustomColorString } from "@plugins/customUserColors";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { openUserProfile } from "@utils/discord";
 import { isNonNullish } from "@utils/guards";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
-import { Channel, User } from "@vencord/discord-types";
+import { Channel, User } from "@S7Cord/discord-types";
 import { AuthenticationStore, Avatar, GuildMemberStore, React, RelationshipStore, TypingStore, UserStore, useStateFromStores } from "@webpack/common";
 import { PropsWithChildren } from "react";
 
@@ -115,7 +115,7 @@ export default definePlugin({
     name: "TypingTweaks",
     description: "Show avatars and role colours in the typing indicator",
     tags: ["Appearance", "Customisation"],
-    authors: [Devs.zt, Devs.sadan, EquicordDevs.MrDiamond],
+    authors: [Devs.zt, Devs.sadan, S7CordDevs.MrDiamond],
     settings,
     isModified: true,
 

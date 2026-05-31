@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,8 +11,8 @@ import { Heading, HeadingSecondary } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
 import { Margins } from "@utils/margins";
 import { identity } from "@utils/misc";
-import { Activity } from "@vencord/discord-types";
-import { ActivityFlags, ActivityType } from "@vencord/discord-types/enums";
+import { Activity } from "@S7Cord/discord-types";
+import { ActivityFlags, ActivityType } from "@S7Cord/discord-types/enums";
 import { PresenceStore, React, Select, SnowflakeUtils, TextInput, UserStore } from "@webpack/common";
 
 import { AppIdSetting, makeEmptyAppId } from ".";

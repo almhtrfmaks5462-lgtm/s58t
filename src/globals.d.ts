@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -47,9 +47,9 @@ declare global {
     export var VERSION: string;
     export var BUILD_TIMESTAMP: number;
 
-    export var VencordNative: typeof import("./VencordNative").default;
-    export var Vencord: typeof import("./Vencord");
-    export var VencordStyles: Map<string, Style>;
+    export var S7CordNative: typeof import("./S7CordNative").default;
+    export var S7Cord: typeof import("./S7Cord");
+    export var S7CordStyles: Map<string, Style>;
     export var appSettings: {
         set(setting: string, v: any): void;
     };

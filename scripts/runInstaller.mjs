@@ -1,13 +1,13 @@
 /*
- * Nightcord — Installer via EquilotlCli
- * Télécharge EquilotlCli.exe depuis les releases Equicord et le lance
- * avec les variables d'environnement pointant vers les fichiers Nightcord.
+ * S7Cord — Installer via EquilotlCli
+ * Télécharge EquilotlCli.exe depuis les releases S7Cord et le lance
+ * avec les variables d'environnement pointant vers les fichiers S7Cord.
  *
  * L'exe affiche une interface graphique permettant de choisir le Discord cible.
  *
  * Usage:
- *   pnpm inject    → installe Nightcord dans le Discord choisi
- *   pnpm uninject  → désinstalle Nightcord du Discord choisi
+ *   pnpm inject    → installe S7Cord dans le Discord choisi
+ *   pnpm uninject  → désinstalle S7Cord du Discord choisi
  *   pnpm repair    → répare l'installation
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -23,8 +23,8 @@ import { Readable } from "stream";
 import { finished } from "stream/promises";
 import { fileURLToPath } from "url";
 
-// EquilotlCli est l'installeur graphique d'Equicord — on le réutilise pour Nightcord
-const BASE_URL = "https://github.com/Equicord/Equilotl/releases/latest/download/";
+// EquilotlCli est l'installeur graphique d'S7Cord — on le réutilise pour S7Cord
+const BASE_URL = "https://github.com/S7Cord/Equilotl/releases/latest/download/";
 const INSTALLER_PATH_DARWIN = "Equilotl.app/Contents/MacOS/Equilotl";
 const INSTALLER_APP_DARWIN = "Equilotl.app";
 
@@ -60,15 +60,15 @@ async function ensureBinary() {
 
     // Si le binaire existe déjà, on l'utilise directement sans vérifier les mises à jour
     if (existsSync(outputFile)) {
-        console.log("[Nightcord] Installeur déjà présent, utilisation locale.");
+        console.log("[S7Cord] Installeur déjà présent, utilisation locale.");
         return outputFile;
     }
 
-    console.log("[Nightcord] Téléchargement de l'installeur (" + filename + ")...");
+    console.log("[S7Cord] Téléchargement de l'installeur (" + filename + ")...");
 
     const res = await fetch(BASE_URL + filename, {
         headers: {
-            "User-Agent": "Nightcord (https://github.com/nightcordfr/nightcord)"
+            "User-Agent": "S7Cord (https://github.com/S7Cordfr/S7Cord)"
         }
     });
 
@@ -78,14 +78,14 @@ async function ensureBinary() {
     writeFileSync(ETAG_FILE, res.headers.get("etag") ?? "");
 
     if (process.platform === "darwin") {
-        console.log("[Nightcord] Sauvegarde du zip...");
+        console.log("[S7Cord] Sauvegarde du zip...");
         const zip = new Uint8Array(await res.arrayBuffer());
         writeFileSync(downloadName, zip);
 
-        console.log("[Nightcord] Extraction du bundle...");
+        console.log("[S7Cord] Extraction du bundle...");
         execSync(`ditto -x -k '${downloadName}' '${FILE_DIR}'`);
 
-        console.log("[Nightcord] Suppression de la quarantaine macOS...");
+        console.log("[S7Cord] Suppression de la quarantaine macOS...");
         const logAndRun = cmd => {
             console.log("  Exécution :", cmd);
             try { execSync(cmd); } catch { }
@@ -104,7 +104,7 @@ async function ensureBinary() {
         try { chmodSync(outputFile, 0o755); } catch { }
     }
 
-    console.log("[Nightcord] Installeur téléchargé avec succès !");
+    console.log("[S7Cord] Installeur téléchargé avec succès !");
     return outputFile;
 }
 
@@ -112,15 +112,15 @@ async function ensureBinary() {
 function checkBuild() {
     const patcherPath = join(BASE_DIR, "dist", "desktop", "patcher.js");
     if (!existsSync(patcherPath)) {
-        console.error("\x1b[31m[Nightcord] dist/desktop/patcher.js introuvable !\x1b[0m");
+        console.error("\x1b[31m[S7Cord] dist/desktop/patcher.js introuvable !\x1b[0m");
         console.error("\x1b[33m           Lancez 'pnpm build' d'abord, puis réessayez.\x1b[0m");
         process.exit(1);
     }
 }
 
 // ── Nettoyage automatique des anciennes installations ──────────────────────
-function cleanOldNightcord() {
-    console.log("[Nightcord] Recherche et nettoyage automatique des anciennes installations...");
+function cleanOldS7Cord() {
+    console.log("[S7Cord] Recherche et nettoyage automatique des anciennes installations...");
     const platform = process.platform;
     const candidates = [];
 
@@ -167,14 +167,14 @@ function cleanOldNightcord() {
             let isAppDirCleaned = false;
             let isBackupRestored = false;
 
-            // 1. Supprimer le dossier app/ s'il a été créé par l'ancien Nightcord
+            // 1. Supprimer le dossier app/ s'il a été créé par l'ancien S7Cord
             if (existsSync(appDirPath)) {
                 let shouldDelete = false;
                 try {
                     const pkgFile = join(appDirPath, "package.json");
                     if (existsSync(pkgFile)) {
                         const pkg = JSON.parse(readFileSync(pkgFile, "utf-8"));
-                        if (pkg.name === "nightcord") {
+                        if (pkg.name === "S7Cord") {
                             shouldDelete = true;
                         }
                     } else {
@@ -186,7 +186,7 @@ function cleanOldNightcord() {
                 }
 
                 if (shouldDelete) {
-                    console.log(`[Nightcord] Suppression de l'ancien dossier app/ dans : ${resourcesDir}`);
+                    console.log(`[S7Cord] Suppression de l'ancien dossier app/ dans : ${resourcesDir}`);
                     rmSync(appDirPath, { recursive: true, force: true });
                     isAppDirCleaned = true;
                     cleanedAny = true;
@@ -203,37 +203,37 @@ function cleanOldNightcord() {
                 }
 
                 if (isAsarDir) {
-                    console.log(`[Nightcord] Suppression du dossier app.asar temporaire dans : ${resourcesDir}`);
+                    console.log(`[S7Cord] Suppression du dossier app.asar temporaire dans : ${resourcesDir}`);
                     rmSync(appAsarPath, { recursive: true, force: true });
                 }
 
                 if (!existsSync(appAsarPath) || isAsarDir) {
-                    console.log(`[Nightcord] Restauration _app.asar -> app.asar dans : ${resourcesDir}`);
+                    console.log(`[S7Cord] Restauration _app.asar -> app.asar dans : ${resourcesDir}`);
                     renameSync(backupPath, appAsarPath);
                     isBackupRestored = true;
                     cleanedAny = true;
                 } else {
                     // Si app.asar original est déjà présent en tant que fichier, nettoyer le backup obsolète
-                    console.log(`[Nightcord] Nettoyage du backup _app.asar obsolète dans : ${resourcesDir}`);
+                    console.log(`[S7Cord] Nettoyage du backup _app.asar obsolète dans : ${resourcesDir}`);
                     rmSync(backupPath, { force: true });
                     cleanedAny = true;
                 }
             }
         } catch (e) {
-            console.error(`[Nightcord] Erreur lors du nettoyage de ${resourcesDir} :`, e.message);
+            console.error(`[S7Cord] Erreur lors du nettoyage de ${resourcesDir} :`, e.message);
         }
     }
 
     if (cleanedAny) {
-        console.log("[Nightcord] Nettoyage des anciennes installations terminé avec succès !");
+        console.log("[S7Cord] Nettoyage des anciennes installations terminé avec succès !");
     } else {
-        console.log("[Nightcord] Aucune ancienne installation à nettoyer.");
+        console.log("[S7Cord] Aucune ancienne installation à nettoyer.");
     }
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
-// On nettoie d'abord les anciennes traces de Nightcord pour éviter tout conflit ou blocage
-cleanOldNightcord();
+// On nettoie d'abord les anciennes traces de S7Cord pour éviter tout conflit ou blocage
+cleanOldS7Cord();
 
 // On vérifie le build uniquement pour install/repair (pas pour uninject)
 const argStart = process.argv.indexOf("--");
@@ -249,7 +249,7 @@ const installerBin = await ensureBinary();
 const isInstall = args.includes("--install");
 
 if (isInstall) {
-    console.log("[Nightcord] Nettoyage des installations précédentes (Vencord/Equicord/Nightcord)...");
+    console.log("[S7Cord] Nettoyage des installations précédentes (S7Cord/S7Cord/S7Cord)...");
     try {
         const uninstallArgs = ["--uninstall"];
         const branchIdx = args.findIndex(a => a === "-branch" || a === "--branch");
@@ -268,32 +268,32 @@ if (isInstall) {
             stdio: "inherit",
             env: {
                 ...process.env,
-                EQUICORD_USER_DATA_DIR: BASE_DIR,
-                EQUICORD_DIRECTORY: join(BASE_DIR, "dist", "desktop"),
-                EQUICORD_DEV_INSTALL: "1"
+                S7Cord_USER_DATA_DIR: BASE_DIR,
+                S7Cord_DIRECTORY: join(BASE_DIR, "dist", "desktop"),
+                S7Cord_DEV_INSTALL: "1"
             }
         });
-        console.log("[Nightcord] Nettoyage terminé.");
+        console.log("[S7Cord] Nettoyage terminé.");
     } catch {
-        console.log("[Nightcord] Aucun mod précédent à nettoyer ou échec du nettoyage.");
+        console.log("[S7Cord] Aucun mod précédent à nettoyer ou échec du nettoyage.");
     }
 }
 
-console.log("[Nightcord] Lancement de l'injection...");
+console.log("[S7Cord] Lancement de l'injection...");
 
 try {
     execFileSync(installerBin, args, {
         stdio: "inherit",
         env: {
             ...process.env,
-            EQUICORD_USER_DATA_DIR: BASE_DIR,
-            EQUICORD_DIRECTORY: join(BASE_DIR, "dist", "desktop"),
-            EQUICORD_DEV_INSTALL: "1",
-            NIGHTCORD_DIRECTORY: join(BASE_DIR, "dist", "desktop")
+            S7Cord_USER_DATA_DIR: BASE_DIR,
+            S7Cord_DIRECTORY: join(BASE_DIR, "dist", "desktop"),
+            S7Cord_DEV_INSTALL: "1",
+            S7Cord_DIRECTORY: join(BASE_DIR, "dist", "desktop")
         }
     });
 } catch {
-    console.error("[Nightcord] Erreur lors de l'injection.");
+    console.error("[S7Cord] Erreur lors de l'injection.");
     process.exit(1);
 }
 

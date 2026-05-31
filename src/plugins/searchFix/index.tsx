@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2024 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 function settingsComponent() {
@@ -41,7 +41,7 @@ export default definePlugin({
     description: 'Fixes the annoying "We dropped the magnifying glass!" error.',
     tags: ["Utility"],
     settingsAboutComponent: () => settingsComponent(),
-    authors: [EquicordDevs.Jaxx],
+    authors: [S7CordDevs.Jaxx],
     patches: [
         {
             find: '"SearchQueryStore";',

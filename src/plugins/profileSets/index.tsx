@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import "./styles.css";
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
 import { React } from "@webpack/common";
@@ -30,7 +30,7 @@ export default definePlugin({
     name: "ProfileSets",
     description: "Allows you to save and load different profile presets, via the Profile Section in Settings.",
     tags: ["Appearance", "Customisation", "Utility"],
-    authors: [EquicordDevs.omaw, EquicordDevs.justjxke],
+    authors: [S7CordDevs.omaw, S7CordDevs.justjxke],
     settings,
     patches: [
         {

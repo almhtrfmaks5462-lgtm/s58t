@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,63 +17,63 @@
 */
 
 export const enum IpcEvents {
-    INIT_FILE_WATCHERS = "VencordInitFileWatchers",
-    QUICK_CSS_UPDATE = "VencordQuickCssUpdate",
-    OPEN_QUICKCSS = "VencordOpenQuickCss",
-    GET_QUICK_CSS = "VencordGetQuickCss",
-    SET_QUICK_CSS = "VencordSetQuickCss",
-    UPLOAD_THEME = "VencordUploadTheme",
-    DELETE_THEME = "VencordDeleteTheme",
-    GET_THEMES_DIR = "VencordGetThemesDir",
-    GET_THEMES_LIST = "VencordGetThemesList",
-    GET_THEME_DATA = "VencordGetThemeData",
-    GET_THEME_SYSTEM_VALUES = "VencordGetThemeSystemValues",
-    GET_SETTINGS_DIR = "VencordGetSettingsDir",
-    GET_SETTINGS = "VencordGetSettings",
-    SET_SETTINGS = "VencordSetSettings",
-    THEME_UPDATE = "VencordThemeUpdate",
-    OPEN_EXTERNAL = "VencordOpenExternal",
-    GET_UPDATES = "VencordGetUpdates",
-    GET_REPO = "VencordGetRepo",
-    UPDATE = "VencordUpdate",
-    BUILD = "VencordBuild",
-    OPEN_MONACO_EDITOR = "VencordOpenMonacoEditor",
-    GET_MONACO_THEME = "VencordGetMonacoTheme",
+    INIT_FILE_WATCHERS = "S7CordInitFileWatchers",
+    QUICK_CSS_UPDATE = "S7CordQuickCssUpdate",
+    OPEN_QUICKCSS = "S7CordOpenQuickCss",
+    GET_QUICK_CSS = "S7CordGetQuickCss",
+    SET_QUICK_CSS = "S7CordSetQuickCss",
+    UPLOAD_THEME = "S7CordUploadTheme",
+    DELETE_THEME = "S7CordDeleteTheme",
+    GET_THEMES_DIR = "S7CordGetThemesDir",
+    GET_THEMES_LIST = "S7CordGetThemesList",
+    GET_THEME_DATA = "S7CordGetThemeData",
+    GET_THEME_SYSTEM_VALUES = "S7CordGetThemeSystemValues",
+    GET_SETTINGS_DIR = "S7CordGetSettingsDir",
+    GET_SETTINGS = "S7CordGetSettings",
+    SET_SETTINGS = "S7CordSetSettings",
+    THEME_UPDATE = "S7CordThemeUpdate",
+    OPEN_EXTERNAL = "S7CordOpenExternal",
+    GET_UPDATES = "S7CordGetUpdates",
+    GET_REPO = "S7CordGetRepo",
+    UPDATE = "S7CordUpdate",
+    BUILD = "S7CordBuild",
+    OPEN_MONACO_EDITOR = "S7CordOpenMonacoEditor",
+    GET_MONACO_THEME = "S7CordGetMonacoTheme",
 
-    GET_PLUGIN_IPC_METHOD_MAP = "VencordGetPluginIpcMethodMap",
+    GET_PLUGIN_IPC_METHOD_MAP = "S7CordGetPluginIpcMethodMap",
 
-    CSP_IS_DOMAIN_ALLOWED = "VencordCspIsDomainAllowed",
-    CSP_REMOVE_OVERRIDE = "VencordCspRemoveOverride",
-    CSP_REQUEST_ADD_OVERRIDE = "VencordCspRequestAddOverride",
+    CSP_IS_DOMAIN_ALLOWED = "S7CordCspIsDomainAllowed",
+    CSP_REMOVE_OVERRIDE = "S7CordCspRemoveOverride",
+    CSP_REQUEST_ADD_OVERRIDE = "S7CordCspRequestAddOverride",
 
-    OPEN_THEMES_FOLDER = "VencordOpenThemesFolder",
-    OPEN_SETTINGS_FOLDER = "VencordOpenSettingsFolder",
-    GET_RENDERER_CSS = "VencordGetRendererCss",
-    RENDERER_CSS_UPDATE = "VencordRendererCssUpdate",
-    PRELOAD_GET_RENDERER_JS = "VencordPreloadGetRendererJs",
+    OPEN_THEMES_FOLDER = "S7CordOpenThemesFolder",
+    OPEN_SETTINGS_FOLDER = "S7CordOpenSettingsFolder",
+    GET_RENDERER_CSS = "S7CordGetRendererCss",
+    RENDERER_CSS_UPDATE = "S7CordRendererCssUpdate",
+    PRELOAD_GET_RENDERER_JS = "S7CordPreloadGetRendererJs",
 
-    SET_TRAY_UPDATE_STATE = "VencordSetTrayUpdateState",
-    TRAY_REPAIR = "VencordTrayRepair",
-    TRAY_CHECK_UPDATES = "VencordTrayCheckUpdates",
-    TRAY_ABOUT = "VencordTrayAbout",
+    SET_TRAY_UPDATE_STATE = "S7CordSetTrayUpdateState",
+    TRAY_REPAIR = "S7CordTrayRepair",
+    TRAY_CHECK_UPDATES = "S7CordTrayCheckUpdates",
+    TRAY_ABOUT = "S7CordTrayAbout",
 
-    GET_DESKTOP_SOURCES = "VencordGetDesktopSources",
+    GET_DESKTOP_SOURCES = "S7CordGetDesktopSources",
 
-    SET_WINDOW_BACKGROUND_MATERIAL = "NightcordSetWindowBackgroundMaterial",
+    SET_WINDOW_BACKGROUND_MATERIAL = "S7CordSetWindowBackgroundMaterial",
 
     // SoundCord Player â€” thumbnail toolbar Windows
     SET_THUMBAR_BUTTONS = "SoundCordSetThumbarButtons",
     THUMBAR_BUTTON_CLICK = "SoundCordThumbarButtonClick",
 
-    // Nightcord Updater â€” tÃ©lÃ©charge un exe depuis une URL et le lance
-    NIGHTCORD_DOWNLOAD_AND_RUN = "NightcordDownloadAndRun",
+    // S7Cord Updater â€” tÃ©lÃ©charge un exe depuis une URL et le lance
+    S7Cord_DOWNLOAD_AND_RUN = "S7CordDownloadAndRun",
 
     // VB-Audio Virtual Cable (Windows only)
-    CHECK_VB_CABLE = "NightcordCheckVBCable",
-    INSTALL_VB_CABLE = "NightcordInstallVBCable",
+    CHECK_VB_CABLE = "S7CordCheckVBCable",
+    INSTALL_VB_CABLE = "S7CordInstallVBCable",
 
     // Relaunch de l'app Electron
-    RELAUNCH_APP = "NightcordRelaunchApp",
+    RELAUNCH_APP = "S7CordRelaunchApp",
 
     // WorldBomb â€” Simulation Clavier/Souris Native
     WORLD_BOMB_TYPE = "WorldBombType",

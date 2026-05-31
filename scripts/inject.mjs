@@ -1,9 +1,9 @@
 /*
- * Nightcord — Local injector for Discord Desktop
- * Injecte Nightcord dans une installation Discord existante en :
+ * S7Cord — Local injector for Discord Desktop
+ * Injecte S7Cord dans une installation Discord existante en :
  * 1. Trouvant le répertoire resources de Discord
  * 2. Renommant app.asar → _app.asar (backup)
- * 3. Créant un dossier app/ avec un loader qui require le patcher.js de Nightcord
+ * 3. Créant un dossier app/ avec un loader qui require le patcher.js de S7Cord
  *
  * Usage: pnpm inject   (ou: node scripts/inject.mjs)
  *
@@ -72,7 +72,7 @@ function findAllDiscordResources() {
 function checkBuild() {
     const patcherPath = join(DIST_DIR, "patcher.js");
     if (!existsSync(patcherPath)) {
-        console.error("\x1b[31m[Nightcord] dist/desktop/patcher.js introuvable !\x1b[0m");
+        console.error("\x1b[31m[S7Cord] dist/desktop/patcher.js introuvable !\x1b[0m");
         console.error("\x1b[33m           Lancez 'pnpm build' d'abord, puis réessayez.\x1b[0m");
         process.exit(1);
     }
@@ -88,8 +88,8 @@ function inject(resourcesDir) {
     if (existsSync(appDirPath) && existsSync(join(appDirPath, "package.json"))) {
         try {
             const pkg = JSON.parse(readFileSync(join(appDirPath, "package.json"), "utf-8"));
-            if (pkg.name === "nightcord") {
-                console.log("\x1b[33m[Nightcord] Déjà injecté ! Utilisez 'pnpm uninject' d'abord pour réinjecter.\x1b[0m");
+            if (pkg.name === "S7Cord") {
+                console.log("\x1b[33m[S7Cord] Déjà injecté ! Utilisez 'pnpm uninject' d'abord pour réinjecter.\x1b[0m");
                 return false;
             }
         } catch { }
@@ -100,14 +100,14 @@ function inject(resourcesDir) {
         let isDir = false;
         try { isDir = statSync(appAsarPath).isDirectory(); } catch { }
         if (isDir) {
-            console.warn("\x1b[33m[Nightcord] app.asar est un dossier — un autre mod est peut-être installé.\x1b[0m");
+            console.warn("\x1b[33m[S7Cord] app.asar est un dossier — un autre mod est peut-être installé.\x1b[0m");
             console.warn("\x1b[33m            Abandon. Utilisez 'pnpm uninject' pour nettoyer d'abord.\x1b[0m");
             return false;
         }
-        console.log("[Nightcord] Sauvegarde app.asar → _app.asar...");
+        console.log("[S7Cord] Sauvegarde app.asar → _app.asar...");
         renameSync(appAsarPath, backupPath);
     } else if (!existsSync(backupPath)) {
-        console.error("\x1b[31m[Nightcord] Aucun app.asar ou _app.asar trouvé dans resources !\x1b[0m");
+        console.error("\x1b[31m[S7Cord] Aucun app.asar ou _app.asar trouvé dans resources !\x1b[0m");
         return false;
     }
 
@@ -116,7 +116,7 @@ function inject(resourcesDir) {
         try {
             rmSync(appAsarPath, { recursive: true, force: true });
         } catch (e) {
-            console.error(`\x1b[31m[Nightcord] Impossible de supprimer l'ancien app.asar : ${e.message}\x1b[0m`);
+            console.error(`\x1b[31m[S7Cord] Impossible de supprimer l'ancien app.asar : ${e.message}\x1b[0m`);
             return false;
         }
     }
@@ -125,19 +125,19 @@ function inject(resourcesDir) {
     mkdirSync(appDirPath, { recursive: true });
 
     writeFileSync(join(appDirPath, "package.json"), JSON.stringify({
-        name: "nightcord",
+        name: "S7Cord",
         main: "index.js"
     }, null, 2));
 
-    // Le loader require simplement le patcher Nightcord depuis dist/
+    // Le loader require simplement le patcher S7Cord depuis dist/
     const patcherPath = join(DIST_DIR, "patcher.js").replace(/\\/g, "\\\\");
     writeFileSync(join(appDirPath, "index.js"),
-        `// Nightcord Injector — auto-generated, do not edit\n"use strict";\nrequire("${patcherPath}");\n`
+        `// S7Cord Injector — auto-generated, do not edit\n"use strict";\nrequire("${patcherPath}");\n`
     );
 
-    console.log(`\x1b[32m[Nightcord] Injecté avec succès dans : ${resourcesDir}\x1b[0m`);
-    console.log(`\x1b[32m[Nightcord] Répertoire Nightcord dist : ${DIST_DIR}\x1b[0m`);
-    console.log("\x1b[36m[Nightcord] Redémarrez Discord pour appliquer les changements.\x1b[0m");
+    console.log(`\x1b[32m[S7Cord] Injecté avec succès dans : ${resourcesDir}\x1b[0m`);
+    console.log(`\x1b[32m[S7Cord] Répertoire S7Cord dist : ${DIST_DIR}\x1b[0m`);
+    console.log("\x1b[36m[S7Cord] Redémarrez Discord pour appliquer les changements.\x1b[0m");
     return true;
 }
 
@@ -146,22 +146,22 @@ checkBuild();
 
 const allResources = findAllDiscordResources();
 if (allResources.length === 0) {
-    console.error("\x1b[31m[Nightcord] Aucune installation Discord trouvée !\x1b[0m");
+    console.error("\x1b[31m[S7Cord] Aucune installation Discord trouvée !\x1b[0m");
     console.error("\x1b[33m           Assurez-vous que Discord (Stable, PTB ou Canary) est installé.\x1b[0m");
     process.exit(1);
 }
 
 if (allResources.length === 1) {
     // Un seul Discord trouvé : injection directe
-    console.log(`[Nightcord] Discord trouvé : ${allResources[0]}`);
+    console.log(`[S7Cord] Discord trouvé : ${allResources[0]}`);
     inject(allResources[0]);
 } else {
     // Plusieurs Discord trouvés : injecter dans tous
-    console.log(`[Nightcord] ${allResources.length} installations Discord trouvées :`);
+    console.log(`[S7Cord] ${allResources.length} installations Discord trouvées :`);
     let injectedCount = 0;
     for (const res of allResources) {
         console.log(`\n  → ${res}`);
         if (inject(res)) injectedCount++;
     }
-    console.log(`\n\x1b[32m[Nightcord] ${injectedCount}/${allResources.length} injection(s) réussie(s).\x1b[0m`);
+    console.log(`\n\x1b[32m[S7Cord] ${injectedCount}/${allResources.length} injection(s) réussie(s).\x1b[0m`);
 }

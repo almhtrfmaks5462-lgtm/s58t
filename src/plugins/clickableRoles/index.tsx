@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { openUserProfile } from "@utils/discord";
 import { isTruthy } from "@utils/guards";
 import { Logger } from "@utils/Logger";
 import definePlugin from "@utils/types";
-import type { Role } from "@vencord/discord-types";
+import type { Role } from "@S7Cord/discord-types";
 import { findByPropsLazy } from "@webpack";
 import { Constants, GuildRoleStore, IconUtils, Popout, RestAPI, ScrollerThin, useEffect, useRef, UserStore, useState, useStateFromStores } from "@webpack/common";
 

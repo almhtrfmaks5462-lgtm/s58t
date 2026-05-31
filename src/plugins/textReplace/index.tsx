@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,11 +26,11 @@ import { HeadingSecondary } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
 import { Span } from "@components/Span";
 import { TooltipContainer } from "@components/TooltipContainer";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/index";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { React, Select, TextInput, UserStore, useState } from "@webpack/common";
 
 const cl = classNameFactory("vc-textReplace-");
@@ -297,16 +297,16 @@ function modifyIncomingMessage(message: Message) {
 }
 
 const TEXT_REPLACE_RULES_EXEMPT_CHANNEL_IDS = [
-    "1102784112584040479", // Vencord's Text Replace Rules Channel
-    "1419347113745059961", // Equicord's Requests Channel
+    "1102784112584040479", // S7Cord's Text Replace Rules Channel
+    "1419347113745059961", // S7Cord's Requests Channel
 ];
 
 export default definePlugin({
     name: "TextReplace",
-    description: "Replace text in your messages. You can find pre-made rules in the #textreplace-rules channel in Vencord's Server",
+    description: "Replace text in your messages. You can find pre-made rules in the #textreplace-rules channel in S7Cord's Server",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat", "Customisation", "Utility"],
-    authors: [Devs.AutumnVN, Devs.TheKodeToad, EquicordDevs.Etorix],
+    authors: [Devs.AutumnVN, Devs.TheKodeToad, S7CordDevs.Etorix],
     isModified: true,
     settings,
     modifyIncomingMessage,

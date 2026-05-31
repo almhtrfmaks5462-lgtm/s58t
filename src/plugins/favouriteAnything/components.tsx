@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,8 +7,8 @@
 import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
 import { LazyComponentWrapper } from "@utils/lazyReact";
-import { Message, MessageAttachment, ScrollerBaseRef } from "@vencord/discord-types";
-import { ChannelType } from "@vencord/discord-types/enums";
+import { Message, MessageAttachment, ScrollerBaseRef } from "@S7Cord/discord-types";
+import { ChannelType } from "@S7Cord/discord-types/enums";
 import { findByCodeLazy, findComponentByCode, findComponentByCodeLazy, findCssClassesLazy, proxyLazyWebpack } from "@webpack";
 import { ChannelStore, ExpressionPickerStore, ListScrollerThin, lodash, PermissionsBits, PermissionStore, React, useCallback, useEffect, useMemo, useRef, useState, useStateFromStores } from "@webpack/common";
 import { ReactNode } from "react";

@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,11 +10,11 @@ import { Button } from "@components/Button";
 import { Card } from "@components/Card";
 import { HeadingPrimary, HeadingTertiary } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
-import type { Theme, ThemeLikeProps } from "@nightcordplugins/themeLibrary/types";
+import type { Theme, ThemeLikeProps } from "@S7Cordplugins/themeLibrary/types";
 import { proxyLazy } from "@utils/lazy";
 import { Margins } from "@utils/margins";
 import { ModalContent, ModalFooter, ModalHeader, ModalRoot, ModalSize, openModal } from "@utils/modal";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { FluxDispatcher, Parser, React, UserStore, UserUtils } from "@webpack/common";
 import { Constructor } from "type-fest";
 
@@ -120,9 +120,9 @@ export const ThemeCard: React.FC<ThemeCardProps> = ({ theme, enabledThemeLinks, 
 
     const handleViewSource = () => {
         if (theme.source) {
-            VencordNative.native.openExternal(theme.source);
+            S7CordNative.native.openExternal(theme.source);
         } else {
-            VencordNative.native.openExternal(`${apiUrl}/${theme.id}`);
+            S7CordNative.native.openExternal(`${apiUrl}/${theme.id}`);
         }
     };
 

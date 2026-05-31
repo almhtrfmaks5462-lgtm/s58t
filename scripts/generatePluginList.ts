@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,25 +17,25 @@
 */
 
 import { readdirSync, writeFileSync } from "fs";
-import { getEntryPoint, isPluginFile, parseDevs, parseEquicordDevs, parseFile, PluginData } from "./utils";
+import { getEntryPoint, isPluginFile, parseDevs, parseS7CordDevs, parseFile, PluginData } from "./utils";
 
 (async () => {
     parseDevs();
-    parseEquicordDevs();
+    parseS7CordDevs();
 
     const args = process.argv.slice(2);
 
-    const equicordFlag = args.includes("--equicord");
-    const vencordFlag = args.includes("--vencord");
+    const S7CordFlag = args.includes("--S7Cord");
+    const S7CordFlag = args.includes("--S7Cord");
 
     let dirs: string[];
 
-    if (equicordFlag) {
-        dirs = ["src/nightcordplugins"];
-    } else if (vencordFlag) {
+    if (S7CordFlag) {
+        dirs = ["src/S7Cordplugins"];
+    } else if (S7CordFlag) {
         dirs = ["src/plugins", "src/plugins/_core"];
     } else {
-        dirs = ["src/plugins", "src/plugins/_core", "src/nightcordplugins"];
+        dirs = ["src/plugins", "src/plugins/_core", "src/S7Cordplugins"];
     }
 
     const outputPath = args.find(a => !a.startsWith("--")) ?? null;

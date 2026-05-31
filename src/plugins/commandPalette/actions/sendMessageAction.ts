@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,8 +8,8 @@ import { openPrivateChannel, sendMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { sleep } from "@utils/misc";
 import { chooseFile } from "@utils/web";
-import { CloudUpload } from "@vencord/discord-types";
-import { CloudUploadPlatform } from "@vencord/discord-types/enums";
+import { CloudUpload } from "@S7Cord/discord-types";
+import { CloudUploadPlatform } from "@S7Cord/discord-types/enums";
 import { findLazy } from "@webpack";
 import { ChannelStore, Constants, RestAPI, SnowflakeUtils } from "@webpack/common";
 

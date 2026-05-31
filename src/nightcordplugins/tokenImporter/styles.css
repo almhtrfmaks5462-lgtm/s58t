@@ -47,7 +47,7 @@
 
 .ti-tab--active {
     color: #ffffff !important;
-    border-bottom-color: var(--brand-500, #5865f2);
+    border-bottom-color: var(--brand-500, #FF0000);
     font-weight: 600;
 }
 
@@ -279,7 +279,7 @@
 }
 
 .ti-switch-btn {
-    background: var(--brand-500, #5865f2);
+    background: var(--brand-500, #FF0000);
     border: none;
     border-radius: 6px;
     color: #fff;
@@ -410,7 +410,7 @@
 }
 
 .ti-submit-btn {
-    background: var(--brand-500, #5865f2);
+    background: var(--brand-500, #FF0000);
     border: none;
     border-radius: 6px;
     color: #fff;

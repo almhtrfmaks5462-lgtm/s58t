@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 export const enum IpcEvents {
-    GET_VENCORD_PRELOAD_SCRIPT = "VCD_GET_VC_PRELOAD_SCRIPT",
-    DEPRECATED_GET_VENCORD_PRELOAD_SCRIPT_PATH = "DEPRECATED_GET_VENCORD_PRELOAD_SCRIPT_PATH",
-    GET_VENCORD_RENDERER_SCRIPT = "VCD_GET_VC_RENDERER_SCRIPT",
+    GET_S7Cord_PRELOAD_SCRIPT = "VCD_GET_VC_PRELOAD_SCRIPT",
+    DEPRECATED_GET_S7Cord_PRELOAD_SCRIPT_PATH = "DEPRECATED_GET_S7Cord_PRELOAD_SCRIPT_PATH",
+    GET_S7Cord_RENDERER_SCRIPT = "VCD_GET_VC_RENDERER_SCRIPT",
 
     GET_VESKTOP_RENDERER_SCRIPT = "VCD_GET_RENDERER_SCRIPT",
     GET_VESKTOP_RENDERER_CSS = "VCD_GET_RENDERER_CSS",
@@ -27,9 +27,9 @@ export const enum IpcEvents {
     GET_SETTINGS = "VCD_GET_SETTINGS",
     SET_SETTINGS = "VCD_SET_SETTINGS",
 
-    IS_USING_CUSTOM_VENCORD_DIR = "VCD_IS_USING_CUSTOM_VENCORD_DIR",
-    SHOW_CUSTOM_VENCORD_DIR = "VCD_SHOW_CUSTOM_VENCORD_DIR",
-    SELECT_VENCORD_DIR = "VCD_SELECT_VENCORD_DIR",
+    IS_USING_CUSTOM_S7Cord_DIR = "VCD_IS_USING_CUSTOM_S7Cord_DIR",
+    SHOW_CUSTOM_S7Cord_DIR = "VCD_SHOW_CUSTOM_S7Cord_DIR",
+    SELECT_S7Cord_DIR = "VCD_SELECT_S7Cord_DIR",
 
     UPDATER_IS_OUTDATED = "VCD_UPDATER_IS_OUTDATED",
     UPDATER_OPEN = "VCD_UPDATER_OPEN",
@@ -77,8 +77,8 @@ export const enum IpcEvents {
 
     GET_PLATFORM_SPOOF_INFO = "VCD_GET_PLATFORM_SPOOF_INFO",
 
-    // Relaunch depuis VencordNative.nightcord.relaunch() (boutons Restart plugins)
-    RELAUNCH_APP = "NightcordRelaunchApp"
+    // Relaunch depuis S7CordNative.S7Cord.relaunch() (boutons Restart plugins)
+    RELAUNCH_APP = "S7CordRelaunchApp"
 }
 
 export const enum UpdaterIpcEvents {

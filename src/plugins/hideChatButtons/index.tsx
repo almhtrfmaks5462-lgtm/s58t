@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { ChatBarButton } from "@api/ChatButtons";
 import { definePluginSettings, migratePluginSetting } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType, StartAt } from "@utils/types";
 import { useEffect, useState } from "@webpack/common";
 import type { MouseEventHandler, ReactNode } from "react";
@@ -84,7 +84,7 @@ export default definePlugin({
     name: "HideChatButtons",
     description: "Able to hide the chat buttons",
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.iamme],
+    authors: [S7CordDevs.iamme],
     dependencies: ["ChatInputButtonAPI"],
     settings: settings,
     startAt: StartAt.Init,

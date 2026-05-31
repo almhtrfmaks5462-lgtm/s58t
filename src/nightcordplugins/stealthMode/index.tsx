@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -18,8 +18,8 @@ export function isStealthEnabled(): boolean {
 export default definePlugin({
     name: "StealthMode",
     enabledByDefault: true,
-    description: "Hides all plugin buttons without disabling them. Shortcut: Ctrl+Shift+H. The toggle is in Nightcord Settings.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    description: "Hides all plugin buttons without disabling them. Shortcut: Ctrl+Shift+H. The toggle is in S7Cord Settings.",
+    authors: [{ name: "S7Cord", id: 0n }],
     required: true,
     managedStyle: style,
 
@@ -28,6 +28,6 @@ export default definePlugin({
     },
 
     stop() {
-        document.body.classList.remove("nightcord-stealth");
+        document.body.classList.remove("S7Cord-stealth");
     },
 });

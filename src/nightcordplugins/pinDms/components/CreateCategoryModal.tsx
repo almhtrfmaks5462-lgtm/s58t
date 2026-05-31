@@ -1,16 +1,16 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { Button } from "@components/Button";
 import { Heading } from "@components/Heading";
-import { DEFAULT_COLOR, SWATCHES } from "@nightcordplugins/pinDms/constants";
-import { categoryLen, createCategory, getCategory } from "@nightcordplugins/pinDms/data";
+import { DEFAULT_COLOR, SWATCHES } from "@S7Cordplugins/pinDms/constants";
+import { categoryLen, createCategory, getCategory } from "@S7Cordplugins/pinDms/data";
 import { classNameFactory } from "@utils/css";
 import { ModalContent, ModalFooter, ModalHeader, ModalRoot, openModalLazy } from "@utils/modal";
-import { RenderModalProps } from "@vencord/discord-types";
+import { RenderModalProps } from "@S7Cord/discord-types";
 import { extractAndLoadChunksLazy, findComponentByCodeLazy } from "@webpack";
 import { ColorPicker, TextInput, Toasts, useMemo, useState } from "@webpack/common";
 

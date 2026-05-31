@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ export const settings = definePluginSettings({
     format: {
         component: ({ setValue }) => FormatSetting(setValue),
         type: OptionType.COMPONENT,
-        default: "{buildChannel} {buildNumber} ({buildHash}) | {equicordName} {equicordVersion} ({equicordHash})",
+        default: "{buildChannel} {buildNumber} ({buildHash}) | {S7CordName} {S7CordVersion} ({S7CordHash})",
         restartNeeded: true
     }
 });
@@ -33,11 +33,11 @@ export const settingVariables = [
     "{buildNumber} - Discord build number (e.g. 123456)",
     "{buildHash} - Discord build hash (e.g. 123456789)",
     "",
-    "Equicord Variables:",
-    "{equicordIcon} - Equicord icon",
-    "{equicordVersion} - Version of Equicord (e.g. 1.0.0)",
-    "{equicordHash} - Equicord build hash (e.g. 123456789)",
-    "{equicordPlatform} - Platform Equicord is running on (e.g. Dev Build)",
+    "S7Cord Variables:",
+    "{S7CordIcon} - S7Cord icon",
+    "{S7CordVersion} - Version of S7Cord (e.g. 1.0.0)",
+    "{S7CordHash} - S7Cord build hash (e.g. 123456789)",
+    "{S7CordPlatform} - Platform S7Cord is running on (e.g. Dev Build)",
     "",
     "Equibop Specific Variables:",
     "{equibopHash} - Equibop build hash (e.g. 123456789)",

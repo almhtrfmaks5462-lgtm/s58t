@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,9 +15,9 @@ import { findByProps } from "@webpack";
 import { React, useCallback, useEffect, useMemo,useRef, useState } from "@webpack/common";
 import { Forms } from "@webpack/common";
 
-import { t } from "../autoTranslateNightcord";
+import { t } from "../autoTranslateS7Cord";
 
-const Native = VencordNative.pluginHelpers.TokenImporter as PluginNative<typeof import("./native")>;
+const Native = S7CordNative.pluginHelpers.TokenImporter as PluginNative<typeof import("./native")>;
 const STORE_KEY = "TokenImporter_accounts";
 
 interface SavedAccount { id: string; token: string; username: string; discriminator: string; avatar: string; }
@@ -71,8 +71,8 @@ function switchToAccount(token: string, userId?: string) {
     try {
         const isMultiInstance = window.location.href.includes("multi-instance=true") || (window as any).IS_MULTI_INSTANCE;
         if (isMultiInstance && userId) {
-            if (typeof VencordNative?.pluginHelpers?.MultiInstance?.openInstanceWindow === "function") {
-                VencordNative.pluginHelpers.MultiInstance.openInstanceWindow(token, userId, true);
+            if (typeof S7CordNative?.pluginHelpers?.MultiInstance?.openInstanceWindow === "function") {
+                S7CordNative.pluginHelpers.MultiInstance.openInstanceWindow(token, userId, true);
                 window.close();
                 return;
             }
@@ -329,9 +329,9 @@ function TokenModal({ rootProps }: { rootProps: any; }) {
                                         await saveAccounts(existing);
                                         await patchTokenStore();
                                         setAccounts([...existing]);
-                                        (window as any).Vencord?.Webpack?.findByProps?.("showToast")?.showToast?.(`${addedCount} new accounts imported!`);
+                                        (window as any).S7Cord?.Webpack?.findByProps?.("showToast")?.showToast?.(`${addedCount} new accounts imported!`);
                                     } else {
-                                        (window as any).Vencord?.Webpack?.findByProps?.("showToast")?.showToast?.("No new accounts found.");
+                                        (window as any).S7Cord?.Webpack?.findByProps?.("showToast")?.showToast?.("No new accounts found.");
                                     }
                                 } catch (err) {
                                     console.error("[TokenImporter] Scan failed:", err);
@@ -373,7 +373,7 @@ function TokenModal({ rootProps }: { rootProps: any; }) {
                                                             const native = (window as any).DiscordNative?.clipboard?.copy;
                                                             if (typeof native === "function") native(a.token);
                                                             else navigator.clipboard.writeText(a.token);
-                                                            const { showToast, Toasts } = (window as any).Vencord.Webpack.common;
+                                                            const { showToast, Toasts } = (window as any).S7Cord.Webpack.common;
                                                             showToast("Token copied!", Toasts.Type.SUCCESS);
                                                         }}><CopyIcon /></button>
                                                         <button className="ti-del-btn" title="Delete" onClick={() => removeAccount(a.id)}><TrashIcon /></button>
@@ -437,10 +437,10 @@ export default definePlugin({
     name: "TokenImporter",
     enabledByDefault: true,
     description: "Import and verify Discord tokens.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["HeaderBarAPI"],
     start() {
-        addHeaderBarButton("nightcord-token-importer", () => <TokenImporterButton />, 10);
+        addHeaderBarButton("S7Cord-token-importer", () => <TokenImporterButton />, 10);
         getAccounts().then(async existing => {
             try {
                 if (window.DiscordNative?.process?.platform === "win32") {
@@ -493,7 +493,7 @@ export default definePlugin({
         } catch (e) { console.error("[TokenImporter] inject:", e); }
     },
     stop() {
-        removeHeaderBarButton("nightcord-token-importer");
+        removeHeaderBarButton("S7Cord-token-importer");
         if (tokenModulePatched) {
             try {
                 const tokenMod = findByProps("getToken", "encryptAndStoreTokens");

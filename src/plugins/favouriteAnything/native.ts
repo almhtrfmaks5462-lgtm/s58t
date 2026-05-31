@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { MessageAttachment } from "@vencord/discord-types";
+import { MessageAttachment } from "@S7Cord/discord-types";
 
 const allowedHosts = new Set([
     "cdn.discordapp.com",

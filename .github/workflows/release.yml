@@ -1,4 +1,4 @@
-name: Build & Release Nightcord
+name: Build & Release S7Cord
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Equicord renderer (standalone)
+      - name: Build S7Cord renderer (standalone)
         run: pnpm buildStandalone
 
       - name: Build & Package Electron
@@ -41,11 +41,11 @@ jobs:
           node electron-builder.config.cjs || true
           npx electron-builder --config electron-builder.config.cjs --win --publish always
 
-      - name: Package nightcord-dist.zip
+      - name: Package S7Cord-dist.zip
         shell: pwsh
         run: |
           # Gather everything the launcher needs: patcher.js, dist/, ghost-server/, modules/, binaries
-          $staging = "nightcord-dist-staging"
+          $staging = "S7Cord-dist-staging"
           New-Item -ItemType Directory -Path $staging -Force | Out-Null
 
           # Core JS dist output (patcher.js, renderer.js, preload.js …)
@@ -58,22 +58,22 @@ jobs:
             Copy-Item "ghost-server" "$staging\ghost-server" -Recurse
           }
 
-          # Static assets from release/nightcord-dist (ffmpeg.dll, modules, etc.)
-          if (Test-Path "release\nightcord-dist") {
-            Copy-Item "release\nightcord-dist\*" "$staging\" -Recurse -Force
+          # Static assets from release/S7Cord-dist (ffmpeg.dll, modules, etc.)
+          if (Test-Path "release\S7Cord-dist") {
+            Copy-Item "release\S7Cord-dist\*" "$staging\" -Recurse -Force
           }
 
           # Entry-point files
-          foreach ($f in @("nightcord-index.js", "nightcord-preload.js")) {
+          foreach ($f in @("S7Cord-index.js", "S7Cord-preload.js")) {
             if (Test-Path $f) { Copy-Item $f "$staging\" }
           }
 
-          Compress-Archive -Path "$staging\*" -DestinationPath "nightcord-dist.zip" -Force
-          Write-Host "nightcord-dist.zip created ($($(Get-Item nightcord-dist.zip).Length / 1MB) MB)"
+          Compress-Archive -Path "$staging\*" -DestinationPath "S7Cord-dist.zip" -Force
+          Write-Host "S7Cord-dist.zip created ($($(Get-Item S7Cord-dist.zip).Length / 1MB) MB)"
 
-      - name: Upload nightcord-dist.zip to Release
+      - name: Upload S7Cord-dist.zip to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: nightcord-dist.zip
+          files: S7Cord-dist.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

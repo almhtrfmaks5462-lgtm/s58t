@@ -1,14 +1,14 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./style.css";
 
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
-import { Channel } from "@vencord/discord-types";
+import { Channel } from "@S7Cord/discord-types";
 import { GuildStore, React, SelectedGuildStore } from "@webpack/common";
 import { JSX } from "react";
 
@@ -33,7 +33,7 @@ export default definePlugin({
     name: "ChannelBadges",
     description: "Adds badges to channels based on their type",
     tags: ["Appearance", "Customisation", "Servers"],
-    authors: [EquicordDevs.creations, Devs.thororen],
+    authors: [S7CordDevs.creations, Devs.thororen],
     settings,
     patches: [
         // TY TypingIndicator

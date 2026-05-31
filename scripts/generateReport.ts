@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -100,7 +100,7 @@ function toCodeBlock(s: string, indentation = 0, isDiscord = false) {
 async function printReport() {
     console.log();
 
-    console.log("# Equicord Report" + (CANARY ? " (Canary)" : ""));
+    console.log("# S7Cord Report" + (CANARY ? " (Canary)" : ""));
 
     console.log();
 
@@ -201,7 +201,7 @@ async function printReport() {
         }
 
         const body = JSON.stringify({
-            username: "Equicord Reporter" + (CANARY ? " (Canary)" : ""),
+            username: "S7Cord Reporter" + (CANARY ? " (Canary)" : ""),
             embeds
         });
 
@@ -248,7 +248,7 @@ page.on("console", async e => {
 
     const firstArg = await rawArgs[0]?.jsonValue();
 
-    const isEquicord = firstArg === "[Equicord]";
+    const isS7Cord = firstArg === "[S7Cord]";
     const isDebug = firstArg === "[PUP_DEBUG]";
     const isReporterMeta = firstArg === "[REPORTER_META]";
 
@@ -258,7 +258,7 @@ page.on("console", async e => {
     }
 
     outer:
-    if (isEquicord) {
+    if (isS7Cord) {
         try {
             var args = await Promise.all(e.args().map(a => a.jsonValue()));
         } catch {

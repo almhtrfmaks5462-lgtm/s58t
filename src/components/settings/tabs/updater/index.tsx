@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -22,7 +22,7 @@ import { Toasts } from "@webpack/common";
 // Version locale depuis package.json (injectÃ©e au build)
 declare const VERSION: string;
 
-const REPO_URL = "https://git.nightcord.su/nightcord/nightcord";
+const REPO_URL = "https://git.S7Cord.su/S7Cord/S7Cord";
 
 function UpdaterTab() {
     const [checking, setChecking] = useState(false);
@@ -91,9 +91,9 @@ function UpdaterTab() {
 
     return (
         <SettingsTab>
-            <Heading className={Margins.top16}>Nightcord Updater</Heading>
+            <Heading className={Margins.top16}>S7Cord Updater</Heading>
             <Paragraph className={Margins.bottom20}>
-                Check for new versions of Nightcord. Updates can be installed automatically.
+                Check for new versions of S7Cord. Updates can be installed automatically.
             </Paragraph>
 
             {/* Version actuelle */}
@@ -110,8 +110,8 @@ function UpdaterTab() {
                     <div>
                         <Span size="sm" color="text-subtle">Website</Span>
                         <div>
-                            <Link href="https://nightcord.su" style={{ fontSize: 13 }}>
-                                nightcord.su
+                            <Link href="https://S7Cord.su" style={{ fontSize: 13 }}>
+                                S7Cord.su
                             </Link>
                         </div>
                     </div>

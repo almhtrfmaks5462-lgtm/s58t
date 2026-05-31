@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -100,7 +100,7 @@ export default definePlugin({
     name: "RealtimeTimestamps",
     description: "Replaces Discord timestamps (e.g. 15:31) with live seconds (e.g. 15:34:21), updated every second.",
     tags: ["Appearance", "Chat", "Utility"],
-    authors: [{ name: "Nightcord", id: 253979869n }],
+    authors: [{ name: "S7Cord", id: 253979869n }],
     enabledByDefault: true,
     settings,
 

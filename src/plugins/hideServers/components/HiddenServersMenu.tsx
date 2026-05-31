@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,7 +10,7 @@ import { HiddenServersStore } from "@plugins/hideServers/HiddenServersStore";
 import { classNameFactory } from "@utils/css";
 import { getGuildAcronym } from "@utils/discord";
 import { classes } from "@utils/misc";
-import { Guild, RenderModalProps } from "@vencord/discord-types";
+import { Guild, RenderModalProps } from "@S7Cord/discord-types";
 import { findCssClassesLazy } from "@webpack";
 import { Button, closeModal, IconUtils, Modal,openModal, useStateFromStores } from "@webpack/common";
 

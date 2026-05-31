@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ import { Logger } from "@utils/Logger";
 import { onlyOnce } from "@utils/onlyOnce";
 import { canonicalizeFind, canonicalizeReplacement } from "@utils/patches";
 import { Patch, Plugin, PluginDef, ReporterTestable, StartAt } from "@utils/types";
-import { FluxEvents } from "@vencord/discord-types";
+import { FluxEvents } from "@S7Cord/discord-types";
 import { FluxDispatcher } from "@webpack/common";
 import { patches } from "@webpack/patcher";
 
@@ -83,7 +83,7 @@ export function isPluginRequired(p: string) {
     ) ?? false;
 }
 
-export function addPatch(newPatch: Omit<Patch, "plugin">, pluginName: string, pluginPath = `Vencord.Plugins.plugins[${JSON.stringify(pluginName)}]`) {
+export function addPatch(newPatch: Omit<Patch, "plugin">, pluginName: string, pluginPath = `S7Cord.Plugins.plugins[${JSON.stringify(pluginName)}]`) {
     const patch = newPatch as Patch;
     patch.plugin = pluginName;
 
@@ -377,7 +377,7 @@ export const initPluginManager = onlyOnce(function init() {
     const neededApiPlugins = new Set<string>();
 
     // Migration: force tous les plugins a OFF sauf required/enabledByDefault
-    const MIGRATION_FLAG = "__nightcord_default_off_v1__";
+    const MIGRATION_FLAG = "__S7Cord_default_off_v1__";
     if (!(SettingsStore.plain as any)[MIGRATION_FLAG]) {
         for (const p of pluginsValues) {
             const shouldBeOn = p.required || p.enabledByDefault;

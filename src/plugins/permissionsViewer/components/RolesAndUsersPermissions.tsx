@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,12 +19,12 @@
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { InfoIcon, OwnerCrownIcon } from "@components/Icons";
-import { buildExtraRoleContextMenuItems } from "@nightcordplugins/betterRoleContext";
+import { buildExtraRoleContextMenuItems } from "@S7Cordplugins/betterRoleContext";
 import { cl, getGuildPermissionSpecMap, loadGetGuildPermissionSpecMap } from "@plugins/permissionsViewer/utils";
 import { copyToClipboard } from "@utils/clipboard";
 import { getIntlMessage, getUniqueUsername } from "@utils/discord";
-import { Guild, RenderModalProps, Role, RoleOrUserPermission, UnicodeEmoji, User } from "@vencord/discord-types";
-import { PermissionOverwriteType } from "@vencord/discord-types/enums";
+import { Guild, RenderModalProps, Role, RoleOrUserPermission, UnicodeEmoji, User } from "@S7Cord/discord-types";
+import { PermissionOverwriteType } from "@S7Cord/discord-types/enums";
 import { findByCodeLazy } from "@webpack";
 import { ContextMenuApi, FluxDispatcher, GuildMemberStore, GuildRoleStore, i18n, Menu, Modal, openModalLazy, PermissionsBits, ScrollerThin, Text, Tooltip, useEffect, useMemo, useRef, UserStore, useState, useStateFromStores } from "@webpack/common";
 

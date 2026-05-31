@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ import { disableStyle, enableStyle } from "@api/Styles";
 import usrbg from "@plugins/usrbg";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { UserProfileStore } from "@webpack/common";
 
 import style from "./style.css?managed";

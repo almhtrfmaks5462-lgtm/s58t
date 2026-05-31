@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -29,7 +29,7 @@ type Spinner = ComponentType<Omit<HTMLAttributes<HTMLDivElement>, "children"> & 
     Type: typeof SpinnerTypes;
 };
 
-// https://github.com/Kyuuhachi/VencordPlugins/blob/main/MessageLinkTooltip/index.tsx#L11-L33
+// https://github.com/Kyuuhachi/S7CordPlugins/blob/main/MessageLinkTooltip/index.tsx#L11-L33
 export const Spinner = findComponentByCodeLazy('"pulsingEllipsis"') as unknown as Spinner;
 
 export const cl = classNameFactory("qrlogin-");

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,11 +8,11 @@ import electron, { app, Menu, nativeImage, Tray } from "electron";
 import { dirname, join } from "path";
 
 /**
- * Initializes the Nightcord system tray icon.
+ * Initializes the S7Cord system tray icon.
  * Should only be called on Windows, outside overlay mode.
  * @param injectorPath - Path to the injector entry point (require.main.filename)
  */
-export function initNightcordTray(injectorPath: string) {
+export function initS7CordTray(injectorPath: string) {
     if (process.platform !== "win32") return;
 
     app.whenReady().then(() => {
@@ -41,11 +41,11 @@ export function initNightcordTray(injectorPath: string) {
             }
 
             const tray = new Tray(icon);
-            tray.setToolTip("Nightcord");
+            tray.setToolTip("S7Cord");
 
             const trayMenu = Menu.buildFromTemplate([
                 {
-                    label: "Open Nightcord",
+                    label: "Open S7Cord",
                     click() {
                         const wins = electron.BrowserWindow.getAllWindows();
                         const main = wins.find(w => !w.isDestroyed()) ?? wins[0];
@@ -54,12 +54,12 @@ export function initNightcordTray(injectorPath: string) {
                 },
                 { type: "separator" },
                 {
-                    label: "Uninstall Nightcord",
+                    label: "Uninstall S7Cord",
                     click() {
                         const uninstallerCandidates = [
-                            join(process.env.LOCALAPPDATA || "", "Programs", "nightcord", "Uninstall Nightcord.exe"),
-                            join(process.env.LOCALAPPDATA || "", "Programs", "Nightcord", "Uninstall Nightcord.exe"),
-                            join(process.env.PROGRAMFILES || "", "Nightcord", "Uninstall Nightcord.exe"),
+                            join(process.env.LOCALAPPDATA || "", "Programs", "S7Cord", "Uninstall S7Cord.exe"),
+                            join(process.env.LOCALAPPDATA || "", "Programs", "S7Cord", "Uninstall S7Cord.exe"),
+                            join(process.env.PROGRAMFILES || "", "S7Cord", "Uninstall S7Cord.exe"),
                         ];
                         const { existsSync: fsExists } = require("original-fs");
                         const uninstaller = uninstallerCandidates.find(p => fsExists(p));
@@ -90,9 +90,9 @@ export function initNightcordTray(injectorPath: string) {
                 }
             });
 
-            console.log("[Nightcord] Tray created ✓", iconPath ?? "(icon from exe)");
+            console.log("[S7Cord] Tray created ✓", iconPath ?? "(icon from exe)");
         } catch (e) {
-            console.error("[Nightcord] Failed to create tray:", e);
+            console.error("[S7Cord] Failed to create tray:", e);
         }
     });
 }

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { findByPropsLazy, findStoreLazy } from "@webpack";
 import { Forms } from "@webpack/common";
 import { React, useEffect, useMemo,useState } from "@webpack/common";
 
-import { t, useTranslation } from "../autoTranslateNightcord";
+import { t, useTranslation } from "../autoTranslateS7Cord";
 
 const RelationshipStore = findStoreLazy("RelationshipStore");
 const UserStore = findStoreLazy("UserStore");
@@ -27,7 +27,7 @@ function removeFriend(id: string): Promise<any> {
         }
     } catch { }
     // Method 2: direct REST API fallback
-    const token = (() => { try { return (window as any).Vencord?.Webpack?.findByProps?.("getToken")?.getToken?.() ?? ""; } catch { return ""; } })();
+    const token = (() => { try { return (window as any).S7Cord?.Webpack?.findByProps?.("getToken")?.getToken?.() ?? ""; } catch { return ""; } })();
     if (!token) return Promise.reject(new Error("No token"));
     return fetch(`https://discord.com/api/v9/users/@me/relationships/${encodeURIComponent(id)}`, { method: "DELETE", headers: { Authorization: token } });
 }
@@ -39,7 +39,7 @@ function BulkRemoveIcon({ width = 20, height = 20 }: { width?: number; height?: 
 function CheckboxIcon({ checked }: { checked: boolean; }) {
     if (checked) return (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect width="16" height="16" rx="4" fill="var(--brand-500, #5865f2)" />
+            <rect width="16" height="16" rx="4" fill="var(--brand-500, #FF0000)" />
             <path d="M3.5 8l3 3 6-6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     );
@@ -214,6 +214,6 @@ export default definePlugin({
     name: "BulkFriendRemove",
     enabledByDefault: true,
     description: "Delete multiple friends at once.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     headerBarButton: { icon: BulkRemoveIcon, render: BulkFriendRemoveButton, priority: 5 },
 });

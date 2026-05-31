@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { onceReady } from "@equicord/types/webpack";
-import { FluxDispatcher, MediaEngineStore, UserStore } from "@equicord/types/webpack/common";
+import { onceReady } from "@S7Cord/types/webpack";
+import { FluxDispatcher, MediaEngineStore, UserStore } from "@S7Cord/types/webpack/common";
 import { Settings } from "renderer/settings";
 
 import { setBadge } from "../appBadge";

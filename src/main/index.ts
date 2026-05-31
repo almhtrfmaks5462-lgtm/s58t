@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,8 +28,8 @@ import { installExt } from "./utils/extensions";
 
 if (!IS_VANILLA && !IS_EXTENSION) {
     app.whenReady().then(() => {
-        protocol.handle("vencord", ({ url: unsafeUrl }) => {
-            let url = decodeURI(unsafeUrl).slice("vencord://".length).replace(/\?v=\d+$/, "");
+        protocol.handle("S7Cord", ({ url: unsafeUrl }) => {
+            let url = decodeURI(unsafeUrl).slice("S7Cord://".length).replace(/\?v=\d+$/, "");
 
             if (url.endsWith("/")) url = url.slice(0, -1);
 
@@ -62,8 +62,8 @@ if (!IS_VANILLA && !IS_EXTENSION) {
             }
         });
 
-        protocol.handle("equicord", ({ url: unsafeUrl }) => {
-            let url = decodeURI(unsafeUrl).slice("equicord://".length).replace(/\?v=\d+$/, "");
+        protocol.handle("S7Cord", ({ url: unsafeUrl }) => {
+            let url = decodeURI(unsafeUrl).slice("S7Cord://".length).replace(/\?v=\d+$/, "");
 
             if (url.endsWith("/")) url = url.slice(0, -1);
 
@@ -99,8 +99,8 @@ if (!IS_VANILLA && !IS_EXTENSION) {
         try {
             if (RendererSettings.store.enableReactDevtools)
                 installExt("fmkadmapgofadopljbjfkapdkoienihi")
-                    .then(() => console.info("[Nightcord] Installed React Developer Tools"))
-                    .catch(err => console.error("[Nightcord] Failed to install React Developer Tools", err));
+                    .then(() => console.info("[S7Cord] Installed React Developer Tools"))
+                    .catch(err => console.error("[S7Cord] Failed to install React Developer Tools", err));
         } catch { }
 
         initCsp();

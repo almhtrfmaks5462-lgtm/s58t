@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,9 @@ import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/Co
 import { plugins } from "@api/PluginManager";
 import { definePluginSettings } from "@api/Settings";
 import { openPluginModal } from "@components/settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Channel } from "@vencord/discord-types";
+import { Channel } from "@S7Cord/discord-types";
 import { ChannelStore, FluxDispatcher, Menu, React } from "@webpack/common";
 
 const settings = definePluginSettings({
@@ -295,7 +295,7 @@ function shouldHideMembersListTypingIndicators(): boolean {
 
 export default definePlugin({
     name: "SilentTyping",
-    authors: [Devs.Ven, Devs.Rini, Devs.ImBanana, EquicordDevs.Etorix],
+    authors: [Devs.Ven, Devs.Rini, Devs.ImBanana, S7CordDevs.Etorix],
     description: "Hide that you are typing",
     dependencies: ["CommandsAPI", "ChatInputButtonAPI"],
     tags: ["Chat", "Privacy"],

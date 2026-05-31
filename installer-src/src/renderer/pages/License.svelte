@@ -28,7 +28,7 @@
 
     function readLicenseFile() {
         fs.readFile(path.join(__static, "/license.txt"), (err, data) => {
-            if (err) return licenseText = "See license at https://git.nightcord.su/nightcord/nightcord/src/branch/master/LICENSE";
+            if (err) return licenseText = "See license at https://git.S7Cord.su/S7Cord/S7Cord/src/branch/master/LICENSE";
             licenseText = data;
         });
     }

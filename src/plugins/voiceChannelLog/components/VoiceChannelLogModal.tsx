@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { classes } from "@utils/misc";
-import { Channel, RenderModalProps } from "@vencord/discord-types";
+import { Channel, RenderModalProps } from "@S7Cord/discord-types";
 import { findStoreLazy } from "@webpack";
 import { Modal, openModal, React, ScrollerThin } from "@webpack/common";
 

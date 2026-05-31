@@ -1,11 +1,11 @@
 # ==============================================================================
-#  Nightcord — Installeur utilisateur (PowerShell autonome)
+#  S7Cord — Installeur utilisateur (PowerShell autonome)
 #  
 #  Ce script fait TOUT automatiquement :
 #  1. Télécharge EquilotlCli.exe (outil d'injection graphique)
-#  2. Télécharge les fichiers Nightcord compilés depuis GitHub
+#  2. Télécharge les fichiers S7Cord compilés depuis GitHub
 #  3. Lance l'interface graphique pour choisir votre Discord cible
-#  4. Injecte Nightcord dans Discord
+#  4. Injecte S7Cord dans Discord
 #
 #  Aucun Node.js, aucun pnpm, aucun code source requis.
 #  Usage : Clic droit → "Exécuter avec PowerShell"
@@ -15,9 +15,9 @@ $ErrorActionPreference = "Stop"
 $ProgressPreference    = "SilentlyContinue"
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-$NightcordRepo   = "nightcordfr/nightcord"
-$EquilotlUrl     = "https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli.exe"
-$InstallDir      = Join-Path $env:LOCALAPPDATA "Nightcord"
+$S7CordRepo   = "S7Cordfr/S7Cord"
+$EquilotlUrl     = "https://github.com/S7Cord/Equilotl/releases/latest/download/EquilotlCli.exe"
+$InstallDir      = Join-Path $env:LOCALAPPDATA "S7Cord"
 $DistDir         = Join-Path $InstallDir "dist"
 $InstallerDir    = Join-Path $InstallDir "installer"
 $EquilotlExe     = Join-Path $InstallerDir "EquilotlCli.exe"
@@ -26,7 +26,7 @@ function Write-Banner {
     Clear-Host
     Write-Host ""
     Write-Host "  ╔══════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "  ║          NIGHTCORD  INSTALLER            ║" -ForegroundColor Cyan
+    Write-Host "  ║          S7Cord  INSTALLER            ║" -ForegroundColor Cyan
     Write-Host "  ║  Injection rapide dans Discord Desktop   ║" -ForegroundColor DarkCyan
     Write-Host "  ╚══════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
@@ -67,7 +67,7 @@ if (Test-Path $EquilotlExe) {
     # Vérifier si une mise à jour est disponible via HEAD
     try {
         $head = Invoke-WebRequest -Uri $EquilotlUrl -Method Head -UseBasicParsing `
-            -Headers @{ "User-Agent" = "Nightcord-Installer/2.0" }
+            -Headers @{ "User-Agent" = "S7Cord-Installer/2.0" }
         $remoteSize = [long]($head.Headers["Content-Length"] ?? 0)
         $localSize  = (Get-Item $EquilotlExe).Length
         if ($remoteSize -gt 0 -and $remoteSize -eq $localSize) {
@@ -81,34 +81,34 @@ if ($needDownload) {
     Write-Host "          Téléchargement de EquilotlCli.exe..." -ForegroundColor DarkGray
     try {
         Invoke-WebRequest -Uri $EquilotlUrl -OutFile $EquilotlExe -UseBasicParsing `
-            -Headers @{ "User-Agent" = "Nightcord-Installer/2.0" }
+            -Headers @{ "User-Agent" = "S7Cord-Installer/2.0" }
         Write-OK "EquilotlCli.exe téléchargé !"
     } catch {
         Write-Fail "Impossible de télécharger EquilotlCli.exe.`n           Vérifiez votre connexion internet.`n           Détail : $_"
     }
 }
 
-# ── [2/3] Télécharger les fichiers Nightcord ──────────────────────────────────
-Write-Step 2 3 "Téléchargement des fichiers Nightcord depuis GitHub..."
+# ── [2/3] Télécharger les fichiers S7Cord ──────────────────────────────────
+Write-Step 2 3 "Téléchargement des fichiers S7Cord depuis GitHub..."
 
 try {
-    $apiUrl   = "https://api.github.com/repos/$NightcordRepo/releases/latest"
+    $apiUrl   = "https://api.github.com/repos/$S7CordRepo/releases/latest"
     $release  = Invoke-RestMethod -Uri $apiUrl -UseBasicParsing `
-        -Headers @{ "User-Agent" = "Nightcord-Installer/2.0"; "Accept" = "application/vnd.github.v3+json" }
+        -Headers @{ "User-Agent" = "S7Cord-Installer/2.0"; "Accept" = "application/vnd.github.v3+json" }
 
     $version  = $release.tag_name
-    $distAsset = $release.assets | Where-Object { $_.name -eq "nightcord-dist.zip" } | Select-Object -First 1
+    $distAsset = $release.assets | Where-Object { $_.name -eq "S7Cord-dist.zip" } | Select-Object -First 1
 
     if (-not $distAsset) {
-        Write-Fail "Fichier 'nightcord-dist.zip' introuvable dans la release $version.`n           Contactez le support Nightcord."
+        Write-Fail "Fichier 'S7Cord-dist.zip' introuvable dans la release $version.`n           Contactez le support S7Cord."
     }
 
     Write-Host "          Version : $version" -ForegroundColor DarkGray
     Write-Host "          Téléchargement en cours..." -ForegroundColor DarkGray
 
-    $zipPath = Join-Path $InstallDir "nightcord-dist.zip"
+    $zipPath = Join-Path $InstallDir "S7Cord-dist.zip"
     Invoke-WebRequest -Uri $distAsset.browser_download_url -OutFile $zipPath -UseBasicParsing `
-        -Headers @{ "User-Agent" = "Nightcord-Installer/2.0" }
+        -Headers @{ "User-Agent" = "S7Cord-Installer/2.0" }
 
     # Extraire proprement (supprimer l'ancien dist d'abord)
     if (Test-Path $DistDir) { Remove-Item $DistDir -Recurse -Force }
@@ -119,9 +119,9 @@ try {
     # Sauvegarder la version installée
     Set-Content -Path (Join-Path $InstallDir "version.txt") -Value $version
 
-    Write-OK "Nightcord $version prêt à être injecté !"
+    Write-OK "S7Cord $version prêt à être injecté !"
 } catch {
-    Write-Fail "Échec du téléchargement Nightcord.`n           Détail : $_"
+    Write-Fail "Échec du téléchargement S7Cord.`n           Détail : $_"
 }
 
 # ── [3/3] Injection via EquilotlCli ───────────────────────────────────────────
@@ -129,14 +129,14 @@ Write-Step 3 3 "Lancement de l'interface d'injection..."
 Write-Host ""
 Write-Host "          ┌─────────────────────────────────────────────────┐" -ForegroundColor DarkCyan
 Write-Host "          │  Une fenêtre va s'ouvrir.                       │" -ForegroundColor DarkCyan
-Write-Host "          │  Sélectionnez le Discord où injecter Nightcord. │" -ForegroundColor DarkCyan
+Write-Host "          │  Sélectionnez le Discord où injecter S7Cord. │" -ForegroundColor DarkCyan
 Write-Host "          └─────────────────────────────────────────────────┘" -ForegroundColor DarkCyan
 Write-Host ""
 
 # Ces variables d'environnement indiquent à EquilotlCli où trouver les fichiers
-$env:EQUICORD_USER_DATA_DIR = $InstallDir
-$env:EQUICORD_DIRECTORY     = $DistDir
-$env:EQUICORD_DEV_INSTALL   = "1"
+$env:S7Cord_USER_DATA_DIR = $InstallDir
+$env:S7Cord_DIRECTORY     = $DistDir
+$env:S7Cord_DEV_INSTALL   = "1"
 
 try {
     & $EquilotlExe "--install"
@@ -150,11 +150,11 @@ try {
 # ── Succès ────────────────────────────────────────────────────────────────────
 Write-Host ""
 Write-Host "  ╔══════════════════════════════════════════════════════╗" -ForegroundColor Green
-Write-Host "  ║  Nightcord installé avec succès !                    ║" -ForegroundColor Green
+Write-Host "  ║  S7Cord installé avec succès !                    ║" -ForegroundColor Green
 Write-Host "  ║                                                      ║" -ForegroundColor Green
-Write-Host "  ║  → Redémarrez Discord pour appliquer Nightcord.      ║" -ForegroundColor Green
+Write-Host "  ║  → Redémarrez Discord pour appliquer S7Cord.      ║" -ForegroundColor Green
 Write-Host "  ╚══════════════════════════════════════════════════════╝" -ForegroundColor Green
 Write-Host ""
-Write-Host "  Pour désinstaller : exécutez nightcord-uninstall.bat" -ForegroundColor DarkGray
+Write-Host "  Pour désinstaller : exécutez S7Cord-uninstall.bat" -ForegroundColor DarkGray
 Write-Host ""
 Start-Sleep -Seconds 4

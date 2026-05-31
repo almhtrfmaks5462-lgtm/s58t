@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,9 +8,9 @@ import "./style.css";
 
 import { definePluginSettings } from "@api/Settings";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Channel } from "@vencord/discord-types";
+import { Channel } from "@S7Cord/discord-types";
 import { React } from "@webpack/common";
 
 import { Packs, PickerContent, PickerHeader, PickerSidebar, Wrapper } from "./components";
@@ -35,7 +35,7 @@ export default definePlugin({
     name: "MoreStickers",
     description: "Adds sticker packs from other social media platforms. (e.g. LINE)",
     tags: ["Chat", "Emotes", "Media"],
-    authors: [EquicordDevs.Leko, Devs.Arjix],
+    authors: [S7CordDevs.Leko, Devs.Arjix],
     settings,
 
     patches: [

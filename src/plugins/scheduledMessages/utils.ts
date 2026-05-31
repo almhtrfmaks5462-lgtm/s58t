@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import * as DataStore from "@api/DataStore";
 import { Logger } from "@utils/Logger";
-import { Message } from "@vencord/discord-types";
-import { CloudUploadPlatform } from "@vencord/discord-types/enums";
+import { Message } from "@S7Cord/discord-types";
+import { CloudUploadPlatform } from "@S7Cord/discord-types/enums";
 import { ChannelStore, CloudUploader, Constants, FluxDispatcher, GuildStore, IconUtils, MessageActions, MessageStore, RestAPI, showToast, SnowflakeUtils, Toasts, UserStore } from "@webpack/common";
 
 import { settings } from ".";

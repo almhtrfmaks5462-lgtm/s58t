@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { Flex } from "@components/Flex";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { React } from "@webpack/common";
 
 import { settings } from "./settings";
@@ -17,7 +17,7 @@ export default definePlugin({
     name: "VoiceButtons",
     description: "Quickly DM, mute, or deafen any user right from the voice-call panel.",
     tags: ["Servers", "Utility", "Voice"],
-    authors: [EquicordDevs.nicola02nb, EquicordDevs.omaw],
+    authors: [S7CordDevs.nicola02nb, S7CordDevs.omaw],
     settings,
     patches: [
         {

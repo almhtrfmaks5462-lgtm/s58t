@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -30,7 +30,7 @@ import { IpcEvents } from "../shared/IpcEvents";
 import { setBadgeCount } from "./appBadge";
 import { createArRPCWindow } from "./arrpcWindow";
 import { autoStart } from "./autoStart";
-import { VENCORD_QUICKCSS_FILE, VENCORD_THEMES_DIR } from "./constants";
+import { S7Cord_QUICKCSS_FILE, S7Cord_THEMES_DIR } from "./constants";
 import { AppEvents } from "./events";
 import { getPlatformSpoofInfo } from "./gnuSpoofing";
 import { mainWin } from "./mainWindow";
@@ -39,12 +39,12 @@ import { enableHardwareAcceleration } from "./startup";
 import { handle, handleSync } from "./utils/ipcWrappers";
 import { PopoutWindows } from "./utils/popout";
 import { isDeckGameMode, showGamePage } from "./utils/steamOS";
-import { isValidVencordInstall } from "./utils/vencordLoader";
-import { VENCORD_DIR } from "./vencordDir";
+import { isValidS7CordInstall } from "./utils/S7CordLoader";
+import { S7Cord_DIR } from "./S7CordDir";
 
-handleSync(IpcEvents.DEPRECATED_GET_VENCORD_PRELOAD_SCRIPT_PATH, () => join(VENCORD_DIR, "preload.js"));
-handleSync(IpcEvents.GET_VENCORD_PRELOAD_SCRIPT, () => readFileSync(join(VENCORD_DIR, "preload.js"), "utf-8"));
-handleSync(IpcEvents.GET_VENCORD_RENDERER_SCRIPT, () => readFileSync(join(VENCORD_DIR, "renderer.js"), "utf-8"));
+handleSync(IpcEvents.DEPRECATED_GET_S7Cord_PRELOAD_SCRIPT_PATH, () => join(S7Cord_DIR, "preload.js"));
+handleSync(IpcEvents.GET_S7Cord_PRELOAD_SCRIPT, () => readFileSync(join(S7Cord_DIR, "preload.js"), "utf-8"));
+handleSync(IpcEvents.GET_S7Cord_RENDERER_SCRIPT, () => readFileSync(join(S7Cord_DIR, "renderer.js"), "utf-8"));
 
 const VESKTOP_RENDERER_JS_PATH = join(__dirname, "renderer.js");
 const VESKTOP_RENDERER_CSS_PATH = join(__dirname, "renderer.css");
@@ -62,7 +62,7 @@ if (IS_DEV) {
 
 handleSync(IpcEvents.GET_SETTINGS, () => Settings.plain);
 handleSync(IpcEvents.GET_VERSION, () => app.getVersion());
-handleSync(IpcEvents.GET_GIT_HASH, () => Nightcord_GIT_HASH);
+handleSync(IpcEvents.GET_GIT_HASH, () => S7Cord_GIT_HASH);
 handleSync(IpcEvents.GET_ENABLE_HARDWARE_ACCELERATION, () => enableHardwareAcceleration);
 
 handleSync(
@@ -101,7 +101,7 @@ handle(IpcEvents.RELAUNCH, async () => {
     app.exit();
 });
 
-// Handler pour VencordNative.nightcord.relaunch() — utilisé par les boutons Restart dans les settings plugins
+// Handler pour S7CordNative.S7Cord.relaunch() — utilisé par les boutons Restart dans les settings plugins
 handle(IpcEvents.RELAUNCH_APP, async () => {
     setBadgeCount(0);
 
@@ -137,15 +137,15 @@ handle(IpcEvents.RELAUNCH_APP, async () => {
     app.exit();
 });
 
-handleSync(IpcEvents.IS_USING_CUSTOM_VENCORD_DIR, () => !!State.store.NightcordDir);
-handle(IpcEvents.SHOW_CUSTOM_VENCORD_DIR, async () => {
-    const { NightcordDir } = State.store;
-    if (!NightcordDir) return;
+handleSync(IpcEvents.IS_USING_CUSTOM_S7Cord_DIR, () => !!State.store.S7CordDir);
+handle(IpcEvents.SHOW_CUSTOM_S7Cord_DIR, async () => {
+    const { S7CordDir } = State.store;
+    if (!S7CordDir) return;
 
-    const stats = await stat(NightcordDir);
+    const stats = await stat(S7CordDir);
     if (!stats.isDirectory()) return;
 
-    shell.openPath(NightcordDir);
+    shell.openPath(S7CordDir);
 });
 
 function getWindow(e: IpcMainInvokeEvent, key?: string) {
@@ -186,9 +186,9 @@ handle(IpcEvents.SPELLCHECK_ADD_TO_DICTIONARY, (e, word: string) => {
     e.sender.session.addWordToSpellCheckerDictionary(word);
 });
 
-handle(IpcEvents.SELECT_VENCORD_DIR, async (_e, value?: null) => {
+handle(IpcEvents.SELECT_S7Cord_DIR, async (_e, value?: null) => {
     if (value === null) {
-        delete State.store.NightcordDir;
+        delete State.store.S7CordDir;
         return "ok";
     }
 
@@ -198,9 +198,9 @@ handle(IpcEvents.SELECT_VENCORD_DIR, async (_e, value?: null) => {
     if (!res.filePaths.length) return "cancelled";
 
     const dir = res.filePaths[0];
-    if (!isValidVencordInstall(dir)) return "invalid";
+    if (!isValidS7CordInstall(dir)) return "invalid";
 
-    State.store.NightcordDir = dir;
+    State.store.S7CordDir = dir;
 
     return "ok";
 });
@@ -236,20 +236,20 @@ handle(IpcEvents.DEBUG_LAUNCH_GPU, () => openDebugPage("chrome://gpu"));
 handle(IpcEvents.DEBUG_LAUNCH_WEBRTC_INTERNALS, () => openDebugPage("chrome://webrtc-internals"));
 
 function readCss() {
-    return readFile(VENCORD_QUICKCSS_FILE, "utf-8").catch(() => "");
+    return readFile(S7Cord_QUICKCSS_FILE, "utf-8").catch(() => "");
 }
 
 let quickCssWatcher: FSWatcher | null = null;
 let themesWatcher: FSWatcher | null = null;
 
-open(VENCORD_QUICKCSS_FILE, "a+")
+open(S7Cord_QUICKCSS_FILE, "a+")
     .then(fd => {
         fd.close();
         quickCssWatcher = watch(
-            VENCORD_QUICKCSS_FILE,
+            S7Cord_QUICKCSS_FILE,
             { persistent: false },
             debounce(async () => {
-                mainWin?.webContents.postMessage("VencordQuickCssUpdate", await readCss());
+                mainWin?.webContents.postMessage("S7CordQuickCssUpdate", await readCss());
             }, 50)
         );
     })
@@ -257,12 +257,12 @@ open(VENCORD_QUICKCSS_FILE, "a+")
         console.error("Failed to setup quickCss file watcher:", err);
     });
 
-mkdirSync(VENCORD_THEMES_DIR, { recursive: true });
+mkdirSync(S7Cord_THEMES_DIR, { recursive: true });
 themesWatcher = watch(
-    VENCORD_THEMES_DIR,
+    S7Cord_THEMES_DIR,
     { persistent: false },
     debounce(() => {
-        mainWin?.webContents.postMessage("VencordThemeUpdate", void 0);
+        mainWin?.webContents.postMessage("S7CordThemeUpdate", void 0);
     })
 );
 

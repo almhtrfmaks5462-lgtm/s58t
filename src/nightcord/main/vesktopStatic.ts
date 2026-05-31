@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -22,7 +22,7 @@ export async function handleVesktopStaticProtocol(path: string, req: Request) {
 }
 
 export function loadView(browserWindow: BrowserWindow, view: string, params?: URLSearchParams) {
-    const url = new URL(`nightcord://static/views/${view}`);
+    const url = new URL(`S7Cord://static/views/${view}`);
     if (params) {
         url.search = params.toString();
     }

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 import "./styles.css";
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { settings, toggleHoverControls } from "./settings";
@@ -32,7 +32,7 @@ import { TidalPlayer } from "./tidal/TidalPlayer";
 export default definePlugin({
     name: "MusicControls",
     description: "Music Controls and Lyrics for multiple services ",
-    authors: [Devs.Ven, Devs.afn, Devs.KraXen72, Devs.Av32000, Devs.nin0dev, Devs.thororen, EquicordDevs.vmohammad, Devs.Joona],
+    authors: [Devs.Ven, Devs.afn, Devs.KraXen72, Devs.Av32000, Devs.nin0dev, Devs.thororen, S7CordDevs.vmohammad, Devs.Joona],
     settings,
     tags: ["Media", "Activity"],
     searchTerms: [
@@ -52,8 +52,8 @@ export default definePlugin({
             replacement: {
                 // react.jsx)(AccountPanel, { ..., showTaglessAccountPanel: blah })
                 match: /(?<=\i\.jsxs?\)\()(\i),{(?=[^}]*?userTag:\i,occluded:)/,
-                // react.jsx(WrapperComponent, { VencordOriginal: AccountPanel, ...
-                replace: "$self.PanelWrapper,{VencordOriginal:$1,"
+                // react.jsx(WrapperComponent, { S7CordOriginal: AccountPanel, ...
+                replace: "$self.PanelWrapper,{S7CordOriginal:$1,"
             },
         },
         {
@@ -86,7 +86,7 @@ export default definePlugin({
         },
     ],
 
-    PanelWrapper({ VencordOriginal, ...props }) {
+    PanelWrapper({ S7CordOriginal, ...props }) {
         const { showTidalControls, showTidalLyrics, showSpotifyLyrics, showSpotifyControls, lyricsPosition } = settings.store;
         return (
             <>
@@ -106,7 +106,7 @@ export default definePlugin({
                     {showSpotifyLyrics && lyricsPosition === "below" && <SpotifyLyrics />}
                 </ErrorBoundary>
 
-                <VencordOriginal {...props} />
+                <S7CordOriginal {...props} />
             </>
         );
     },

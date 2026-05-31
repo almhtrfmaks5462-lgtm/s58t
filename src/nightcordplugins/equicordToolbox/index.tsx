@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -28,10 +28,10 @@ function Icon(props: React.SVGProps<SVGSVGElement>) {
     );
 }
 
-migratePluginSettings("EquicordToolbox", "VencordToolbox");
+migratePluginSettings("S7CordToolbox", "S7CordToolbox");
 export default definePlugin({
-    name: "EquicordToolbox",
-    description: "Adds a button next to the inbox button in the channel header that houses Nightcord quick actions",
+    name: "S7CordToolbox",
+    description: "Adds a button next to the inbox button in the channel header that houses S7Cord quick actions",
     authors: [Devs.Ven, Devs.AutumnVN],
     hidden: true,
     dependencies: ["HeaderBarAPI"],

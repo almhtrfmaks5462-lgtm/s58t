@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -89,7 +89,7 @@ function AntiMoveDecoButton() {
 export default definePlugin({
     name: "AntiMoveDeco",
     description: "Adds a button to prevent being moved or disconnected from a voice channel.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     enabledByDefault: true,
 
     userAreaButton: {

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,7 +9,7 @@ export const Native = getNative();
 import "./styles.css";
 
 import { LogIcon as LogsIcon } from "@components/Icons";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { Logger } from "@utils/Logger";
 import definePlugin from "@utils/types";
@@ -260,7 +260,7 @@ async function processMessageFetch(response: FetchMessagesResponse) {
 export default definePlugin({
     name: "MessageLoggerEnhanced",
     enabledByDefault: true,
-    authors: [Devs.Aria, EquicordDevs.keircn],
+    authors: [Devs.Aria, S7CordDevs.keircn],
     description: "Improves MessageLogger with edited message history, ghost ping detection and more",
     tags: ["Chat", "Servers"],
     dependencies: ["MessageLogger", "HeaderBarAPI"],

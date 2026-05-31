@@ -1,17 +1,17 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "TidalEmbeds",
     description: "Embeds TIDAL songs to make them playable in Discord.",
     tags: ["Appearance", "Chat", "Media"],
-    authors: [EquicordDevs.vmohammad],
+    authors: [S7CordDevs.vmohammad],
     dependencies: ["MessageUpdaterAPI", "MessageAccessoriesAPI"],
     patches: [
         {

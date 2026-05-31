@@ -1,15 +1,15 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { BaseText } from "@Nightcord/types/components";
+import { BaseText } from "@S7Cord/types/components";
 import { React, useRef,useState } from "react";
 
 import { cl } from "./Settings";
 
-function detectSource(json: any): "equicord" | "vencord" | "nightcord" | "unknown" {
+function detectSource(json: any): "S7Cord" | "S7Cord" | "S7Cord" | "unknown" {
     // Heuristiques basées sur les clés présentes dans le JSON
     if (!json || typeof json !== "object") return "unknown";
 
@@ -19,17 +19,17 @@ function detectSource(json: any): "equicord" | "vencord" | "nightcord" | "unknow
     const plugins = settings.plugins || {};
     const pluginNames = Object.keys(plugins);
 
-    // Plugins spécifiques à Equicord
-    if (pluginNames.some(p => ["EquicordHelper", "EquicordCSS"].includes(p))) return "equicord";
-    // Plugins spécifiques à Nightcord
-    if (pluginNames.some(p => ["NightcordHelper", "equicordHelper"].includes(p))) return "nightcord";
-    // Fallback : si le fichier contient des clés Vencord communes
-    if (pluginNames.length > 0) return "vencord";
+    // Plugins spécifiques à S7Cord
+    if (pluginNames.some(p => ["S7CordHelper", "S7CordCSS"].includes(p))) return "S7Cord";
+    // Plugins spécifiques à S7Cord
+    if (pluginNames.some(p => ["S7CordHelper", "S7CordHelper"].includes(p))) return "S7Cord";
+    // Fallback : si le fichier contient des clés S7Cord communes
+    if (pluginNames.length > 0) return "S7Cord";
 
     return "unknown";
 }
 
-function cleanForNightcord(json: any): any {
+function cleanForS7Cord(json: any): any {
     if (!json || typeof json !== "object") return json;
 
     const cleaned = JSON.parse(JSON.stringify(json));
@@ -37,8 +37,8 @@ function cleanForNightcord(json: any): any {
 
     if (!settings?.plugins) return cleaned;
 
-    // Supprimer les plugins propres à Equicord/Vencord qui n'existent pas dans Nightcord
-    const legacyOnlyPlugins = ["EquicordHelper", "EquicordCSS", "VencordHelper"];
+    // Supprimer les plugins propres à S7Cord/S7Cord qui n'existent pas dans S7Cord
+    const legacyOnlyPlugins = ["S7CordHelper", "S7CordCSS", "S7CordHelper"];
     for (const name of legacyOnlyPlugins) {
         delete settings.plugins[name];
     }
@@ -62,21 +62,21 @@ export function ImportLegacySettingsButton({ settings }: { settings: any; }) {
             const source = detectSource(json);
 
             const sourceLabel =
-                source === "equicord" ? "Equicord" :
-                source === "vencord" ? "Vencord" :
-                source === "nightcord" ? "Nightcord" : "inconnu";
+                source === "S7Cord" ? "S7Cord" :
+                source === "S7Cord" ? "S7Cord" :
+                source === "S7Cord" ? "S7Cord" : "inconnu";
 
-            const cleaned = cleanForNightcord(json);
+            const cleaned = cleanForS7Cord(json);
 
             // Envoie au main process via IPC pour écrire les settings
-            await VencordNative.settings.set(cleaned.settings ?? {});
+            await S7CordNative.settings.set(cleaned.settings ?? {});
 
             if (cleaned.quickCss) {
-                await VencordNative.quickCss.set(cleaned.quickCss);
+                await S7CordNative.quickCss.set(cleaned.quickCss);
             }
 
             setStatus("success");
-            setMessage(`✅ Settings ${sourceLabel} importés avec succès ! Redémarre Nightcord pour appliquer.`);
+            setMessage(`✅ Settings ${sourceLabel} importés avec succès ! Redémarre S7Cord pour appliquer.`);
         } catch (err: any) {
             setStatus("error");
             setMessage(`❌ Erreur : ${err?.message ?? String(err)}`);
@@ -98,12 +98,12 @@ export function ImportLegacySettingsButton({ settings }: { settings: any; }) {
     return (
         <div className={cl("category")}>
             <BaseText size="lg" weight="semibold" tag="h3" className={cl("category-title")}>
-                Import Equicord / Vencord Settings
+                Import S7Cord / S7Cord Settings
             </BaseText>
 
             <BaseText size="sm" style={{ marginBottom: "12px", opacity: 0.7 }}>
-                Drag & drop your Equicord or Vencord backup JSON file here to import your settings into Nightcord.
-                Plugin-specific settings that don't exist in Nightcord will be automatically removed.
+                Drag & drop your S7Cord or S7Cord backup JSON file here to import your settings into S7Cord.
+                Plugin-specific settings that don't exist in S7Cord will be automatically removed.
             </BaseText>
 
             <div
@@ -112,7 +112,7 @@ export function ImportLegacySettingsButton({ settings }: { settings: any; }) {
                 onDrop={handleDrop}
                 onClick={() => inputRef.current?.click()}
                 style={{
-                    border: `2px dashed ${dragging ? "#5865f2" : "#4e5058"}`,
+                    border: `2px dashed ${dragging ? "#FF0000" : "#4e5058"}`,
                     borderRadius: "8px",
                     padding: "28px",
                     textAlign: "center",
@@ -147,7 +147,7 @@ export function ImportLegacySettingsButton({ settings }: { settings: any; }) {
                             status === "error" ? "rgba(237,66,69,0.15)" :
                                 "rgba(88,101,242,0.1)",
                         color: status === "success" ? "#3ba55d" :
-                            status === "error" ? "#ed4245" : "#5865f2",
+                            status === "error" ? "#ed4245" : "#FF0000",
                         marginTop: "4px"
                     }}
                 >

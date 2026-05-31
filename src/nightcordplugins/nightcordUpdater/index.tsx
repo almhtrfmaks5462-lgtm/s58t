@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,7 +9,7 @@ import { findByPropsLazy } from "@webpack";
 import { React, useEffect, useState } from "@webpack/common";
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const REMOTE_VERSION_URL = "https://git.nightcord.su/api/v1/repos/nightcord/nightcord/releases/latest";
+const REMOTE_VERSION_URL = "https://git.S7Cord.su/api/v1/repos/S7Cord/S7Cord/releases/latest";
 
 // ── Version locale (injectée au build via define) ─────────────────────────────
 declare const VERSION: string;
@@ -54,14 +54,14 @@ async function checkForUpdates() {
         if (!data?.tag_name) return;
 
         const remoteVersion: string = data.tag_name;
-        console.log(`[NightcordUpdater] local=${localVersion} remote=${remoteVersion}`);
+        console.log(`[S7CordUpdater] local=${localVersion} remote=${remoteVersion}`);
 
         if (isStrictlyNewer(remoteVersion, localVersion)) {
             pendingUpdate = { remoteVersion, localVersion };
             notify();
         }
     } catch (e) {
-        console.error("[NightcordUpdater] Error:", e);
+        console.error("[S7CordUpdater] Error:", e);
     }
 }
 
@@ -86,9 +86,9 @@ function UpdateBanner() {
         setStatus("Downloading...");
 
         try {
-            const { VencordNative } = (window as any);
-            const ipc = VencordNative?.updater;
-            if (!ipc) throw new Error("VencordNative.updater not available");
+            const { S7CordNative } = (window as any);
+            const ipc = S7CordNative?.updater;
+            if (!ipc) throw new Error("S7CordNative.updater not available");
 
             // Étape 1 : fetch Gitea metadata → stocke l'URL du zip dans le main process
             const updateRes: { ok: boolean; value?: boolean; error?: any; } = await ipc.update();
@@ -108,14 +108,14 @@ function UpdateBanner() {
 
             setTimeout(() => {
                 try {
-                    VencordNative.nightcord?.relaunch?.();
+                    S7CordNative.S7Cord?.relaunch?.();
                 } catch {
                     (window as any).DiscordNative?.app?.relaunch?.();
                     window.location.reload();
                 }
             }, 2000);
         } catch (e: any) {
-            console.error("[NightcordUpdater] Update error:", e);
+            console.error("[S7CordUpdater] Update error:", e);
             const msg = e?.message ? e.message.substring(0, 120) : "Unknown error";
             setStatus(`❌ ${msg}. Check your connection or restart manually.`);
             setLoading(false);
@@ -143,7 +143,7 @@ function UpdateBanner() {
             style: { display: "flex", alignItems: "center", gap: 10, flex: 1, minWidth: 0 }
         },
             React.createElement("span", { style: { fontWeight: 700, flexShrink: 0 } },
-                `🔔 Nightcord ${info.remoteVersion} available!`
+                `🔔 S7Cord ${info.remoteVersion} available!`
             ),
             React.createElement("span", {
                 style: { opacity: 0.85, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }
@@ -190,9 +190,9 @@ let bannerRoot: any = null;
 let bannerContainer: HTMLDivElement | null = null;
 
 function mountBanner() {
-    if (bannerContainer || document.getElementById("nightcord-updater-root")) return;
+    if (bannerContainer || document.getElementById("S7Cord-updater-root")) return;
     bannerContainer = document.createElement("div");
-    bannerContainer.id = "nightcord-updater-root";
+    bannerContainer.id = "S7Cord-updater-root";
     document.body.appendChild(bannerContainer);
 
     const ReactDOM = findByPropsLazy("createRoot", "render");
@@ -204,7 +204,7 @@ function mountBanner() {
             ReactDOM.render(React.createElement(UpdateBanner), bannerContainer);
         }
     } catch (e) {
-        console.error("[NightcordUpdater] Error mounting banner:", e);
+        console.error("[S7CordUpdater] Error mounting banner:", e);
     }
 }
 
@@ -217,10 +217,10 @@ function unmountBanner() {
 
 // ── Plugin ────────────────────────────────────────────────────────────────────
 export default definePlugin({
-    name: "NightcordUpdater",
+    name: "S7CordUpdater",
     enabledByDefault: true,
-    description: "Shows a banner when a new Nightcord version is available. Click Update to install.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    description: "Shows a banner when a new S7Cord version is available. Click Update to install.",
+    authors: [{ name: "S7Cord", id: 0n }],
 
     start() {
         const mountWhenReady = () => setTimeout(mountBanner, 1500);

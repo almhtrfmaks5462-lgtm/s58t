@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,12 +13,12 @@ export default definePlugin({
     authors: [Devs.Ven],
 
     patches: [
-        // Patch 1 : barre de titre (header bar) - méthode Equicord Avril 2026
+        // Patch 1 : barre de titre (header bar) - méthode S7Cord Avril 2026
         {
             find: '?"BACK_FORWARD_NAVIGATION":',
             replacement: {
                 match: /(?<="HELP"===.{0,75}\{\}\))(?=\])/,
-                replace: ",...Vencord.Api.HeaderBar._addHeaderBarButtons()"
+                replace: ",...S7Cord.Api.HeaderBar._addHeaderBarButtons()"
             }
         },
         // Patch 2 : channel toolbar
@@ -26,7 +26,7 @@ export default definePlugin({
             find: "Missing channel in Channel.renderHeaderToolbar",
             replacement: {
                 match: /(?<=renderHeaderToolbar"\);let (\i)=\[\];)/,
-                replace: "Vencord.Api.HeaderBar._addChannelToolbarButtons($1);"
+                replace: "S7Cord.Api.HeaderBar._addChannelToolbarButtons($1);"
             }
         }
     ]

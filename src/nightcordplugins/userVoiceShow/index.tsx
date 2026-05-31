@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 import "./style.css";
 
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 import { VoiceChannelIndicator } from "./components";
@@ -49,7 +49,7 @@ export default definePlugin({
     name: "UserVoiceShow",
     enabledByDefault: true,
     description: "Shows an indicator when a user is in a Voice Channel",
-    authors: [Devs.Nuckyz, Devs.LordElias, EquicordDevs.omaw],
+    authors: [Devs.Nuckyz, Devs.LordElias, S7CordDevs.omaw],
     settings,
     renderNicknameIcon({ userId }) {
         if (!settings.store.showInUserProfileModal) return null;

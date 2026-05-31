@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@ import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings } from "@api/Settings";
 import { UserAreaButton, UserAreaRenderProps } from "@api/UserArea";
 import { getUserSettingLazy } from "@api/UserSettings";
-import equicordToolbox from "@nightcordplugins/equicordToolbox";
+import S7CordToolbox from "@S7Cordplugins/S7CordToolbox";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Menu } from "@webpack/common";
@@ -38,10 +38,10 @@ const settings = definePluginSettings({
         description: "Where to show the game activity toggle button",
         options: [
             { label: "Next to Mute/Deafen", value: "PANEL", default: true },
-            { label: "Equicord Toolbox", value: "TOOLBOX" }
+            { label: "S7Cord Toolbox", value: "TOOLBOX" }
         ],
         get hidden() {
-            return !isPluginEnabled(equicordToolbox.name);
+            return !isPluginEnabled(S7CordToolbox.name);
         }
     }
 });
@@ -80,7 +80,7 @@ function GameActivityToggleButton({ iconForeground, hideTooltips, nameplate }: U
     const { location } = settings.use(["location"]);
     const showCurrentGame = ShowCurrentGame.useSetting();
 
-    if (location !== "PANEL" && isPluginEnabled(equicordToolbox.name)) return null;
+    if (location !== "PANEL" && isPluginEnabled(S7CordToolbox.name)) return null;
 
     return (
         <UserAreaButton

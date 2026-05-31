@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { Channel, Guild, User } from "@vencord/discord-types";
+import type { Channel, Guild, User } from "@S7Cord/discord-types";
 
 const userMentionRegex = /<@!?(\d{17,20})>/;
 const userProfileUrlRegex = /discord(?:(?:app)?\.com|:\/\/-?)\/users\/(\d{17,20})/;

@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Logger } from "@equicord/types/utils";
+import { Logger } from "@S7Cord/types/utils";
 import { currentSettings } from "renderer/components/ScreenSharePicker";
 import { State } from "renderer/settings";
 import { isLinux } from "renderer/utils";
@@ -17,7 +17,7 @@ if (isLinux) {
     async function getVirtmic() {
         try {
             const devices = await navigator.mediaDevices.enumerateDevices();
-            const audioDevice = devices.find(({ label }) => label === "vencord-screen-share");
+            const audioDevice = devices.find(({ label }) => label === "S7Cord-screen-share");
             return audioDevice?.deviceId;
         } catch (error) {
             return null;

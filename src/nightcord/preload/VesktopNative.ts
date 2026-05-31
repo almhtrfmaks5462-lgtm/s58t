@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { Node } from "@vencord/venmic";
+import type { Node } from "@S7Cord/venmic";
 import { ipcRenderer } from "electron/renderer";
 import type { IpcMessage, IpcResponse } from "main/ipcCommands";
 import type { Settings } from "shared/settings";
@@ -57,7 +57,7 @@ export const VesktopNative = {
             ipcRenderer.on(IpcEvents.VESKTOP_RENDERER_CSS_UPDATE, (_e, newCss: string) => cb(newCss));
         }
     },
-    nightcord: {
+    S7Cord: {
         relaunch: () => invoke<void>(IpcEvents.RELAUNCH_APP),
     },
     autostart: {
@@ -66,10 +66,10 @@ export const VesktopNative = {
         disable: () => invoke<void>(IpcEvents.DISABLE_AUTOSTART)
     },
     fileManager: {
-        isUsingCustomVencordDir: () => sendSync<boolean>(IpcEvents.IS_USING_CUSTOM_VENCORD_DIR),
-        showCustomVencordDir: () => invoke<void>(IpcEvents.SHOW_CUSTOM_VENCORD_DIR),
-        selectNightcordDir: (value?: null) =>
-            invoke<"cancelled" | "invalid" | "ok">(IpcEvents.SELECT_VENCORD_DIR, value),
+        isUsingCustomS7CordDir: () => sendSync<boolean>(IpcEvents.IS_USING_CUSTOM_S7Cord_DIR),
+        showCustomS7CordDir: () => invoke<void>(IpcEvents.SHOW_CUSTOM_S7Cord_DIR),
+        selectS7CordDir: (value?: null) =>
+            invoke<"cancelled" | "invalid" | "ok">(IpcEvents.SELECT_S7Cord_DIR, value),
         chooseUserAsset: (asset: string, value?: null) =>
             invoke<"cancelled" | "invalid" | "ok" | "failed">(IpcEvents.CHOOSE_USER_ASSET, asset, value)
     },

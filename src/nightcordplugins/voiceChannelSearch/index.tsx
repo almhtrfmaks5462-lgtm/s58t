@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { findByPropsLazy, findStoreLazy } from "@webpack";
 import { Forms, UserStore } from "@webpack/common";
 import { React, useEffect,useRef, useState } from "@webpack/common";
 
-import { t } from "../autoTranslateNightcord";
+import { t } from "../autoTranslateS7Cord";
 
 const GuildStore = findStoreLazy("GuildStore");
 const GuildChannelStore = findStoreLazy("GuildChannelStore");
@@ -308,14 +308,14 @@ export default definePlugin({
     name: "VoiceChannelSearch",
     enabledByDefault: true,
     description: "Search and join any voice channel across all your servers.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["HeaderBarAPI"],
 
     start() {
-        addHeaderBarButton("nightcord-voice-channel-search", () => <VCSHeaderButton />, 9);
+        addHeaderBarButton("S7Cord-voice-channel-search", () => <VCSHeaderButton />, 9);
     },
     stop() {
-        removeHeaderBarButton("nightcord-voice-channel-search");
+        removeHeaderBarButton("S7Cord-voice-channel-search");
         scanCache = null;
     },
 });

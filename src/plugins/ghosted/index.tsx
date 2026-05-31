@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,10 +10,10 @@ import { findGroupChildrenByChildId } from "@api/ContextMenu";
 import { addServerListElement, removeServerListElement, ServerListRenderPosition } from "@api/ServerList";
 import { definePluginSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
-import { Channel } from "@vencord/discord-types";
+import { Channel } from "@S7Cord/discord-types";
 import { Menu, openModal,Tooltip, useEffect, useState } from "@webpack/common";
 
 import { Boo, clearChannelFromGhost, getBooCount, getGhostedChannels, onBooCountChange } from "./Boo";
@@ -146,7 +146,7 @@ export default definePlugin({
     name: "Ghosted",
     description: "A cute ghost will appear if you don't answer their DMs",
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.vei, Devs.sadan, EquicordDevs.justjxke, EquicordDevs.iamme],
+    authors: [S7CordDevs.vei, Devs.sadan, S7CordDevs.justjxke, S7CordDevs.iamme],
     settings,
     dependencies: ["AudioPlayerAPI", "ServerListAPI"],
     contextMenus: {

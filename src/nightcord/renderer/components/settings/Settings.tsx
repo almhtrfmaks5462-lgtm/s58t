@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./settings.css";
 
-import { classNameFactory } from "@Nightcord/types/api/Styles";
-import { BaseText, Divider, ErrorBoundary } from "@Nightcord/types/components";
+import { classNameFactory } from "@S7Cord/types/api/Styles";
+import { BaseText, Divider, ErrorBoundary } from "@S7Cord/types/components";
 import { ComponentType } from "react";
 import { Settings, useSettings } from "renderer/settings";
 import { isMac, isWindows } from "renderer/utils";
@@ -66,7 +66,7 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
         {
             key: "staticTitle",
             title: "Static Title",
-            description: 'Makes the window title "Nightcord" instead of changing to the current page',
+            description: 'Makes the window title "S7Cord" instead of changing to the current page',
             defaultValue: false
         },
         {
@@ -80,7 +80,7 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
             key: "enableSplashScreen",
             title: "Enable Splash Screen",
             description:
-                "Shows a small splash screen while Nightcord is loading. Disabling this option will show the main window earlier while it's still loading.",
+                "Shows a small splash screen while S7Cord is loading. Disabling this option will show the main window earlier while it's still loading.",
             defaultValue: true
         },
         {
@@ -102,14 +102,14 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
         {
             key: "tray",
             title: "Tray Icon",
-            description: "Add a tray icon for Nightcord",
+            description: "Add a tray icon for S7Cord",
             defaultValue: true,
             invisible: () => isMac
         },
         {
             key: "minimizeToTray",
             title: "Minimize to tray",
-            description: "Hitting X will make Nightcord minimize to the tray instead of closing",
+            description: "Hitting X will make S7Cord minimize to the tray instead of closing",
             defaultValue: true,
             invisible: () => isMac,
             disabled: () => Settings.store.tray === false
@@ -117,7 +117,7 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
         {
             key: "clickTrayToShowHide",
             title: "Hide/Show on tray click",
-            description: "Left clicking tray icon will toggle the Nightcord window visibility.",
+            description: "Left clicking tray icon will toggle the S7Cord window visibility.",
             defaultValue: false
         },
         {
@@ -153,12 +153,12 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
         {
             key: "openLinksWithElectron",
             title: "Open Links in app (experimental)",
-            description: "Opens links in a new Nightcord window instead of your web browser",
+            description: "Opens links in a new S7Cord window instead of your web browser",
             defaultValue: false
         }
     ],
     "Developer Options": [DeveloperOptionsButton],
-    "Import from Equicord / Vencord": [ImportLegacySettingsButton]
+    "Import from S7Cord / S7Cord": [ImportLegacySettingsButton]
 };
 
 function SettingsSections() {
@@ -209,6 +209,6 @@ export default ErrorBoundary.wrap(
     },
     {
         message:
-            "Failed to render the Nightcord Settings tab. If this issue persists, try to right click the Nightcord tray icon, then click 'Repair Nightcord'. And make sure your Nightcord is up to date."
+            "Failed to render the S7Cord Settings tab. If this issue persists, try to right click the S7Cord tray icon, then click 'Repair S7Cord'. And make sure your S7Cord is up to date."
     }
 );

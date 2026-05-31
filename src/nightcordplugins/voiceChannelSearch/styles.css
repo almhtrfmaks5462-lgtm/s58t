@@ -59,7 +59,7 @@
     color: #fff;
     font-size: 13px;
     font-family: inherit;
-    caret-color: var(--brand-500, #5865f2);
+    caret-color: var(--brand-500, #FF0000);
 }
 
 .vcs-search-input::placeholder {
@@ -230,7 +230,7 @@
 }
 
 .vcs-join-btn {
-    background: var(--brand-500, #5865f2);
+    background: var(--brand-500, #FF0000);
     border: none;
     border-radius: 6px;
     color: #fff;

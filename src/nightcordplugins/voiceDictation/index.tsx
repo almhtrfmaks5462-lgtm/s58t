@@ -4,7 +4,7 @@ import { showApiKeyWarning } from "@utils/apiKeyWarning";
 import definePlugin, { OptionType } from "@utils/types"; // Import conservé mais syntaxe d'export en bas sécurisée
 import { ComponentDispatch, MediaEngineStore, React, showToast, Toasts, useEffect, useRef, useState } from "@webpack/common";
 
-import { getGroqKey } from "../nightcordAI/groqManager";
+import { getGroqKey } from "../S7CordAI/groqManager";
 
 const settings = definePluginSettings({
     language: {
@@ -64,7 +64,7 @@ function insertText(text: string) {
 async function transcribe(blob: Blob): Promise<string> {
     const language = settings.store.language?.trim() || undefined;
     const apiKey = await getGroqKey();
-    if (!apiKey) throw new Error("API key missing — Configure your key in Settings → NightcordAI");
+    if (!apiKey) throw new Error("API key missing — Configure your key in Settings → S7CordAI");
 
     const form = new FormData();
     form.append("file", blob, "audio.webm");
@@ -187,7 +187,7 @@ const VoiceDictationButton: ChatBarButtonFactory = ({ isMainChat }) => {
                     nativeRecordingRef.current = false;
                     if (filePath) {
                         try {
-                            const buf = await (VencordNative as any).pluginHelpers?.VoiceMessages?.readRecording?.(filePath);
+                            const buf = await (S7CordNative as any).pluginHelpers?.VoiceMessages?.readRecording?.(filePath);
                             if (buf) {
                                 const blob = new Blob([buf], { type: "audio/ogg; codecs=opus" });
                                 console.log("[VoiceDictation] Native blob size:", blob.size);
@@ -251,7 +251,7 @@ const VoiceDictationButton: ChatBarButtonFactory = ({ isMainChat }) => {
                 nativeRecordingRef.current = false;
                 if (filePath) {
                     try {
-                        const buf = await (VencordNative as any).pluginHelpers?.VoiceMessages?.readRecording?.(filePath);
+                        const buf = await (S7CordNative as any).pluginHelpers?.VoiceMessages?.readRecording?.(filePath);
                         if (buf) await processBlob(new Blob([buf], { type: "audio/ogg; codecs=opus" }));
                     } catch { /* ignore */ }
                 }
@@ -355,7 +355,7 @@ const VoiceDictationButton: ChatBarButtonFactory = ({ isMainChat }) => {
 const pluginObj = definePlugin({
     name: "VoiceDictation",
     enabledByDefault: true,
-    description: "Real-time voice dictation via Groq Whisper (free). API key shared with NightcordAI.",
+    description: "Real-time voice dictation via Groq Whisper (free). API key shared with S7CordAI.",
     authors: [{ name: "User", id: 0n }],
     dependencies: ["ChatInputButtonAPI"],
     settings,

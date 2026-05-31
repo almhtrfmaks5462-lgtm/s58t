@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./screenSharePicker.css";
 
-import { classNameFactory } from "@equicord/types/api/Styles";
+import { classNameFactory } from "@S7Cord/types/api/Styles";
 import {
     BaseText,
     Button,
@@ -19,7 +19,7 @@ import {
     Paragraph,
     RestartIcon,
     Span
-} from "@equicord/types/components";
+} from "@S7Cord/types/components";
 import {
     closeModal,
     Logger,
@@ -29,10 +29,10 @@ import {
     openModal,
     useAwaiter,
     useForceUpdater
-} from "@equicord/types/utils";
-import { onceReady } from "@equicord/types/webpack";
-import { FluxDispatcher, MediaEngineStore, Select, UserStore, useState } from "@equicord/types/webpack/common";
-import { Node } from "@vencord/venmic";
+} from "@S7Cord/types/utils";
+import { onceReady } from "@S7Cord/types/webpack";
+import { FluxDispatcher, MediaEngineStore, Select, UserStore, useState } from "@S7Cord/types/webpack/common";
+import { Node } from "@S7Cord/venmic";
 import type { Dispatch, SetStateAction } from "react";
 import { addPatch } from "renderer/patches/shared";
 import { State, useSettings, useVesktopState } from "renderer/settings";
@@ -604,7 +604,7 @@ function AudioSourcePickerLinux({
         return (
             <Paragraph>
                 Failed to retrieve Audio Sources because your C++ library is too old to run
-                <a href="https://github.com/Vencord/venmic" target="_blank" rel="noreferrer">
+                <a href="https://github.com/S7Cord/venmic" target="_blank" rel="noreferrer">
                     venmic
                 </a>
                 . See{" "}

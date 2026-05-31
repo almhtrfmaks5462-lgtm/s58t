@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,8 +27,8 @@ import { Devs } from "@utils/constants";
 import { getGuildAcronym } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import definePlugin from "@utils/types";
-import { Guild, GuildSticker } from "@vencord/discord-types";
-import { StickerFormatType } from "@vencord/discord-types/enums";
+import { Guild, GuildSticker } from "@S7Cord/discord-types";
+import { StickerFormatType } from "@S7Cord/discord-types/enums";
 import { findByCodeLazy } from "@webpack";
 import { Constants, EmojiStore, FluxDispatcher, GuildStore, IconUtils, Menu, Modal, openModalLazy, PermissionsBits, PermissionStore, React, RestAPI, StickersStore, Toasts, Tooltip, UserStore } from "@webpack/common";
 import { Promisable } from "type-fest";

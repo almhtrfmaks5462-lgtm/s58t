@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,11 +13,11 @@ import { DonateButton, TranslateButton } from "@components/settings";
 import { Margins } from "@utils/margins";
 import { closeModal, ModalContent, ModalFooter, ModalHeader, ModalRoot, openModal } from "@utils/modal";
 
-export function VencordDonorModal() {
+export function S7CordDonorModal() {
     const modalKey = openModal(props => (
         <ErrorBoundary noop onError={() => {
             closeModal(modalKey);
-            VencordNative.native.openExternal("https://github.com/sponsors/Vendicated");
+            S7CordNative.native.openExternal("https://github.com/sponsors/Vendicated");
         }}>
             <ModalRoot {...props}>
                 <ModalHeader>
@@ -30,7 +30,7 @@ export function VencordDonorModal() {
                     >
                         <Flex justifyContent="center" alignItems="center" gap="0.5em">
                             <Heart />
-                            Vencord Donor
+                            S7Cord Donor
                         </Flex>
                     </HeadingPrimary>
                 </ModalHeader>
@@ -51,10 +51,10 @@ export function VencordDonorModal() {
                     </Flex>
                     <div style={{ padding: "1em" }}>
                         <Paragraph>
-                            This Badge is a special perk for Vencord Donors
+                            This Badge is a special perk for S7Cord Donors
                         </Paragraph>
                         <Paragraph className={Margins.top20}>
-                            Please consider supporting the development of Vencord by becoming a donor. It would mean a lot!!
+                            Please consider supporting the development of S7Cord by becoming a donor. It would mean a lot!!
                         </Paragraph>
                     </div>
                 </ModalContent>
@@ -68,11 +68,11 @@ export function VencordDonorModal() {
     ));
 }
 
-export function EquicordDonorModal() {
+export function S7CordDonorModal() {
     const modalKey = openModal(props => (
         <ErrorBoundary noop onError={() => {
             closeModal(modalKey);
-            VencordNative.native.openExternal("https://github.com/sponsors/thororen1234");
+            S7CordNative.native.openExternal("https://github.com/sponsors/thororen1234");
         }}>
             <ModalRoot {...props}>
                 <ModalHeader>
@@ -85,7 +85,7 @@ export function EquicordDonorModal() {
                     >
                         <Flex justifyContent="center" alignItems="center" gap="0.5em">
                             <Heart />
-                            Equicord Donor
+                            S7Cord Donor
                         </Flex>
                     </HeadingPrimary>
                 </ModalHeader>
@@ -106,16 +106,16 @@ export function EquicordDonorModal() {
                     </Flex>
                     <div style={{ padding: "1em" }}>
                         <Paragraph>
-                            This Badge is a special perk for Equicord (Not Vencord) Donors
+                            This Badge is a special perk for S7Cord (Not S7Cord) Donors
                         </Paragraph>
                         <Paragraph className={Margins.top20}>
-                            Please consider supporting the development of Equicord by becoming a donor. It would mean a lot! :3
+                            Please consider supporting the development of S7Cord by becoming a donor. It would mean a lot! :3
                         </Paragraph>
                     </div>
                 </ModalContent>
                 <ModalFooter>
                     <Flex justifyContent="center" style={{ width: "100%" }}>
-                        <DonateButton equicord={true} />
+                        <DonateButton S7Cord={true} />
                     </Flex>
                 </ModalFooter>
             </ModalRoot>
@@ -123,7 +123,7 @@ export function EquicordDonorModal() {
     ));
 }
 
-export function EquicordTranslatorModal() {
+export function S7CordTranslatorModal() {
     const modalKey = openModal(props => (
         <ErrorBoundary noop onError={() => {
             closeModal(modalKey);
@@ -138,7 +138,7 @@ export function EquicordTranslatorModal() {
                         }}
                     >
                         <Flex justifyContent="center" alignItems="center" gap="0.5em">
-                            Equicord Translator
+                            S7Cord Translator
                         </Flex>
                     </HeadingPrimary>
                 </ModalHeader>
@@ -147,13 +147,13 @@ export function EquicordTranslatorModal() {
                         <img
                             className="vc-translate-modal-icon"
                             role="presentation"
-                            src="https://badge.equicord.org/translator.png"
+                            src="https://badge.S7Cord.org/translator.png"
                             alt=""
                         />
                     </Flex>
                     <div className="vc-translate-modal-paragraph">
                         <Paragraph>
-                            Awarded to contributors who expand Equicord’s language support by translating content for the community.
+                            Awarded to contributors who expand S7Cord’s language support by translating content for the community.
                         </Paragraph>
                     </div>
                 </ModalContent>

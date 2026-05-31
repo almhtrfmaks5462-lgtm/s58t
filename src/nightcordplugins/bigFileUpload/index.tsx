@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -16,7 +16,7 @@ import definePlugin, { OptionType, PluginNative } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { Button, DraftType, Forms, Menu, PermissionsBits, PermissionStore, React, Select, SelectedChannelStore, showToast, TextInput, UploadManager, useEffect, useState } from "@webpack/common";
 
-const Native = VencordNative.pluginHelpers.BigFileUpload as PluginNative<typeof import("./native")>;
+const Native = S7CordNative.pluginHelpers.BigFileUpload as PluginNative<typeof import("./native")>;
 
 const UploadStore = findByPropsLazy("getUploads");
 const OptionClasses = findByPropsLazy("optionName", "optionIcon", "optionLabel");

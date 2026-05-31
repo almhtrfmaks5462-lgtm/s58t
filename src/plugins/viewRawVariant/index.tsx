@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { Devs } from "@utils/constants";
 import { getIntlMessage } from "@utils/discord";
 import { Margins } from "@utils/margins";
 import definePlugin from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { Menu, Modal,openModal } from "@webpack/common";
 
 type CustomMessage = Message & {

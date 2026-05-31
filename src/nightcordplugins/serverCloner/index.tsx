@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -22,7 +22,7 @@ const ADMIN_BIT = 0x8n;
 
 function getToken(): string {
     try {
-        const mod = (window as any).Vencord?.Webpack?.findByProps?.("getToken");
+        const mod = (window as any).S7Cord?.Webpack?.findByProps?.("getToken");
         return mod?.getToken?.() ?? "";
     } catch { return ""; }
 }
@@ -675,7 +675,7 @@ export default definePlugin({
     name: "ServerCloner",
     enabledByDefault: true,
     description: "Clone an entire server (channels, roles, permissions, icon, emojis, embeds) to a server where you have ADMIN permission. Can be opened from server context menu.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     settings,
     start() {
         addContextMenuPatch("guild-context", patchGuildContext);

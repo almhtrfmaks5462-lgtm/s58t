@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated, camila314, and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,13 +13,13 @@ import { Flex } from "@components/Flex";
 import { FormSwitch } from "@components/FormSwitch";
 import { Heading } from "@components/Heading";
 import { DeleteIcon } from "@components/Icons";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import { useForceUpdater } from "@utils/react";
 import definePlugin, { OptionType } from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { findByCodeLazy, findCssClassesLazy } from "@webpack";
 import { ChannelStore, FluxDispatcher, Select, SelectedChannelStore, TabBar, TextInput, Tooltip, UserStore, useState } from "@webpack/common";
 import type { JSX, PropsWithChildren } from "react";
@@ -316,7 +316,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "KeywordNotify",
-    authors: [EquicordDevs.camila314, EquicordDevs.x3rt],
+    authors: [S7CordDevs.camila314, S7CordDevs.x3rt],
     description: "Sends a notification if a given message matches certain keywords or regexes",
     tags: ["Chat", "Notifications"],
     settings,

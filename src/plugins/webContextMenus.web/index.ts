@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@ export default definePlugin({
                 // Fix silly Discord calling the non web support copy
                 {
                     match: /\i\.\i\.copy/,
-                    replace: "Vencord.Util.copyToClipboard"
+                    replace: "S7Cord.Util.copyToClipboard"
                 }
             ]
         },
@@ -244,7 +244,7 @@ export default definePlugin({
                 },
                 {
                     match: /\i\.\i\.copy(?=\(\i)/,
-                    replace: "Vencord.Util.copyToClipboard"
+                    replace: "S7Cord.Util.copyToClipboard"
                 }
             ],
             all: true,

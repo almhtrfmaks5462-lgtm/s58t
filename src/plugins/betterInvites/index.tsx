@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,11 +7,11 @@
 import "./style.css";
 
 import { InfoIcon } from "@components/Icons";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { openUserProfile } from "@utils/discord";
 import { classes } from "@utils/misc";
 import definePlugin, { StartAt } from "@utils/types";
-import { Guild } from "@vencord/discord-types";
+import { Guild } from "@S7Cord/discord-types";
 import { findByPropsLazy, findCssClassesLazy } from "@webpack";
 import { Parser, Tooltip, UserStore } from "@webpack/common";
 
@@ -35,7 +35,7 @@ export default definePlugin({
     name: "BetterInvites",
     description: "See invites expiration date, view inviter profile and preview servers before joining by clicking the name",
     tags: ["Appearance", "Customisation", "Chat", "Servers"],
-    authors: [EquicordDevs.iamme, Devs.thororen],
+    authors: [S7CordDevs.iamme, Devs.thororen],
     patches: [
         {
             find: "#{intl::xdCLeM::raw}",

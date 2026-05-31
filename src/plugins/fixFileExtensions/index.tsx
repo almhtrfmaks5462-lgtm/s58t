@@ -1,14 +1,14 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { isPluginEnabled } from "@api/PluginManager";
-import anonymiseFileNames, { tarExtMatcher } from "@nightcordplugins/antiMoveDeco/antiGroup/anonymiseFileNames";
+import anonymiseFileNames, { tarExtMatcher } from "@S7Cordplugins/antiMoveDeco/antiGroup/anonymiseFileNames";
 import { Devs } from "@utils/constants";
 import definePlugin, { ReporterTestable } from "@utils/types";
-import { CloudUpload } from "@vencord/discord-types";
+import { CloudUpload } from "@S7Cord/discord-types";
 
 const extensionMap = {
     "ogg": [".ogv", ".oga", ".ogx", ".ogm", ".spx", ".aac", ".wma"],

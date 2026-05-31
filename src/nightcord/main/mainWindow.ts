@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -32,15 +32,15 @@ import { AppEvents } from "./events";
 import { spoofGnu } from "./gnuSpoofing";
 import { sendRendererCommand } from "./ipcCommands";
 import { initKeybinds } from "./keybinds";
-import { Settings, State, VencordSettings } from "./settings";
+import { Settings, State, S7CordSettings } from "./settings";
 import { addSplashLog, createSplashWindow, updateSplashMessage } from "./splash";
 import { darwinURL } from "./startup";
 import { destroyTray, initTray } from "./tray";
 import { clearData } from "./utils/clearData";
 import { makeLinksOpenExternally } from "./utils/makeLinksOpenExternally";
 import { applyDeckKeyboardFix, askToApplySteamLayout, isDeckGameMode } from "./utils/steamOS";
-import { downloadVencordAsar, ensureVencordFiles } from "./utils/vencordLoader";
-import { VENCORD_DIR } from "./vencordDir";
+import { downloadS7CordAsar, ensureS7CordFiles } from "./utils/S7CordLoader";
+import { S7Cord_DIR } from "./S7CordDir";
 
 let isQuitting = false;
 
@@ -74,36 +74,36 @@ function makeSettingsListenerHelpers<O extends object>(o: SettingsStore<O>) {
 }
 
 const [addSettingsListener, removeSettingsListeners] = makeSettingsListenerHelpers(Settings);
-const [addVencordSettingsListener, removeVencordSettingsListeners] = makeSettingsListenerHelpers(VencordSettings);
+const [addS7CordSettingsListener, removeS7CordSettingsListeners] = makeSettingsListenerHelpers(S7CordSettings);
 
 type MenuItemList = Array<MenuItemConstructorOptions | false>;
 
 function initMenuBar(win: BrowserWindow) {
     const isWindows = process.platform === "win32";
     const isDarwin = process.platform === "darwin";
-    const wantCtrlQ = !isWindows || VencordSettings.store.winCtrlQ;
+    const wantCtrlQ = !isWindows || S7CordSettings.store.winCtrlQ;
 
     const subMenu = [
         {
-            label: "About Nightcord",
+            label: "About S7Cord",
             click: createAboutWindow
         },
         {
-            label: "Force Update Nightcord",
+            label: "Force Update S7Cord",
             async click() {
-                await downloadVencordAsar();
+                await downloadS7CordAsar();
                 destroyTray();
                 app.relaunch();
                 app.quit();
             },
-            toolTip: "Nightcord will automatically restart after this operation"
+            toolTip: "S7Cord will automatically restart after this operation"
         },
         {
-            label: "Reset Nightcord",
+            label: "Reset S7Cord",
             async click() {
                 await clearData(win);
             },
-            toolTip: "Nightcord will automatically restart after this operation"
+            toolTip: "S7Cord will automatically restart after this operation"
         },
         {
             label: "Relaunch",
@@ -171,7 +171,7 @@ function initMenuBar(win: BrowserWindow) {
 
     const menuItems = [
         {
-            label: "Nightcord",
+            label: "S7Cord",
             role: "appMenu",
             submenu: subMenu.filter(isTruthy)
         },
@@ -225,7 +225,7 @@ function initSettingsListeners(win: BrowserWindow) {
         }
     });
 
-    addVencordSettingsListener("macosTranslucency", enabled => {
+    addS7CordSettingsListener("macosTranslucency", enabled => {
         if (enabled) {
             win.setVibrancy("sidebar");
             win.setBackgroundColor("#ffffff00");
@@ -277,7 +277,7 @@ function initStaticTitle(win: BrowserWindow) {
 
     addSettingsListener("staticTitle", enabled => {
         if (enabled) {
-            win.setTitle("Nightcord");
+            win.setTitle("S7Cord");
             win.on("page-title-updated", listener);
         } else {
             win.off("page-title-updated", listener);
@@ -326,7 +326,7 @@ function buildBrowserWindowOptions(): BrowserWindowConstructorOptions {
     const { staticTitle, transparencyOption, enableMenu, customTitleBar, splashTheming, splashBackground } =
         Settings.store;
 
-    const { frameless, transparent, macosVibrancyStyle } = VencordSettings.store;
+    const { frameless, transparent, macosVibrancyStyle } = S7CordSettings.store;
 
     const noFrame = frameless === true || customTitleBar === true;
     const backgroundColor =
@@ -378,7 +378,7 @@ function buildBrowserWindowOptions(): BrowserWindowConstructorOptions {
     }
 
     if (staticTitle) {
-        options.title = "Nightcord";
+        options.title = "S7Cord";
     }
 
     if (process.platform === "darwin") {
@@ -397,7 +397,7 @@ function buildBrowserWindowOptions(): BrowserWindowConstructorOptions {
 function createMainWindow() {
     // Clear up previous settings listeners
     removeSettingsListeners();
-    removeVencordSettingsListeners();
+    removeS7CordSettingsListeners();
 
     const win = (mainWin = new BrowserWindow(buildBrowserWindowOptions()));
 
@@ -463,7 +463,7 @@ function createMainWindow() {
     return win;
 }
 
-const runVencordMain = once(() => require(VENCORD_DIR));
+const runS7CordMain = once(() => require(S7Cord_DIR));
 
 export function loadUrl(uri: string | undefined) {
     const branch = Settings.store.discordBranch;
@@ -496,8 +496,8 @@ export async function createWindows() {
     }
 
     addSplashLog();
-    await ensureVencordFiles();
-    runVencordMain();
+    await ensureS7CordFiles();
+    runS7CordMain();
 
     addSplashLog();
     mainWin = createMainWindow();

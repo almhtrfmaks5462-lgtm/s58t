@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <AssemblyName>Nightcord-Installer</AssemblyName>
-    <RootNamespace>NightcordInstaller</RootNamespace>
+    <AssemblyName>S7Cord-Installer</AssemblyName>
+    <RootNamespace>S7CordInstaller</RootNamespace>
     <LangVersion>latest</LangVersion>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>disable</ImplicitUsings>
@@ -20,9 +20,9 @@
     <PublishReadyToRun>true</PublishReadyToRun>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     
-    <Product>Nightcord Installer</Product>
-    <Company>Nightcord</Company>
-    <Description>Installs Nightcord into Discord Desktop</Description>
+    <Product>S7Cord Installer</Product>
+    <Company>S7Cord</Company>
+    <Description>Installs S7Cord into Discord Desktop</Description>
   </PropertyGroup>
 
   <ItemGroup>

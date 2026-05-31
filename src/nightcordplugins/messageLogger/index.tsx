@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,12 +15,12 @@ import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings } from "@api/Settings";
 import { disableStyle, enableStyle } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EQUIBOT_USER_ID, EquicordDevs, SUPPORT_CHANNEL_ID, VC_SUPPORT_CATEGORY_ID, VENBOT_USER_ID } from "@utils/constants";
+import { Devs, EQUIBOT_USER_ID, S7CordDevs, SUPPORT_CHANNEL_ID, VC_SUPPORT_CATEGORY_ID, VENBOT_USER_ID } from "@utils/constants";
 import { getIntlMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { classes } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { findCssClassesLazy } from "@webpack";
 import { ChannelStore, FluxDispatcher, Menu, MessageStore, Parser, SelectedChannelStore, Timestamp, UserStore, useStateFromStores } from "@webpack/common";
 
@@ -443,7 +443,7 @@ export default definePlugin({
     enabledByDefault: true,
     description: "Temporarily logs deleted and edited messages.",
     tags: ["Chat", "Utility"],
-    authors: [Devs.rushii, Devs.Ven, Devs.AutumnVN, Devs.Nickyux, Devs.Kyuuhachi, EquicordDevs.justjxke],
+    authors: [Devs.rushii, Devs.Ven, Devs.AutumnVN, Devs.Nickyux, Devs.Kyuuhachi, S7CordDevs.justjxke],
     dependencies: ["MessageUpdaterAPI"],
     isModified: true,
     settings,

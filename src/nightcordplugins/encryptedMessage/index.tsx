@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import { ChatBarButton, ChatBarButtonFactory } from "@api/ChatButtons";
 import { addContextMenuPatch, removeContextMenuPatch } from "@api/ContextMenu";
 import definePlugin from "@utils/types";
-import type { Message } from "@vencord/discord-types";
+import type { Message } from "@S7Cord/discord-types";
 import { Menu, Parser, React,Toasts, useEffect, useState } from "@webpack/common";
 
 const MARKER = "\u200B\u200C\u200D";
@@ -191,7 +191,7 @@ const EncryptButton: ChatBarButtonFactory = ({ type }) => {
             onContextMenu={e => {
                 e.preventDefault();
                 e.stopPropagation();
-                const { ContextMenuApi } = Vencord.Webpack.Common as any;
+                const { ContextMenuApi } = S7Cord.Webpack.Common as any;
                 ContextMenuApi?.openContextMenu?.(e, () => <TechniqueMenu />);
             }}
         >
@@ -215,7 +215,7 @@ function DecryptionAccessory({ message }: { message: Message; }) {
     const [decrypted, setDecrypted] = useState<string>();
 
     useEffect(() => {
-        if ((message as any).vencordEmbeddedBy) return;
+        if ((message as any).S7CordEmbeddedBy) return;
         DecryptionSetters.set(message.id, setDecrypted);
         return () => void DecryptionSetters.delete(message.id);
     }, []);
@@ -292,7 +292,7 @@ export default definePlugin({
     name: "EncryptedMessage",
     enabledByDefault: true,
     description: "Encrypts your messages with 400 unique techniques (0–399). Only those who know the key can decrypt.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["ChatInputButtonAPI", "MessageEventsAPI", "MessageAccessoriesAPI"],
 
     chatBarButton: {

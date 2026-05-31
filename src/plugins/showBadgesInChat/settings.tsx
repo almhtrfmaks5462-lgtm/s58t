@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,51 +10,51 @@ import { OptionType } from "@utils/types";
 import { useEffect, UserStore, useState } from "@webpack/common";
 
 const settings = definePluginSettings({
-    showEquicordDonor: {
+    showS7CordDonor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Equicord Donor badges in chat.",
+        description: "Enable to show S7Cord Donor badges in chat.",
         hidden: true,
         default: true
     },
-    EquicordDonorPosition: {
+    S7CordDonorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Equicord Donor badges.",
+        description: "The position of the S7Cord Donor badges.",
         hidden: true,
         default: 0
     },
-    showEquicordContributor: {
+    showS7CordContributor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Equicord Contributor badges in chat.",
+        description: "Enable to show S7Cord Contributor badges in chat.",
         hidden: true,
         default: true
     },
-    EquicordContributorPosition: {
+    S7CordContributorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Equicord Contributor badge.",
+        description: "The position of the S7Cord Contributor badge.",
         hidden: true,
         default: 1
     },
-    showVencordDonor: {
+    showS7CordDonor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Vencord donor badges in chat.",
+        description: "Enable to show S7Cord donor badges in chat.",
         hidden: true,
         default: true
     },
-    VencordDonorPosition: {
+    S7CordDonorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Vencord Donor badges.",
+        description: "The position of the S7Cord Donor badges.",
         hidden: true,
         default: 4
     },
-    showVencordContributor: {
+    showS7CordContributor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Vencord contributor badges in chat.",
+        description: "Enable to show S7Cord contributor badges in chat.",
         hidden: true,
         default: true
     },
-    VencordContributorPosition: {
+    S7CordContributorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Vencord Contributor badge.",
+        description: "The position of the S7Cord Contributor badge.",
         hidden: true,
         default: 5
     },
@@ -93,10 +93,10 @@ export default settings;
 
 const BadgeSettings = () => {
     const [images, setImages] = useState([
-        { src: "https://badge.equicord.org/donor.webp", shown: settings.store.showEquicordDonor, title: "Equicord donor badges", key: "EquicordDonor", position: settings.store.EquicordDonorPosition },
-        { src: "https://equicord.org/assets/favicon.png", shown: settings.store.showEquicordContributor, title: "Equicord contributor badge", key: "EquicordContributer", position: settings.store.EquicordContributorPosition },
-        { src: "https://cdn.discordapp.com/emojis/1026533070955872337.png", shown: settings.store.showVencordDonor, title: "Vencord donor badges", key: "VencordDonor", position: settings.store.VencordDonorPosition },
-        { src: "https://cdn.discordapp.com/emojis/1092089799109775453.png", shown: settings.store.showVencordContributor, title: "Vencord contributor badge", key: "VencordContributer", position: settings.store.VencordContributorPosition },
+        { src: "https://badge.S7Cord.org/donor.webp", shown: settings.store.showS7CordDonor, title: "S7Cord donor badges", key: "S7CordDonor", position: settings.store.S7CordDonorPosition },
+        { src: "https://S7Cord.org/assets/favicon.png", shown: settings.store.showS7CordContributor, title: "S7Cord contributor badge", key: "S7CordContributer", position: settings.store.S7CordContributorPosition },
+        { src: "https://cdn.discordapp.com/emojis/1026533070955872337.png", shown: settings.store.showS7CordDonor, title: "S7Cord donor badges", key: "S7CordDonor", position: settings.store.S7CordDonorPosition },
+        { src: "https://cdn.discordapp.com/emojis/1092089799109775453.png", shown: settings.store.showS7CordContributor, title: "S7Cord contributor badge", key: "S7CordContributer", position: settings.store.S7CordContributorPosition },
         { src: "https://cdn.discordapp.com/badge-icons/bf01d1073931f921909045f3a39fd264.png", shown: settings.store.showDiscordProfile, title: "Discord profile badges (HypeSquad, Discord Staff, Early Supporter, etc.)", key: "DiscordProfile", position: settings.store.DiscordProfilePosition },
         { src: "https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png", shown: settings.store.showDiscordNitro, title: "Nitro badge", key: "DiscordNitro", position: settings.store.DiscordNitroPosition }
     ]);
@@ -104,21 +104,21 @@ const BadgeSettings = () => {
     useEffect(() => {
         images.forEach(image => {
             switch (image.key) {
-                case "EquicordDonor":
-                    settings.store.EquicordDonorPosition = image.position;
-                    settings.store.showEquicordDonor = image.shown;
+                case "S7CordDonor":
+                    settings.store.S7CordDonorPosition = image.position;
+                    settings.store.showS7CordDonor = image.shown;
                     break;
-                case "EquicordContributer":
-                    settings.store.EquicordContributorPosition = image.position;
-                    settings.store.showEquicordContributor = image.shown;
+                case "S7CordContributer":
+                    settings.store.S7CordContributorPosition = image.position;
+                    settings.store.showS7CordContributor = image.shown;
                     break;
-                case "VencordDonor":
-                    settings.store.VencordDonorPosition = image.position;
-                    settings.store.showVencordDonor = image.shown;
+                case "S7CordDonor":
+                    settings.store.S7CordDonorPosition = image.position;
+                    settings.store.showS7CordDonor = image.shown;
                     break;
-                case "VencordContributer":
-                    settings.store.VencordContributorPosition = image.position;
-                    settings.store.showVencordContributor = image.shown;
+                case "S7CordContributer":
+                    settings.store.S7CordContributorPosition = image.position;
+                    settings.store.showS7CordContributor = image.shown;
                     break;
                 case "DiscordProfile":
                     settings.store.DiscordProfilePosition = image.position;

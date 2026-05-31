@@ -1,18 +1,18 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { Logger } from "@utils/Logger";
 import { PluginNative } from "@utils/types";
-import { Activity } from "@vencord/discord-types";
-import { ActivityFlags, ActivityType } from "@vencord/discord-types/enums";
+import { Activity } from "@S7Cord/discord-types";
+import { ActivityFlags, ActivityType } from "@S7Cord/discord-types/enums";
 import { ApplicationAssetUtils, FluxDispatcher } from "@webpack/common";
 
 import { settings } from "../settings";
 
-const Native = VencordNative.pluginHelpers.RichPresence as PluginNative<typeof import("../native")>;
+const Native = S7CordNative.pluginHelpers.RichPresence as PluginNative<typeof import("../native")>;
 const logger = new Logger("RichPresence:GensokyoRadio");
 
 const APPLICATION_ID = "1253772057926303804";

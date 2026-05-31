@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ import { makeDevBanner, settings, settingVariables } from ".";
 
 export function FormatSetting(setValue) {
     const { format } = settings.store;
-    const [state, setState] = useState(format ?? "{buildChannel} {buildNumber} ({buildHash}) | {equicordName} {equicordVersion} ({equicordHash})");
+    const [state, setState] = useState(format ?? "{buildChannel} {buildNumber} ({buildHash}) | {S7CordName} {S7CordVersion} ({S7CordHash})");
     const [error, setError] = useState<string | null>(null);
 
     function handleChange(newValue) {
@@ -40,7 +40,7 @@ export function FormatSetting(setValue) {
                 className="vc-discord-dev-banner-input"
                 value={state}
                 onChange={e => handleChange(e.target.value)}
-                placeholder="{buildChannel} {buildNumber} ({buildHash}) | {equicordName} {equicordVersion} ({equicordHash})"
+                placeholder="{buildChannel} {buildNumber} ({buildHash}) | {S7CordName} {S7CordVersion} ({S7CordHash})"
                 rows={1}
                 ref={el => {
                     if (el) {

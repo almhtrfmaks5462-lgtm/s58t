@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,12 +11,12 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { HeadingPrimary } from "@components/Heading";
 import { Link } from "@components/Link";
 import { Paragraph } from "@components/Paragraph";
-import { EquicordDevsById, VencordDevsById } from "@utils/constants";
+import { S7CordDevsById, S7CordDevsById } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { fetchUserProfile } from "@utils/discord";
 import { pluralise } from "@utils/misc";
 import { ModalContent, ModalFooter, ModalRoot, openModal } from "@utils/modal";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { showToast, useEffect, useMemo, UserProfileStore, useStateFromStores } from "@webpack/common";
 
 import Plugins, { PluginMeta } from "~plugins";
@@ -51,8 +51,8 @@ function ContributorModal({ user }: { user: User; }) {
 
     const plugins = useMemo(() => {
         const allPlugins = Object.values(Plugins);
-        const pluginsByAuthor = (VencordDevsById[user.id] || EquicordDevsById[user.id])
-            ? allPlugins.filter(p => p.authors.includes(VencordDevsById[user.id] || EquicordDevsById[user.id]))
+        const pluginsByAuthor = (S7CordDevsById[user.id] || S7CordDevsById[user.id])
+            ? allPlugins.filter(p => p.authors.includes(S7CordDevsById[user.id] || S7CordDevsById[user.id]))
             : allPlugins.filter(p =>
                 PluginMeta[p.name]?.userPlugin && p.authors.some(a => a.id.toString() === user.id)
                 || p.authors.some(a => a.name === user.username)
@@ -63,7 +63,7 @@ function ContributorModal({ user }: { user: User; }) {
             .sort((a, b) => Number(a.required ?? false) - Number(b.required ?? false));
     }, [user.id, user.username]);
 
-    const ContributedHyperLink = <Link href="https://github.com/Equicord/Equicord">contributed</Link>;
+    const ContributedHyperLink = <Link href="https://github.com/S7Cord/S7Cord">contributed</Link>;
 
     const hasLinks = website || githubName;
 

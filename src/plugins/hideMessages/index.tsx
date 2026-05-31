@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,11 +9,11 @@ import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { EyeIcon } from "@components/Icons";
-import pinDms from "@nightcordplugins/pinDms";
-import { isPinned } from "@nightcordplugins/pinDms/data";
-import { EquicordDevs } from "@utils/constants";
+import pinDms from "@S7Cordplugins/pinDms";
+import { isPinned } from "@S7Cordplugins/pinDms/data";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Channel, Message } from "@vencord/discord-types";
+import { Channel, Message } from "@S7Cord/discord-types";
 import { ChannelStore, Clickable, FluxDispatcher, Menu, Tooltip } from "@webpack/common";
 
 interface UserContextProps {
@@ -98,7 +98,7 @@ export default definePlugin({
     description: "Temporarily hide messages and DMs until you restart.",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.yash],
+    authors: [S7CordDevs.yash],
     patches: [
         {
             find: '"dm-quick-launcher"===',

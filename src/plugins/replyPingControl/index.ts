@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated, MrDiamond, ant0n, and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { MessageJSON } from "@vencord/discord-types";
+import { MessageJSON } from "@S7Cord/discord-types";
 import { MessageStore, UserStore } from "@webpack/common";
 
 export const settings = definePluginSettings({
@@ -33,7 +33,7 @@ export default definePlugin({
     name: "ReplyPingControl",
     description: "Control whether to always or never get pinged on message replies, with whitelist and blacklist features",
     tags: ["Chat", "Notifications"],
-    authors: [Devs.ant0n, EquicordDevs.MrDiamond, EquicordDevs.keircn],
+    authors: [Devs.ant0n, S7CordDevs.MrDiamond, S7CordDevs.keircn],
     settings,
 
     patches: [{

@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Activity, Application, User } from "@vencord/discord-types";
+import { Activity, Application, User } from "@S7Cord/discord-types";
 import { CSSProperties, ImgHTMLAttributes, JSX } from "react";
 
-export type { Application, User } from "@vencord/discord-types";
+export type { Application, User } from "@S7Cord/discord-types";
 
 export interface Developer {
     id: string;

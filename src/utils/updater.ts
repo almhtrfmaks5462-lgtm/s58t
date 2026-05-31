@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -25,7 +25,7 @@ async function Unwrap<T>(p: Promise<IpcRes<T>>): Promise<T> {
  * Met à jour isOutdated et changes.
  */
 export async function checkForUpdates(): Promise<boolean> {
-    changes = await Unwrap(VencordNative.updater.getUpdates());
+    changes = await Unwrap(S7CordNative.updater.getUpdates());
     return (isOutdated = changes.length > 0);
 }
 
@@ -35,7 +35,7 @@ export async function checkForUpdates(): Promise<boolean> {
  */
 export async function update(): Promise<boolean> {
     if (!isOutdated) return true;
-    const ok = await Unwrap(VencordNative.updater.update());
+    const ok = await Unwrap(S7CordNative.updater.update());
     if (ok) isOutdated = false;
     return ok;
 }
@@ -45,10 +45,10 @@ export async function update(): Promise<boolean> {
  * L'app va se fermer et se relancer automatiquement après installation.
  */
 export async function rebuild(): Promise<boolean> {
-    return Unwrap(VencordNative.updater.rebuild());
+    return Unwrap(S7CordNative.updater.rebuild());
 }
 
-export const getRepo = () => Unwrap(VencordNative.updater.getRepo());
+export const getRepo = () => Unwrap(S7CordNative.updater.getRepo());
 
 /**
  * Vérifie les mises à jour au démarrage et propose à l'utilisateur de mettre à jour.
@@ -66,6 +66,6 @@ export async function maybePromptToUpdate(confirmMessage: string, checkForDev = 
         }
     } catch (err) {
         UpdateLogger.error(err);
-        alert("La vérification des mises à jour a échoué. Vérifie ta connexion ou réinstalle Nightcord.");
+        alert("La vérification des mises à jour a échoué. Vérifie ta connexion ou réinstalle S7Cord.");
     }
 }

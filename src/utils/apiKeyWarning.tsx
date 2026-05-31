@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -24,7 +24,7 @@ function ApiKeyWarningModal({ pluginName, onClose }: { pluginName: string; onClo
                     <div style={{ fontSize: 14, color: "#fff", lineHeight: 1.5 }}>
                         <strong style={{ color: "#fff" }}>{pluginName}</strong> nécessite une clé API Groq pour fonctionner.
                         <br /><br />
-                        Configure-la une seule fois dans les paramètres de <strong style={{ color: "#fff" }}>NightcordAI</strong>.
+                        Configure-la une seule fois dans les paramètres de <strong style={{ color: "#fff" }}>S7CordAI</strong>.
                     </div>
                 </div>
             </ModalContent>
@@ -32,7 +32,7 @@ function ApiKeyWarningModal({ pluginName, onClose }: { pluginName: string; onClo
                 <div style={{ display: "flex", justifyContent: "center", gap: 8, padding: "12px 20px 20px", width: "100%" }}>
                     <button
                         style={{
-                            background: "var(--brand-experiment)",
+                            background: "var(--red)",
                             color: "#fff",
                             border: "none",
                             borderRadius: 4,
@@ -43,11 +43,11 @@ function ApiKeyWarningModal({ pluginName, onClose }: { pluginName: string; onClo
                         }}
                         onClick={() => {
                             onClose();
-                            const plugin = Plugins.NightcordAI;
+                            const plugin = Plugins.S7CordAI;
                             if (plugin) openPluginModal(plugin);
                         }}
                     >
-                        Configurer NightcordAI
+                        Configurer S7CordAI
                     </button>
                     <button
                         style={{

@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalRoot, openModal } from "@utils/modal";
 import definePlugin from "@utils/types";
 import { findByProps } from "@webpack";
@@ -185,7 +185,7 @@ function stopObserver() {
 export default definePlugin({
     name: "LoginWithToken",
     description: "Adds a 'Login with Token' button on the Discord login page.",
-    authors: [EquicordDevs.thororen],
+    authors: [S7CordDevs.thororen],
     start() { startObserver(); },
     stop() { stopObserver(); },
 });

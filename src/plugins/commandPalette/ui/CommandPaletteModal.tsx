@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -12,7 +12,7 @@ import { classNameFactory, classNameToSelector } from "@utils/css";
 import { copyWithToast } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { classes } from "@utils/misc";
-import { RenderModalProps } from "@vencord/discord-types";
+import { RenderModalProps } from "@S7Cord/discord-types";
 import { Modal, TextInput, Toasts, useEffect, useMemo, useRef, useState } from "@webpack/common";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { HeadingSecondary } from "@components/Heading";
 import { Notice } from "@components/Notice";
 import decor from "@plugins/decor";
 import { classNameFactory } from "@utils/css";
-import { Devs, EquicordDevs } from "@utils/index";
+import { Devs, S7CordDevs } from "@utils/index";
 import definePlugin, { OptionType } from "@utils/types";
 import { Alerts } from "@webpack/common";
 
@@ -139,7 +139,7 @@ export default definePlugin({
     name: "Declutter",
     description: "Cleans up Discord by removing non-essential UI elements like profile effects, shop tabs, boosts, and more.",
     tags: ["Appearance", "Customisation"],
-    authors: [EquicordDevs.Leon135, Devs.prism, Devs.Kyuuhachi],
+    authors: [S7CordDevs.Leon135, Devs.prism, Devs.Kyuuhachi],
     start() {
         if (isPluginEnabled("Decor") && settings.store.removeAvatarDecoration) {
             settings.store.removeAvatarDecoration = false;

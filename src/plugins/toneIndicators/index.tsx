@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { React } from "@webpack/common";
 import { type ReactNode } from "react";
@@ -164,7 +164,7 @@ export default definePlugin({
     name: "ToneIndicators",
     description: "Show tooltips for tone indicators like /srs, /gen, etc. in sent messages.",
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.justjxke],
+    authors: [S7CordDevs.justjxke],
     settings,
 
     patches: [

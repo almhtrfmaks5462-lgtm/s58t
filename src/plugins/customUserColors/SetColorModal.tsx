@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import { set } from "@api/DataStore";
 import { HeadingSecondary } from "@components/Heading";
 import { classNameFactory } from "@utils/css";
 import { Margins } from "@utils/margins";
-import { RenderModalProps } from "@vencord/discord-types";
+import { RenderModalProps } from "@S7Cord/discord-types";
 import { ColorPicker, Modal, React, useState } from "@webpack/common";
 
 import { colors, DATASTORE_KEY } from "./index";

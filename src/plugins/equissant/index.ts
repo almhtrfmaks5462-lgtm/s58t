@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { AudioPlayerInterface, createAudioPlayer } from "@api/AudioPlayer";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 let clickCount = 0;
@@ -34,11 +34,11 @@ export default definePlugin({
     name: "Equissant",
     description: "Crossant every specified amount of clicks :trolley:",
     tags: ["Fun"],
-    authors: [EquicordDevs.SomeAspy, Devs.thororen],
+    authors: [S7CordDevs.SomeAspy, Devs.thororen],
     dependencies: ["AudioPlayerAPI"],
     settings,
     start() {
-        croissant = createAudioPlayer("https://github.com/Equicord/Equibored/raw/main/sounds/equissant/croissant.mp3", { persistent: true });
+        croissant = createAudioPlayer("https://github.com/S7Cord/Equibored/raw/main/sounds/equissant/croissant.mp3", { persistent: true });
         document.addEventListener("click", play);
     },
     stop() {

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { findByPropsLazy, findStoreLazy } from "@webpack";
 import { ContextMenuApi, Forms, Menu, Select,showToast, Toasts } from "@webpack/common";
 import { React, useCallback,useEffect, useMemo, useState } from "@webpack/common";
 
-import { t, useTranslation } from "../autoTranslateNightcord";
+import { t, useTranslation } from "../autoTranslateS7Cord";
 
 const Dispatcher = findByPropsLazy("dispatch", "subscribe", "unsubscribe");
 const UserStore = findStoreLazy("UserStore");
@@ -82,7 +82,7 @@ const unreadLogEntries = new Set<LogEntry>();
 
 function loadPersistLogs() {
     try {
-        const s = localStorage.getItem("nightcord_logs");
+        const s = localStorage.getItem("S7Cord_logs");
         if (s) {
             const parsed = JSON.parse(s);
             if (Array.isArray(parsed)) {
@@ -96,7 +96,7 @@ function loadPersistLogs() {
 function savePersistLogs() {
     try {
         const toSave = logs.filter(l => PERSISTENT_TYPES.has(l.type));
-        localStorage.setItem("nightcord_logs", JSON.stringify(toSave));
+        localStorage.setItem("S7Cord_logs", JSON.stringify(toSave));
     } catch { }
 }
 
@@ -191,14 +191,14 @@ const CFG: Record<LogType, { label: string; color: string; }> = {
     message_edit: { label: t("Edited"), color: "#faa61a" },
     voice_join: { label: t("Voice +"), color: "#3ba55c" },
     voice_leave: { label: t("Voice -"), color: "#747f8d" },
-    voice_move: { label: t("Moved"), color: "#5865f2" },
+    voice_move: { label: t("Moved"), color: "#FF0000" },
     voice_mute: { label: t("Mic"), color: "#faa61a" },
     voice_deaf: { label: t("Deaf"), color: "#faa61a" },
-    voice_stream: { label: t("Stream"), color: "#5865f2" },
+    voice_stream: { label: t("Stream"), color: "#FF0000" },
     voice_mute_mod: { label: t("Muted"), color: "#ed4245" },
     friend_add: { label: t("Friend +"), color: "#3ba55c" },
     friend_remove: { label: t("Friend -"), color: "#ed4245" },
-    friend_request: { label: t("Request"), color: "#5865f2" },
+    friend_request: { label: t("Request"), color: "#FF0000" },
     friend_request_cancel: { label: t("Annulé"), color: "#747f8d" },
     block: { label: t("Blocked"), color: "#ed4245" },
     guild_member_add: { label: t("Joined"), color: "#3ba55c" },
@@ -251,7 +251,7 @@ function LogRow({ e }: { e: LogEntry; }) {
 
             navigateTo(path);
         } catch (err) {
-            console.error("Nightcord Navigation Error:", err);
+            console.error("S7Cord Navigation Error:", err);
             showToast(t("Navigation failed"), Toasts.Type.FAILURE);
         }
     };
@@ -494,7 +494,7 @@ function LogsModal({ rootProps }: { rootProps: any; }) {
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = `nightcord_logs_${new Date().toISOString().slice(0, 10)}.txt`;
+            a.download = `S7Cord_logs_${new Date().toISOString().slice(0, 10)}.txt`;
             a.click();
             URL.revokeObjectURL(url);
             showToast(t("Logs saved!"), Toasts.Type.SUCCESS);
@@ -800,7 +800,7 @@ export default definePlugin({
     name: "EventLogs",
     enabledByDefault: true,
     description: "Logs: deleted/edited messages, voice, friends, servers.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["HeaderBarAPI"],
     start() {
         // Initialize current voice channel on start
@@ -809,11 +809,11 @@ export default definePlugin({
             if (vcId) myVoiceChannelId = vcId;
         } catch { }
         loadPersistLogs();
-        addHeaderBarButton("nightcord-event-logs", () => <LogsButton />, 7);
+        addHeaderBarButton("S7Cord-event-logs", () => <LogsButton />, 7);
         subscribeToEvents();
     },
     stop() {
-        removeHeaderBarButton("nightcord-event-logs");
+        removeHeaderBarButton("S7Cord-event-logs");
         unsubs.forEach(fn => fn()); unsubs = [];
         if (flushTimer !== null) { clearTimeout(flushTimer); flushTimer = null; }
         logs = []; msgCache.clear(); prevVS.clear(); updateListeners.clear();

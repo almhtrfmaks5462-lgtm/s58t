@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -801,7 +801,7 @@ export const ComponentsIcon = (props?: any) => {
     );
 };
 
-// ─── Compatibility icons for Equicord/Vencord plugins ─────────────────────────
+// ─── Compatibility icons for S7Cord/S7Cord plugins ─────────────────────────
 
 export function HeadphonesIcon(props: IconProps) {
     return (

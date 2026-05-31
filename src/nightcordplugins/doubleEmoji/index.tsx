@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ let clickListener: (e: MouseEvent) => void;
 export default definePlugin({
     name: "DoubleEmoji",
     description: "Keeps the emoji picker open on click and highlights selected emojis with a blue border.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     enabledByDefault: true,
 
     start() {
@@ -21,7 +21,7 @@ export default definePlugin({
             if (!emojiWrapper) return;
             if (!target.closest("[class*='emojiPicker'], #emoji-picker-tab-panel, [class*='expressionPicker']")) return;
 
-            emojiWrapper.style.border = "1px solid #5865f2";
+            emojiWrapper.style.border = "1px solid #FF0000";
             emojiWrapper.style.borderRadius = "4px";
             emojiWrapper.style.background = "rgba(88, 101, 242, 0.05)";
 

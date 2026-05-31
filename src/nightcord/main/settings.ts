@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -9,7 +9,7 @@ import { dirname, join } from "path";
 import type { Settings as TSettings, State as TState } from "shared/settings";
 import { SettingsStore } from "shared/utils/SettingsStore";
 
-import { DATA_DIR, VENCORD_SETTINGS_FILE } from "./constants";
+import { DATA_DIR, S7Cord_SETTINGS_FILE } from "./constants";
 
 const SETTINGS_FILE = join(DATA_DIR, "settings.json");
 const STATE_FILE = join(DATA_DIR, "state.json");
@@ -38,6 +38,6 @@ function loadSettings<T extends object = any>(file: string, name: string) {
     return store;
 }
 
-export const Settings = loadSettings<TSettings>(SETTINGS_FILE, "Nightcord settings");
-export const VencordSettings = loadSettings<any>(VENCORD_SETTINGS_FILE, "Vencord settings");
-export const State = loadSettings<TState>(STATE_FILE, "Nightcord state");
+export const Settings = loadSettings<TSettings>(SETTINGS_FILE, "S7Cord settings");
+export const S7CordSettings = loadSettings<any>(S7Cord_SETTINGS_FILE, "S7Cord settings");
+export const State = loadSettings<TState>(STATE_FILE, "S7Cord state");

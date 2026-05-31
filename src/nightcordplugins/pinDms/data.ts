@@ -1,10 +1,10 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { PinOrder, PrivateChannelSortStore, settings } from "@nightcordplugins/pinDms";
+import { PinOrder, PrivateChannelSortStore, settings } from "@S7Cordplugins/pinDms";
 import { useForceUpdater } from "@utils/react";
 import { UserStore } from "@webpack/common";
 

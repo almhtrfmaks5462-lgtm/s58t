@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -140,7 +140,7 @@ export const settings = definePluginSettings({
     permanentlyRemoveLogByDefault: {
         default: false,
         type: OptionType.BOOLEAN,
-        description: "Vencord's base MessageLogger remove log button wiil delete logs permanently",
+        description: "S7Cord's base MessageLogger remove log button wiil delete logs permanently",
     },
 
     hideMessageFromMessageLoggers: {

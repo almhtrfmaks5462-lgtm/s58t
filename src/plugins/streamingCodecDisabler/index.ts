@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings, Settings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { MediaEngineStore } from "@webpack/common";
 
@@ -57,7 +57,7 @@ export default definePlugin({
     name: "StreamingCodecDisabler",
     description: "Disable codecs for streaming of your choice",
     tags: ["Utility", "Voice"],
-    authors: [EquicordDevs.davidkra230],
+    authors: [S7CordDevs.davidkra230],
     settings,
 
     patches: [

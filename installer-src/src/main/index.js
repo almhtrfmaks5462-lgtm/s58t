@@ -4,13 +4,13 @@ import URL from "url";
 import updateInstaller from "./update_installer";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
-app.name = "Nightcord";
+app.name = "S7Cord";
 
 let mainWindow; // global reference to mainWindow (necessary to prevent window from being garbage collected)
 
 function createMainWindow() {
     const window = new BrowserWindow({
-        title: "Nightcord Installer",
+        title: "S7Cord Installer",
         frame: false,
         width: 550,
         height: 350,

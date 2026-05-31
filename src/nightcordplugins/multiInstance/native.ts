@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import { app, BrowserWindow, ipcMain,screen, session } from "electron";
 import { existsSync,mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 
-import { registerMediaPermissionsForSession } from "../../nightcord/main/mediaPermissions";
+import { registerMediaPermissionsForSession } from "../../S7Cord/main/mediaPermissions";
 
 const openWindows = new Map<string, BrowserWindow>();
 
@@ -99,19 +99,19 @@ function registerWindowControlIpc(win: BrowserWindow): () => void {
 
 function createTokenPreload(token: string): string {
     // Dossier temporaire dans userData
-    const dir = join(app.getPath("userData"), "nightcord-mi-preloads");
+    const dir = join(app.getPath("userData"), "S7Cord-mi-preloads");
     mkdirSync(dir, { recursive: true });
 
     const safeToken = JSON.stringify(token); // échappe proprement le token
 
     const script = `
-// Nightcord MultiInstance — token preload
+// S7Cord MultiInstance — token preload
 // S'exécute dans le main world AVANT Discord
 (function() {
     const TOKEN = ${safeToken};
     try {
         // Définit le token dans localStorage
-        Object.defineProperty(window, '__nightcord_token', { value: TOKEN, writable: false });
+        Object.defineProperty(window, '__S7Cord_token', { value: TOKEN, writable: false });
 
         // Patch localStorage.getItem pour toujours retourner le token si demandé
         const _origGetItem = Storage.prototype.getItem;
@@ -127,9 +127,9 @@ function createTokenPreload(token: string): string {
         // Pré-remplit aussi
         try { localStorage.setItem("token", JSON.stringify(TOKEN)); } catch(_) {}
 
-        console.log("[NightcordMI] Token preload active ✓");
+        console.log("[S7CordMI] Token preload active ✓");
     } catch(e) {
-        console.warn("[NightcordMI] Preload error:", e);
+        console.warn("[S7CordMI] Preload error:", e);
     }
 })();
 `;
@@ -177,7 +177,7 @@ export async function openInstanceWindow(
 
         // ID unique par instance - Windows groupe les fenetres par AppUserModelId
         // En donnant un ID different a chaque fenetre, elles ne se regroupent pas
-        const uniqueAppId = `nightcord.instance.${userId}.${Date.now()}`;
+        const uniqueAppId = `S7Cord.instance.${userId}.${Date.now()}`;
 
         // Icone : rotation 1→2→3→4→5→1→... depuis multi-instance-icons/
         let currentIconPath = "";
@@ -187,7 +187,7 @@ export async function openInstanceWindow(
         iconCounter = iconCounter >= 5 ? 1 : iconCounter + 1;
 
         // Session Electron isolee par userId
-        const partition = `persist:nightcord-mi-${userId}`;
+        const partition = `persist:S7Cord-mi-${userId}`;
         const ses = session.fromPartition(partition, { cache: true });
 
         ses.webRequest.onHeadersReceived((details, callback) => {
@@ -219,7 +219,7 @@ export async function openInstanceWindow(
             autoHideMenuBar: true,
             darkTheme: true,
             backgroundColor: "#313338",
-            title: `Nightcord [${username || userId}]`,
+            title: `S7Cord [${username || userId}]`,
             icon: currentIconPath || undefined,
             webPreferences: {
                 preload: join(__dirname, "preload.js"),
@@ -239,10 +239,10 @@ export async function openInstanceWindow(
                 win.setAppDetails({
                     appId: uniqueAppId,
                     appIconPath: currentIconPath || undefined,
-                    relaunchDisplayName: `Nightcord [${username || userId}]`,
+                    relaunchDisplayName: `S7Cord [${username || userId}]`,
                 });
             } catch (err) {
-                console.warn("[NightcordMI] setAppDetails failed:", err);
+                console.warn("[S7CordMI] setAppDetails failed:", err);
             }
         }
 
@@ -266,7 +266,7 @@ export async function openInstanceWindow(
                     } catch(e) {}
                     try {
                         // Coupe la connexion gateway Discord
-                        const ws = window.__NIGHTCORD_GW_WS__;
+                        const ws = window.__S7Cord_GW_WS__;
                         if (ws && ws.readyState <= 1) ws.close(4000, 'window_close');
                     } catch(e) {}
                 })();
@@ -324,9 +324,9 @@ export async function openInstanceWindow(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Fenetres « groupées » — meme groupe que Nightcord dans la barre des taches
+// Fenetres « groupées » — meme groupe que S7Cord dans la barre des taches
 // Principe : on ne touche PAS a setAppDetails => la fenetre herite de l'AppId
-// du processus principal (com.nightcord.app), Windows la groupe automatiquement
+// du processus principal (com.S7Cord.app), Windows la groupe automatiquement
 // ─────────────────────────────────────────────────────────────────────────────
 
 const openGroupedWindows = new Map<string, BrowserWindow>();
@@ -347,7 +347,7 @@ export async function openInstanceWindowGrouped(
         }
 
         // Session isolee par userId
-        const partition = `persist:nightcord-mi-${userId}`;
+        const partition = `persist:S7Cord-mi-${userId}`;
         const ses = session.fromPartition(partition, { cache: true });
 
         ses.webRequest.onHeadersReceived((details, callback) => {
@@ -379,7 +379,7 @@ export async function openInstanceWindowGrouped(
             autoHideMenuBar: true,
             darkTheme: true,
             backgroundColor: "#313338",
-            title: `Nightcord [${username || userId}]`,
+            title: `S7Cord [${username || userId}]`,
             webPreferences: {
                 preload: join(__dirname, "preload.js"),
                 contextIsolation: true,
@@ -408,7 +408,7 @@ export async function openInstanceWindowGrouped(
                         for (const r of regs) await r.unregister();
                     } catch(e) {}
                     try {
-                        const ws = window.__NIGHTCORD_GW_WS__;
+                        const ws = window.__S7Cord_GW_WS__;
                         if (ws && ws.readyState <= 1) ws.close(4000, 'window_close');
                     } catch(e) {}
                 })();
@@ -482,7 +482,7 @@ export async function arrangeSplit(_: any, userId: string): Promise<void> {
         secondWin.show();
         secondWin.focus();
     } catch (e) {
-        console.error("[NightcordMI] arrangeSplit error:", e);
+        console.error("[S7CordMI] arrangeSplit error:", e);
     }
 }
 

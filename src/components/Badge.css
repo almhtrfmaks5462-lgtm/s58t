@@ -32,7 +32,7 @@
     color: var(--badge-expressive-text-default);
 }
 
-/* Equicord variants */
+/* S7Cord variants */
 .vc-badge-danger {
     background-color: var(--status-danger);
     color: var(--white);

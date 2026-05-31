@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { classes } from "@utils/misc";
 import definePlugin from "@utils/types";
 
@@ -16,7 +16,7 @@ export default definePlugin({
     name: "ZipPreview",
     description: "Previews ZIP contents inside file attachments.",
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.justjxke],
+    authors: [S7CordDevs.justjxke],
     managedStyle,
 
     patches: [

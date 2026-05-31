@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,13 +11,13 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Heading, HeadingSecondary } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { getIntlMessage, openUserProfile } from "@utils/discord";
 import { Margins } from "@utils/margins";
 import { classes } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { findComponentByCodeLazy, findCssClassesLazy, findStoreLazy } from "@webpack";
 import { Clickable, RelationshipStore, Tooltip, UserStore, useStateFromStores } from "@webpack/common";
 import { JSX } from "react";
@@ -84,7 +84,7 @@ export default definePlugin({
     enabledByDefault: true,
     description: "Hover over the screenshare icon to view what users are watching your stream",
     tags: ["Activity"],
-    authors: [EquicordDevs.Fres, Devs.thororen],
+    authors: [S7CordDevs.Fres, Devs.thororen],
     settings,
     patches: [
         {

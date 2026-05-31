@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Button, Flex, Heading, Paragraph } from "@Nightcord/types/components";
-import { ModalContent, ModalFooter, ModalHeader, ModalRoot } from "@Nightcord/types/utils";
-import { React } from "@Nightcord/types/webpack/common";
+import { Button, Flex, Heading, Paragraph } from "@S7Cord/types/components";
+import { ModalContent, ModalFooter, ModalHeader, ModalRoot } from "@S7Cord/types/utils";
+import { React } from "@S7Cord/types/webpack/common";
 
 type ModalProps = { transitionState: any; onClose(): void; };
 
@@ -23,7 +23,7 @@ function WarningIcon() {
 function ShieldIcon() {
     return (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, marginRight: "6px", verticalAlign: "middle" }}>
-            <path d="M12 2L4 5v6c0 5.25 3.5 10.15 8 11.35C16.5 21.15 20 16.25 20 11V5L12 2z" fill="#5865f2" />
+            <path d="M12 2L4 5v6c0 5.25 3.5 10.15 8 11.35C16.5 21.15 20 16.25 20 11V5L12 2z" fill="#FF0000" />
             <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     );
@@ -60,7 +60,7 @@ export function SecurityModal(props: ModalProps) {
                     marginBottom: "16px"
                 }}>
                     <Paragraph style={{ fontWeight: "bold", marginBottom: "6px", color: "var(--text-normal)" }}>
-                        NightCordFr is a 100% Free product.
+                        S7CordFr is a 100% Free product.
                     </Paragraph>
                     <Paragraph style={{ color: "var(--text-muted)" }}>
                         If you paid to obtain this application, you have been the victim of a <strong style={{ color: "var(--text-danger)" }}>scam</strong>. We never request money for access to our core services.
@@ -86,9 +86,9 @@ export function SecurityModal(props: ModalProps) {
                             <strong>Support &amp; Community:</strong>{" "}
                             <span
                                 style={{ color: "var(--text-link)", cursor: "pointer" }}
-                                onClick={() => window.open("https://discord.gg/nightcord", "_blank")}
+                                onClick={() => window.open("https://discord.gg/S7Cord", "_blank")}
                             >
-                                discord.gg/nightcord
+                                discord.gg/S7Cord
                             </span>
                         </li>
                     </ul>
@@ -99,7 +99,7 @@ export function SecurityModal(props: ModalProps) {
                     paddingTop: "12px"
                 }}>
                     <Paragraph style={{ color: "var(--text-muted)", fontStyle: "italic", fontSize: "13px" }}>
-                        <strong>Note:</strong> Only download NightCordFr via our official channels to ensure your security.
+                        <strong>Note:</strong> Only download S7CordFr via our official channels to ensure your security.
                     </Paragraph>
                 </div>
             </ModalContent>

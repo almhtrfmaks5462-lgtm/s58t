@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 sadan
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { makeContextItem } from "./components";
@@ -15,7 +15,7 @@ export default definePlugin({
     name: "CustomFolderIcons",
     description: "Customize folder icons with any png",
     tags: ["Appearance", "Customisation", "Organisation"],
-    authors: [EquicordDevs.sadan],
+    authors: [S7CordDevs.sadan],
     settings,
     patches: [
         {

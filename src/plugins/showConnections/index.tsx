@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ import OpenInAppPlugin from "@plugins/openInApp";
 import { Devs } from "@utils/constants";
 import { copyWithToast } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
-import { ConnectedAccount, User } from "@vencord/discord-types";
+import { ConnectedAccount, User } from "@S7Cord/discord-types";
 import { findByCodeLazy, findByPropsLazy } from "@webpack";
 import { Tooltip, UserProfileStore } from "@webpack/common";
 
@@ -144,7 +144,7 @@ function CompactConnectionComponent({ connection, theme }: { connection: Connect
                         className="vc-user-connection"
                         onClick={() => {
                             if (connection.type === "xbox") {
-                                VencordNative.native.openExternal(`https://www.xbox.com/en-US/play/user/${encodeURIComponent(connection.name)}`);
+                                S7CordNative.native.openExternal(`https://www.xbox.com/en-US/play/user/${encodeURIComponent(connection.name)}`);
                             } else {
                                 copyWithToast(connection.name);
                             }

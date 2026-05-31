@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 nin0dev
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,7 +13,7 @@ import { Paragraph } from "@components/Paragraph";
 import { Devs } from "@utils/constants";
 import { getCurrentChannel, getCurrentGuild } from "@utils/discord";
 import definePlugin from "@utils/types";
-import { GuildMember } from "@vencord/discord-types";
+import { GuildMember } from "@S7Cord/discord-types";
 import { GuildMemberStore, GuildRoleStore, Menu, Parser } from "@webpack/common";
 
 import { showInRoleModal } from "./RoleMembersModal";

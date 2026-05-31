@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -133,7 +133,7 @@ export const Packs = () => {
                         <p>
                             Currently LINE stickers/emojis supported only. <br />
 
-                            Get Telegram stickers with <a href="#" onClick={() => VencordNative.native.openExternal("https://github.com/lekoOwO/MoreStickersConverter")}> MoreStickersConverter</a>.
+                            Get Telegram stickers with <a href="#" onClick={() => S7CordNative.native.openExternal("https://github.com/lekoOwO/MoreStickersConverter")}> MoreStickersConverter</a>.
                         </p>
                     </Paragraph>
                     <Flex flexDirection="row" style={{

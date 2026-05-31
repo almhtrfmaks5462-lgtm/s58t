@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./styles.css";
 
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { makeDevBanner, settings } from "./components";
@@ -15,7 +15,7 @@ export default definePlugin({
     name: "DiscordDevBanner",
     description: "Enables the Discord developer banner, in which displays the build-ID",
     tags: ["Appearance", "Console", "Developers"],
-    authors: [EquicordDevs.KrystalSkull, Devs.thororen],
+    authors: [S7CordDevs.KrystalSkull, Devs.thororen],
     settings,
     patches: [
         {

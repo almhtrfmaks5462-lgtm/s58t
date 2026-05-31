@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -18,7 +18,7 @@ const preprocessors: { [preprocessor: string]: (text: string, vars: Record<strin
             .map(([name, value]) => `--${name}: ${value}`)
             .join("; ");
 
-        return `/* ==Equicord== */\n:root{${variables}}\n/* ==/Equicord== */${text}`;
+        return `/* ==S7Cord== */\n:root{${variables}}\n/* ==/S7Cord== */${text}`;
     },
 
     async uso(text: string, vars: Record<string, string>) {
@@ -36,7 +36,7 @@ const preprocessors: { [preprocessor: string]: (text: string, vars: Record<strin
             .map(([name, value]) => `${name} = ${value}`)
             .join("\n");
 
-        const stylusDoc = `// ==Vencord==\n${variables}\n// ==/Vencord==\n${text}`;
+        const stylusDoc = `// ==S7Cord==\n${variables}\n// ==/S7Cord==\n${text}`;
 
         return new StylusRenderer(stylusDoc).render();
     },
@@ -48,14 +48,14 @@ const preprocessors: { [preprocessor: string]: (text: string, vars: Record<strin
             .map(([name, value]) => `@${name}: ${value};`)
             .join("\n");
 
-        const lessDoc = `// ==Vencord==\n${variables}\n// ==/Vencord==\n${text}`;
+        const lessDoc = `// ==S7Cord==\n${variables}\n// ==/S7Cord==\n${text}`;
 
         return less.render(lessDoc).then(r => r.css);
     }
 };
 
 export async function compileUsercss(fileName: string) {
-    const themeData = await VencordNative.themes.getThemeData(fileName);
+    const themeData = await S7CordNative.themes.getThemeData(fileName);
 
     if (!themeData) return null;
 
@@ -68,12 +68,12 @@ export async function compileUsercss(fileName: string) {
     const preprocessorFn = preprocessors[preprocessor];
 
     if (!preprocessorFn) {
-        UserCSSLogger.error("File", fileName, "requires preprocessor", preprocessor, "which isn't known to Equicord");
+        UserCSSLogger.error("File", fileName, "requires preprocessor", preprocessor, "which isn't known to S7Cord");
         return null;
     }
 
     const varsToPass = {
-        vencord: "true"
+        S7Cord: "true"
     };
 
     for (const [k, v] of Object.entries(vars)) {

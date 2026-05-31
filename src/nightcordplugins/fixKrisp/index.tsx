@@ -16,7 +16,7 @@ const NativeModuleStore = findByPropsLazy("requireModule");
  */
 function resetKrispPipeline() {
     try {
-        const MediaSettingsStore = (window as any).Vencord?.Webpack?.findByProps?.("setNoiseSuppressionLevel", "getNoiseSuppression");
+        const MediaSettingsStore = (window as any).S7Cord?.Webpack?.findByProps?.("setNoiseSuppressionLevel", "getNoiseSuppression");
         if (!MediaSettingsStore) return;
 
         const original = MediaSettingsStore.getNoiseSuppression?.();
@@ -42,7 +42,7 @@ function resetKrispPipeline() {
 export default definePlugin({
     name: "FixKrisp",
     description: "Forces Krisp (Noise Suppression) to be available and auto-resets the audio pipeline so only background noise is suppressed (not the whole voice).",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     enabledByDefault: true,
     required: true,
 
@@ -81,12 +81,12 @@ export default definePlugin({
                 // One-shot availability patch (no interval)
                 const forceKrisp = () => {
                     try {
-                        const stores = window.Vencord?.Webpack?.findByProps("getMediaEngine", "isKrispAvailable");
+                        const stores = window.S7Cord?.Webpack?.findByProps("getMediaEngine", "isKrispAvailable");
                         if (stores) {
                             Object.defineProperty(stores, 'isKrispAvailable', { get: () => true, configurable: true });
                             Object.defineProperty(stores, 'isKrispSupported', { get: () => true, configurable: true });
                         }
-                        const experiments = window.Vencord?.Webpack?.findByProps("getKrispExperiment");
+                        const experiments = window.S7Cord?.Webpack?.findByProps("getKrispExperiment");
                         if (experiments?.getKrispExperiment) {
                             const res = experiments.getKrispExperiment();
                             if (res) res.eligible = true;
@@ -110,7 +110,7 @@ export default definePlugin({
             }
         };
         try {
-            const FD = (window as any).Vencord?.Webpack?.findByProps?.("dispatch", "subscribe");
+            const FD = (window as any).S7Cord?.Webpack?.findByProps?.("dispatch", "subscribe");
             FD?.subscribe?.("VOICE_CHANNEL_SELECT", handler);
             this._callCleanup = () => FD?.unsubscribe?.("VOICE_CHANNEL_SELECT", handler);
         } catch { }

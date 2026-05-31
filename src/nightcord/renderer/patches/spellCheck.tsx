@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { addContextMenuPatch } from "@Nightcord/types/api/ContextMenu";
-import { FluxDispatcher, Menu, SpellCheckStore, useMemo, useStateFromStores } from "@Nightcord/types/webpack/common";
+import { addContextMenuPatch } from "@S7Cord/types/api/ContextMenu";
+import { FluxDispatcher, Menu, SpellCheckStore, useMemo, useStateFromStores } from "@S7Cord/types/webpack/common";
 import { useSettings } from "renderer/settings";
 
 import { addPatch } from "./shared";

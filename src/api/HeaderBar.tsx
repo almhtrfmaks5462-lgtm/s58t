@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -209,21 +209,21 @@ export function removeChannelToolbarButton(id: string) {
 
 // Variable mémoire — PAS localStorage comme source de vérité
 let _stealthActive = false;
-try { _stealthActive = localStorage.getItem("Nightcord_stealthMode") === "1"; } catch { }
+try { _stealthActive = localStorage.getItem("S7Cord_stealthMode") === "1"; } catch { }
 
 export function isStealthModeEnabled(): boolean {
     return _stealthActive;
 }
 
 function persistStealth(v: boolean) {
-    try { v ? localStorage.setItem("Nightcord_stealthMode", "1") : localStorage.removeItem("Nightcord_stealthMode"); } catch { }
+    try { v ? localStorage.setItem("S7Cord_stealthMode", "1") : localStorage.removeItem("S7Cord_stealthMode"); } catch { }
 }
 
-// Éléments NON-React uniquement (titlebar, NightcordAI nav)
+// Éléments NON-React uniquement (titlebar, S7CordAI nav)
 // NE PAS cacher les entrées settings sidebar — l'utilisateur doit pouvoir accéder aux paramètres
 const NON_REACT_SELECTORS = [
-    "#nightcord-titlebar-btn",
-    "#nightcord-titlebar-link-style",
+    "#S7Cord-titlebar-btn",
+    "#S7Cord-titlebar-link-style",
     ".nai-nav-item",
 ];
 
@@ -241,7 +241,7 @@ function hideNonReactElements(hide: boolean) {
 }
 
 export function syncStealthBodyClass() {
-    try { if (_stealthActive) document.body?.classList.add("nightcord-stealth"); else document.body?.classList.remove("nightcord-stealth"); } catch { }
+    try { if (_stealthActive) document.body?.classList.add("S7Cord-stealth"); else document.body?.classList.remove("S7Cord-stealth"); } catch { }
     hideNonReactElements(_stealthActive);
 }
 
@@ -251,7 +251,7 @@ export function toggleStealthMode() {
     hideNonReactElements(_stealthActive);
     // Notify React to re-render components (returns null when stealth is on)
     _notifyStealthChange();
-    try { if (_stealthActive) document.body?.classList.add("nightcord-stealth"); else document.body?.classList.remove("nightcord-stealth"); } catch { }
+    try { if (_stealthActive) document.body?.classList.add("S7Cord-stealth"); else document.body?.classList.remove("S7Cord-stealth"); } catch { }
     console.log("[StealthMode] toggled →", _stealthActive);
     return _stealthActive;
 }
@@ -259,7 +259,7 @@ export function toggleStealthMode() {
 // ── Auto-init at module load ──
 if (_stealthActive) {
     try { hideNonReactElements(true); } catch { }
-    try { document.body?.classList.add("nightcord-stealth"); } catch { }
+    try { document.body?.classList.add("S7Cord-stealth"); } catch { }
 }
 
 // Register Ctrl+Shift+H globally at module load
@@ -293,7 +293,7 @@ try {
         if (document.body) startObserver();
         else document.addEventListener("DOMContentLoaded", startObserver);
     }
-    window.addEventListener("nightcord-stealth-change", () => {
+    window.addEventListener("S7Cord-stealth-change", () => {
         if (_stealthActive) startObserver();
         else stopObserver();
     });
@@ -304,7 +304,7 @@ const stealthListeners = new Set<() => void>();
 export function _notifyStealthChange() {
     // NO hideNonReactElements here — already handled in toggleStealthMode
     stealthListeners.forEach(fn => fn());
-    window.dispatchEvent(new Event("nightcord-stealth-change"));
+    window.dispatchEvent(new Event("S7Cord-stealth-change"));
 }
 export function addStealthListener(fn: () => void) { stealthListeners.add(fn); }
 export function removeStealthListener(fn: () => void) { stealthListeners.delete(fn); }
@@ -316,11 +316,11 @@ function HeaderBarButtons() {
         const listener = () => forceUpdate(n => n + 1);
         headerBarListeners.add(listener);
         stealthListeners.add(listener);
-        window.addEventListener("nightcord-stealth-change", listener);
+        window.addEventListener("S7Cord-stealth-change", listener);
         return () => {
             headerBarListeners.delete(listener);
             stealthListeners.delete(listener);
-            window.removeEventListener("nightcord-stealth-change", listener);
+            window.removeEventListener("S7Cord-stealth-change", listener);
         };
     }, []);
 
@@ -346,11 +346,11 @@ function ChannelToolbarButtons() {
         const listener = () => forceUpdate(n => n + 1);
         channelToolbarListeners.add(listener);
         stealthListeners.add(listener);
-        window.addEventListener("nightcord-stealth-change", listener);
+        window.addEventListener("S7Cord-stealth-change", listener);
         return () => {
             channelToolbarListeners.delete(listener);
             stealthListeners.delete(listener);
-            window.removeEventListener("nightcord-stealth-change", listener);
+            window.removeEventListener("S7Cord-stealth-change", listener);
         };
     }, []);
 

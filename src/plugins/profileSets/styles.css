@@ -185,8 +185,8 @@
 }
 
 .vc-profile-presets-row:focus-visible {
-    border-color: var(--brand-experiment) !important;
-    box-shadow: 0 0 0 2px var(--brand-experiment-30a);
+    border-color: var(--red) !important;
+    box-shadow: 0 0 0 2px var(--red-30a);
 }
 
 .vc-profile-presets-row.selected {

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import "./styles.css";
 
 import { ChatBarButton, ChatBarButtonFactory } from "@api/ChatButtons";
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { React, UserStore,useState, useStateFromStores } from "@webpack/common";
@@ -181,7 +181,7 @@ const StreamProofButton: ChatBarButtonFactory = ({ isMainChat }) => {
 export default definePlugin({
     name: "StreamProof",
     description: "Hides messages, links, images, DMs, but not the screen share/voice grid. Toggle via chat bar button.",
-    authors: [EquicordDevs.TheArmagan],
+    authors: [S7CordDevs.TheArmagan],
     dependencies: ["ChatInputButtonAPI"],
     enabledByDefault: true,
     settings,

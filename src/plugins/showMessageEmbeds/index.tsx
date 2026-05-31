@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,11 +7,11 @@
 import { findGroupChildrenByChildId } from "@api/ContextMenu";
 import { updateMessage } from "@api/MessageUpdater";
 import { ImageInvisible, ImageVisible } from "@components/Icons";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import { parseUrl } from "@utils/misc";
 import definePlugin from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { findByCodeLazy } from "@webpack";
 import { ChannelStore, Constants, Menu, MessageStore, React, RestAPI, showToast, Toasts } from "@webpack/common";
 
@@ -194,7 +194,7 @@ export default definePlugin({
     name: "ShowMessageEmbeds",
     description: "Adds a context menu option to show embeds for links that don't have one",
     tags: ["Appearance", "Chat"],
-    authors: [EquicordDevs.Suffocate],
+    authors: [S7CordDevs.Suffocate],
 
     patches: [
         {

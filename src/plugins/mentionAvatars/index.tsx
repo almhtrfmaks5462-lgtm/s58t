@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -12,7 +12,7 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import showMeYourName from "@plugins/showMeYourName";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { User } from "@vencord/discord-types";
+import { User } from "@S7Cord/discord-types";
 import { GuildRoleStore, SelectedGuildStore, useState } from "@webpack/common";
 import { JSX } from "react";
 

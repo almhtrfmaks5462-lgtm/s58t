@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -45,7 +45,7 @@ export function registerSettingsFallback(fn: () => string) {
 export async function getGroqKey(): Promise<string> {
     const key = await DataStore.get(DS_API_KEY) as string | null;
     if (key?.trim()) return key.trim();
-    // Fallback : lire depuis les Settings NightcordAI si disponible
+    // Fallback : lire depuis les Settings S7CordAI si disponible
     if (_settingsFallback) {
         const fallback = _settingsFallback();
         if (fallback) return fallback;
@@ -132,7 +132,7 @@ async function _groqChat(opts: GroqCallOptions, attempt = 0): Promise<string> {
     const { messages, temperature = 0.7, maxTokens = 1000, forceModel, maxRetries = 3 } = opts;
 
     const apiKey = await getGroqKey();
-    if (!apiKey) throw new Error("Groq API key missing — configure it in Settings → NightcordAI");
+    if (!apiKey) throw new Error("Groq API key missing — configure it in Settings → S7CordAI");
 
     const model = forceModel ?? getAvailableModel();
 

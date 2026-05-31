@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -19,7 +19,7 @@ export function openCommandPalette() {
     }
 
     modalSerial += 1;
-    const modalKey = `equicord-command-palette-${modalSerial}`;
+    const modalKey = `S7Cord-command-palette-${modalSerial}`;
     activeModalKey = openModal(
         modalProps => <CommandPaletteModal modalProps={modalProps} instanceKey={modalSerial} />,
         {

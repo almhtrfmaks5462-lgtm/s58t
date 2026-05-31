@@ -38,7 +38,7 @@
 }
 
 .el-filter-btn--active {
-    background: var(--brand-500, #5865f2);
+    background: var(--brand-500, #FF0000);
     color: #fff;
     border-color: transparent;
 }
@@ -152,7 +152,7 @@
 }
 
 .el-count {
-    background: var(--brand-500, #5865f2);
+    background: var(--brand-500, #FF0000);
     color: #fff;
     border-radius: 20px;
     padding: 1px 8px;

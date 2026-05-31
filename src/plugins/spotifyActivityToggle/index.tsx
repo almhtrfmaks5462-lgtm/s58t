@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings } from "@api/Settings";
 import { UserAreaButton, UserAreaRenderProps } from "@api/UserArea";
-import equicordToolbox from "@nightcordplugins/equicordToolbox";
+import S7CordToolbox from "@S7Cordplugins/S7CordToolbox";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Constants, Menu, RestAPI, useEffect, useState } from "@webpack/common";
@@ -48,7 +48,7 @@ function SpotifyActivityToggleButton({ iconForeground, hideTooltips, nameplate }
         return () => { forceUpdate = null; };
     }, []);
 
-    if (!isLoaded || !spotifyId || location !== "PANEL" && isPluginEnabled(equicordToolbox.name)) return null;
+    if (!isLoaded || !spotifyId || location !== "PANEL" && isPluginEnabled(S7CordToolbox.name)) return null;
 
     return (
         <UserAreaButton
@@ -77,10 +77,10 @@ const settings = definePluginSettings({
         description: "Where to show the Spotify toggle button.",
         options: [
             { label: "Next to Mute/Deafen", value: "PANEL", default: true },
-            { label: "Equicord Toolbox", value: "TOOLBOX" }
+            { label: "S7Cord Toolbox", value: "TOOLBOX" }
         ],
         get hidden() {
-            return !isPluginEnabled(equicordToolbox.name);
+            return !isPluginEnabled(S7CordToolbox.name);
         }
     },
 });

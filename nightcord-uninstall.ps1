@@ -1,13 +1,13 @@
 # ==============================================================================
-#  Nightcord — Désinstalleur utilisateur (PowerShell)
-#  Supprime l'injection Nightcord de Discord
+#  S7Cord — Désinstalleur utilisateur (PowerShell)
+#  Supprime l'injection S7Cord de Discord
 #
 #  Usage : Clic droit → "Exécuter avec PowerShell"
 # ==============================================================================
 
 $ErrorActionPreference = "Stop"
 
-$InstallDir    = Join-Path $env:LOCALAPPDATA "Nightcord-Client"
+$InstallDir    = Join-Path $env:LOCALAPPDATA "S7Cord-Client"
 $DistDir       = Join-Path $InstallDir "dist\desktop"
 $InstallerDir  = Join-Path $InstallDir "installer"
 $EquilotlExe   = Join-Path $InstallerDir "EquilotlCli.exe"
@@ -15,7 +15,7 @@ $EquilotlExe   = Join-Path $InstallerDir "EquilotlCli.exe"
 Clear-Host
 Write-Host ""
 Write-Host "  ╔══════════════════════════════════════════╗" -ForegroundColor Cyan
-Write-Host "  ║      NIGHTCORD — Désinstalleur           ║" -ForegroundColor Cyan
+Write-Host "  ║      S7Cord — Désinstalleur           ║" -ForegroundColor Cyan
 Write-Host "  ╚══════════════════════════════════════════╝" -ForegroundColor Cyan
 Write-Host ""
 
@@ -24,9 +24,9 @@ if (-not (Test-Path $EquilotlExe)) {
     Write-Host "         Téléchargement de l'outil de désinstallation..." -ForegroundColor Yellow
     Write-Host ""
     New-Item -ItemType Directory -Force -Path $InstallerDir | Out-Null
-    $EquilotlUrl = "https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli.exe"
+    $EquilotlUrl = "https://github.com/S7Cord/Equilotl/releases/latest/download/EquilotlCli.exe"
     Invoke-WebRequest -Uri $EquilotlUrl `
-        -Headers @{ "User-Agent" = "Nightcord-Installer/2.0" } `
+        -Headers @{ "User-Agent" = "S7Cord-Installer/2.0" } `
         -OutFile $EquilotlExe -UseBasicParsing
 }
 
@@ -34,9 +34,9 @@ Write-Host "  Lancement du désinstalleur graphique..." -ForegroundColor Yellow
 Write-Host "  Une fenêtre va s'ouvrir pour choisir votre Discord cible." -ForegroundColor Yellow
 Write-Host ""
 
-$env:EQUICORD_USER_DATA_DIR = $InstallDir
-$env:EQUICORD_DIRECTORY     = $DistDir
-$env:EQUICORD_DEV_INSTALL   = "1"
+$env:S7Cord_USER_DATA_DIR = $InstallDir
+$env:S7Cord_DIRECTORY     = $DistDir
+$env:S7Cord_DEV_INSTALL   = "1"
 
 try {
     & $EquilotlExe "--uninstall"
@@ -49,7 +49,7 @@ try {
 
 Write-Host ""
 Write-Host "  ┌──────────────────────────────────────────────────────┐" -ForegroundColor Green
-Write-Host "  │  Nightcord désinstallé avec succès !                 │" -ForegroundColor Green
+Write-Host "  │  S7Cord désinstallé avec succès !                 │" -ForegroundColor Green
 Write-Host "  │  Redémarrez Discord pour appliquer les changements.  │" -ForegroundColor Green
 Write-Host "  └──────────────────────────────────────────────────────┘" -ForegroundColor Green
 Write-Host ""

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -27,7 +27,7 @@ function randomSeconds(date: Date): Date {
 }
 
 // ─── Persistence ─────────────────────────────────────────────────────────────
-const STORAGE_KEY = "nightcord_fakedm_fakes";
+const STORAGE_KEY = "S7Cord_fakedm_fakes";
 
 interface PersistedMessage {
     type: "message";
@@ -472,8 +472,8 @@ function FakeDMPanel({ onClose, btnRect }: { onClose(): void; btnRect: DOMRect; 
 
                 {/* Mode tabs */}
                 <div style={{ display: "flex", gap: 6, padding: "0 12px 10px" }}>
-                    <button onClick={() => setMode("message")} style={{ flex: 1, padding: "5px 0", borderRadius: 6, border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600, background: mode === "message" ? "#5865f2" : "rgba(255,255,255,0.07)", color: mode === "message" ? "#fff" : "rgba(255,255,255,0.5)" }}>💬 Message</button>
-                    <button onClick={() => setMode("call")} style={{ flex: 1, padding: "5px 0", borderRadius: 6, border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600, background: mode === "call" ? "#5865f2" : "rgba(255,255,255,0.07)", color: mode === "call" ? "#fff" : "rgba(255,255,255,0.5)" }}>📞 Call</button>
+                    <button onClick={() => setMode("message")} style={{ flex: 1, padding: "5px 0", borderRadius: 6, border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600, background: mode === "message" ? "#FF0000" : "rgba(255,255,255,0.07)", color: mode === "message" ? "#fff" : "rgba(255,255,255,0.5)" }}>💬 Message</button>
+                    <button onClick={() => setMode("call")} style={{ flex: 1, padding: "5px 0", borderRadius: 6, border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600, background: mode === "call" ? "#FF0000" : "rgba(255,255,255,0.07)", color: mode === "call" ? "#fff" : "rgba(255,255,255,0.5)" }}>📞 Call</button>
                 </div>
 
                 {!isInDMOrGroup ? (
@@ -590,7 +590,7 @@ export default definePlugin({
     name: "FakeDM",
     enabledByDefault: true,
     description: "Injects fake local messages into a DM or group DM. Button in the text bar. Persists across restarts.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["ChatInputButtonAPI"],
 
     chatBarButton: {

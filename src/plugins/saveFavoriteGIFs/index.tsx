@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import { ApplicationCommandInputType } from "@api/Commands";
 import { showNotification } from "@api/Notifications";
 import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings } from "@api/Settings";
-import equicordToolbox from "@nightcordplugins/equicordToolbox";
+import S7CordToolbox from "@S7Cordplugins/S7CordToolbox";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { saveFile } from "@utils/web";
@@ -102,12 +102,12 @@ async function saveWorkingGifs() {
 
 const settings = definePluginSettings({
     showToolboxButton: {
-        description: "Show 'Save Favorite GIFs' button in Equicord Toolbox (Requires Reload)",
+        description: "Show 'Save Favorite GIFs' button in S7Cord Toolbox (Requires Reload)",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true,
         get hidden() {
-            return !isPluginEnabled(equicordToolbox.name);
+            return !isPluginEnabled(S7CordToolbox.name);
         }
     }
 });

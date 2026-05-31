@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,9 +10,9 @@ import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import * as DataStore from "@api/DataStore";
 import { definePluginSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Message, User } from "@vencord/discord-types";
+import { Message, User } from "@S7Cord/discord-types";
 import { findByPropsLazy, findCssClassesLazy } from "@webpack";
 import { Button, Menu, openModal,showToast, Toasts, Tooltip, useEffect, UserStore, useState } from "@webpack/common";
 
@@ -20,7 +20,7 @@ import { deleteTimezone, getTimezone, loadDatabaseTimezones, setUserDatabaseTime
 import { SetTimezoneModal } from "./TimezoneModal";
 
 export let timezones: Record<string, string | null> = {};
-export const DATASTORE_KEY = "vencord-timezones";
+export const DATASTORE_KEY = "S7Cord-timezones";
 
 export function resolveUserTimezone(userId: string): string | null {
     const localTimezone = timezones[userId];
@@ -254,7 +254,7 @@ const userContextMenuPatch: NavContextMenuPatchCallback = (children, { user }: {
 
 export default definePlugin({
     name: "Timezones",
-    authors: [Devs.Aria, EquicordDevs.creations],
+    authors: [Devs.Aria, S7CordDevs.creations],
     description: "Shows the local time of users in profiles and message headers",
     tags: ["Appearance", "Chat", "Utility"],
     contextMenus: {

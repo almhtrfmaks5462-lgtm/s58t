@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -55,7 +55,7 @@ handle(IpcEvents.UPDATER_OPEN, async () => {
 
 function openUpdater(update: UpdateInfo) {
     updaterWindow = new BrowserWindow({
-        title: "Nightcord Updater",
+        title: "S7Cord Updater",
         autoHideMenuBar: true,
         ...(process.platform === "win32"
             ? { icon: join(STATIC_DIR, "icon.ico") }

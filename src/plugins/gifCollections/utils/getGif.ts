@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { MessageStore, SnowflakeUtils } from "@webpack/common";
 
 import { settings } from "../settings";

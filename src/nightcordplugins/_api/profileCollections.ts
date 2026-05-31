@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -19,29 +19,29 @@ export default definePlugin({
     authors: [Devs.thororen],
     enabledByDefault: true,
     start() {
-        console.log("[Nightcord ProfileCollectionsAPI] Started");
-        (Vencord.Api as any).ProfileCollections = ProfileCollections;
+        console.log("[S7Cord ProfileCollectionsAPI] Started");
+        (S7Cord.Api as any).ProfileCollections = ProfileCollections;
     },
     patches: [
         {
             find: ".USER_PROFILE_ACTIVITY",
             replacement: {
                 match: /user:(\i),widgets:.{0,100}?\}\),/,
-                replace: "Vencord.Api?.ProfileCollections?.renderProfileCollections?.({...arguments[0], original: $&}) ?? $&",
+                replace: "S7Cord.Api?.ProfileCollections?.renderProfileCollections?.({...arguments[0], original: $&}) ?? $&",
             }
         },
         {
             find: '"UserProfileAccountPopout"',
             replacement: {
                 match: /user:\i,widgets:.{0,100}}\),/,
-                replace: "Vencord.Api?.ProfileCollections?.renderProfileCollections?.({...arguments[0], original: $&}) ?? $&",
+                replace: "S7Cord.Api?.ProfileCollections?.renderProfileCollections?.({...arguments[0], original: $&}) ?? $&",
             },
         },
         {
             find: ".SIDEBAR,disableToolbar:",
             replacement: {
                 match: /user:(\i),widgets:.{0,100}?\}\),/,
-                replace: "Vencord.Api?.ProfileCollections?.renderProfileCollections?.({...arguments[0], isSideBar:true, original: $&}) ?? $&"
+                replace: "S7Cord.Api?.ProfileCollections?.renderProfileCollections?.({...arguments[0], isSideBar:true, original: $&}) ?? $&"
             }
         }
     ]

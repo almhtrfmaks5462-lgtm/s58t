@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -49,7 +49,7 @@ const settings = definePluginSettings({
     },
     syncWithFriends: {
         type: OptionType.BOOLEAN,
-        description: "Sync wallpapers with Nightcord friends in DMs.",
+        description: "Sync wallpapers with S7Cord friends in DMs.",
         default: true,
         restartNeeded: false,
     },
@@ -62,7 +62,7 @@ const settings = definePluginSettings({
     vpsPassword: {
         type: OptionType.STRING,
         description: "Password for the sync server.",
-        default: "nightcord",
+        default: "S7Cord",
         restartNeeded: true,
     },
 });

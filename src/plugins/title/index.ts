@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,7 +15,7 @@ const rootTitle = { base: null as string | null };
 export const settings = definePluginSettings({
     title: {
         type: OptionType.STRING,
-        default: "Equicord",
+        default: "S7Cord",
         description: "Window title prefix",
         onChange: setTitle,
     },

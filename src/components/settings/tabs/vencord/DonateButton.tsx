@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -19,7 +19,7 @@ export function DonateButtonComponent({ donated = false }) {
     return (
         <Flex>
             <DonateButton
-                equicord={true}
+                S7Cord={true}
                 className={!donated ? "vc-donate-support-button" : ""}
                 style={{ marginTop: "1em" }} />
             <InviteButton

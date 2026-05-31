@@ -46,7 +46,7 @@
 
 .cp-account-header-item--selected {
     background: rgba(88, 101, 242, 0.15);
-    border-color: #5865f2;
+    border-color: #FF0000;
 }
 
 .cp-account-header-item--selected .cp-account-mini-name {
@@ -100,7 +100,7 @@
 
 .cp-account-header-item--selected {
     background: rgba(88, 101, 242, 0.15);
-    border-color: #5865f2;
+    border-color: #FF0000;
 }
 
 .cp-account-header-avatar {
@@ -133,7 +133,7 @@
     right: -1px;
     width: 14px;
     height: 14px;
-    background: #5865f2;
+    background: #FF0000;
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -369,7 +369,7 @@
 
 .cp-badge--on {
     background: rgba(88, 101, 242, 0.2);
-    border-color: #5865f2;
+    border-color: #FF0000;
     color: #fff;
     font-weight: 700;
 }
@@ -429,9 +429,9 @@
 }
 
 .cp-btn-primary {
-    background: #5865f2;
+    background: #FF0000;
 }
 
 .cp-btn-primary:hover:not(:disabled) {
-    background: #4752c4;
+    background: #CC0000;
 }

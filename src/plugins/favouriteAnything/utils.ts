@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,7 +10,7 @@ import { proxyLazy } from "@utils/lazy";
 import { Queue } from "@utils/Queue";
 import { useForceUpdater } from "@utils/react";
 import { PluginNative } from "@utils/types";
-import { Channel, MessageAttachment } from "@vencord/discord-types";
+import { Channel, MessageAttachment } from "@S7Cord/discord-types";
 import { findByCodeLazy, findByPropsLazy } from "@webpack";
 import { Constants, DraftType, FluxDispatcher, MessageActions, PendingReplyStore, PermissionStore, RestAPI, Toasts, UploadAttachmentStore, UploadHandler, UploadManager, useCallback, useEffect, useRef, UserSettingsActionCreators, UserSettingsProtoStore, useStateFromStores } from "@webpack/common";
 import { deflateSync, inflateSync } from "fflate";
@@ -20,7 +20,7 @@ import { JsonValue } from "type-fest";
 import { base64ToUint8Array, uint8ArrayToBase64 } from "./polyfills";
 import { CustomItemDef, CustomItemFormat, FavouriteItem, FavouriteItemFormat, ImageUtils as ImageUtils_, ItemsDef, ResizeObserverHook, UnfurledEmbedsResponse } from "./types";
 
-const Native = VencordNative.pluginHelpers.FavouriteAnything as PluginNative<typeof import("./native")>;
+const Native = S7CordNative.pluginHelpers.FavouriteAnything as PluginNative<typeof import("./native")>;
 
 export const cl = classNameFactory("vc-favouriteAnything-");
 
@@ -96,7 +96,7 @@ export const defs = defineItems({
 });
 
 // TODO: make thumbnails prettier
-const fallbackThumbnail = new URL("https://images-ext-1.discordapp.net/external/pGTJg3YdSHpyGTltH4vZUKEyQoNzf5mtqbSJs7I4ebc/https/equicord.org/assets/plugins/favoriteAnything/invalid.png");
+const fallbackThumbnail = new URL("https://images-ext-1.discordapp.net/external/pGTJg3YdSHpyGTltH4vZUKEyQoNzf5mtqbSJs7I4ebc/https/S7Cord.org/assets/plugins/favoriteAnything/invalid.png");
 
 export async function getThumbnailUrl(data: string, width: number, height: number): Promise<URL | null> {
     try {

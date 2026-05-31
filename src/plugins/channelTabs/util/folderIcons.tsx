@@ -1,11 +1,11 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { iconsModule } from "@plugins/_core/concatenatedModules";
-import { Icon } from "@vencord/discord-types";
+import { Icon } from "@S7Cord/discord-types";
 
 let iconNames: string[] | undefined;
 

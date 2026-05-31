@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 import { ChatBarButton, ChatBarButtonFactory } from "@api/ChatButtons";
 import { addMessagePreSendListener, MessageSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { React, useEffect, useState } from "@webpack/common";
 
@@ -64,7 +64,7 @@ function ReverseMessageIcon() {
 
 export default definePlugin({
     name: "TalkInReverse",
-    authors: [EquicordDevs.Tolgchu],
+    authors: [S7CordDevs.Tolgchu],
     description: "Reverses the message content before sending it.",
     tags: ["Chat", "Fun"],
     dependencies: ["MessageEventsAPI", "ChatInputButtonAPI"],

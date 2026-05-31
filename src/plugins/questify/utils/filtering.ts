@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { Quest } from "@vencord/discord-types";
-import { QuestRewardType, QuestTaskType } from "@vencord/discord-types/enums";
+import type { Quest } from "@S7Cord/discord-types";
+import { QuestRewardType, QuestTaskType } from "@S7Cord/discord-types/enums";
 
 export type QuestIncludedTypes = Record<QuestTaskType | QuestRewardType, boolean>;
 

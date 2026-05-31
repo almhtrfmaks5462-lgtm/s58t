@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -95,7 +95,7 @@ export function NewPluginsSection({
                         ) ||
                         plugin.name.endsWith("API");
                     const tooltipText = plugin.required
-                        ? "This plugin is required for Equicord to function."
+                        ? "This plugin is required for S7Cord to function."
                         : makeDependencyList(
                             depMap[plugin.name]?.filter(
                                 d => settings.plugins[d]?.enabled,
@@ -203,7 +203,7 @@ function CompactPluginCard({
         depMap[plugin.name]?.some(d => settings.plugins[d]?.enabled);
 
     const tooltipText = plugin.required
-        ? "This plugin is required for Equicord to function."
+        ? "This plugin is required for S7Cord to function."
         : depMap[plugin.name]?.length > 0
             ? `This plugin is required by: ${depMap[plugin.name]
                 ?.filter(d => settings.plugins[d]?.enabled)

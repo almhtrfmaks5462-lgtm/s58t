@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,28 +10,28 @@ import { dirname, join } from "path";
 
 import { CommandLine } from "./cli";
 
-const NightcordDir = dirname(process.execPath);
+const S7CordDir = dirname(process.execPath);
 
 export const PORTABLE =
     process.platform === "win32" &&
     !process.execPath.toLowerCase().endsWith("electron.exe") &&
-    !existsSync(join(NightcordDir, "Uninstall Nightcord.exe"));
+    !existsSync(join(S7CordDir, "Uninstall S7Cord.exe"));
 
 export const DATA_DIR =
-    process.env.Nightcord_USER_DATA_DIR || (PORTABLE ? join(NightcordDir, "Data") : join(app.getPath("userData")));
+    process.env.S7Cord_USER_DATA_DIR || (PORTABLE ? join(S7CordDir, "Data") : join(app.getPath("userData")));
 
 mkdirSync(DATA_DIR, { recursive: true });
 
 export const SESSION_DATA_DIR = join(DATA_DIR, "sessionData");
 app.setPath("sessionData", SESSION_DATA_DIR);
 
-export const VENCORD_SETTINGS_DIR = join(DATA_DIR, "settings");
-mkdirSync(VENCORD_SETTINGS_DIR, { recursive: true });
-export const VENCORD_QUICKCSS_FILE = join(VENCORD_SETTINGS_DIR, "quickCss.css");
-export const VENCORD_SETTINGS_FILE = join(VENCORD_SETTINGS_DIR, "settings.json");
-export const VENCORD_THEMES_DIR = join(DATA_DIR, "themes");
+export const S7Cord_SETTINGS_DIR = join(DATA_DIR, "settings");
+mkdirSync(S7Cord_SETTINGS_DIR, { recursive: true });
+export const S7Cord_QUICKCSS_FILE = join(S7Cord_SETTINGS_DIR, "quickCss.css");
+export const S7Cord_SETTINGS_FILE = join(S7Cord_SETTINGS_DIR, "settings.json");
+export const S7Cord_THEMES_DIR = join(DATA_DIR, "themes");
 
-export const USER_AGENT = `Nightcord/${app.getVersion()} (https://git.nightcord.su/nightcord/nightcord)`;
+export const USER_AGENT = `S7Cord/${app.getVersion()} (https://git.S7Cord.su/S7Cord/S7Cord)`;
 
 // dimensions shamelessly stolen from Discord Desktop :3
 export const MIN_WIDTH = 940;

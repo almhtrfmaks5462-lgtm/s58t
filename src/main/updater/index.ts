@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ import gitRemote from "~git-remote";
 import { serializeErrors } from "./common";
 
 if (!IS_UPDATER_DISABLED) {
-    // Nightcord utilise toujours le mode HTTP (GitHub Releases)
+    // S7Cord utilise toujours le mode HTTP (GitHub Releases)
     // IS_STANDALONE is false when injected into Discord, but we still want http.ts
     require("./http");
 } else {

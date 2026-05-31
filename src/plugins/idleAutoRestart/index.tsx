@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
 import { Menu, VoiceStateStore } from "@webpack/common";
@@ -37,7 +37,7 @@ export default definePlugin({
     name: "IdleAutoRestart",
     description: "Automatically restarts the client after being idle for a configurable amount of time, but avoids restarting while you are in VC.",
     tags: ["Utility"],
-    authors: [EquicordDevs.SteelTech],
+    authors: [S7CordDevs.SteelTech],
     settings,
 
     toolboxActions() {

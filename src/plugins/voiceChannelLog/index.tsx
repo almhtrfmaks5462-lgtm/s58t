@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
-import { ChannelType } from "@vencord/discord-types/enums";
+import { ChannelType } from "@S7Cord/discord-types/enums";
 import { findByPropsLazy } from "@webpack";
 import { ApplicationStore, ChannelStore, Menu, RelationshipStore, SelectedChannelStore, UserStore, VoiceStateStore } from "@webpack/common";
 
@@ -55,7 +55,7 @@ export default definePlugin({
     name: "VoiceChannelLog",
     description: "Logs voice channel activity including joins, leaves, soundboard, mute, camera, screenshare, and more.",
     tags: ["Servers", "Utility", "Voice"],
-    authors: [Devs.Sqaaakoi, Devs.thororen, EquicordDevs.nyx, Devs.Moxxie, EquicordDevs.Fres, Devs.amy],
+    authors: [Devs.Sqaaakoi, Devs.thororen, S7CordDevs.nyx, Devs.Moxxie, S7CordDevs.Fres, Devs.amy],
     dependencies: ["AudioPlayerAPI", "HeaderBarAPI"],
     settings,
     contextMenus: {

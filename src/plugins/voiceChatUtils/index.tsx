@@ -1,15 +1,15 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { insertTextIntoChatInputBox } from "@utils/discord";
 import definePlugin, { makeRange, OptionType } from "@utils/types";
-import type { Channel } from "@vencord/discord-types";
+import type { Channel } from "@S7Cord/discord-types";
 import { GuildChannelStore, Menu, React, RestAPI, UserStore, VoiceStateStore } from "@webpack/common";
 
 async function runSequential<T>(promises: Promise<T>[]): Promise<T[]> {
@@ -175,7 +175,7 @@ export default definePlugin({
     name: "VoiceChatUtilities",
     description: "This plugin allows you to perform multiple actions on an entire channel (move, mute, disconnect, etc.) (originally by dutake)",
     tags: ["Chat", "Servers", "Voice"],
-    authors: [Devs.D3SOX, EquicordDevs.nickwoah],
+    authors: [Devs.D3SOX, S7CordDevs.nickwoah],
 
     settings,
 

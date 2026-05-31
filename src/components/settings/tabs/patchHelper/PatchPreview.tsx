@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -106,7 +106,7 @@ export function PatchPreview({ module, match, replacement, setReplacementError }
 
         const canonicalMatch = canonicalizeMatch(new RegExp(match));
         try {
-            const canonicalReplace = canonicalizeReplace(replacement, 'Vencord.Plugins.plugins["YourPlugin"]');
+            const canonicalReplace = canonicalizeReplace(replacement, 'S7Cord.Plugins.plugins["YourPlugin"]');
             var patched = src.replace(canonicalMatch, canonicalReplace as string);
             setReplacementError(void 0);
         } catch (e) {

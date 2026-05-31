@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./style.css";
 
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { FluxDispatcher } from "@webpack/common";
 
@@ -27,7 +27,7 @@ export default definePlugin({
     name: "GifCollections",
     description: "Allows you to create collections of gifs.",
     tags: ["Chat", "Emotes"],
-    authors: [EquicordDevs.creations],
+    authors: [S7CordDevs.creations],
     settings,
     contextMenus: {
         "message": addCollectionContextMenuPatch,

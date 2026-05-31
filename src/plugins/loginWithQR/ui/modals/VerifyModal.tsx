@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import { BaseText } from "@components/BaseText";
 import { Button, TextButton } from "@components/Button";
 import { images } from "@plugins/loginWithQR/images";
 import { getIntlMessage } from "@utils/discord";
-import { RenderModalProps } from "@vencord/discord-types";
+import { RenderModalProps } from "@S7Cord/discord-types";
 import { findByPropsLazy } from "@webpack";
 import {
     Modal,

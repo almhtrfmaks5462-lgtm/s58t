@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,8 +18,8 @@
 
 import { Button } from "@components/Button";
 import { Heading } from "@components/Heading";
-import { cl, Native, settings } from "@nightcordplugins/messageLoggerEnhanced/index";
-import { DEFAULT_IMAGE_CACHE_DIR } from "@nightcordplugins/messageLoggerEnhanced/utils/constants";
+import { cl, Native, settings } from "@S7Cordplugins/messageLoggerEnhanced/index";
+import { DEFAULT_IMAGE_CACHE_DIR } from "@S7Cordplugins/messageLoggerEnhanced/utils/constants";
 import { copyWithToast } from "@utils/discord";
 import { classes } from "@utils/misc";
 import { findCssClassesLazy } from "@webpack";

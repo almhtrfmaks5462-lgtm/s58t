@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -65,7 +65,7 @@ export const EXTENSIONS_CATALOG: ExtensionDefinition[] = [
         commandId: "extension-random-voice-join",
         commandLabel: "Join Random Voice",
         commandDescription: "Run the extension command from this detail page.",
-        sourcePath: "src/equicordplugins/randomVoice",
+        sourcePath: "src/S7Cordplugins/randomVoice",
         tags: [TAG_PLUGINS, TAG_UTILITY],
         keywords: ["extension", "plugin", "random", "voice", "join", "channel", "vc"]
     },
@@ -89,7 +89,7 @@ export const EXTENSIONS_CATALOG: ExtensionDefinition[] = [
         commandId: "extension-scheduled-messages-open",
         commandLabel: "Open Scheduled Messages",
         commandDescription: "Open the ScheduledMessages modal.",
-        sourcePath: "src/equicordplugins/scheduledMessages",
+        sourcePath: "src/S7Cordplugins/scheduledMessages",
         tags: [TAG_PLUGINS, TAG_UTILITY],
         keywords: ["extension", "plugin", "schedule", "message", "queue", "remind", "delay"]
     },
@@ -101,7 +101,7 @@ export const EXTENSIONS_CATALOG: ExtensionDefinition[] = [
         commandId: "extension-theme-library-open",
         commandLabel: "Open Theme Library",
         commandDescription: "Open the ThemeLibrary settings page.",
-        sourcePath: "src/equicordplugins/themeLibrary",
+        sourcePath: "src/S7Cordplugins/themeLibrary",
         tags: [TAG_PLUGINS, TAG_UTILITY],
         keywords: ["extension", "plugin", "theme", "library", "themes", "settings"]
     }
@@ -109,7 +109,7 @@ export const EXTENSIONS_CATALOG: ExtensionDefinition[] = [
 
 export const extensionDefinitionsById = new Map(EXTENSIONS_CATALOG.map(extension => [extension.id, extension]));
 
-export const EQUICORD_REPOSITORY_BLOB_BASE_URL = "https://github.com/Equicord/Equicord/blob/main";
+export const S7Cord_REPOSITORY_BLOB_BASE_URL = "https://github.com/S7Cord/S7Cord/blob/main";
 
 export function normalizeRepositoryPath(path: string): string {
     return path.trim().replace(/^\/+/, "");
@@ -117,5 +117,5 @@ export function normalizeRepositoryPath(path: string): string {
 
 export function toRepositoryBlobUrl(path: string): string {
     const normalizedPath = normalizeRepositoryPath(path);
-    return `${EQUICORD_REPOSITORY_BLOB_BASE_URL}/${normalizedPath}`;
+    return `${S7Cord_REPOSITORY_BLOB_BASE_URL}/${normalizedPath}`;
 }

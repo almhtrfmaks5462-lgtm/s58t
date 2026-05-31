@@ -1,12 +1,12 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { ChatBarButton, ChatBarButtonFactory } from "@api/ChatButtons";
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { getCurrentChannel } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
 import { FluxDispatcher, React } from "@webpack/common";
@@ -149,7 +149,7 @@ export default definePlugin({
     description: "Shows how long it took to fetch messages for the current channel",
     dependencies: ["ChatInputButtonAPI"],
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.GroupXyz],
+    authors: [S7CordDevs.GroupXyz],
     settings,
 
     chatBarButton: {

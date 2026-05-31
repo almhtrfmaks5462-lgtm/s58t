@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -33,7 +33,7 @@ export default definePlugin({
     ],
 
     renderButtons(props: { nameplate?: any; }) {
-        return Vencord.Api?.UserArea?._renderButtons?.({
+        return S7Cord.Api?.UserArea?._renderButtons?.({
             nameplate: props.nameplate,
             iconForeground: props.nameplate != null ? cssClasses?.iconForeground : void 0,
             hideTooltips: false

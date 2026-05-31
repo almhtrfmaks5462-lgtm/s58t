@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,7 +10,7 @@ import { showApiKeyWarning } from "@utils/apiKeyWarning";
 import definePlugin, { OptionType } from "@utils/types";
 import { React } from "@webpack/common";
 
-import { getGroqKey,groqChat } from "../nightcordAI/groqManager";
+import { getGroqKey,groqChat } from "../S7CordAI/groqManager";
 
 // ── Settings ───────────────────────────────────────────────────────────────────
 
@@ -160,8 +160,8 @@ const AutoCorrectChatBarButton: ChatBarButtonFactory = ({ type }) => {
 export default definePlugin({
     name: "AutoCorrect",
     enabledByDefault: true,
-    description: "Automatically corrects spelling and grammar before sending. Requires a free Groq API key configured in NightcordAI.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    description: "Automatically corrects spelling and grammar before sending. Requires a free Groq API key configured in S7CordAI.",
+    authors: [{ name: "S7Cord", id: 0n }],
     settings,
 
     start() { },

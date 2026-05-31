@@ -1,12 +1,12 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { PinOrder, settings } from "@nightcordplugins/pinDms";
-import { addChannelToCategory, canMoveChannelInDirection, currentUserCategories, isPinned, moveChannel, removeChannelFromCategory } from "@nightcordplugins/pinDms/data";
+import { PinOrder, settings } from "@S7Cordplugins/pinDms";
+import { addChannelToCategory, canMoveChannelInDirection, currentUserCategories, isPinned, moveChannel, removeChannelFromCategory } from "@S7Cordplugins/pinDms/data";
 import { Menu } from "@webpack/common";
 
 import { openCategoryModal } from "./CreateCategoryModal";

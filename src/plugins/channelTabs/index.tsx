@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,9 +8,9 @@ import "./style.css";
 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
-import { Channel, Message } from "@vencord/discord-types";
+import { Channel, Message } from "@S7Cord/discord-types";
 import { ChannelStore, Menu } from "@webpack/common";
 import { JSX } from "react";
 
@@ -48,7 +48,7 @@ export default definePlugin({
     name: "ChannelTabs",
     description: "Group your commonly visited channels in tabs, like a browser",
     tags: ["Appearance", "Customisation", "Organisation", "Servers"],
-    authors: [Devs.TheSun, Devs.TheKodeToad, EquicordDevs.keifufu, Devs.Nickyux, EquicordDevs.DiabeloDEV, EquicordDevs.justjxke, EquicordDevs.keircn],
+    authors: [Devs.TheSun, Devs.TheKodeToad, S7CordDevs.keifufu, Devs.Nickyux, S7CordDevs.DiabeloDEV, S7CordDevs.justjxke, S7CordDevs.keircn],
     dependencies: ["ContextMenuAPI", "ConcatenatedModules"],
     contextMenus: {
         "channel-mention-context": contextMenuPatch,

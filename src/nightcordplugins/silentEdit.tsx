@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -74,7 +74,7 @@ function deleteMessage(channelId: string, messageId: string) {
 
 export default definePlugin({
     name: "SilentEdit",
-    description: "\"Silently\" edit a message without showing the edit tag and bypass Vencord's message logger.",
+    description: "\"Silently\" edit a message without showing the edit tag and bypass S7Cord's message logger.",
     authors: [{ name: "Aurick", id: 1348025017233047634n }],
     dependencies: ["MessagePopoverAPI"],
     settings,

@@ -1,23 +1,23 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Logger } from "@Nightcord/types/utils";
-import { findLazy, onceReady } from "@Nightcord/types/webpack";
+import { Logger } from "@S7Cord/types/utils";
+import { findLazy, onceReady } from "@S7Cord/types/webpack";
 import {
     ApplicationAssetUtils,
     fetchApplicationsRPC,
     FluxDispatcher,
     InviteActions,
     StreamerModeStore
-} from "@Nightcord/types/webpack/common";
+} from "@S7Cord/types/webpack/common";
 import { IpcCommands } from "shared/IpcEvents";
 
 import { onIpcCommand } from "./ipcCommands";
 
-const logger = new Logger("NightcordRPC", "#5865f2");
+const logger = new Logger("S7CordRPC", "#FF0000");
 
 interface RPCApplication {
     id: string;

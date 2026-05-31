@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,9 +17,9 @@
 */
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import { settings } from "@nightcordplugins/imageZoom";
-import { ELEMENT_ID } from "@nightcordplugins/imageZoom/constants";
-import { waitFor } from "@nightcordplugins/imageZoom/utils/waitFor";
+import { settings } from "@S7Cordplugins/imageZoom";
+import { ELEMENT_ID } from "@S7Cordplugins/imageZoom/constants";
+import { waitFor } from "@S7Cordplugins/imageZoom/utils/waitFor";
 import { classNameFactory } from "@utils/css";
 import { FluxDispatcher, useLayoutEffect, useMemo, useRef, useState } from "@webpack/common";
 

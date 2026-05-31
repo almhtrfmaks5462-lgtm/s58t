@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -17,11 +17,11 @@ export default definePlugin({
             replacement: [
                 {
                     match: /(?<=children:\i\}\):\i,)null!=\i/,
-                    replace: "($&||Vencord.Api.NicknameIcons._renderIcons({userId:arguments[0].user?.id})?.length)"
+                    replace: "($&||S7Cord.Api.NicknameIcons._renderIcons({userId:arguments[0].user?.id})?.length)"
                 },
                 {
                     match: /(?<=shouldUnderlineOnHover:null.{0,300})children:(\i)(?=\}\)\])/,
-                    replace: "children:[...Vencord.Api.NicknameIcons._renderIcons({userId:arguments[0].user?.id}),$1]"
+                    replace: "children:[...S7Cord.Api.NicknameIcons._renderIcons({userId:arguments[0].user?.id}),$1]"
                 }
             ]
         }

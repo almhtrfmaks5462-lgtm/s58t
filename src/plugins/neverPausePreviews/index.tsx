@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,14 +17,14 @@
 */
 
 import { Notice } from "@components/Notice";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "NeverPausePreviews",
     description: "Prevents in-call/PiP previews (screenshare, streams, etc) from pausing even if the client loses focus",
     tags: ["Media"],
-    authors: [EquicordDevs.vappstar],
+    authors: [S7CordDevs.vappstar],
     settingsAboutComponent: () => (
         <Notice.Warning>
             This plugin will cause discord to use more resources than normal

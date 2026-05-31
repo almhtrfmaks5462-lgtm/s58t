@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -62,7 +62,7 @@ const options = {
     repair: {
         type: "boolean",
         short: "r",
-        description: "Re-download Nightcord and restart"
+        description: "Re-download S7Cord and restart"
     }
 } satisfies Record<string, Option>;
 
@@ -81,7 +81,7 @@ const extraOptions = {
     "ozone-platform": {
         hidden: process.platform !== "linux",
         type: "string",
-        description: "Whether to run Nightcord in Wayland or X11 (XWayland)",
+        description: "Whether to run S7Cord in Wayland or X11 (XWayland)",
         options: ["x11", "wayland"]
     }
 } satisfies Record<string, Option>;
@@ -102,14 +102,14 @@ export async function checkCommandLineForRepair() {
     if (!repair) return false;
 
     const { State } = await import("./settings");
-    if (State.store.NightcordDir) {
-        console.error("Cannot repair: using custom Nightcord directory. Remove it in settings first.");
+    if (State.store.S7CordDir) {
+        console.error("Cannot repair: using custom S7Cord directory. Remove it in settings first.");
         process.exit(1);
     }
 
-    console.log("Repairing Nightcord...");
-    const { downloadVencordAsar } = await import("./utils/vencordLoader");
-    await downloadVencordAsar();
+    console.log("Repairing S7Cord...");
+    const { downloadS7CordAsar } = await import("./utils/S7CordLoader");
+    await downloadS7CordAsar();
     console.log("Repair complete.");
     process.exit(0);
     return true;
@@ -119,13 +119,13 @@ export function checkCommandLineForHelpOrVersion() {
     const { help, version } = CommandLine.values;
 
     if (version) {
-        console.log(`Nightcord v${app.getVersion()}`);
+        console.log(`S7Cord v${app.getVersion()}`);
         app.exit(0);
     }
 
     if (help) {
         const base = stripIndent`
-            Nightcord v${app.getVersion()}
+            S7Cord v${app.getVersion()}
 
             Usage: ${basename(process.execPath)} [options] [url]
 
@@ -189,7 +189,7 @@ function checkCommandLineForToggleCommands() {
         app.exit(0);
     }
 
-    console.error("Nightcord is not running. Toggle commands require a running instance.");
+    console.error("S7Cord is not running. Toggle commands require a running instance.");
     app.exit(1);
 }
 
@@ -228,10 +228,10 @@ function checkForSecondInstance() {
 
     if (!app.requestSingleInstanceLock({ IS_DEV })) {
         if (IS_DEV) {
-            console.log("Nightcord is already running. Quitting previous instance...");
+            console.log("S7Cord is already running. Quitting previous instance...");
             return;
         } else {
-            console.log("Nightcord is already running. Quitting...");
+            console.log("S7Cord is already running. Quitting...");
             app.exit(0);
         }
     }

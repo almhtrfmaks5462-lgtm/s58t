@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated, camila314, and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import "./styles.css";
 
 import { addServerListElement, removeServerListElement, ServerListRenderPosition } from "@api/ServerList";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { FluxDispatcher, Tooltip } from "@webpack/common";
 
@@ -26,7 +26,7 @@ function SearchIcon() {
 
 export default definePlugin({
     name: "ServerSearch",
-    authors: [EquicordDevs.camila314],
+    authors: [S7CordDevs.camila314],
     description: "Navigate your servers better with a quick search button",
     tags: ["Shortcuts", "Servers"],
 

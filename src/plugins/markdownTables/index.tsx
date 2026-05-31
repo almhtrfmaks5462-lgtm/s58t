@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin from "@utils/types";
 import { waitFor } from "@webpack";
@@ -333,7 +333,7 @@ export default definePlugin({
     name: "MarkdownTables",
     description: "Render GitHub-style markdown tables in Discord messages.",
     tags: ["Chat", "Appearance"],
-    authors: [EquicordDevs.yafyx],
+    authors: [S7CordDevs.yafyx],
     managedStyle,
     patches: [
         {

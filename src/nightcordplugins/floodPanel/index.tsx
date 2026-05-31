@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import "./styles.css";
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 import { FloodPanelButton } from "./components/ChatBarButton";
@@ -32,7 +32,7 @@ export { settings };
 export default definePlugin({
     name: "FloodPanel",
     description: "Send a flood of messages rapidly in any channel. Load a custom .txt file or use the built-in phrases. Accessible from the chat bar.",
-    authors: [EquicordDevs.nobody],
+    authors: [S7CordDevs.nobody],
     enabledByDefault: true,
     settings,
 

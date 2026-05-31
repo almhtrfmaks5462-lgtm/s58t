@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,7 +15,7 @@ import { AppEvents } from "./events";
 import { Settings } from "./settings";
 import { resolveAssetPath } from "./userAssets";
 import { clearData } from "./utils/clearData";
-import { downloadVencordAsar } from "./utils/vencordLoader";
+import { downloadS7CordAsar } from "./utils/S7CordLoader";
 
 type TrayVariant = "tray" | "trayUnread" | "traySpeaking" | "trayIdle" | "trayMuted" | "trayDeafened";
 
@@ -220,13 +220,13 @@ export async function initTray(win: BrowserWindow, setIsQuitting: (val: boolean)
 
                 const pixmap = await getCachedTrayPixmap(trayVariant);
                 nativeSNI.setStatusNotifierIcon(pixmap);
-                nativeSNI.setStatusNotifierTitle("Nightcord");
+                nativeSNI.setStatusNotifierTitle("S7Cord");
 
                 const menuItems = [
                     { id: 1, label: win.isVisible() ? "Hide" : "Open", enabled: true, visible: true },
                     { id: 2, label: "About", enabled: true, visible: true },
-                    { id: 3, label: "Repair Nightcord", enabled: true, visible: true },
-                    { id: 4, label: "Reset Nightcord", enabled: true, visible: true },
+                    { id: 3, label: "Repair S7Cord", enabled: true, visible: true },
+                    { id: 4, label: "Reset S7Cord", enabled: true, visible: true },
                     { id: 5, label: "Launch Arguments", enabled: true, visible: true },
                     {
                         id: 6,
@@ -262,8 +262,8 @@ export async function initTray(win: BrowserWindow, setIsQuitting: (val: boolean)
                         case 2: // about
                             createAboutWindow();
                             break;
-                        case 3: // repair Nightcord
-                            downloadVencordAsar().then(() => {
+                        case 3: // repair S7Cord
+                            downloadS7CordAsar().then(() => {
                                 setTimeout(() => {
                                     destroyTray();
                                     app.relaunch();
@@ -271,7 +271,7 @@ export async function initTray(win: BrowserWindow, setIsQuitting: (val: boolean)
                                 }, 0);
                             });
                             break;
-                        case 4: // reset Nightcord
+                        case 4: // reset S7Cord
                             clearData(win);
                             break;
                         case 5: // launch arguments
@@ -325,16 +325,16 @@ export async function initTray(win: BrowserWindow, setIsQuitting: (val: boolean)
             click: createAboutWindow
         },
         {
-            label: "Repair Nightcord",
+            label: "Repair S7Cord",
             async click() {
-                await downloadVencordAsar();
+                await downloadS7CordAsar();
                 destroyTray();
                 app.relaunch();
                 app.quit();
             }
         },
         {
-            label: "Reset Nightcord",
+            label: "Reset S7Cord",
             async click() {
                 await clearData(win);
             }
@@ -373,7 +373,7 @@ export async function initTray(win: BrowserWindow, setIsQuitting: (val: boolean)
     try {
         const initialImage = await getCachedTrayImage(trayVariant);
         tray = new Tray(initialImage);
-        tray.setToolTip("Nightcord");
+        tray.setToolTip("S7Cord");
 
         if (isLinux) {
             tray.on("click", onTrayClick);

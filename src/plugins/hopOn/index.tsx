@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { RelationshipStore, SelectedChannelStore } from "@webpack/common";
 
 interface IMessageCreate {
@@ -43,7 +43,7 @@ export default definePlugin({
             if (channelId !== SelectedChannelStore.getChannelId()) return;
             if (!message.content?.match(new RegExp(settings.store.regex, "i"))) return;
 
-            VencordNative.native.openExternal(settings.store.url);
+            S7CordNative.native.openExternal(settings.store.url);
         }
     }
 });

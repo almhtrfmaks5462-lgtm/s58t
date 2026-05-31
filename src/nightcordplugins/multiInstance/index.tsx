@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -13,11 +13,11 @@ import definePlugin, { PluginNative } from "@utils/types";
 import { findByProps } from "@webpack";
 import { Forms, React, ReactDOM, UserStore } from "@webpack/common";
 
-import { t } from "../autoTranslateNightcord";
+import { t } from "../autoTranslateS7Cord";
 
-const Native = VencordNative.pluginHelpers.MultiInstance as PluginNative<typeof import("./native")>;
+const Native = S7CordNative.pluginHelpers.MultiInstance as PluginNative<typeof import("./native")>;
 const STORE_KEY = "TokenImporter_accounts";
-const MI_TOKEN_CACHE_KEY = "nightcord-mi-token-cache";
+const MI_TOKEN_CACHE_KEY = "S7Cord-mi-token-cache";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Token cache — capture les tokens des accounts natifs Discord
@@ -191,8 +191,8 @@ function ContextMenuPortal(props: CtxMenuProps) {
 
     // Crée le container portal une seule fois
     const [container] = React.useState(() => {
-        const el = document.getElementById("nightcord-mi-ctx-root") ?? document.createElement("div");
-        el.id = "nightcord-mi-ctx-root";
+        const el = document.getElementById("S7Cord-mi-ctx-root") ?? document.createElement("div");
+        el.id = "S7Cord-mi-ctx-root";
         if (!el.parentNode) document.body.appendChild(el);
         return el;
     });
@@ -529,7 +529,7 @@ function MultiInstanceIcon({ width = 20, height = 20 }: { width?: number; height
     return (
         <svg width={width} height={height} viewBox="0 0 24 24" fill="currentColor">
             <path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z" />
-            <circle cx="19.5" cy="19.5" r="4.5" fill="var(--brand-500, #5865f2)" />
+            <circle cx="19.5" cy="19.5" r="4.5" fill="var(--brand-500, #FF0000)" />
             <path d="M19.5 17.5v4M17.5 19.5h4" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
         </svg>
     );
@@ -557,7 +557,7 @@ export default definePlugin({
     name: "MultiInstance",
     enabledByDefault: true,
     description: "Opens a 2nd Discord (new window or split screen) with another account.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["HeaderBarAPI"],
 
     _fluxUnsub: null as (() => void) | null,
@@ -567,13 +567,13 @@ export default definePlugin({
         hookEncryptAndStoreTokens();
         this._fluxUnsub = hookFluxDispatcher();
         captureCurrentToken();
-        addHeaderBarButton("nightcord-multi-instance", () => <MultiInstanceButton />, 9);
+        addHeaderBarButton("S7Cord-multi-instance", () => <MultiInstanceButton />, 9);
     },
 
     stop() {
-        removeHeaderBarButton("nightcord-multi-instance");
+        removeHeaderBarButton("S7Cord-multi-instance");
         if (this._fluxUnsub) { this._fluxUnsub(); this._fluxUnsub = null; }
-        const root = document.getElementById("nightcord-mi-ctx-root");
+        const root = document.getElementById("S7Cord-mi-ctx-root");
         if (root) root.remove();
     },
 });

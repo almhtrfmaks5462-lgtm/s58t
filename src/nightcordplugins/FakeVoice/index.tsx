@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -166,7 +166,7 @@ export default definePlugin({
     ],
 
     start() {
-        const { addUserAreaButton } = Vencord.Api.UserArea;
+        const { addUserAreaButton } = S7Cord.Api.UserArea;
         addUserAreaButton("fake-voice-option", {
             icon: FakeDeafenIcon,
             render: FakeDeafenUserButton
@@ -174,7 +174,7 @@ export default definePlugin({
     },
 
     stop() {
-        const { removeUserAreaButton } = Vencord.Api.UserArea;
+        const { removeUserAreaButton } = S7Cord.Api.UserArea;
         removeUserAreaButton("fake-voice-option");
     }
 });

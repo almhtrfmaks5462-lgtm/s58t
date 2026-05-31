@@ -1,7 +1,7 @@
 /* eslint-disable simple-header/header */
 
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 your mom lol
  *
  * This program is free software: you can redistribute it and/or modify
@@ -74,12 +74,12 @@ const settings = definePluginSettings({
         default: true
     },
     emojiName: {
-        description: "Emoji name (default (from Vencord Server): husk)",
+        description: "Emoji name (default (from S7Cord Server): husk)",
         type: OptionType.STRING,
         default: "husk"
     },
     emojiID: {
-        description: "Emoji ID (default (from Vencord Server): 1026532993923293184)",
+        description: "Emoji ID (default (from S7Cord Server): 1026532993923293184)",
         type: OptionType.BIGINT,
         default: 1026532993923293184n
     }

@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -14,7 +14,7 @@ interface Props {
 
 export function WebsiteButton({ text, href }: Props) {
     return (
-        <Button variant="secondary" size="small" style={{ gap: 4 }} onClick={() => VencordNative.native.openExternal(href)}>
+        <Button variant="secondary" size="small" style={{ gap: 4 }} onClick={() => S7CordNative.native.openExternal(href)}>
             <WebsiteIcon width={16} height={16} />
             {text}
         </Button>
@@ -23,7 +23,7 @@ export function WebsiteButton({ text, href }: Props) {
 
 export function GithubButton({ text, href }: Props) {
     return (
-        <Button variant="secondary" size="small" style={{ gap: 4 }} onClick={() => VencordNative.native.openExternal(href)}>
+        <Button variant="secondary" size="small" style={{ gap: 4 }} onClick={() => S7CordNative.native.openExternal(href)}>
             <GithubIcon width={16} height={16} />
             {text}
         </Button>

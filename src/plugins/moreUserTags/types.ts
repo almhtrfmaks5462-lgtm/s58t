@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { Channel, Message, Permissions, User } from "@vencord/discord-types";
+import type { Channel, Message, Permissions, User } from "@S7Cord/discord-types";
 
 import { tags } from "./consts";
 

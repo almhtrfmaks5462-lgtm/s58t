@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -8,7 +8,7 @@ import "./styles.css";
 
 import { MessageOptions } from "@api/MessageEvents";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 import { isScheduleModeEnabled, ScheduledMessagesButton, setScheduleModeEnabled } from "./components/ChatBarButton";
@@ -88,7 +88,7 @@ export default definePlugin({
     description: "Schedule messages to be sent at a specific time or after a delay.",
     tags: ["Chat", "Utility"],
     dependencies: ["ChatInputButtonAPI", "MessageAccessoriesAPI", "MessageEventsAPI"],
-    authors: [EquicordDevs.mmeta, Devs.prism],
+    authors: [S7CordDevs.mmeta, Devs.prism],
     settings,
 
     flux: {

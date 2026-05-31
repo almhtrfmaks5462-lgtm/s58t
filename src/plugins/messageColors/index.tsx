@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import "./styles.css";
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { StartAt } from "@utils/types";
 import { React } from "@webpack/common";
 import type { ReactElement } from "react";
@@ -24,7 +24,7 @@ interface ParsedColorInfo {
 const requiredFirstCharacters = ["r", "h", "#"].flatMap(v => [v, v.toUpperCase()]);
 
 export default definePlugin({
-    authors: [EquicordDevs.Hen],
+    authors: [S7CordDevs.Hen],
     name: "MessageColors",
     description: "Displays color codes like #FF0042 inside of messages",
     tags: ["Appearance", "Chat"],

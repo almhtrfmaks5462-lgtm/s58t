@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,10 +19,10 @@
 import "./style.css";
 
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { getIntlMessage } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
-import type { GuildFolder } from "@vencord/discord-types";
+import type { GuildFolder } from "@S7Cord/discord-types";
 import { findByPropsLazy, findComponentByCodeLazy, findStoreLazy } from "@webpack";
 import { ChannelStore, FluxDispatcher, ReadStateStore } from "@webpack/common";
 import { ReactNode } from "react";
@@ -316,7 +316,7 @@ export default definePlugin({
     name: "BetterFolders",
     description: "Shows server folders on dedicated sidebar and adds folder related improvements",
     tags: ["Organisation", "Servers", "Appearance"],
-    authors: [Devs.juby, Devs.AutumnVN, Devs.Nuckyz, EquicordDevs.justjxke],
+    authors: [Devs.juby, Devs.AutumnVN, Devs.Nuckyz, S7CordDevs.justjxke],
     isModified: true,
     settings,
     start() {

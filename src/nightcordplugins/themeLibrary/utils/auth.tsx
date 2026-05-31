@@ -1,12 +1,12 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import * as DataStore from "@api/DataStore";
 import { showNotification } from "@api/Notifications";
-import { logger, themeRequest } from "@nightcordplugins/themeLibrary/components/ThemeTab";
+import { logger, themeRequest } from "@S7Cordplugins/themeLibrary/components/ThemeTab";
 import { openModal } from "@utils/modal";
 import { OAuth2AuthorizeModal, Toasts, UserStore } from "@webpack/common";
 
@@ -19,7 +19,7 @@ export async function authorizeUser(triggerModal: boolean = true) {
             {...props}
             scopes={["identify", "connections"]}
             responseType="code"
-            redirectUri="https://themes.equicord.org/api/user/auth"
+            redirectUri="https://themes.S7Cord.org/api/user/auth"
             permissions={0n}
             clientId="1464006702125940736"
             cancelCompletesFlow={false}

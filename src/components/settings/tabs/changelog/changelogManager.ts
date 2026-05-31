@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -30,14 +30,14 @@ export interface UpdateSession {
 
 export type ChangelogHistory = UpdateSession[];
 
-const CHANGELOG_HISTORY_KEY = "EquicordChangelog_History";
-const LAST_SEEN_HASH_KEY = "EquicordChangelog_LastSeenHash";
-const KNOWN_PLUGINS_KEY = "EquicordChangelog_KnownPlugins";
-const KNOWN_SETTINGS_KEY = "EquicordChangelog_KnownSettings";
-const LAST_REPO_CHECK_KEY = "EquicordChangelog_LastRepoCheck";
-const GITEA_API_BASE = "https://git.nightcord.su/api/v1/repos";
-const NIGHTCORD_RELEASES_REPO = "nightcord/nightcord";
-const NIGHTCORD_REPO_URL = `https://git.nightcord.su/${NIGHTCORD_RELEASES_REPO}`;
+const CHANGELOG_HISTORY_KEY = "S7CordChangelog_History";
+const LAST_SEEN_HASH_KEY = "S7CordChangelog_LastSeenHash";
+const KNOWN_PLUGINS_KEY = "S7CordChangelog_KnownPlugins";
+const KNOWN_SETTINGS_KEY = "S7CordChangelog_KnownSettings";
+const LAST_REPO_CHECK_KEY = "S7CordChangelog_LastRepoCheck";
+const GITEA_API_BASE = "https://git.S7Cord.su/api/v1/repos";
+const S7Cord_RELEASES_REPO = "S7Cord/S7Cord";
+const S7Cord_REPO_URL = `https://git.S7Cord.su/${S7Cord_RELEASES_REPO}`;
 
 type KnownPluginSettingsMap = Map<string, Set<string>>;
 
@@ -391,13 +391,13 @@ export async function getNewSettings(): Promise<Map<string, string[]>> {
     return newSettings;
 }
 
-export { NIGHTCORD_REPO_URL };
+export { S7Cord_REPO_URL };
 
 export async function getCommitsSinceLastSeen(
     repoUrl: string,
 ): Promise<ChangelogEntry[]> {
-    // Toujours utiliser le repo Nightcord, ignorer le repoUrl d'Equicord
-    return fetchCommitsBetween(NIGHTCORD_RELEASES_REPO, "HEAD~10", "HEAD").catch(() => []);
+    // Toujours utiliser le repo S7Cord, ignorer le repoUrl d'S7Cord
+    return fetchCommitsBetween(S7Cord_RELEASES_REPO, "HEAD~10", "HEAD").catch(() => []);
 }
 
 export async function updateKnownSettings(): Promise<void> {

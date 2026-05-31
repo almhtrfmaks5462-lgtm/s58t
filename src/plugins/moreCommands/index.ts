@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated, Samu and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 import { ApplicationCommandInputType, ApplicationCommandOptionType, findOption, OptionalMessageOption, RequiredMessageOption, sendBotMessage } from "@api/Commands";
 import { addMessagePreEditListener, addMessagePreSendListener, MessageObject, removeMessagePreEditListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { migratePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { sendMessage } from "@utils/discord";
 import definePlugin from "@utils/types";
 import { DraftType, UploadHandler, UploadManager, UserAffinitiesStore, UserStore } from "@webpack/common";
@@ -57,16 +57,16 @@ export default definePlugin({
         Devs.Arjix,
         Devs.amy,
         Devs.Samu,
-        EquicordDevs.zyqunix,
-        EquicordDevs.ShadyGoat,
+        S7CordDevs.zyqunix,
+        S7CordDevs.ShadyGoat,
         Devs.thororen,
         Devs.Korbo,
         Devs.nyx,
         Devs.amy,
         Devs.Samwich,
-        EquicordDevs.Fafa,
+        S7CordDevs.Fafa,
         Devs.JacobTm,
-        EquicordDevs.voidbbg
+        S7CordDevs.voidbbg
     ],
     settings,
     commands: [

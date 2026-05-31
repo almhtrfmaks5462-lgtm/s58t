@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -44,21 +44,21 @@ declare module "usercss-meta" {
         /**
          * The unique ID of the UserCSS style.
          *
-         * @vencord Specific to Vencord, not part of the original module.
+         * @S7Cord Specific to S7Cord, not part of the original module.
          */
         id: string;
 
         /**
          * The file name of the UserCSS style.
          *
-         * @vencord Specific to Vencord, not part of the original module.
+         * @S7Cord Specific to S7Cord, not part of the original module.
          */
         fileName: string;
 
         /**
          * The required plugins for this style.
          *
-         * @vencord Specific to Vencord, not part of the original module.
+         * @S7Cord Specific to S7Cord, not part of the original module.
          * @see {@link vc-requiredPlugins}
          */
         requiredPlugins?: string[];
@@ -119,7 +119,7 @@ declare module "usercss-meta" {
         /**
          * Required plugins for this style to work. Comma-separated list of plugin names.
          *
-         * @vencord This is a Vencord-specific extension, however we wish for this to become a standard for client mods
+         * @S7Cord This is a S7Cord-specific extension, however we wish for this to become a standard for client mods
          *          to implement, hence the more generic namespaced name.
          */
         "vc-requiredPlugins"?: string;

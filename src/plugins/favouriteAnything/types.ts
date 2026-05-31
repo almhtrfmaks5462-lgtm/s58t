@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Channel, Embed, EmbedJSON, Message, MessageAttachment, TextInput } from "@vencord/discord-types";
+import { Channel, Embed, EmbedJSON, Message, MessageAttachment, TextInput } from "@S7Cord/discord-types";
 import { Component, ComponentClass, ComponentProps, ComponentPropsWithRef, Key, PropsWithChildren, ReactNode, RefObject } from "react";
 import { JsonValue, PartialDeep } from "type-fest";
 

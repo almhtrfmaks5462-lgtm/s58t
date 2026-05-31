@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,9 +7,9 @@
 import * as DataStore from "@api/DataStore";
 import { Button } from "@components/Button";
 import { Margins } from "@components/margins";
-import type { Theme, ThemeLikeProps } from "@nightcordplugins/themeLibrary/types";
-import { isAuthorized } from "@nightcordplugins/themeLibrary/utils/auth";
-import { LikeIcon } from "@nightcordplugins/themeLibrary/utils/Icons";
+import type { Theme, ThemeLikeProps } from "@S7Cordplugins/themeLibrary/types";
+import { isAuthorized } from "@S7Cordplugins/themeLibrary/utils/auth";
+import { LikeIcon } from "@S7Cordplugins/themeLibrary/utils/Icons";
 import { useEffect, useRef, useState } from "@webpack/common";
 
 import { logger, themeRequest } from "./ThemeTab";

@@ -1,17 +1,17 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { migratePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { sendMessage } from "@utils/discord";
 import { useForceUpdater } from "@utils/react";
 import definePlugin from "@utils/types";
-import { Message } from "@vencord/discord-types";
+import { Message } from "@S7Cord/discord-types";
 import { ChannelStore, Menu, useEffect } from "@webpack/common";
 
 interface AttachmentInfo {
@@ -134,7 +134,7 @@ export default definePlugin({
     description: "Allows you to repeat messages quickly. If you hold shift while clicking the Repeat option, it will reply to the message.",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat"],
-    authors: [EquicordDevs.Tolgchu, Devs.thororen],
+    authors: [S7CordDevs.Tolgchu, Devs.thororen],
     contextMenus: {
         "message": messageCtxPatch
     },

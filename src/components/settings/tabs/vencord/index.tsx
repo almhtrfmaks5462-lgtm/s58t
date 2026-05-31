@@ -1,10 +1,10 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import "./VencordTab.css";
+import "./S7CordTab.css";
 
 import { isStealthModeEnabled, toggleStealthMode } from "@api/HeaderBar";
 import { openNotificationLogModal } from "@api/Notifications/notificationLog";
@@ -29,10 +29,10 @@ import { openModal } from "@utils/modal";
 import { relaunch } from "@utils/native";
 import { Avatar, React, Select, UserStore } from "@webpack/common";
 
-import { ContributeModal } from "../../../../nightcord/renderer/components/ContributeModal";
+import { ContributeModal } from "../../../../S7Cord/renderer/components/ContributeModal";
 import { openNotificationSettingsModal } from "./NotificationSettings";
 
-const cl = classNameFactory("vc-vencord-tab-");
+const cl = classNameFactory("vc-S7Cord-tab-");
 
 const DEV_TEAM = [
     {
@@ -40,42 +40,42 @@ const DEV_TEAM = [
         name: "ahki__",
         role: "Owner",
         pfp: "https://i.imgur.com/gHucHbN.jpeg",
-        description: "Founder and owner of Nightcord."
+        description: "Founder and owner of S7Cord."
     },
     {
         id: "kza",
         name: "Kza",
         role: "Co-Owner",
         pfp: "https://i.imgur.com/wqKfGyK.jpeg",
-        description: "Co-owner of Nightcord."
+        description: "Co-owner of S7Cord."
     },
     {
         id: "attachante",
         name: "attachante",
         role: "Developer",
         pfp: "https://i.imgur.com/R8s7Jz9.png",
-        description: "Developer within the Nightcord team."
+        description: "Developer within the S7Cord team."
     },
     {
         id: "Fancy",
         name: "Fancy",
         role: "Developer",
         pfp: "https://i.imgur.com/RVJ2bUG.png",
-        description: "Developer within the Nightcord team."
+        description: "Developer within the S7Cord team."
     },
     {
         id: "Xeen",
         name: "Xeen",
         role: "BOT Developer",
         pfp: "https://i.imgur.com/mXKUR8I.png",
-        description: "Bot developer for Nightcord."
+        description: "Bot developer for S7Cord."
     },
     {
         id: "biemal",
         name: "Biemal",
         role: "WebApp Developer",
         pfp: "https://i.imgur.com/8PISMQu.png",
-        description: "WebApp developer within the Nightcord team."
+        description: "WebApp developer within the S7Cord team."
     }
 ];
 
@@ -93,7 +93,7 @@ function DevTeamSection() {
                 <QuickAction
                     Icon={PaintbrushIcon}
                     text="Edit QuickCSS"
-                    action={() => VencordNative.quickCss.openEditor()}
+                    action={() => S7CordNative.quickCss.openEditor()}
                 />
                 {!IS_WEB && (
                     <QuickAction
@@ -114,8 +114,8 @@ function DevTeamSection() {
                 />
                 <QuickAction
                     Icon={PlanetIcon}
-                    text="NightCord Server"
-                    action={() => window.open("https://discord.gg/nightcord", "_blank")}
+                    text="S7Cord Server"
+                    action={() => window.open("https://discord.gg/S7Cord", "_blank")}
                 />
             </QuickActionCard>
 
@@ -158,8 +158,8 @@ function useStealthActive() {
     const [active, setActive] = React.useState(isStealthModeEnabled);
     React.useEffect(() => {
         const handler = () => setActive(isStealthModeEnabled());
-        window.addEventListener("nightcord-stealth-change", handler);
-        return () => window.removeEventListener("nightcord-stealth-change", handler);
+        window.addEventListener("S7Cord-stealth-change", handler);
+        return () => window.removeEventListener("S7Cord-stealth-change", handler);
     }, []);
     return active;
 }
@@ -172,8 +172,8 @@ function StealthModeSection() {
             <Heading className={Margins.top20}>Stealth Mode</Heading>
             <Paragraph className={Margins.bottom16}>
                 {enabled
-                    ? "Stealth mode is enabled — all Nightcord visual elements are hidden. Shortcut: Ctrl+Shift+H"
-                    : "Hides all Nightcord visual elements (icons, buttons, context menus) without disabling plugins. Shortcut: Ctrl+Shift+H"}
+                    ? "Stealth mode is enabled — all S7Cord visual elements are hidden. Shortcut: Ctrl+Shift+H"
+                    : "Hides all S7Cord visual elements (icons, buttons, context menus) without disabling plugins. Shortcut: Ctrl+Shift+H"}
             </Paragraph>
             <Button
                 onClick={toggleStealthMode}
@@ -198,7 +198,7 @@ function StealthModeButton() {
     );
 }
 
-function EquicordSettings() {
+function S7CordSettings() {
     const settings = useSettings();
     const stealthActive = useStealthActive();
 
@@ -300,7 +300,7 @@ function EquicordSettings() {
 
                 <Heading className={Margins.top20}>Client Settings</Heading>
                 <Paragraph className={Margins.bottom16}>
-                    Configure how Nightcord behaves and integrates with Discord. These settings affect the Discord client's appearance and behavior.
+                    Configure how S7Cord behaves and integrates with Discord. These settings affect the Discord client's appearance and behavior.
                 </Paragraph>
                 <Notice.Info className={Margins.bottom20} style={{ width: "100%" }}>
                     You can customize where this settings section appears in Discord's settings menu by configuring the{" "}
@@ -414,7 +414,7 @@ function EquicordSettings() {
 
                 <Heading className={Margins.top20}>Notifications</Heading>
                 <Paragraph className={Margins.bottom16}>
-                    Configure how Nightcord handles notifications. You can customize when and how you receive alerts, or view a history of past notifications.
+                    Configure how S7Cord handles notifications. You can customize when and how you receive alerts, or view a history of past notifications.
                 </Paragraph>
 
                 <Flex gap="16px">
@@ -432,7 +432,7 @@ function EquicordSettings() {
 
             <Heading className={Margins.top20}>Stealth Mode</Heading>
             <Paragraph className={Margins.bottom16}>
-                Hides all Nightcord visual elements without disabling plugins. Shortcut: Ctrl+Shift+H
+                Hides all S7Cord visual elements without disabling plugins. Shortcut: Ctrl+Shift+H
             </Paragraph>
             <StealthModeButton />
 
@@ -440,4 +440,4 @@ function EquicordSettings() {
     );
 }
 
-export default wrapTab(EquicordSettings, "Nightcord Settings");
+export default wrapTab(S7CordSettings, "S7Cord Settings");

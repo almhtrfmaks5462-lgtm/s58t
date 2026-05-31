@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import { Settings } from "@api/Settings";
 import { BaseText } from "@components/BaseText";
 import { Flex } from "@components/Flex";
 import { Paragraph } from "@components/Paragraph";
-import { openNotificationSettingsModal } from "@components/settings/tabs/vencord/NotificationSettings";
+import { openNotificationSettingsModal } from "@components/settings/tabs/S7Cord/NotificationSettings";
 import { classNameFactory } from "@utils/css";
 import { closeModal, ModalCloseButton, ModalFooter, ModalHeader, ModalProps, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import { useAwaiter } from "@utils/react";

@@ -22,7 +22,7 @@
 .dmb-btn { padding: 8px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; font-family: inherit; border: none; font-size: 14px; transition: opacity 0.2s, background 0.2s; }
 .dmb-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .dmb-btn:not(:disabled):hover { opacity: 0.9; }
-.dmb-btn-primary { background: var(--brand-experiment); color: #fff; }
+.dmb-btn-primary { background: var(--red); color: #fff; }
 .dmb-btn-secondary { background: transparent; color: #fff; }
 .dmb-btn-secondary:hover { text-decoration: underline; }
 .dmb-btn-danger { background: #ed4245; color: #fff; }

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -168,7 +168,7 @@ export function getNative(): PluginNative<typeof import("../native")> {
 
     }
 
-    return Object.values(VencordNative.pluginHelpers)
+    return Object.values(S7CordNative.pluginHelpers)
         .find(m => m.messageLoggerEnhancedUniqueIdThingyIdkMan) as PluginNative<typeof import("../native")>;
 
 }

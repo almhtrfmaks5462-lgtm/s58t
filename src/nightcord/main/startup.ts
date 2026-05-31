@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -20,9 +20,9 @@ import { Settings, State } from "./settings";
 import { setAsDefaultProtocolClient } from "./utils/setAsDefaultProtocolClient";
 import { isDeckGameMode } from "./utils/steamOS";
 
-console.log("Nightcord v" + app.getVersion());
+console.log("S7Cord v" + app.getVersion());
 
-process.env.Nightcord_USER_DATA_DIR = DATA_DIR;
+process.env.S7Cord_USER_DATA_DIR = DATA_DIR;
 
 const isLinux = process.platform === "linux";
 
@@ -112,7 +112,7 @@ function init() {
     if (isDeckGameMode) nativeTheme.themeSource = "dark";
 
     app.whenReady().then(async () => {
-        if (process.platform === "win32") app.setAppUserModelId("org.Nightcord.Nightcord");
+        if (process.platform === "win32") app.setAppUserModelId("org.S7Cord.S7Cord");
 
         registerScreenShareHandler();
         registerMediaPermissionsHandler();

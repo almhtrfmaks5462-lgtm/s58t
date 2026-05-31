@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { disableStyle, enableStyle } from "@api/Styles";
 import { PaintbrushIcon } from "@components/Icons";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { extractAndLoadChunksLazy } from "@webpack";
 import { ChannelStore, closeModal, DraftType, FluxDispatcher, Menu, openModal,PendingReplyStore, SelectedChannelStore, UploadHandler } from "@webpack/common";
@@ -71,7 +71,7 @@ export default definePlugin({
     name: "RemixRevived",
     description: "Revives Remix and breings it to Desktop",
     tags: ["Customisation", "Fun"],
-    authors: [EquicordDevs.MrDiamond, EquicordDevs.meowabyte],
+    authors: [S7CordDevs.MrDiamond, S7CordDevs.meowabyte],
     contextMenus: {
         "channel-attach": UploadContextMenuPatch,
         "message": MessageContextMenuPatch,

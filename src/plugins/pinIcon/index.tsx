@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 */
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findComponentByCodeLazy } from "@webpack";
 
@@ -26,7 +26,7 @@ export default definePlugin({
     name: "PinIcon",
     description: "Adds a pin icon to pinned messages",
     tags: ["Appearance", "Chat"],
-    authors: [EquicordDevs.iamme],
+    authors: [S7CordDevs.iamme],
     patches: [
         {
             find: "isUnsupported})",

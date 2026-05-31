@@ -1,13 +1,13 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import type { NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
-import { RelationshipType } from "@vencord/discord-types/enums";
+import { RelationshipType } from "@S7Cord/discord-types/enums";
 import { findByPropsLazy } from "@webpack";
 import { Menu, RelationshipStore } from "@webpack/common";
 
@@ -37,7 +37,7 @@ const userContextPatch: NavContextMenuPatchCallback = (children, { user }) => {
 export default definePlugin({
     name: "CancelFriendRequest",
     description: "Adds a way to cancel outgoing friend requests from profiles.",
-    authors: [EquicordDevs.omaw],
+    authors: [S7CordDevs.omaw],
     required: true,
 
     contextMenus: {

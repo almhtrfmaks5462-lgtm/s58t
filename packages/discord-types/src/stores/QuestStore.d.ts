@@ -271,7 +271,7 @@ export interface QuestAssets {
 
 /** Color scheme for quest UI theming. */
 export interface QuestColors {
-    /** Primary hex color (e.g., "#4752C4"). */
+    /** Primary hex color (e.g., "#CC0000"). */
     primary: string;
     /** Secondary hex color. */
     secondary: string;

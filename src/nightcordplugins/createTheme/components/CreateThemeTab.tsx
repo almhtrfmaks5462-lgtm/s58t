@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -290,15 +290,15 @@ export function CreateThemeTab() {
 
     async function applyWindowMaterial(material: ThemeSettings["windowMaterial"]) {
         if (IS_WEB) return;
-        // Save to Equicord settings so patcher.ts reads it on next Discord start
+        // Save to S7Cord settings so patcher.ts reads it on next Discord start
         try {
-            const s = VencordNative.settings.get();
+            const s = S7CordNative.settings.get();
             (s as any).windowMaterial = material;
-            await VencordNative.settings.set(s as any);
+            await S7CordNative.settings.set(s as any);
         } catch (e) { console.error("[CreateTheme] save windowMaterial failed", e); }
         // Apply immediately to current window via IPC
-        if (VencordNative.window?.setBackgroundMaterial) {
-            VencordNative.window.setBackgroundMaterial(material).catch(console.error);
+        if (S7CordNative.window?.setBackgroundMaterial) {
+            S7CordNative.window.setBackgroundMaterial(material).catch(console.error);
         }
     }
 

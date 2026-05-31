@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import { ChatBarButton, ChatBarButtonFactory } from "@api/ChatButtons";
 import { addMessagePreSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { React } from "@webpack/common";
 
@@ -148,7 +148,7 @@ export default definePlugin({
     description: "Suffixes 'ington' to a random word in your message",
     dependencies: ["ChatInputButtonAPI"],
     tags: ["Fun"],
-    authors: [EquicordDevs.zyqunix, EquicordDevs.BioTomateDE],
+    authors: [S7CordDevs.zyqunix, S7CordDevs.BioTomateDE],
     settings,
     chatBarButton: {
         icon: disabledIcon,

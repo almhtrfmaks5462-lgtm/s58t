@@ -6,11 +6,11 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
         window.postMessage({
-            type: "vencord:meta",
+            type: "S7Cord:meta",
             meta: {
                 EXTENSION_VERSION: browser.runtime.getManifest().version,
                 EXTENSION_BASE_URL: browser.runtime.getURL(""),
-                RENDERER_CSS_URL: browser.runtime.getURL("dist/Equicord.css"),
+                RENDERER_CSS_URL: browser.runtime.getURL("dist/S7Cord.css"),
             }
         });
     },

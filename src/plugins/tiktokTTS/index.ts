@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -7,7 +7,7 @@
 import { playAudio } from "@api/AudioPlayer";
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { S7CordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Menu, React } from "@webpack/common";
 
@@ -212,7 +212,7 @@ export default definePlugin({
     name: "TiktokTTS",
     description: "Adds a context menu option to read out chat messages with the good ol' Tiktok TTS voice :sob:",
     tags: ["Accessibility", "Chat", "Voice"],
-    authors: [EquicordDevs.VillainsRule, EquicordDevs.examplegit],
+    authors: [S7CordDevs.VillainsRule, S7CordDevs.examplegit],
     dependencies: ["AudioPlayerAPI"],
     settings,
     contextMenus: {

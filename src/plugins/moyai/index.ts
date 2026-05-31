@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * S7Cord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@ import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import { sleep } from "@utils/misc";
 import definePlugin, { makeRange, OptionType } from "@utils/types";
-import { Message, ReactionEmoji } from "@vencord/discord-types";
+import { Message, ReactionEmoji } from "@S7Cord/discord-types";
 import { RelationshipStore, SelectedChannelStore, UserStore } from "@webpack/common";
 
 interface IMessageCreate {
@@ -51,8 +51,8 @@ interface IVoiceChannelEffectSendEvent {
 }
 
 const MOYAI = "🗿";
-const MOYAI_URL = "https://github.com/Equicord/Equibored/raw/main/sounds/moyai/moyai.mp3";
-const MOYAI_URL_HD = "https://github.com/Equicord/Equibored/raw/main/sounds/moyai/moyai.wav";
+const MOYAI_URL = "https://github.com/S7Cord/Equibored/raw/main/sounds/moyai/moyai.mp3";
+const MOYAI_URL_HD = "https://github.com/S7Cord/Equibored/raw/main/sounds/moyai/moyai.wav";
 
 const settings = definePluginSettings({
     volume: {

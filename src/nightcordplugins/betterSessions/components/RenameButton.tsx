@@ -1,11 +1,11 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { Button } from "@components/Button";
-import { SessionInfo } from "@nightcordplugins/betterSessions/types";
+import { SessionInfo } from "@S7Cordplugins/betterSessions/types";
 import { openModal } from "@utils/modal";
 
 import { RenameModal } from "./RenameModal";

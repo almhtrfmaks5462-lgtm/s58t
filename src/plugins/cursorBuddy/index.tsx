@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,7 +10,7 @@ import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings, migratePluginSettings } from "@api/Settings";
 import { Divider } from "@components/Divider";
 import { Heading } from "@components/Heading";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, S7CordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
 import { ColorPicker } from "@webpack/common";
@@ -236,7 +236,7 @@ export default definePlugin({
     name: "CursorBuddy",
     description: "Adds a sprite that follows your cursor.",
     tags: ["Appearance", "Customisation", "Fun"],
-    authors: [Devs.Ven, Devs.adryd, EquicordDevs.nexpid, EquicordDevs.ZcraftElite],
+    authors: [Devs.Ven, Devs.adryd, S7CordDevs.nexpid, S7CordDevs.ZcraftElite],
     searchTerms: ["Oneko", "FatassHorse", "Pet"],
     settings,
     isModified: true,

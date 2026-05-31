@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -25,7 +25,7 @@ export const serviceMap: Record<string, string> = {
     paicord: "Paicord",
 };
 
-const blockedMods = ["vencord", "equicord"];
+const blockedMods = ["S7Cord", "S7Cord"];
 
 export async function loadBadges() {
     const url = settings.store.apiUrl.endsWith("/") ? settings.store.apiUrl + "users" : settings.store.apiUrl + "/users";

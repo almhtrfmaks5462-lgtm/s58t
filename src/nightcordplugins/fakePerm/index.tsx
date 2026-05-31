@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -15,7 +15,7 @@ import { Button, GuildChannelStore, GuildMemberStore, GuildRoleStore, GuildStore
 // Context menu patches are always registered, they check isEnabled at runtime
 let isEnabled = false;
 
-const DS_KEY = "FakePerm.options.enabled"; // Standard Equicord key for plugin options
+const DS_KEY = "FakePerm.options.enabled"; // Standard S7Cord key for plugin options
 
 // injectHideStyle / removeHideStyle removed — caused display bugs
 // by hiding Discord elements via too broad CSS selectors (roles, permissions, copy-user-id)
@@ -161,7 +161,7 @@ function findVoiceUserElement(userId: string): HTMLElement | null {
 }
 
 function Btn({ label, onClick, primary = false }: { label: string; onClick: () => void; primary?: boolean; }) {
-    return <button onClick={onClick} style={{ background: primary ? "var(--brand-experiment)" : "none", border: "none", borderRadius: primary ? 3 : 0, color: primary ? "#fff" : "var(--text-normal)", cursor: "pointer", padding: "8px 16px", fontWeight: primary ? 600 : 400 }}>{label}</button>;
+    return <button onClick={onClick} style={{ background: primary ? "var(--red)" : "none", border: "none", borderRadius: primary ? 3 : 0, color: primary ? "#fff" : "var(--text-normal)", cursor: "pointer", padding: "8px 16px", fontWeight: primary ? 600 : 400 }}>{label}</button>;
 }
 
 // ─── Common Styles ───────────────────────────────────────────────────────────
@@ -195,7 +195,7 @@ function RenameModal({ rootProps, user, guildId }: { rootProps: any; user: any; 
             <ModalFooter>
                 <div style={{ display: "flex", gap: "12px", width: "100%", padding: "16px" }}>
                     <button onClick={rootProps.onClose} style={footerBtn("#4e5058") as any}>Cancel</button>
-                    <button onClick={applyNick} style={footerBtn("#5865f2") as any}>Apply</button>
+                    <button onClick={applyNick} style={footerBtn("#FF0000") as any}>Apply</button>
                 </div>
             </ModalFooter>
         </ModalRoot>
@@ -264,7 +264,7 @@ function BanModal({ rootProps, user }: { rootProps: any; user: any; }) {
                 <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "16px" }}>
                     {BAN_REASONS.map(opt => (
                         <label key={opt.value} style={{ display: "flex", alignItems: "center", gap: "12px", cursor: "pointer", fontFamily: "var(--font-primary)", fontSize: "16px", color: "#ffffff", userSelect: "none" as any }} onClick={() => setReason(opt.value)}>
-                            <div style={{ width: 20, height: 20, borderRadius: "50%", flexShrink: 0, border: reason === opt.value ? "6px solid #5865f2" : "2px solid #4e5058", background: reason === opt.value ? "#fff" : "transparent", boxSizing: "border-box" as any }} />
+                            <div style={{ width: 20, height: 20, borderRadius: "50%", flexShrink: 0, border: reason === opt.value ? "6px solid #FF0000" : "2px solid #4e5058", background: reason === opt.value ? "#fff" : "transparent", boxSizing: "border-box" as any }} />
                             {opt.label}
                         </label>
                     ))}
@@ -315,7 +315,7 @@ function TimeoutModal({ rootProps, user }: { rootProps: any; user: any; }) {
                             fontFamily: "var(--font-primary)",
                             fontSize: "14px",
                             fontWeight: 500,
-                            background: selectedIdx === i ? "#5865f2" : "var(--background-secondary, #2b2d31)",
+                            background: selectedIdx === i ? "#FF0000" : "var(--background-secondary, #2b2d31)",
                             color: "#ffffff",
                             border: "none",
                             borderRight: i < TIMEOUT_DURATIONS.length - 1 ? "1px solid var(--background-modifier-accent, rgba(255,255,255,0.1))" : "none",
@@ -348,7 +348,7 @@ function TimeoutModal({ rootProps, user }: { rootProps: any; user: any; }) {
                         toast(`@${tag} timed out for ${d.label} (local)`);
                         setTimeout(() => { disconnectedUsers.delete(user.id); notifyMemberListChange(); }, d.seconds * 1000);
                         rootProps.onClose();
-                    }} style={footerBtn("#5865f2") as any}>
+                    }} style={footerBtn("#FF0000") as any}>
                         Timeout
                     </button>
                 </div>
@@ -366,7 +366,7 @@ function AddRoleModal({ rootProps, user, guildId }: { rootProps: any; user: any;
         <ModalRoot {...rootProps} size="small">
             <ModalContent style={{ padding: "8px 0 0", background: "var(--background-floating, #18191c)", borderRadius: 8, minWidth: 220 }}>
                 <div style={{ padding: "4px 8px" }}>
-                    <input autoFocus placeholder="Role" value={search} onChange={e => setSearch(e.target.value)} style={{ width: "100%", background: "transparent", border: "1px solid var(--brand-experiment, #5865f2)", borderRadius: 4, outline: "none", color: "var(--text-normal, #dcddde)", fontSize: 14, padding: "4px 8px", boxSizing: "border-box" }} />
+                    <input autoFocus placeholder="Role" value={search} onChange={e => setSearch(e.target.value)} style={{ width: "100%", background: "transparent", border: "1px solid var(--red, #FF0000)", borderRadius: 4, outline: "none", color: "var(--text-normal, #dcddde)", fontSize: 14, padding: "4px 8px", boxSizing: "border-box" }} />
                 </div>
                 <div style={{ maxHeight: 300, overflowY: "auto", scrollbarWidth: "none", padding: "4px 0" }}>
                     {filtered.map(role => {
@@ -457,7 +457,7 @@ const userContextPatch: NavContextMenuPatchCallback = (children, { user }: any) 
                                         <div style={{ display: "flex", alignItems: "center", padding: "8px 10px", gap: 8, width: "100%", boxSizing: "border-box", cursor: "pointer" }}>
                                             <div style={{ width: 14, height: 14, borderRadius: "50%", background: color, flexShrink: 0 }} />
                                             <span style={{ flex: 1, color: "#ffffff", fontSize: 14, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{role.name}</span>
-                                            <div style={{ width: 16, height: 16, borderRadius: 3, flexShrink: 0, border: hasRole ? "none" : "1.5px solid #72767d", background: hasRole ? "#5865f2" : "transparent", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                            <div style={{ width: 16, height: 16, borderRadius: 3, flexShrink: 0, border: hasRole ? "none" : "1.5px solid #72767d", background: hasRole ? "#FF0000" : "transparent", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                                 {hasRole && <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>}
                                             </div>
                                         </div>
@@ -506,7 +506,7 @@ export default definePlugin({
     name: "FakePerm",
     enabledByDefault: false,
     description: "Visually simulates moderation options in the right-click menu. No real action.",
-    authors: [{ name: "Nightcord", id: 0n }],
+    authors: [{ name: "S7Cord", id: 0n }],
     dependencies: ["ContextMenuAPI"],
     requiresRestart: false,
 
@@ -617,9 +617,9 @@ export default definePlugin({
     },
 
     async start() {
-        // Read isEnabled from Equicord Settings
+        // Read isEnabled from S7Cord Settings
         try {
-            const S = (Vencord as any)?.Settings?.plugins?.FakePerm;
+            const S = (S7Cord as any)?.Settings?.plugins?.FakePerm;
             isEnabled = S?.enabled === true;
         } catch {
             isEnabled = false;

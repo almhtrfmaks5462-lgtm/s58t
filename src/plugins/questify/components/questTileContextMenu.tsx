@@ -1,11 +1,11 @@
 /*
- * Vencord, a Discord client mod
+ * S7Cord, a Discord client mod
  * Copyright (c) 2026 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { copyToClipboard } from "@utils/index";
-import type { Quest } from "@vencord/discord-types";
+import type { Quest } from "@S7Cord/discord-types";
 import { Menu } from "@webpack/common";
 import type { ReactNode } from "react";
 
