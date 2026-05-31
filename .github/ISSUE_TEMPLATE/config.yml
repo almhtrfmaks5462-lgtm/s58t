@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+    - name: S7Cord Support Server
+      url: https://S7Cord.org/discord
+      about: If you need help regarding S7Cord, please join our support server!
+    - name: S7Cord Installer
+      url: https://github.com/S7Cord/Equilotl
+      about: You can find the S7Cord Installer here

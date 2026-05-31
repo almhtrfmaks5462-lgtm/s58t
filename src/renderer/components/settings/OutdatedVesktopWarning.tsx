@@ -1,0 +1,26 @@
+/*
+ * S7Cord, a Discord client mod
+ * Copyright (c) 2026 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+import { Button, Card, HeadingTertiary, Paragraph } from "@S7Cord/types/components";
+import { useAwaiter } from "@S7Cord/types/utils";
+
+import { cl } from "./Settings";
+
+export function OutdatedVesktopWarning() {
+    const [isOutdated] = useAwaiter(VesktopNative.app.isOutdated);
+
+    if (!isOutdated) return null;
+
+    return (
+        <Card variant="warning" className={cl("updater-card")}>
+            <HeadingTertiary>Your Equibop is outdated!</HeadingTertiary>
+            <Paragraph>Staying up to date is important for security and stability.</Paragraph>
+            <Button onClick={() => VesktopNative.app.openUpdater()} variant="secondary">
+                Open Updater
+            </Button>
+        </Card>
+    );
+}

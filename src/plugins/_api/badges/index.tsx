@@ -1,0 +1,297 @@
+﻿/*
+ * S7Cord, a modification for Discord's desktop app
+ * Copyright (c) 2022 Vendicated and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+import "./fixDiscordBadgePadding.css";
+
+import { _getBadges, BadgePosition, BadgeUserArgs, ProfileBadge } from "@api/Badges";
+import ErrorBoundary from "@components/ErrorBoundary";
+import { Devs } from "@utils/constants";
+import { copyWithToast } from "@utils/discord";
+import { Logger } from "@utils/Logger";
+import { shouldShowContributorBadge, shouldShowS7CordContributorBadge } from "@utils/misc";
+import definePlugin from "@utils/types";
+import { ContextMenuApi, Menu, Toasts, UserStore } from "@webpack/common";
+
+import Plugins, { PluginMeta } from "~plugins";
+
+import { S7CordDonorModal, S7CordTranslatorModal, S7CordDonorModal } from "./modals";
+
+const CONTRIBUTOR_BADGE = "https://cdn.discordapp.com/emojis/1092089799109775453.png?size=64";
+const S7Cord_CONTRIBUTOR_BADGE = "https://S7Cord.org/assets/favicon.png";
+const USERPLUGIN_CONTRIBUTOR_BADGE = "https://S7Cord.org/assets/icons/misc/userplugin.png";
+
+const ContributorBadge: ProfileBadge = {
+    description: "S7Cord Contributor",
+    iconSrc: CONTRIBUTOR_BADGE,
+    position: BadgePosition.START,
+    shouldShow: ({ userId }) => shouldShowContributorBadge(userId),
+    onClick: (_, { userId }) => import("@components/settings/tabs/plugins/ContributorModal").then(m => m.openContributorModal(UserStore.getUser(userId)))
+};
+
+const S7CordContributorBadge: ProfileBadge = {
+    description: "S7Cord Contributor",
+    iconSrc: S7Cord_CONTRIBUTOR_BADGE,
+    position: BadgePosition.START,
+    shouldShow: ({ userId }) => shouldShowS7CordContributorBadge(userId),
+    onClick: (_, { userId }) => import("@components/settings/tabs/plugins/ContributorModal").then(m => m.openContributorModal(UserStore.getUser(userId))),
+    props: {
+        style: {
+            borderRadius: "0%",
+            transform: "scale(1.4)"
+        }
+    },
+};
+
+const UserPluginContributorBadge: ProfileBadge = {
+    description: "User Plugin Contributor",
+    iconSrc: USERPLUGIN_CONTRIBUTOR_BADGE,
+    position: BadgePosition.START,
+    shouldShow: ({ userId }) => {
+        if (!IS_DEV) return false;
+        const allPlugins = Object.values(Plugins);
+        return allPlugins.some(p => {
+            const pluginMeta = PluginMeta[p.name];
+            return pluginMeta?.userPlugin && p.authors.some(a => a.id.toString() === userId);
+        });
+    },
+    onClick: (_, { userId }) => import("@components/settings/tabs/plugins/ContributorModal").then(m => m.openContributorModal(UserStore.getUser(userId))),
+    props: {
+        style: {
+            borderRadius: "0%",
+            transform: "scale(1.4)"
+        }
+    },
+};
+
+let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
+let S7CordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
+let S7CordBadges = {} as Record<string, Array<{ icon: string; placeholder: string; uuid: string; }>>;
+
+async function loadBadges(url: string, noCache = false) {
+    const init = {} as RequestInit;
+    if (noCache) init.cache = "no-cache";
+
+    return await fetch(url, init).then(r => r.json());
+}
+
+async function loadAllBadges(noCache = false) {
+    const S7CordBadges = await loadBadges("https://badges.S7Cord.dev/badges.json", noCache).catch(() => ({}));
+    const S7CordBadges = await loadBadges("https://badge.S7Cord.org/badges.json", noCache).catch(() => ({}));
+    const S7CordBadges = await loadBadges("https://api.S7Cord.su/badges", noCache).catch(() => ({}));
+
+    DonorBadges = S7CordBadges;
+    S7CordDonorBadges = S7CordBadges;
+    S7CordBadges = S7CordBadges;
+}
+
+let intervalId: any;
+
+export function BadgeContextMenu({ badge }: { badge: ProfileBadge & BadgeUserArgs; }) {
+    return (
+        <Menu.Menu
+            navId="vc-badge-context"
+            onClose={ContextMenuApi.closeContextMenu}
+            aria-label="Badge Options"
+        >
+            {badge.description && (
+                <Menu.MenuItem
+                    id="vc-badge-copy-name"
+                    label="Copy Badge Name"
+                    action={() => copyWithToast(badge.description!)}
+                />
+            )}
+            {badge.iconSrc && (
+                <Menu.MenuItem
+                    id="vc-badge-copy-link"
+                    label="Copy Badge Image Link"
+                    action={() => copyWithToast(badge.iconSrc!)}
+                />
+            )}
+        </Menu.Menu>
+    );
+}
+
+export default definePlugin({
+    name: "BadgeAPI",
+    description: "API to add badges to users",
+    authors: [Devs.Megu, Devs.Ven, Devs.TheSun],
+    required: true,
+    patches: [
+        {
+            find: "#{intl::PROFILE_USER_BADGES}",
+            replacement: [
+                {
+                    match: /alt:" ","aria-hidden":!0,src:.{0,50}(\i).iconSrc/,
+                    replace: "...$1.props,$&"
+                },
+                {
+                    match: /(?<=forceOpen:.{0,40}?\i\((\i)\.id\).{0,100}?)children:/,
+                    replace: "children:$1.component?$self.renderBadgeComponent({...$1}) :"
+                },
+                // handle onClick and onContextMenu
+                {
+                    match: /href:(\i)\.link/,
+                    replace: "...$self.getBadgeMouseEventHandlers($1),$&"
+                }
+            ]
+        },
+        {
+            find: "getLegacyUsername(){",
+            replacement: {
+                match: /getBadges\(\)\{.{0,100}?return\[/,
+                replace: "$&...$self.getBadges(this),"
+            }
+        }
+    ],
+
+    // for access from the console or other plugins
+    get DonorBadges() {
+        return DonorBadges;
+    },
+
+    get S7CordDonorBadges() {
+        return S7CordDonorBadges;
+    },
+
+    get S7CordBadges() {
+        return S7CordBadges;
+    },
+
+    toolboxActions: {
+        async "Refetch Badges"() {
+            await loadAllBadges(true);
+            Toasts.show({
+                id: Toasts.genId(),
+                message: "Successfully refetched badges!",
+                type: Toasts.Type.SUCCESS
+            });
+        }
+    },
+
+    userProfileBadges: [ContributorBadge, S7CordContributorBadge, UserPluginContributorBadge],
+
+    async start() {
+        await loadAllBadges();
+
+        clearInterval(intervalId);
+        intervalId = setInterval(loadAllBadges, 1000 * 60 * 30); // 30 minutes
+    },
+
+    async stop() {
+        clearInterval(intervalId);
+    },
+
+    getBadges(profile: { userId: string; guildId: string; }) {
+        if (!profile) return [];
+
+        try {
+            return _getBadges(profile);
+        } catch (e) {
+            new Logger("BadgeAPI#getBadges").error(e);
+            return [];
+        }
+    },
+
+    renderBadgeComponent: ErrorBoundary.wrap((badge: ProfileBadge & BadgeUserArgs) => {
+        const Component = badge.component!;
+        return <Component {...badge} />;
+    }, { noop: true }),
+
+    getBadgeMouseEventHandlers(badge: ProfileBadge & BadgeUserArgs) {
+        const handlers = {} as Record<string, (e: React.MouseEvent) => void>;
+
+        if (!badge) return handlers; // sanity check
+
+        const { onClick, onContextMenu } = badge;
+
+        if (onClick) handlers.onClick = e => onClick(e, badge);
+        if (onContextMenu) handlers.onContextMenu = e => onContextMenu(e, badge);
+
+        return handlers;
+    },
+
+    getDonorBadges(userId: string) {
+        return DonorBadges[userId]?.map(badge => ({
+            iconSrc: badge.badge,
+            description: badge.tooltip,
+            position: BadgePosition.START,
+            props: {
+                style: {
+                    borderRadius: "0%",
+                    transform: "scale(1.4)" // The image is a bit too big compared to default badges
+                }
+            },
+            onContextMenu(event, badge) {
+                ContextMenuApi.openContextMenu(event, () => <BadgeContextMenu badge={badge} />);
+            },
+            onClick() {
+                return S7CordDonorModal();
+            },
+        } satisfies ProfileBadge));
+    },
+
+    getS7CordDonorBadges(userId: string) {
+        return S7CordDonorBadges[userId]?.map(badge => ({
+            iconSrc: badge.badge,
+            description: badge.tooltip,
+            position: BadgePosition.START,
+            props: {
+                style: {
+                    borderRadius: "0%",
+                    transform: "scale(1.4)" // The image is a bit too big compared to default badges
+                }
+            },
+            onContextMenu(event, badge) {
+                ContextMenuApi.openContextMenu(event, () => <BadgeContextMenu badge={badge} />);
+            },
+            onClick() {
+                return badge.tooltip === "S7Cord Translator" ? S7CordTranslatorModal() : S7CordDonorModal();
+            },
+        } satisfies ProfileBadge));
+    },
+
+    getS7CordBadges(userId: string) {
+        try {
+            const userBadges = S7CordBadges[userId];
+            if (!userBadges || !Array.isArray(userBadges)) return [];
+
+            return userBadges
+                .filter(badge => badge && badge.icon)
+                .map(badge => ({
+                    iconSrc: badge.icon,
+                    description: badge.placeholder ?? "S7Cord Badge",
+                    position: BadgePosition.START,
+                    props: {
+                        style: {
+                            borderRadius: "0%",
+                            maxHeight: "22px",
+                            maxWidth: "22px"
+                        }
+                    },
+                    onContextMenu(event, b) {
+                        ContextMenuApi.openContextMenu(event, () => <BadgeContextMenu badge={b as any} />);
+                    }
+                } satisfies ProfileBadge));
+        } catch (e) {
+            console.error("[BadgeAPI] Error processing S7Cord badges for", userId, e);
+            return [];
+        }
+    }
+});
+
+

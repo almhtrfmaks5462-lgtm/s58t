@@ -1,0 +1,19 @@
+@"
+# مجلدات البناء
+dist/
+build/
+.asar/
+node_modules/
+
+# ملفات النظام
+desktop.ini
+.DS_Store
+Thumbs.db
+
+# ملفات كبيرة
+*.7z
+*.zip
+*.exe
+*.log
+error.txt
+"@ | Out-File -FilePath ".gitignore" -Encoding utf8
