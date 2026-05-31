@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Saifcord Installer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d0000 100%);
+            color: #ffffff;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        /* شريط العنوان */
+        .titlebar {
+            height: 38px;
+            background: #ff0000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            -webkit-app-region: drag;
+            border-bottom: 2px solid #ffffff20;
+        }
+
+        .titlebar-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+        }
+
+        .titlebar-title img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .titlebar-buttons {
+            display: flex;
+            gap: 8px;
+            -webkit-app-region: no-drag;
+        }
+
+        .titlebar-buttons button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+
+        .titlebar-buttons button:hover {
+            background: #ffffff30;
+        }
+
+        .titlebar-buttons button:last-child:hover {
+            background: #aa0000;
+        }
+
+        /* المحتوى الرئيسي */
+        .container {
+            padding: 30px 25px;
+            height: calc(100vh - 38px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* الشعار */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(255,0,0,0.4);
+        }
+
+        .logo span {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #ff0000;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #cccccc;
+            font-size: 14px;
+        }
+
+        /* بطاقات إصدارات Discord */
+        .versions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .version-card {
+            background: #252525;
+            border: 1px solid #333;
+            border-radius: 14px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .version-card:hover {
+            background: #2a2a2a;
+            border-color: #ff0000;
+            transform: translateX(5px);
+        }
+
+        .version-card.selected {
+            border-color: #ff0000;
+            background: linear-gradient(135deg, #2a1500, #1a0a00);
+            box-shadow: 0 0 10px rgba(255,0,0,0.2);
+        }
+
+        .version-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .version-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .version-path {
+            font-size: 11px;
+            color: #888;
+            font-family: monospace;
+        }
+
+        .version-status {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #1a1a1a;
+        }
+
+        .status-injected {
+            color: #00ff00;
+        }
+
+        .status-not-injected {
+            color: #ffaa00;
+        }
+
+        .status-mod {
+            color: #ff6666;
+        }
+
+        /* زر التثبيت */
+        .action-button {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .action-button:hover:not(:disabled) {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(255,0,0,0.4);
+        }
+
+        .action-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* شريط التقدم */
+        .progress-section {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            background: #333;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #ff0000, #ff4444);
+            width: 0%;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* حالة التثبيت */
+        .status-area {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            font-size: 13px;
+            font-family: monospace;
+            color: #00ff00;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .status-line {
+            padding: 4px 0;
+            border-bottom: 1px solid #333;
+            font-size: 12px;
+        }
+
+        .status-error {
+            color: #ff6666;
+        }
+
+        .status-success {
+            color: #00ff00;
+        }
+
+        .status-warning {
+            color: #ffaa00;
+        }
+
+        /* footer */
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            padding-top: 20px;
+        }
+
+        .footer a {
+            color: #ff5555;
+            text-decoration: none;
+        }
+
+        /* سكرول مخصص */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff0000;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="titlebar">
+        <div class="titlebar-title">
+            <span>🔴 Saifcord</span>
+        </div>
+        <div class="titlebar-buttons">
+            <button id="minimizeBtn">─</button>
+            <button id="closeBtn">✕</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo">
+                <span>S</span>
+            </div>
+            <h1>Saifcord</h1>
+            <div class="subtitle">Discord Client Mod | احمر و ابيض</div>
+        </div>
+
+        <div class="versions" id="versionsList">
+            <div style="text-align: center; padding: 40px; color: #888;">
+                🔍 جارٍ البحث عن تثبيتات Discord...
+            </div>
+        </div>
+
+        <button class="action-button" id="actionBtn" disabled>🔍 اختر إصدار Discord</button>
+
+        <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">جارٍ التثبيت...</div>
+        </div>
+
+        <div class="status-area" id="statusArea">
+            <div class="status-line">✨ مرحباً بك في Saifcord Installer</div>
+            <div class="status-line">🔴 الألوان: أحمر وأبيض</div>
+        </div>
+
+        <div class="footer">
+            <a href="#" id="githubLink">Saifcord</a> • ليس تابعاً لـ Discord
+        </div>
+    </div>
+
+    <script>
+        let selectedPath = null;
+        let isInjecting = false;
+        let statusInterval = null;
+
+        const versionsList = document.getElementById('versionsList');
+        const actionBtn = document.getElementById('actionBtn');
+        const progressSection = document.getElementById('progressSection');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const statusArea = document.getElementById('statusArea');
+
+        function addStatus(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = 'status-line';
+            if (type === 'error') div.classList.add('status-error');
+            else if (type === 'success') div.classList.add('status-success');
+            else if (type === 'warning') div.classList.add('status-warning');
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            statusArea.appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        window.setStatus = (type, text) => {
+            if (type === 'error') addStatus(text, 'error');
+            else if (type === 'success') addStatus(text, 'success');
+            else addStatus(text, 'info');
+        };
+
+        window.setLoading = (loading, text, percent, mbDl, mbTotal) => {
+            if (loading) {
+                progressSection.style.display = 'block';
+                progressFill.style.width = `${percent}%`;
+                if (mbDl && mbTotal) {
+                    progressText.textContent = `${text} (${mbDl}/${mbTotal} MB) - ${Math.round(percent)}%`;
+                } else {
+                    progressText.textContent = `${text} - ${Math.round(percent)}%`;
+                }
+            } else {
+                progressSection.style.display = 'none';
+            }
+        };
+
+        async function loadDiscordVersions() {
+            addStatus('🔍 جارٍ البحث عن تثبيتات Discord...');
+            try {
+                const versions = await window.saifcord.detectDiscord();
+                if (!versions || versions.length === 0) {
+                    versionsList.innerHTML = '<div style="text-align: center; padding: 40px; color: #ff6666;">❌ لم يتم العثور على Discord! تأكد من تثبيت Discord.</div>';
+                    addStatus('❌ لم يتم العثور على Discord', 'error');
+                    return;
+                }
+
+                versionsList.innerHTML = '';
+                for (const v of versions) {
+                    const isInjected = await window.saifcord.isInjected(v.path);
+                    const hasMod = !isInjected && await window.saifcord.hasThirdPartyMod(v.path);
+                    
+                    let statusText = '';
+                    let statusClass = '';
+                    if (isInjected) {
+                        statusText = '✅ Saifcord مثبت';
+                        statusClass = 'status-injected';
+                    } else if (hasMod) {
+                        statusText = '⚠️ يوجد مود آخر';
+                        statusClass = 'status-mod';
+                    } else {
+                        statusText = '⭕ غير مثبت';
+                        statusClass = 'status-not-injected';
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = 'version-card';
+                    card.setAttribute('data-path', v.path);
+                    card.innerHTML = `
+                        <div class="version-info">
+                            <div class="version-name">${v.name} (v${v.version})</div>
+                            <div class="version-path">${v.path}</div>
+                        </div>
+                        <div class="version-status ${statusClass}">${statusText}</div>
+                    `;
+                    card.onclick = () => selectVersion(v.path, card);
+                    versionsList.appendChild(card);
+                }
+                addStatus('✅ تم العثور على ' + versions.length + ' تثبيت لـ Discord');
+            } catch (err) {
+                addStatus('❌ خطأ: ' + err.message, 'error');
+            }
+        }
+
+        function selectVersion(path, card) {
+            if (isInjecting) return;
+            document.querySelectorAll('.version-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedPath = path;
+            actionBtn.disabled = false;
+            actionBtn.textContent = '📥 تثبيت Saifcord';
+            addStatus(`📌 تم اختيار: ${path}`);
+        }
+
+        async function checkInjectStatus() {
+            if (!statusInterval) return;
+            try {
+                const status = await window.saifcord.getInjectStatus();
+                if (status.state === 'done') {
+                    clearInterval(statusInterval);
+                    statusInterval = null;
+                    isInjecting = false;
+                    actionBtn.disabled = false;
+                    actionBtn.textContent = '✅ تم التثبيت! إعادة التشغيل...';
+                    addStatus('🎉 تم تثبيت Saifcord بنجاح! جاري إعادة تشغيل Discord...', 'success');
+                    setTimeout(() => {
+                        window.saifcord.closeApp();
+                    }, 2000);
+                } else if (status.state === 'error') {
+                    clearInterval(statusInterval);
+                    statusInterval = null;
+                    isInjecting = false;
+                    actionBtn.disabled = false;
+                    actionBtn.textContent = '❌ فشل التثبيت - حاول مرة أخرى';
+                    addStatus('❌ فشل التثبيت: ' + status.error, 'error');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        actionBtn.onclick = async () => {
+            if (!selectedPath || isInjecting) return;
+            isInjecting = true;
+            actionBtn.disabled = true;
+            actionBtn.textContent = '⏳ جارٍ التثبيت...';
+            addStatus('🚀 بدء تثبيت Saifcord...');
+            
+            try {
+                await window.saifcord.startInject(selectedPath);
+                statusInterval = setInterval(checkInjectStatus, 1000);
+            } catch (err) {
+                addStatus('❌ خطأ: ' + err.message, 'error');
+                isInjecting = false;
+                actionBtn.disabled = false;
+                actionBtn.textContent = '📥 إعادة المحاولة';
+            }
+        };
+
+        document.getElementById('minimizeBtn').onclick = () => window.saifcord.minimizeApp();
+        document.getElementById('closeBtn').onclick = () => window.saifcord.closeApp();
+        document.getElementById('githubLink').onclick = (e) => {
+            e.preventDefault();
+            window.saifcord.openUrl('https://github.com/Saifcord');
+        };
+
+        loadDiscordVersions();
+    </script>
+</body>
+</html>

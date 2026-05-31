@@ -1,0 +1,43 @@
+directories:
+  output: ../release/installer
+  buildResources: build
+extraMetadata:
+  main: main.js
+files:
+  - filter:
+      - package.json
+  - from: C:\Users\saifs\OneDrive\Desktop\s7cord\installer-src\dist/main
+  - from: C:\Users\saifs\OneDrive\Desktop\s7cord\installer-src\dist/renderer
+  - from: C:\Users\saifs\OneDrive\Desktop\s7cord\installer-src\dist/renderer-dll
+extraResources:
+  - from: assets
+    to: assets
+appId: com.saifcord.installer
+productName: Saifcord
+copyright: Copyright © 2026 Saifcord
+win:
+  artifactName: Saifcord-Installer.${ext}
+  icon: assets/icon.ico
+  target:
+    target: portable
+    arch:
+      - x64
+portable:
+  requestExecutionLevel: user
+mac:
+  artifactName: Saifcord-Mac.${ext}
+  icon: assets/icon.icns
+  category: public.app-category.social-networking
+  target:
+    target: zip
+    arch:
+      - x64
+linux:
+  artifactName: Saifcord-Linux.${ext}
+  category: Utility
+  target:
+    target: AppImage
+    arch:
+      - x64
+extends: file:C:\Users\saifs\OneDrive\Desktop\s7cord\installer-src\node_modules\electron-webpack\out\electron-builder.js
+electronVersion: 13.6.9
